@@ -6,7 +6,7 @@ INC = inc/
 
 SRC_PATH = src/
 
-MLX_PATH = minilibx-linux/
+MLX_PATH = mlx_linux/
 
 #TMP_DIR = $(CURDIR)/tmp/
 
@@ -44,7 +44,7 @@ tmp:
 	@mkdir -p $(OBJ_PATH)
 
 $(NAME): $(OBJ)	libraries
-	@gcc $(CFLAGS) $(OBJ) $(LIBFT_PATH)libft.a -framework OpenGL -framework AppKit -o $(NAME) -L $(MLX_PATH) -lmlx
+	gcc $(CFLAGS) $(OBJ) $(LIBFT_PATH)libft.a -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 	@echo "$(GREEN)cube3D compiled$(RESET)"
 
 libraries:
@@ -56,7 +56,7 @@ libraries:
 
 $(OBJ_PATH)%.o: %.c $(LIBFT_PATH)libft.h $(INC)cube3D.h $(LIBFT_PATH)libft.a Makefile
 	@mkdir -p $(dir $@)
-	@gcc $(CFLAGS) -Imlx -g -c $< -o $@
+	@gcc $(CFLAGS) -Iminilibx-linux -O3 $< -o $@
 	@echo "$(CYAN)Compiling cube3D:$(YELLOW) $@$(RESET)"
 
 re: fclean all
