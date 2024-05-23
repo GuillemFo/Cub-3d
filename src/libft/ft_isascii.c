@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 07:31:11 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/23 09:17:49 by codespace        ###   ########.fr       */
+/*   Created: 2023/05/02 16:15:35 by gforns-s          #+#    #+#             */
+/*   Updated: 2023/05/08 11:18:09 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3D.h"
+#include "libft.h"
 
+int	ft_isascii(int val)
+{
+	if (val >= 0 && val <= 127)
+		return (1);
+	else
+		return (0);
+}
+/*
+#include <stdio.h>
 int	main(void)
 {
-	printf("hola\n");
-}
+	int	a = '-255';
+	printf("%d\n", ft_isascii(a));
+}*/

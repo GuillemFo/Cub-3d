@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 07:31:11 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/23 09:17:49 by codespace        ###   ########.fr       */
+/*   Created: 2023/05/03 16:20:38 by gforns-s          #+#    #+#             */
+/*   Updated: 2023/05/08 15:10:44 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3D.h"
+#include "libft.h"
 
-int	main(void)
+char	*ft_strrchr(const char *var, int c)
 {
-	printf("hola\n");
+	int	i;
+
+	i = ft_strlen(var);
+	while (i >= 0)
+	{
+		if (var[i] == (char) c)
+			return ((char *)&var[i]);
+		i--;
+	}
+	return (0);
 }

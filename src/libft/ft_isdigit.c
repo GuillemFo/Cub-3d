@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 07:31:11 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/23 09:17:49 by codespace        ###   ########.fr       */
+/*   Created: 2023/05/02 15:43:18 by gforns-s          #+#    #+#             */
+/*   Updated: 2023/05/08 11:11:11 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3D.h"
+#include "libft.h"
 
+int	ft_isdigit(int val)
+{
+	if (val >= '0' && val <= '9')
+		return (1);
+	else
+		return (0);
+}
+/*
+#include <stdio.h>
 int	main(void)
 {
-	printf("hola\n");
-}
+	int	a = '1';
+	printf("%d\n", ft_isdigit(a));
+}*/

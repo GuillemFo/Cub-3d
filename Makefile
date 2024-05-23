@@ -6,9 +6,11 @@ INC = inc/
 
 SRC_PATH = src/
 
+MLX_PATH = minilibx-linux/
+
 #TMP_DIR = $(CURDIR)/tmp/
 
-LIBFT_PATH = libft/
+LIBFT_PATH = src/libft/
 
 SRC = main.c
 
@@ -16,7 +18,7 @@ SRC_PPREFIX = $(addprefix $(SRC_PATH),$(SRC))
 
 OBJ = $(addprefix $(OBJ_PATH),$(SRC_PPREFIX:.c=.o))
 
-CFLAGS = -I ./inc -I ./libft -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -I ./inc -I ./src/libft -Wall -Wextra -Werror -g -fsanitize=address
 
 
 #############################################################################
@@ -40,3 +42,37 @@ all: tmp libraries $(NAME)
 
 tmp:
 		@mkdir -p $(OBJ_PATH)
+
+$(NAME): $(OBJ)	libraries
+		@cc $(CFLAGS) $(OBJ) $(LIBFT_PATH)libft.a -framework OpenGL -framework AppKit -o $(NAME) -L $(MLX_PATH) -lmlx
+		@echo "$(GREEN)cube3D compiled$(RESET)"
+
+libraries:
+			@echo "$(CYAN)Compiling libraries$(RESET)"
+			@(MAKE) -C $(LIBFT_PATH) bonus --no-print-directory
+			MAKE -C $(MLX_PATH)
+			@echo "$(GREEN)Libraries compiled$(RESET)"
+#MLX MAKE IS TMP SOLUION, WE DONT WANT TO COMPILE IT ALWAYS IF NO NEED.
+
+$(OBJ_PATH)%.o: %.c $(LIBFT_PATH)libft.h $(INC)cube3D.h $(LIBFT_PATH)libft.a Makefile
+		@mkdir -$(dir $@)
+		cc $(CFLAGS)-Imlx -g -c $< -o $@
+		@echo "$(CYAN)Compiling cube3D:$(YELLOW) $@$(RESET)"
+
+re: fclean all
+
+clean:
+	$(MAKE) -C $(LIBFT_PATH) clean --no-print-directory
+	@echo "$(CYAN)Libft $(YELLOW)- $(RED)Objs deleted$(RESET)"
+	rm -rf $(OBJ_PATH)
+	@echo "$(CYAN)cube3D $(YELLOW)- $(RED)Objs deleted$(RESET)"
+
+fclean: clean
+		@(MAKE) -C $(LIBFT_PATH) fclean --no-print-directory
+		@echo "$(CYAN)Libft $(RED)deleted$(RESET)"
+		@rm -rf $(NAME)
+		@echo "$(CYAN)cube3D $(RED)deleted$(RESET)"
+		@(MAKE) -C $(MLX_PATH) fclean
+		@echo "$(CYAN)Minilibx $(RED)deleted$(RESET)"
+
+.PHONY: all re clean fclean
