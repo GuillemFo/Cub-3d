@@ -1,0 +1,2 @@
+NAME = cube3D
+
