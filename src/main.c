@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:11 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/25 01:53:54 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/25 02:23:39 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ int	main(int ac, char **av)
 		else if (ac > 2)
 			return (printf("Too many arguments\n"), 1);
 	}
+	check_args(av);
 	printf("hola\n");
 }

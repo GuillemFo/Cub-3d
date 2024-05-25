@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:22 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/25 02:14:11 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/25 02:23:15 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 
 /*-=-=-=-=-=-=-=-=FUNCTIONS=-=-=-=-=-=-=-=-=*/
 
-int		check_args(char **argv);
+int		check_args(char **av);
 int		check_name(char *name);
 void	message(char *msg);
 

@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/25 02:08:42 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/25 02:22:03 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ int	check_name(char *name)
 	return (0);
 }
 
-int	check_args(char **argv)
+int	check_args(char **av)
 {
 	int	fd;
 
-	if (check_ber(argv[1], ".cub") != 0)
+	if (check_ber(av[1], ".cub") != 0)
 		message("ERROR\nFile should be .cub type\n");
 }
 
