@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:22 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/25 02:46:45 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/25 08:19:49 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,37 @@
 
 /*-=-=-=-=-=-=-=-=-=STRUCTS=-=-=-=-=-=-=-=-=-*/
 
+typedef struct s_event
+{
+	//key hooks??
+	//mouse??
+}			t_event;
 
+typedef struct s_map
+{
+	char	*NO;
+	char	*SO;
+	char	*EA;
+	char	*WE;
+	int		*F;	//Floor color
+	int		*C;	//Ceiling color
+	char	**map;
+}				t_map;
+
+
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*mlx_win;
+}				t_mlx;
+
+
+typedef struct s_data
+{
+	t_mlx 	win;
+	t_map	map;
+	
+}				t_data;
 
 
 

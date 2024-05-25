@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/25 03:01:51 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/25 07:06:35 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ int	check_args(int ac, char **av)
 		message("ERROR\nFile does not open\n");
 	if (check_map() != 0)
 		message("ERROR\nMap not correct\n");
-	
+		//close map??
+		
 }
 
 
