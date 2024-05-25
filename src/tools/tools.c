@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 07:31:11 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/25 01:53:54 by codespace        ###   ########.fr       */
+/*   Created: 2024/05/25 02:09:52 by codespace         #+#    #+#             */
+/*   Updated: 2024/05/25 02:15:22 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3D.h"
 
-int	main(int ac, char **av)
+void	message(char *msg)
 {
-	if (ac != 2)
-	{
-		if (ac == 1)
-			return (printf("Missing map\n"), 1);
-		else if (ac > 2)
-			return (printf("Too many arguments\n"), 1);
-	}
-	printf("hola\n");
+	printf("%s\n", msg);
 }

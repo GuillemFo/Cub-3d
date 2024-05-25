@@ -12,7 +12,7 @@ MLX_PATH = mlx_linux/
 
 LIBFT_PATH = src/libft/
 
-SRC = main.c
+SRC = main.c parsing/parsing.c tools/tools.c
 
 SRC_PPREFIX = $(addprefix $(SRC_PATH),$(SRC))
 
