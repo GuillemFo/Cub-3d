@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:09:52 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/25 02:15:22 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/25 02:25:41 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	message(char *msg)
 {
-	printf("%s\n", msg);
+	printf("%s", msg);
 }

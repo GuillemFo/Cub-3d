@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/25 02:22:03 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/25 03:01:51 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,25 @@ int	check_name(char *name)
 	return (0);
 }
 
-int	check_args(char **av)
+int	check_args(int ac, char **av)
 {
 	int	fd;
 
+	if (ac != 2)
+	{
+		if (ac == 1)
+			return (message("Missing map\n"), 1);
+		else if (ac > 2)
+			return (message("Too many arguments\n"), 1);
+	}
 	if (check_ber(av[1], ".cub") != 0)
-		message("ERROR\nFile should be .cub type\n");
+		return (message("ERROR\nFile should be .cub type\n"), 1);
+	fd = open(av[1], O_RDONLY);
+	if (fd < 0)
+		message("ERROR\nFile does not open\n");
+	if (check_map() != 0)
+		message("ERROR\nMap not correct\n");
+	
 }
 
 
