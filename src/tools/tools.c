@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:09:52 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/27 12:52:08 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/27 14:47:21 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,15 @@ bool	valid_char(char *line)
 	int	i;
 
 	i = 0;
-	while (line[i])
+	while (line[i] != '\0')
 	{
+		if (line[i] == ' ')
+		{
+			while (line[i] == ' ')
+				i++;
+		}
 		if (line[i] != '1' || line[i] != '0' || line[i] != 'N' || line[i] != 'S'
-			|| line[i] != 'E' || line[i] != 'W' || line[i] != ' ')
+			|| line[i] != 'E' || line[i] != 'W')
 			return (false);
 		i++;
 	}

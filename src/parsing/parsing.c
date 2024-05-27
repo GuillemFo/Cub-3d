@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/27 14:00:56 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/27 14:51:37 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,18 +128,39 @@ int	load_arg(char *line, t_file *file)
 int	check_map(t_file *file, int fd)
 {
 	char	*line;
+	int		len;
 
+	len = 0;
 	line = get_next_line(fd);
 	if (line == 0)
 		return (message("ERROR\nError reading first line\n"), 1);
 	load_arg(line, &file);
-
-
-		
-	
-	// iterate line entirely and try find NO SO WE EA F C to allocate and load the proper info to the file.* of each one
-
-
+	if (file->data_ok == 6)
+	{
+		if (valid_char(line) == true)
+		{
+			len = ft_strlen(line);
+			if (len > file->max_x)
+				file->max_x = len;
+			file->max_y +=1;
+		}
+	}
+	while (line != NULL)
+	{
+		free(line);
+		line = get_next_line(fd);
+		load_arg(line, &file);
+		if (file->data_ok == 6)
+		{
+			if (valid_char(line) == true)
+			{
+				len = ft_strlen(line);
+				if (len > file->max_x)
+					file->max_x = len;
+				file->max_y +=1;
+			}
+		}
+	}	
 }
 
 int	check_name(char *name)
