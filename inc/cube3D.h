@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:22 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/27 06:52:13 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/27 13:19:39 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 # include "../mlx_linux/mlx.h"
 # include "../src/libft/libft.h"
+# include <stdbool.h>
 
 /*-=-=-=-=-=-=-=-=COLOR CODES=-=-=-=-=-=-=-=-*/
 
@@ -45,6 +46,10 @@ typedef struct s_file
 	int		*F;	//Floor color
 	int		*C;	//Ceiling color
 	char	**map;
+	char	**tmp;
+	int		max_x;
+	int		max_y;
+	int		data_ok;
 }				t_file;
 
 
@@ -69,5 +74,6 @@ typedef struct s_data
 int		check_args(int ac, char **av, t_data data);
 int		check_name(char *name);
 void	message(char *msg);
-
+char	*ft_replace(char *s, char og, char re);
+bool	valid_char(char *line);
 #endif

@@ -6,16 +6,18 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/27 12:04:15 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/27 13:34:29 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3D.h"
 
-void	build_map(char **map)
+char	**build_map(char *line, t_file *file)
 {
 	int	len;
-	
+
+	len = ft_strlen(line);
+	if (len > file->max_x)
 
 }
 
@@ -33,81 +35,80 @@ int *copy_RGB(char *s)//pending
 char *copy_path(char *s)
 {
 	char *path;
-	int	i;
-	int	x;
+	int	len;
 
-	i = 0;
-	while (s[i] == ' ')
-		i++;
-	x = i;
-	while (s[i] != ' ' || s[i] != '\0')
-		i++;
-	path = malloc(((i - x) + 1) * sizeof(char));
-	ft_strlcpy(path, &s[x], i - x);
-	i = ft_strlen(path);
-	if (ft_strncmp(&path[i - 4], ".xmp", 4) != 0)
-		return (message("No .xpm file found\n"), NULL);
+	len = 0;
+	len = ft_strlen(s);
+	path = malloc((len + 1) * sizeof(char));
+	ft_strlcpy(path, s, len);
 	return (path);
 }
 
-load_file_arg(char *line, t_file *file)
+int	load_arg(char *line, t_file *file)
 {
-	int	i;
+	char *tmp;
+	char **txt;
 
-	i = 0;
-	if (line[i] == ' ')
+	tmp = ft_replace(line, '\t', ' ');
+	txt = ft_split(tmp, ' ');
+	if (ft_strcmp(txt[0], "NO") == 0 && txt[1] && !txt[2])
 	{
-		while (line[i] == ' ')
-			i++;
+		file->NO = copy_path(txt[1]);
+		file->data_ok += 1;
 	}
-	if (line[i] == 'N' && line[i + 1] == 'O')
-		file->NO = copy_path(&line[i + 2]);
-	else if (line[i] == 'S' && line[i + 1] == 'O')
-		file->SO = copy_path(&line[i + 2]);
-	else if (line[i] == 'E' && line[i + 1] == 'A')
-		file->EA = copy_path(&line[i + 2]);
-	else if (line[i] == 'W' && line[i + 1] == 'E')
-		file->WE = copy_path(&line[i + 2]);
-	else if (line[i] == 'F' && line[i + 1] == ' ')
-		file->F = copy_RGB(&line[i + 1]);
-	else if (line[i] == 'C' && line[i + 1] == ' ')
-		file->C = copy_RGB(&line[i + 1]);
-	else if (line[i] == '1'|| line[i] == '0')
-		build_map(file->map);
-	else
-		return (message("Error on .cub file\n"), 1);
+	else if (ft_strcmp(txt[0], "SO") == 0 && txt[1] && !txt[2])
+	{
+		file->SO = copy_path(txt[1]);
+		file->data_ok += 1;
+	}
+	else if (ft_strcmp(txt[0], "EA") == 0 && txt[1] && !txt[2])
+	{
+		file->EA = copy_path(txt[1]);
+		file->data_ok += 1;
+	}
+	else if (ft_strcmp(txt[0], "WE") == 0 && txt[1] && !txt[2])
+	{
+		file->WE = copy_path(txt[1]);
+		file->data_ok += 1;
+	}
+	else if (ft_strcmp(txt[0], "F") == 0 && txt[1] && !txt[2])
+	{
+		file->F = copy_RGB(txt[1]);
+		file->data_ok += 1;
+	}
+	else if (ft_strcmp(txt[0], "C") == 0 && txt[1] && !txt[2])
+	{
+		file->C = copy_RGB(txt[1]);
+		file->data_ok += 1;
+	}
+	else if (line == NULL || line[0] == '\0')
+		return (0);
 	return (0);	
 }
 
+/*
+	else if (valid_char(line) == true && file->data_ok == 6)
+		file->tmp = build_map(line, file);
+	else
+		return (message("Error\nCould not load .cub, input not correct\n"), 1);
+*/
 
-int	check_map(t_file file, int fd)
+int	check_map(t_file *file, int fd)
 {
 	char	*line;
 
 	line = get_next_line(fd);
 	if (line == 0)
 		return (message("ERROR\nError reading first line\n"), 1);
+	load_arg(line, &file);
+
+
+		
 	
 	// iterate line entirely and try find NO SO WE EA F C to allocate and load the proper info to the file.* of each one
-	load_file_arg(line, &file);
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 int	check_name(char *name)
 {
@@ -130,7 +131,7 @@ int	check_args(int ac, char **av, t_data data)
 		else if (ac > 2)
 			return (message("Too many arguments\n"), 1);
 	}
-	if (check_ber(av[1], ".cub") != 0)
+	if (check_ber(av[1], ".cub") != 0) //pending to port from so_long and changing name
 		return (message("ERROR\nFile should be .cub type\n"), 1);
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
