@@ -6,35 +6,46 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/27 08:18:41 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/27 09:33:31 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3D.h"
 
-load_arg_file(char *line, t_file *file)
+char *copy_path(char *s)
 {
+	char *path;
+	int	len;
 
-	//Apply split instead?? but ill have to customize it
-	int	i;
+	len = 0;
+	len = ft_strlen(s);
+	if (ft_strncmp(&s[len - 4], ".cub", 5) != 0) // might have issues with 5 instead of 4
+		return (message("No .cub file found\n"), NULL);
+	else
+	{
+		path = malloc((len + 1) * sizeof(char));
+		ft_strlcpy(path, s, len);
+	}
+	return (path);
+}
 
-	i = 0;
-	while (line[i] == ' ' || line[i] == '\t')
-		i++;
-	if (line[i] == 'N' && line[i + 1] == 'O')
-		
-	else if (line[i] == 'S' && line[i + 1] == 'O')
+load_file_arg(char *line, t_file *file)
+{
+	char **txt;
+	int	len;
 
-	else if (line[i] == 'E' && line[i + 1] == 'A')
-
-	else if (line[i] == 'W' && line[i + 1] == 'E')
-
-	else if (line[i] == 'F')
-
-	else if (line[i] == 'C')
-		
-	else	
+	len = 0;
+	txt = ft_split(line, ' ');
+	if (ft_strcmp(txt[0], "NO") == 0)
+		file->NO = copy_path(txt[1]);
+	else if (ft_strcmp(txt[0], "SO") == 0)
+		file->SO = copy_path(txt[1]);
+	else if (ft_strcmp(txt[0], "EA") == 0)
+		file->EA = copy_path(txt[1]);
+	else if (ft_strcmp(txt[0], "WE") == 0)
+		file->WE = copy_path(txt[1]);
 	
+	return (0);	
 }
 
 
@@ -47,7 +58,7 @@ int	check_map(t_file file, int fd)
 		return (message("ERROR\nError reading first line\n"), 1);
 	
 	// iterate line entirely and try find NO SO WE EA F C to allocate and load the proper info to the file.* of each one
-	load_arg_file(line, &file);
+	load_file_arg(line, &file);
 
 
 }
