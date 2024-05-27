@@ -6,20 +6,27 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/27 11:22:24 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/27 12:04:15 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3D.h"
 
-//might need to protect tabs or spaced values for when doing split
+void	build_map(char **map)
+{
+	int	len;
+	
 
-int *copy_RGB(char *s)
+}
+
+int *copy_RGB(char *s)//pending
 {
 	int *RGB;
-	
+	int	i;
+
+	i = 0;
 	RGB = malloc(3 * sizeof(int));
-	while (s[i] != ',')
+	while (s[i] != ',');
 
 }
 
@@ -30,10 +37,10 @@ char *copy_path(char *s)
 	int	x;
 
 	i = 0;
-	while (s[i] == ' ' || s[i] == '\t')
+	while (s[i] == ' ')
 		i++;
 	x = i;
-	while (s[i] != '\t' || s[i] != ' ' || s[i] != '\0')
+	while (s[i] != ' ' || s[i] != '\0')
 		i++;
 	path = malloc(((i - x) + 1) * sizeof(char));
 	ft_strlcpy(path, &s[x], i - x);
@@ -48,25 +55,27 @@ load_file_arg(char *line, t_file *file)
 	int	i;
 
 	i = 0;
-	if (line[i] == ' ' || line[i] == '\t')
+	if (line[i] == ' ')
 	{
-		while (line[i] == ' ' || line[i] == '\t')
+		while (line[i] == ' ')
 			i++;
 	}
-	if (line[i] == 'N' && line[i + 1] == 'O' && line[i + 2] == ' ' ||  line[i + 2] == '\t')
+	if (line[i] == 'N' && line[i + 1] == 'O')
 		file->NO = copy_path(&line[i + 2]);
-	else if (line[i] == 'S' && line[i + 1] == 'O' && line[i + 2] == ' ' ||  line[i + 2] == '\t')
+	else if (line[i] == 'S' && line[i + 1] == 'O')
 		file->SO = copy_path(&line[i + 2]);
-	else if (line[i] == 'E' && line[i + 1] == 'A' && line[i + 2] == ' ' ||  line[i + 2] == '\t')
+	else if (line[i] == 'E' && line[i + 1] == 'A')
 		file->EA = copy_path(&line[i + 2]);
-	else if (line[i] == 'W' && line[i + 1] == 'E' && line[i + 2] == ' ' ||  line[i + 2] == '\t')
+	else if (line[i] == 'W' && line[i + 1] == 'E')
 		file->WE = copy_path(&line[i + 2]);
-	else if (line[i] == 'F' && line[i + 1] == ' ' ||  line[i + 1] == '\t')
+	else if (line[i] == 'F' && line[i + 1] == ' ')
 		file->F = copy_RGB(&line[i + 1]);
-	else if (line[i] == 'C' && line[i + 1] == ' ' ||  line[i + 1] == '\t')
+	else if (line[i] == 'C' && line[i + 1] == ' ')
 		file->C = copy_RGB(&line[i + 1]);
-	else if (line[i] == '1'|| line[i] == '0' || line[i] == 'N' || line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
-	
+	else if (line[i] == '1'|| line[i] == '0')
+		build_map(file->map);
+	else
+		return (message("Error on .cub file\n"), 1);
 	return (0);	
 }
 
