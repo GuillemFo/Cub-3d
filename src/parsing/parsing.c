@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/27 10:06:12 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/27 11:22:24 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,11 @@ load_file_arg(char *line, t_file *file)
 	int	i;
 
 	i = 0;
-	while (line[i] == ' ' || line[i] == '\t')
-		i++;
+	if (line[i] == ' ' || line[i] == '\t')
+	{
+		while (line[i] == ' ' || line[i] == '\t')
+			i++;
+	}
 	if (line[i] == 'N' && line[i + 1] == 'O' && line[i + 2] == ' ' ||  line[i + 2] == '\t')
 		file->NO = copy_path(&line[i + 2]);
 	else if (line[i] == 'S' && line[i + 1] == 'O' && line[i + 2] == ' ' ||  line[i + 2] == '\t')
@@ -62,7 +65,8 @@ load_file_arg(char *line, t_file *file)
 		file->F = copy_RGB(&line[i + 1]);
 	else if (line[i] == 'C' && line[i + 1] == ' ' ||  line[i + 1] == '\t')
 		file->C = copy_RGB(&line[i + 1]);
-	else	
+	else if (line[i] == '1'|| line[i] == '0' || line[i] == 'N' || line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
+	
 	return (0);	
 }
 
