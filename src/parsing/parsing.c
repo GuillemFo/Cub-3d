@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/27 09:43:40 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/27 10:06:12 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,40 +26,43 @@ int *copy_RGB(char *s)
 char *copy_path(char *s)
 {
 	char *path;
-	int	len;
+	int	i;
+	int	x;
 
-	len = 0;
-	len = ft_strlen(s);
-	if (ft_strncmp(&s[len - 4], ".cub", 5) != 0) // might have issues with 5 instead of 4
-		return (message("No .cub file found\n"), NULL);
-	else
-	{
-		path = malloc((len + 1) * sizeof(char));
-		ft_strlcpy(path, s, len);
-	}
+	i = 0;
+	while (s[i] == ' ' || s[i] == '\t')
+		i++;
+	x = i;
+	while (s[i] != '\t' || s[i] != ' ' || s[i] != '\0')
+		i++;
+	path = malloc(((i - x) + 1) * sizeof(char));
+	ft_strlcpy(path, &s[x], i - x);
+	i = ft_strlen(path);
+	if (ft_strncmp(&path[i - 4], ".xmp", 4) != 0)
+		return (message("No .xpm file found\n"), NULL);
 	return (path);
 }
 
 load_file_arg(char *line, t_file *file)
 {
-	char **txt;
-	int	len;
+	int	i;
 
-	len = 0;
-	txt = ft_split(line, ' ');
-	if (ft_strcmp(txt[0], "NO") == 0)
-		file->NO = copy_path(txt[1]);
-	else if (ft_strcmp(txt[0], "SO") == 0)
-		file->SO = copy_path(txt[1]);
-	else if (ft_strcmp(txt[0], "EA") == 0)
-		file->EA = copy_path(txt[1]);
-	else if (ft_strcmp(txt[0], "WE") == 0)
-		file->WE = copy_path(txt[1]);
-	else if (ft_strcmp(txt[0], "F\0") == 0)
-		file->F = copy_RGB(txt[1]);
-	else if (ft_strcmp(txt[0], "C\0") == 0)
-		file->C = copy_RGB(txt[1]);
-	free_slpit();
+	i = 0;
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+	if (line[i] == 'N' && line[i + 1] == 'O' && line[i + 2] == ' ' ||  line[i + 2] == '\t')
+		file->NO = copy_path(&line[i + 2]);
+	else if (line[i] == 'S' && line[i + 1] == 'O' && line[i + 2] == ' ' ||  line[i + 2] == '\t')
+		file->SO = copy_path(&line[i + 2]);
+	else if (line[i] == 'E' && line[i + 1] == 'A' && line[i + 2] == ' ' ||  line[i + 2] == '\t')
+		file->EA = copy_path(&line[i + 2]);
+	else if (line[i] == 'W' && line[i + 1] == 'E' && line[i + 2] == ' ' ||  line[i + 2] == '\t')
+		file->WE = copy_path(&line[i + 2]);
+	else if (line[i] == 'F' && line[i + 1] == ' ' ||  line[i + 1] == '\t')
+		file->F = copy_RGB(&line[i + 1]);
+	else if (line[i] == 'C' && line[i + 1] == ' ' ||  line[i + 1] == '\t')
+		file->C = copy_RGB(&line[i + 1]);
+	else	
 	return (0);	
 }
 
