@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:22 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/27 13:19:39 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/27 13:59:52 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct s_file
 	char	*WE;
 	int		*F;	//Floor color
 	int		*C;	//Ceiling color
+	int		*F_flag;
+	int		*C_flag;
 	char	**map;
 	char	**tmp;
 	int		max_x;

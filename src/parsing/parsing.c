@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/27 13:34:29 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/27 14:00:56 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,33 +53,65 @@ int	load_arg(char *line, t_file *file)
 	txt = ft_split(tmp, ' ');
 	if (ft_strcmp(txt[0], "NO") == 0 && txt[1] && !txt[2])
 	{
+		if (file->NO == NULL)
+		{
 		file->NO = copy_path(txt[1]);
 		file->data_ok += 1;
+		}
+		else
+			return (message("ERROR\n"), 1);
 	}
 	else if (ft_strcmp(txt[0], "SO") == 0 && txt[1] && !txt[2])
 	{
-		file->SO = copy_path(txt[1]);
-		file->data_ok += 1;
+		if (file->SO == NULL)
+		{
+			file->SO = copy_path(txt[1]);
+			file->data_ok += 1;
+		}
+		else
+			return (message("ERROR\n"), 1);
 	}
 	else if (ft_strcmp(txt[0], "EA") == 0 && txt[1] && !txt[2])
 	{
-		file->EA = copy_path(txt[1]);
-		file->data_ok += 1;
+		if (file->EA == NULL)
+		{
+			file->EA = copy_path(txt[1]);
+			file->data_ok += 1;
+		}
+		else
+			return (message("ERROR\n"), 1);
 	}
 	else if (ft_strcmp(txt[0], "WE") == 0 && txt[1] && !txt[2])
 	{
-		file->WE = copy_path(txt[1]);
-		file->data_ok += 1;
+		if (file->WE == NULL)
+		{
+			file->WE = copy_path(txt[1]);
+			file->data_ok += 1;
+		}
+		else
+			return (message("ERROR\n"), 1);
 	}
 	else if (ft_strcmp(txt[0], "F") == 0 && txt[1] && !txt[2])
 	{
-		file->F = copy_RGB(txt[1]);
-		file->data_ok += 1;
+		if (file->F_flag == 0)
+		{
+			file->F = copy_RGB(txt[1]);
+			file->data_ok += 1;
+			file->F_flag = 1;
+		}
+		else
+			return (message("ERROR\n"), 1);
 	}
 	else if (ft_strcmp(txt[0], "C") == 0 && txt[1] && !txt[2])
 	{
-		file->C = copy_RGB(txt[1]);
-		file->data_ok += 1;
+		if (file->C_flag == 0)
+		{
+			file->C = copy_RGB(txt[1]);
+			file->data_ok += 1;
+			file->C_flag = 1;
+		}
+		else
+			return (message("ERROR\n"), 1);
 	}
 	else if (line == NULL || line[0] == '\0')
 		return (0);
