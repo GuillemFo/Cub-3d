@@ -6,11 +6,64 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/25 07:06:35 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/27 08:18:41 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3D.h"
+
+load_arg_file(char *line, t_file *file)
+{
+
+	//Apply split instead?? but ill have to customize it
+	int	i;
+
+	i = 0;
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+	if (line[i] == 'N' && line[i + 1] == 'O')
+		
+	else if (line[i] == 'S' && line[i + 1] == 'O')
+
+	else if (line[i] == 'E' && line[i + 1] == 'A')
+
+	else if (line[i] == 'W' && line[i + 1] == 'E')
+
+	else if (line[i] == 'F')
+
+	else if (line[i] == 'C')
+		
+	else	
+	
+}
+
+
+int	check_map(t_file file, int fd)
+{
+	char	*line;
+
+	line = get_next_line(fd);
+	if (line == 0)
+		return (message("ERROR\nError reading first line\n"), 1);
+	
+	// iterate line entirely and try find NO SO WE EA F C to allocate and load the proper info to the file.* of each one
+	load_arg_file(line, &file);
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -24,7 +77,7 @@ int	check_name(char *name)
 	return (0);
 }
 
-int	check_args(int ac, char **av)
+int	check_args(int ac, char **av, t_data data)
 {
 	int	fd;
 
@@ -40,10 +93,12 @@ int	check_args(int ac, char **av)
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
 		message("ERROR\nFile does not open\n");
-	if (check_map() != 0)
+	if (check_map(data.file, fd) != 0)
+	{
 		message("ERROR\nMap not correct\n");
-		//close map??
-		
+		close(fd);
+	}
+	close(fd);	
 }
 
 

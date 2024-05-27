@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:22 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/25 08:19:49 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/27 06:52:13 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_event
 	//mouse??
 }			t_event;
 
-typedef struct s_map
+typedef struct s_file
 {
 	char	*NO;
 	char	*SO;
@@ -45,7 +45,7 @@ typedef struct s_map
 	int		*F;	//Floor color
 	int		*C;	//Ceiling color
 	char	**map;
-}				t_map;
+}				t_file;
 
 
 typedef struct s_mlx
@@ -57,8 +57,8 @@ typedef struct s_mlx
 
 typedef struct s_data
 {
-	t_mlx 	win;
-	t_map	map;
+	t_mlx 	*win;
+	t_file	*file;
 	
 }				t_data;
 
@@ -66,7 +66,7 @@ typedef struct s_data
 
 /*-=-=-=-=-=-=-=-=FUNCTIONS=-=-=-=-=-=-=-=-=*/
 
-int		check_args(int ac, char **av);
+int		check_args(int ac, char **av, t_data data);
 int		check_name(char *name);
 void	message(char *msg);
 
