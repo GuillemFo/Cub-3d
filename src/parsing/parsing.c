@@ -6,11 +6,22 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/27 09:33:31 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/27 09:43:40 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3D.h"
+
+//might need to protect tabs or spaced values for when doing split
+
+int *copy_RGB(char *s)
+{
+	int *RGB;
+	
+	RGB = malloc(3 * sizeof(int));
+	while (s[i] != ',')
+
+}
 
 char *copy_path(char *s)
 {
@@ -44,7 +55,11 @@ load_file_arg(char *line, t_file *file)
 		file->EA = copy_path(txt[1]);
 	else if (ft_strcmp(txt[0], "WE") == 0)
 		file->WE = copy_path(txt[1]);
-	
+	else if (ft_strcmp(txt[0], "F\0") == 0)
+		file->F = copy_RGB(txt[1]);
+	else if (ft_strcmp(txt[0], "C\0") == 0)
+		file->C = copy_RGB(txt[1]);
+	free_slpit();
 	return (0);	
 }
 
