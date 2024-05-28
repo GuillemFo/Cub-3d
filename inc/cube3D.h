@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:22 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/27 13:59:52 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/28 09:16:56 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,5 @@ int		check_name(char *name);
 void	message(char *msg);
 char	*ft_replace(char *s, char og, char re);
 bool	valid_char(char *line);
+bool	check_is_num(char *s);
 #endif

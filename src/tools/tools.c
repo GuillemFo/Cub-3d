@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:09:52 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/27 14:47:21 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/28 09:16:28 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,32 @@ bool	valid_char(char *line)
 			return (false);
 		i++;
 	}
+	return (true);
+}
+
+bool	bool_digit(int val)
+{
+	if (val >= '0' && val <= '9')
+		return (true);
+	else
+		return (false);
+}
+
+bool	check_is_num(char *s)
+{
+	int	i;
+
+	i = 1;
+	if (s[0] == '+' || (s[0] >= '0' && s[0] <= '9'))
+	{
+		while (s[i] != '\0')
+		{
+			if (bool_digit(s[i]) == false)
+				return (false);
+			i++;
+		}
+	}
+	else
+		return (false);
 	return (true);
 }

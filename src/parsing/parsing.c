@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/27 14:53:50 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/28 09:24:57 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,41 @@ char	**build_map(char *line, t_file *file)
 
 	len = ft_strlen(line);
 	if (len > file->max_x)
-
+	{}
 }
 
-int *copy_RGB(char *s)//pending
+int	check_rgb(char **RGB)
 {
-	int *RGB;
 	int	i;
 
 	i = 0;
-	RGB = malloc(3 * sizeof(int));
-	while (s[i] != ',');
+	while (RGB[i])
+	{
+		if (check_is_num(RGB[i]) == false)
+			return (1);
+		i++;
+	}
+	if (i < 2)
+		return (1);
+	return (0);
+}
 
+int copy_RGB(char *s, t_files )//pending
+{
+	char **tmp;
+	int	i;
+
+	//	checker for only numbers, only 2 ',' from 0 to 255...
+	tmp = ft_split(s, ',');
+	if (check_rgb(tmp) == 1)
+		return (message("Error, RGB not valid\n"), 1);
+	RGB = malloc(3 * sizeof(int));
+	RGB[0] = ft_atoi(tmp[0]);
+	RGB[1] = ft_atoi(tmp[1]);
+	RGB[2] = ft_atoi(tmp[2]);
+	if (max_min_RGB(RGB) == 1)
+		return (message("Error, RGB out of range\n"), 1);
+	return (0);
 }
 
 char *copy_path(char *s)
@@ -55,8 +78,8 @@ int	load_arg(char *line, t_file *file)
 	{
 		if (file->NO == NULL)
 		{
-		file->NO = copy_path(txt[1]);
-		file->data_ok += 1;
+			file->NO = copy_path(txt[1]);
+			file->data_ok += 1;
 		}
 		else
 			return (message("ERROR\n"), 1);
@@ -115,6 +138,8 @@ int	load_arg(char *line, t_file *file)
 	}
 	else if (line == NULL || line[0] == '\0')
 		return (0);
+	else
+		return (message("ERROR, file not valid\n"), 1);
 	return (0);	
 }
 
