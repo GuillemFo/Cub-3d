@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/28 09:24:57 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/28 10:03:18 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	check_rgb(char **RGB)
 	return (0);
 }
 
-int copy_RGB(char *s, t_files )//pending
+int copy_RGB(char *s, int *RGB)//pending
 {
 	char **tmp;
 	int	i;
@@ -116,9 +116,8 @@ int	load_arg(char *line, t_file *file)
 	}
 	else if (ft_strcmp(txt[0], "F") == 0 && txt[1] && !txt[2])
 	{
-		if (file->F_flag == 0)
+		if (file->F_flag == 0 && copy_RGB(txt[1], file->F) == 0)
 		{
-			file->F = copy_RGB(txt[1]);
 			file->data_ok += 1;
 			file->F_flag = 1;
 		}
@@ -127,9 +126,8 @@ int	load_arg(char *line, t_file *file)
 	}
 	else if (ft_strcmp(txt[0], "C") == 0 && txt[1] && !txt[2])
 	{
-		if (file->C_flag == 0)
+		if (file->C_flag == 0 && copy_RGB(txt[1], file->C) == 0)
 		{
-			file->C = copy_RGB(txt[1]);
 			file->data_ok += 1;
 			file->C_flag = 1;
 		}
