@@ -1,4 +1,4 @@
-# Cube-3d
+# Cub-3d
 
 LINKS
 *	https://cdn.intra.42.fr/pdf/pdf/111520/en.subject.pdf
