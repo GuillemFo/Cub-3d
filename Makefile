@@ -1,4 +1,4 @@
-NAME = cube3D
+NAME = cub3D
 
 OBJ_PATH = tmp/
 
@@ -45,7 +45,7 @@ tmp:
 
 $(NAME): $(OBJ)	libraries
 	gcc $(CFLAGS) $(OBJ) $(LIBFT_PATH)libft.a -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
-	@echo "$(GREEN)cube3D compiled$(RESET)"
+	@echo "$(GREEN)cub3D compiled$(RESET)"
 
 libraries:
 	@echo "$(CYAN)Compiling libraries$(RESET)"
@@ -54,10 +54,10 @@ libraries:
 	@echo "$(GREEN)Libraries compiled$(RESET)"
 #MLX MAKE IS TMP SOLUION, WE DONT WANT TO COMPILE IT ALWAYS IF NO NEED.
 
-$(OBJ_PATH)%.o: %.c $(LIBFT_PATH)libft.h $(INC)cube3D.h $(LIBFT_PATH)libft.a Makefile
+$(OBJ_PATH)%.o: %.c $(LIBFT_PATH)libft.h $(INC)cub3D.h $(LIBFT_PATH)libft.a Makefile
 	@mkdir -p $(dir $@)
 	@gcc $(CFLAGS) -Iminilibx-linux -O3 $< -o $@
-	@echo "$(CYAN)Compiling cube3D:$(YELLOW) $@$(RESET)"
+	@echo "$(CYAN)Compiling cub3D:$(YELLOW) $@$(RESET)"
 
 re: fclean all
 
@@ -65,7 +65,7 @@ clean:
 	@$(MAKE) -C $(LIBFT_PATH) clean --no-print-directory
 	@echo "$(CYAN)Libft $(YELLOW)- $(RED)Objs deleted$(RESET)"
 	@rm -rf $(OBJ_PATH)
-	@echo "$(CYAN)cube3D $(YELLOW)- $(RED)Objs deleted$(RESET)"
+	@echo "$(CYAN)cub3D $(YELLOW)- $(RED)Objs deleted$(RESET)"
 	@$(MAKE) -C $(MLX_PATH) clean --no-print-directory
 	@echo "$(CYAN)Minilibx $(RED)deleted$(RESET)"
 
@@ -73,6 +73,6 @@ fclean: clean
 	@$(MAKE) -C $(LIBFT_PATH) fclean --no-print-directory
 	@echo "$(CYAN)Libft $(RED)deleted$(RESET)"
 	@rm -rf $(NAME)
-	@echo "$(CYAN)cube3D $(RED)deleted$(RESET)"
+	@echo "$(CYAN)cub3D $(RED)deleted$(RESET)"
 
 .PHONY: all re clean fclean
