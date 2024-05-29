@@ -8,8 +8,6 @@ SRC_PATH = src/
 
 MLX_PATH = mlx_linux/
 
-#TMP_DIR = $(CURDIR)/tmp/
-
 LIBFT_PATH = src/libft/
 
 SRC = main.c parsing/parsing.c tools/tools.c \
@@ -18,7 +16,9 @@ SRC_PPREFIX = $(addprefix $(SRC_PATH),$(SRC))
 
 OBJ = $(addprefix $(OBJ_PATH),$(SRC_PPREFIX:.c=.o))
 
-CFLAGS = -I ./inc -I ./src/libft -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -I $(INC) -I $(LIBFT_PATH) -Wall -Wextra -Werror #-g -fsanitize=address
+
+MLX_FLAGS = -Lmlx_linux -lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
 
 #############################################################################
@@ -44,7 +44,7 @@ tmp:
 	@mkdir -p $(OBJ_PATH)
 
 $(NAME): $(OBJ)	libraries
-	gcc $(CFLAGS) $(OBJ) $(LIBFT_PATH)libft.a -Lmlx_linux -lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	cc $(CFLAGS) $(OBJ) $(LIBFT_PATH)libft.a $(MLX_FLAGS) -o $(NAME)
 	@echo "$(GREEN)cub3D compiled$(RESET)"
 
 libraries:
@@ -54,9 +54,9 @@ libraries:
 	@echo "$(GREEN)Libraries compiled$(RESET)"
 #MLX MAKE IS TMP SOLUION, WE DONT WANT TO COMPILE IT ALWAYS IF NO NEED.
 
-$(OBJ_PATH)%.o: %.c $(LIBFT_PATH)libft.h $(INC)cub3D.h $(LIBFT_PATH)libft.a Makefile
+$(OBJ_PATH)%.o:%.c Makefile $(LIBFT_PATH)libft.h $(INC)cub3D.h $(LIBFT_PATH)libft.a 
 	@mkdir -p $(dir $@)
-	@gcc $(CFLAGS) -Iminilibx-linux -O3 $< -o $@
+	cc $(CFLAGS) -Iminilibx-linux -O3  -c $< -o $@
 	@echo "$(CYAN)Compiling cub3D:$(YELLOW) $@$(RESET)"
 
 re: fclean all

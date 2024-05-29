@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef cub3D_H
-# define CUDE3D_H
+#ifndef CUB3D_H
+# define CUB3D_H
 
 /*-=-=-=-=-=-=-=-=LIBRARIES=-=-=-=-=-=-=-=-*/
 
@@ -73,10 +73,12 @@ typedef struct s_data
 
 /*-=-=-=-=-=-=-=-=FUNCTIONS=-=-=-=-=-=-=-=-=*/
 
-int	check_args(int ac, char **av, t_data *data);
+int		check_args(int ac, char **av, t_data *data);
 int		check_name(char *name);
 void	message(char *msg);
 char	*ft_replace(char *s, char og, char re);
 bool	valid_char(char *line);
 bool	check_is_num(char *s);
+
+
 #endif
