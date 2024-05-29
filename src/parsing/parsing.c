@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/28 13:13:16 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/29 12:49:03 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,8 +172,10 @@ int	check_map(t_file *file, int fd)
 					file->max_x = len;
 				file->max_y +=1;
 			}
+			else
+				return (message("Error, map contains wrong data"), 1);
 		}
-	}	
+	}
 }
 
 int	check_name(char *name)
@@ -186,7 +188,7 @@ int	check_name(char *name)
 	return (0);
 }
 
-int	check_args(int ac, char **av, t_data data)
+int	check_args(int ac, char **av, t_data *data)
 {
 	int	fd;
 
@@ -202,12 +204,13 @@ int	check_args(int ac, char **av, t_data data)
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
 		message("ERROR\nFile does not open\n");
-	if (check_map(data.file, fd) != 0)
+	if (check_map(data->file, fd) != 0)
 	{
 		message("ERROR\nMap not correct\n");
 		close(fd);
 	}
 	close(fd);	
+	return (0);
 }
 
 

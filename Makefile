@@ -12,7 +12,7 @@ MLX_PATH = mlx_linux/
 
 LIBFT_PATH = src/libft/
 
-SRC = main.c parsing/parsing.c tools/tools.c
+SRC = main.c parsing/parsing.c tools/tools.c \
 
 SRC_PPREFIX = $(addprefix $(SRC_PATH),$(SRC))
 
@@ -44,7 +44,7 @@ tmp:
 	@mkdir -p $(OBJ_PATH)
 
 $(NAME): $(OBJ)	libraries
-	gcc $(CFLAGS) $(OBJ) $(LIBFT_PATH)libft.a -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	gcc $(CFLAGS) $(OBJ) $(LIBFT_PATH)libft.a -Lmlx_linux -lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 	@echo "$(GREEN)cub3D compiled$(RESET)"
 
 libraries:
