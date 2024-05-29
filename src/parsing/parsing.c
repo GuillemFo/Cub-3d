@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/29 13:39:25 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/29 14:28:21 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 // {
 	// int	len;
 // 
-	// len = ft_strlen(line);
+	// len = ft_strle_n(line);
 	// if (len > file->max_x)
 	// {}
 // }
@@ -42,6 +42,7 @@ int	check_rgb(char **RGB)
 	i = 0;
 	while (RGB[i])
 	{
+		printf("#%s#\n", RGB[i]);
 		if (check_is_num(RGB[i]) == false)
 			return (1);
 		i++;
@@ -55,7 +56,6 @@ int copy_RGB(char *s, int *RGB)//pending
 {
 	char **tmp;
 
-	//	checker for only numbers, only 2 ',' from 0 to 255...
 	tmp = ft_split(s, ',');
 	if (check_rgb(tmp) == 1)
 		return (message("Error, RGB not valid\n"), 1);
@@ -83,10 +83,12 @@ char *copy_path(char *s)
 int	load_arg(char *line, t_file *file)
 {
 	char *tmp;
+	char *cl;
 	char **txt;
 
 	tmp = ft_replace(line, '\t', ' ');
-	txt = ft_split(tmp, ' ');
+	cl = ft_replace(tmp, '\n', ' ');
+	txt = ft_split(cl, ' ');
 	if (ft_strcmp(txt[0], "NO") == 0 && txt[1] && !txt[2])
 	{
 		if (file->NO == NULL)
@@ -147,8 +149,6 @@ int	load_arg(char *line, t_file *file)
 		else
 			return (message("ERROR\n"), 1);
 	}
-	else if (line == NULL || line[0] == '\0')
-		return (0);
 	else
 		return (message("ERROR, file not valid\n"), 1);
 	return (0);	
@@ -173,20 +173,26 @@ int	check_map(t_file *file, int fd)
 	load_arg(line, file);
 	while (line != NULL)
 	{
+		printf("DATA OK: %d of 6\n", file->data_ok);
+		printf("###########\n");
 		free(line);
 		line = get_next_line(fd);
-		load_arg(line, file);
-		if (file->data_ok == 6)
+		if (line != NULL && line[0] != '\0' && line[0] != '\n')
 		{
-			if (valid_char(line) == true)
+			if (file->data_ok == 6)
 			{
-				len = ft_strlen(line);
-				if (len > file->max_x)
-					file->max_x = len;
-				file->max_y +=1;
+				if (valid_char(line) == true)
+				{
+					len = ft_strlen_n(line);
+					if (len > file->max_x)
+						file->max_x = len;
+					file->max_y +=1;
+				}
+				else
+					return (message("Error, map contains wrong data\n"), 1);
 			}
-			else
-				return (message("Error, map contains wrong data"), 1);
+			else if (file->data_ok != 6)
+				load_arg(line, file);
 		}
 	}
 	return (0);

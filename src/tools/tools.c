@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:09:52 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/29 13:27:54 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/29 14:26:02 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_replace(char *s, char og, char re)
 	if (!s)
 		return (NULL);
 	i = 0;
-	result = malloc((ft_strlen(s) + 1) * sizeof(char));
+	result = malloc((ft_strlen_n(s) + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
 	while (s[i])
@@ -54,7 +54,10 @@ bool	valid_char(char *line)
 		}
 		if (line[i] != '1' || line[i] != '0' || line[i] != 'N' || line[i] != 'S'
 			|| line[i] != 'E' || line[i] != 'W')
+		{
+			printf("**%c**\n", line[i]);
 			return (false);
+		}
 		i++;
 	}
 	return (true);

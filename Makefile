@@ -18,7 +18,7 @@ OBJ = $(addprefix $(OBJ_PATH),$(SRC_PPREFIX:.c=.o))
 
 CFLAGS = -I $(INC) -I $(LIBFT_PATH) -Wall -Wextra -Werror #-g -fsanitize=address
 
-MLX_FLAGS = -Lmlx_linux -lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+MLX_FLAGS = -Lmlx_linux  -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
 
 #############################################################################
@@ -44,7 +44,7 @@ tmp:
 	@mkdir -p $(OBJ_PATH)
 
 $(NAME): $(OBJ)	libraries
-	cc $(CFLAGS) $(OBJ) $(LIBFT_PATH)libft.a $(MLX_FLAGS) -o $(NAME)
+	@gcc $(CFLAGS) $(OBJ) $(LIBFT_PATH)libft.a $(MLX_FLAGS) -o $(NAME)
 	@echo "$(GREEN)cub3D compiled$(RESET)"
 
 libraries:
@@ -56,7 +56,7 @@ libraries:
 
 $(OBJ_PATH)%.o:%.c Makefile $(LIBFT_PATH)libft.h $(INC)cub3D.h $(LIBFT_PATH)libft.a 
 	@mkdir -p $(dir $@)
-	cc $(CFLAGS) -Iminilibx-linux -O3  -c $< -o $@
+	@gcc $(CFLAGS) -Iminilibx-linux -O3  -c $< -o $@
 	@echo "$(CYAN)Compiling cub3D:$(YELLOW) $@$(RESET)"
 
 re: fclean all
