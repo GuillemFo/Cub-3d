@@ -6,19 +6,33 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/29 13:01:48 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/29 13:39:25 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-char	**build_map(char *line, t_file *file)
-{
-	int	len;
+// char	**build_map(char *line, t_file *file)
+// {
+	// int	len;
+// 
+	// len = ft_strlen(line);
+	// if (len > file->max_x)
+	// {}
+// }
 
-	len = ft_strlen(line);
-	if (len > file->max_x)
-	{}
+int	max_min_RGB(int *RGB)
+{
+	int	i;
+	
+	i = 0;
+	while (i < 3)
+	{
+		if (RGB[i] > 255 || RGB[i] < 0)
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
 int	check_rgb(char **RGB)
@@ -40,7 +54,6 @@ int	check_rgb(char **RGB)
 int copy_RGB(char *s, int *RGB)//pending
 {
 	char **tmp;
-	int	i;
 
 	//	checker for only numbers, only 2 ',' from 0 to 255...
 	tmp = ft_split(s, ',');
@@ -157,12 +170,12 @@ int	check_map(t_file *file, int fd)
 	line = get_next_line(fd);
 	if (line == 0)
 		return (message("ERROR\nError reading first line\n"), 1);
-	load_arg(line, &file);
+	load_arg(line, file);
 	while (line != NULL)
 	{
 		free(line);
 		line = get_next_line(fd);
-		load_arg(line, &file);
+		load_arg(line, file);
 		if (file->data_ok == 6)
 		{
 			if (valid_char(line) == true)
@@ -176,6 +189,7 @@ int	check_map(t_file *file, int fd)
 				return (message("Error, map contains wrong data"), 1);
 		}
 	}
+	return (0);
 }
 
 int	check_name(char *name)
@@ -199,7 +213,7 @@ int	check_args(int ac, char **av, t_data *data)
 		else if (ac > 2)
 			return (message("Too many arguments\n"), 1);
 	}
-	if (check_ber(av[1], ".cub") != 0) //pending to port from so_long and changing name
+	if (check_ext(av[1], ".cub") != 0) //pending to port from so_long and changing name
 		return (message("ERROR\nFile should be .cub type\n"), 1);
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)

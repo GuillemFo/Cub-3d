@@ -45,8 +45,8 @@ typedef struct s_file
 	char	*WE;
 	int		*F;	//Floor color
 	int		*C;	//Ceiling color
-	int		*F_flag;
-	int		*C_flag;
+	int		F_flag;
+	int		C_flag;
 	char	**map;
 	char	**tmp;
 	int		max_x;
@@ -79,6 +79,7 @@ void	message(char *msg);
 char	*ft_replace(char *s, char og, char re);
 bool	valid_char(char *line);
 bool	check_is_num(char *s);
-
+int	ft_strlen_n(const char *var);
+int	check_ext(char *argv, char *text);
 
 #endif
