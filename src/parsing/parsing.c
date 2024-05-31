@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/31 15:57:27 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/31 16:03:38 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,12 +173,12 @@ int	check_map(t_file *file, int fd)
 	line = get_next_line(fd);
 	r += 1;
 	if (line == 0)
-		return (message("ERROR\nError reading first line\n"), 1);
-	load_arg(line, file);
+		return (message("ERROR. No line found\n"), 1);
+	if (load_arg(line, file) == 1);
+		return (message("\n"), 1);
+
 	while (line != NULL)
 	{
-		printf("DATA OK: %d of 6\n", file->data_ok);
-		printf("###########\n");
 		free(line);
 		line = get_next_line(fd);
 		r += 1;
@@ -197,7 +197,10 @@ int	check_map(t_file *file, int fd)
 					return (message("Error, map contains wrong data\n"), 1);
 			}
 			else if (file->data_ok != 6)
-				load_arg(line, file);
+			{
+				if (load_arg(line, file) == 1)
+					return (message("\n"), 1);
+			}
 		}
 	}
 	return (0);
