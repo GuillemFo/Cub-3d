@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:09:52 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/29 14:26:02 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/31 14:30:14 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,20 @@ char	*ft_replace(char *s, char og, char re)
 bool	valid_char(char *line)
 {
 	int	i;
+	char	*tmp;
+	char	*cl;
 
 	i = 0;
-	while (line[i] != '\0')
+	tmp = ft_replace(line, '\t', ' ');
+	cl = ft_replace(tmp, '\n', ' ');	
+
+	while (cl[i] != '\0')
 	{
-		if (line[i] == ' ')
+		if (cl[i] != '1' && cl[i] != '0' && cl[i] != 'N' && cl[i] != 'S'
+			&& cl[i] != 'E' && cl[i] != 'W' && cl[i] != ' ')
 		{
-			while (line[i] == ' ')
-				i++;
-		}
-		if (line[i] != '1' || line[i] != '0' || line[i] != 'N' || line[i] != 'S'
-			|| line[i] != 'E' || line[i] != 'W')
-		{
-			printf("**%c**\n", line[i]);
+			printf("\n..%s..\n", cl);
+			printf("**%d** poss:%d\n", cl[i], i);
 			return (false);
 		}
 		i++;

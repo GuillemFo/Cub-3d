@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/29 14:28:21 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/31 14:26:04 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,9 +165,13 @@ int	check_map(t_file *file, int fd)
 {
 	char	*line;
 	int		len;
+	int		r;
+
+	r = 0;
 
 	len = 0;
 	line = get_next_line(fd);
+	r += 1;
 	if (line == 0)
 		return (message("ERROR\nError reading first line\n"), 1);
 	load_arg(line, file);
@@ -177,12 +181,14 @@ int	check_map(t_file *file, int fd)
 		printf("###########\n");
 		free(line);
 		line = get_next_line(fd);
+		r += 1;
 		if (line != NULL && line[0] != '\0' && line[0] != '\n')
 		{
 			if (file->data_ok == 6)
 			{
 				if (valid_char(line) == true)
 				{
+					printf("Row: %d ---\n", r);
 					len = ft_strlen_n(line);
 					if (len > file->max_x)
 						file->max_x = len;
