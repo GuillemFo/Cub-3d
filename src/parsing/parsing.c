@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/31 16:03:38 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/31 16:23:56 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	check_rgb(char **RGB)
 	i = 0;
 	while (RGB[i])
 	{
-		printf("#%s#\n", RGB[i]);
 		if (check_is_num(RGB[i]) == false)
 			return (1);
 		i++;
@@ -52,7 +51,7 @@ int	check_rgb(char **RGB)
 	return (0);
 }
 
-int copy_RGB(char *s, int *RGB)//pending
+int copy_RGB(char *s, int *RGB)
 {
 	char **tmp;
 
@@ -174,9 +173,8 @@ int	check_map(t_file *file, int fd)
 	r += 1;
 	if (line == 0)
 		return (message("ERROR. No line found\n"), 1);
-	if (load_arg(line, file) == 1);
+	if (load_arg(line, file) == 1)
 		return (message("\n"), 1);
-
 	while (line != NULL)
 	{
 		free(line);
@@ -234,10 +232,10 @@ int	check_args(int ac, char **av, t_data *data)
 		message("ERROR\nFile does not open\n");
 	if (check_map(data->file, fd) != 0)
 	{
-		message("ERROR\nMap not correct\n");
 		close(fd);
+		message("ERROR\nMap not correct\n");
 	}
-	close(fd);	
+	close(fd);
 	return (0);
 }
 

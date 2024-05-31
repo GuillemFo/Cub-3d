@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:11 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/31 15:36:47 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/31 16:48:27 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ int	main(int ac, char **av)
 	data = malloc(sizeof(t_data));
 	init_data(data);
 	check_args(ac, av, data);
+	build_map(av, data->file);
 	printf("hola\n");
 }
