@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:09:52 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/31 15:56:37 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/31 17:51:25 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,36 +47,33 @@ bool	valid_map_line(char *line)
 {
 	int		i;
 	char	*tmp;
-	char	*cl;
 
 	i = 0;
-	tmp = ft_replace(line, '\t', ' ');
-	cl = ft_replace(tmp, '\n', ' ');
-	free(tmp);
-	if (cl[i] == ' ')
+	tmp = clean_l(line);
+	if (tmp[i] == ' ')
 	{
-		while (cl[i] == ' ')
+		while (tmp[i] == ' ')
 			i++;
 	}
-	if (cl[i] == '1' || cl[i] == '0' || cl[i] == 'N' || cl[i] == 'S'
-		|| cl[i] == 'E' || cl[i] == 'W')
+	if (tmp[i] == '1' || tmp[i] == '0' || tmp[i] == 'N' || tmp[i] == 'S'
+		|| tmp[i] == 'E' || tmp[i] == 'W')
 	{
-		while (cl[i] == '1' || cl[i] == '0' || cl[i] == 'N' || cl[i] == 'S'
-		|| cl[i] == 'E' || cl[i] == 'W')
+		while (tmp[i] == '1' || tmp[i] == '0' || tmp[i] == 'N' || tmp[i] == 'S'
+		|| tmp[i] == 'E' || tmp[i] == 'W')
 			i++;
-		if (cl[i] == ' ')
+		if (tmp[i] == ' ')
 		{
-			while (cl[i] == ' ')
+			while (tmp[i] == ' ')
 				i++;
-			if (cl[i] != '\0')
+			if (tmp[i] != '\0')
 				return (message("Error, Space inside the map\n"), false);
 		}
-		else if (cl[i] != ' ' && cl[i] != '\0')
+		else if (tmp[i] != ' ' && tmp[i] != '\0')
 			return (message("Error, Space inside the map2\n"), false);
 	}
 	else
 		return (message("Error, invalid map\n"), false);
-	free(cl);
+	free(tmp);
 	return (true);
 }
 
@@ -142,4 +139,63 @@ bool	line_is_space(char *line)
 		i++;
 	}
 	return (true);
+}
+
+bool	has_map(char *line)
+{
+	int	i;
+
+	i = 0;
+	if (line && line[0] != '\0')
+	{
+		if (line[i] == ' ')
+		{
+			while (line[i] == ' ')
+				i++;
+		}
+		if (line[i] == '1' || line[i] == '0' )
+			return (true);
+		else if (line[i] == 'N' || line[i] == 'E' || line[i] == 'W' ||
+			line[i] == 'S')
+			return (false);	//(message("Error, player out of the map\n"), false);
+	}
+	return (false);
+}
+
+char	*clean_l(char *line)
+{
+	char	*tmp;
+	char	*cl;
+	
+	tmp = ft_replace(line, '\t', ' ');
+	cl = ft_replace(tmp, '\n', ' ');
+	free(tmp);
+	return (cl);
+}
+
+int	check_ext_sp(char *str, char *text)
+{
+	int	i;
+
+	if (str && str[0] != '\0')
+	{
+		i = ft_strlen(str);
+		while (str[i] == ' ' && str[i - 1])
+			i--;
+		if (ft_strncmp(&str[i - 4], text, 4) != 0)
+			return (-1);
+	}
+	return (0);
+}
+
+void	print_map_term(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		printf("--%s--\n", map[i]);
+		i++;
+	}
 }

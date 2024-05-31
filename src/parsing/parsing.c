@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/31 16:23:56 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/31 17:32:56 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,10 @@ char *copy_path(char *s)
 int	load_arg(char *line, t_file *file)
 {
 	char *tmp;
-	char *cl;
 	char **txt;
 
-	tmp = ft_replace(line, '\t', ' ');
-	cl = ft_replace(tmp, '\n', ' ');
-	txt = ft_split(cl, ' ');
+	tmp = clean_l(line);
+	txt = ft_split(tmp, ' ');
 	if (ft_strcmp(txt[0], "NO") == 0 && txt[1] && !txt[2])
 	{
 		if (file->NO == NULL)
@@ -225,7 +223,7 @@ int	check_args(int ac, char **av, t_data *data)
 		else if (ac > 2)
 			return (message("Too many arguments\n"), 1);
 	}
-	if (check_ext(av[1], ".cub") != 0) //pending to port from so_long and changing name
+	if (check_ext(av[1], ".cub") != 0)
 		return (message("ERROR\nFile should be .cub type\n"), 1);
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
