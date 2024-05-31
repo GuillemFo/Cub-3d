@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 16:24:43 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/31 17:50:13 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/31 19:24:16 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int	build_map(char **av, t_file *file)
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
 		return (message("ERROR\nFile does not open\n"), 1);
-	file->map = malloc((file->max_y + 4) * sizeof(char));
-	//this needs to go on a function that builds the edges only
+	file->map = malloc((file->max_y + 4) * sizeof(char*));
+	//this needs to go on a function that builds the edges only and fills them with spaces
 	file->map[0] = malloc((file->max_x + 4) * sizeof(char));	//**
 	file->map[1] = malloc((file->max_x + 4) * sizeof(char));	//**
 	file->map[file->max_y + 1] = malloc((file->max_x + 4) * sizeof(char));	//**
