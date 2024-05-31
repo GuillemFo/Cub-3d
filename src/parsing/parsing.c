@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/31 15:11:14 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/31 15:57:27 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,11 +184,10 @@ int	check_map(t_file *file, int fd)
 		r += 1;
 		if (line != NULL && line[0] != '\0' && line[0] != '\n')
 		{
-			if (file->data_ok == 6)
+			if (file->data_ok == 6 && line_is_space(line) == false)
 			{
 				if (valid_map_line(line) == true)
 				{
-					printf("Row: %d ---\n", r);
 					len = ft_strlen_n(line);
 					if (len > file->max_x)
 						file->max_x = len;

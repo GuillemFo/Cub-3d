@@ -82,5 +82,6 @@ bool	valid_map_line(char *line);
 bool	check_is_num(char *s);
 int	ft_strlen_n(const char *var);
 int	check_ext(char *argv, char *text);
+bool	line_is_space(char *line);
 
 #endif

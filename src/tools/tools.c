@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:09:52 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/31 15:39:37 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/31 15:56:37 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,4 +128,18 @@ int	check_ext(char *argv, char *text)
 	if (ft_strncmp(&argv[tmp - 4], text, 4) != 0)
 		return (-1);
 	return (0);
+}
+
+bool	line_is_space(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] != '\0')
+	{
+		if (line[i] != ' ' || line[i] != '\t' || line[i] != '\n')
+			return (false);
+		i++;
+	}
+	return (true);
 }
