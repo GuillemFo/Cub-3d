@@ -77,7 +77,7 @@ int		check_args(int ac, char **av, t_data *data);
 int		check_name(char *name);
 void	message(char *msg);
 char	*ft_replace(char *s, char og, char re);
-bool	valid_char(char *line);
+bool	valid_map_line(char *line);
 bool	check_is_num(char *s);
 int	ft_strlen_n(const char *var);
 int	check_ext(char *argv, char *text);

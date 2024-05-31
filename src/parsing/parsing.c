@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/31 14:26:04 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/31 15:11:14 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ int	load_arg(char *line, t_file *file)
 }
 
 /*
-	else if (valid_char(line) == true && file->data_ok == 6)
+	else if (valid_map_line(line) == true && file->data_ok == 6)
 		file->tmp = build_map(line, file);
 	else
 		return (message("Error\nCould not load .cub, input not correct\n"), 1);
@@ -186,7 +186,7 @@ int	check_map(t_file *file, int fd)
 		{
 			if (file->data_ok == 6)
 			{
-				if (valid_char(line) == true)
+				if (valid_map_line(line) == true)
 				{
 					printf("Row: %d ---\n", r);
 					len = ft_strlen_n(line);
