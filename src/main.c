@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:11 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/29 14:17:19 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/31 15:36:47 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void init_file(t_file *file)
 	file->max_x= 0;
 	file->max_y = 0;
 	file->data_ok = 0;
+	file->nb_player = 0;
 }
 
 void	init_data(t_data *data)

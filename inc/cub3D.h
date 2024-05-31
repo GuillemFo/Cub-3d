@@ -52,6 +52,7 @@ typedef struct s_file
 	int		max_x;
 	int		max_y;
 	int		data_ok;
+	int		nb_player;
 }				t_file;
 
 

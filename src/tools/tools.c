@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:09:52 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/31 15:17:14 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/31 15:39:37 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ char	*ft_replace(char *s, char og, char re)
 	return (result);
 }
 
-bool	valid_map_line(char *line)	//under dev due issues with spaces. Calculating before map spaces and after map spaces without accepting mid map spaces.
+
+
+//under dev due issues with spaces. Calculating before map spaces and after map spaces without accepting mid map spaces.
+bool	valid_map_line(char *line)
 {
 	int		i;
 	char	*tmp;
@@ -49,9 +52,34 @@ bool	valid_map_line(char *line)	//under dev due issues with spaces. Calculating 
 	i = 0;
 	tmp = ft_replace(line, '\t', ' ');
 	cl = ft_replace(tmp, '\n', ' ');
-
+	free(tmp);
+	if (cl[i] == ' ')
+	{
+		while (cl[i] == ' ')
+			i++;
+	}
+	if (cl[i] == '1' || cl[i] == '0' || cl[i] == 'N' || cl[i] == 'S'
+		|| cl[i] == 'E' || cl[i] == 'W')
+	{
+		while (cl[i] == '1' || cl[i] == '0' || cl[i] == 'N' || cl[i] == 'S'
+		|| cl[i] == 'E' || cl[i] == 'W')
+			i++;
+		if (cl[i] == ' ')
+		{
+			while (cl[i] == ' ')
+				i++;
+			if (cl[i] != '\0')
+				return (message("Error, Space inside the map\n"), false);
+		}
+		else if (cl[i] != ' ' && cl[i] != '\0')
+			return (message("Error, Space inside the map2\n"), false);
+	}
+	else
+		return (message("Error, invalid map\n"), false);
+	free(cl);
 	return (true);
 }
+
 		// if (cl[i] != '1' && cl[i] != '0' && cl[i] != 'N' && cl[i] != 'S'
 		// 	&& cl[i] != 'E' && cl[i] != 'W')
 
