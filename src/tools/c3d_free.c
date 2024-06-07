@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:57:58 by josegar2          #+#    #+#             */
-/*   Updated: 2024/06/07 01:02:46 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/07 09:47:31 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_file  *c3d_free_file(t_file *file)
         i = 0;
         while (i <= file->max_y + 2)
         {
-            file->map[i] = ft_free(file->map[i])
+            file->map[i] = ft_free(file->map[i]);
             i++;
         }
         file->map = ft_free(file->map);
@@ -48,6 +48,8 @@ t_mlx   *c3d_free_win(t_mlx *win)
     {
         // close mlx
     }
+    win = ft_free(win);
+    return (win);
 }
 
 t_data  *c3d_free(t_data *data)

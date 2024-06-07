@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 13:50:07 by gforns-s          #+#    #+#             */
-/*   Updated: 2023/10/25 19:13:35 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/07 09:49:54 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
 
-char	*ft_free(char *s1, char *s2)
+static char	*ft_free(char *s1, char *s2)
 {
 	free (s1);
 	free (s2);

@@ -74,7 +74,7 @@ typedef struct s_data
 
 /*-=-=-=-=-=-=-=-=FUNCTIONS=-=-=-=-=-=-=-=-=*/
 
-int		check_args(int ac, char **av, t_data *data);
+int		check_args(int ac, char **av);
 int		check_map(t_file *file, char *fn);
 void	message(char *msg);
 char	*ft_replace(char *s, char og, char re);

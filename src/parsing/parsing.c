@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/07 00:36:50 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/07 09:45:59 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,7 @@ int	check_map(t_file *file, char *fn)
 	int		r;
     int     fd;
 
-	fd = open(av[1], O_RDONLY);
+	fd = open(fn, O_RDONLY);
 	if (fd < 0)
 		return (message("ERROR\nFile does not open\n"), 1);
     r = 0;
@@ -220,8 +220,6 @@ int	check_map(t_file *file, char *fn)
 
 int	check_args(int ac, char **av)
 {
-	int	fd;
-
 	if (ac != 2)
 	{
 		if (ac == 1)
