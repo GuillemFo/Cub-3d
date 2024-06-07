@@ -91,6 +91,6 @@ t_data  *c3d_free(t_data *data);
 void	*ft_free(void *p);
 
 
-void	print_map_term(char **map);
+void	print_map_term(t_file *file);
 
 #endif

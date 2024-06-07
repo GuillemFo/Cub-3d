@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:09:52 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/07 01:02:52 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/07 11:15:05 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_replace(char *s, char og, char re)
 	if (!s)
 		return (NULL);
 	i = 0;
-	result = malloc((ft_strlen_n(s) + 1) * sizeof(char));
+	result = malloc((ft_strlen(s) + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
 	while (s[i])
@@ -188,14 +188,14 @@ int	check_ext_sp(char *str, char *text)
 	return (0);
 }
 
-void	print_map_term(char **map)
+void	print_map_term(t_file *file)
 {
 	int	i;
 
 	i = 0;
-	while (map[i])
+	while (i <= file->max_y + 2)
 	{
-		printf("--%s--\n", map[i]);
+		printf("--%s--\n", file->map[i]);
 		i++;
 	}
 }

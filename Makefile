@@ -17,7 +17,7 @@ SRC_PPREFIX = $(addprefix $(SRC_PATH),$(SRC))
 
 OBJ = $(addprefix $(OBJ_PATH),$(SRC_PPREFIX:.c=.o))
 
-CFLAGS = -I $(INC) -I $(LIBFT_PATH) -Wall -Wextra -Werror #-g -fsanitize=address
+CFLAGS = -I $(INC) -I $(LIBFT_PATH) -Wall -Wextra -Werror -g #-fsanitize=address
 
 MLX_FLAGS = -Lmlx_linux  -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
