@@ -85,7 +85,7 @@ int		check_ext(char *argv, char *text);
 bool	line_is_space(char *line);
 int		build_map(char **av, t_file *file);
 bool	has_map(char *line);
-char	*clean_l(char *line);
+char	*clean_tabs(char *line);
 int	check_ext_sp(char *str, char *text);
 void	print_map_term(char **map);
 

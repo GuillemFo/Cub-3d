@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:09:52 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/31 17:51:25 by codespace        ###   ########.fr       */
+/*   Updated: 2024/06/09 16:26:45 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,14 +162,11 @@ bool	has_map(char *line)
 	return (false);
 }
 
-char	*clean_l(char *line)
+char	*clean_tabs(char *line)
 {
-	char	*tmp;
 	char	*cl;
 	
-	tmp = ft_replace(line, '\t', ' ');
-	cl = ft_replace(tmp, '\n', ' ');
-	free(tmp);
+	cl = ft_replace(line, '\t', ' ');
 	return (cl);
 }
 

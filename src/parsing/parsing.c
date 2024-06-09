@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/31 17:32:56 by codespace        ###   ########.fr       */
+/*   Updated: 2024/06/09 17:12:40 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	max_min_RGB(int *RGB)
 	return (0);
 }
 
-int	check_rgb(char **RGB)
+int	check_rgb(char **RGB)	//rethinking how to calculate the rgb values in a better way due removing split
 {
 	int	i;
 
@@ -46,12 +46,12 @@ int	check_rgb(char **RGB)
 			return (1);
 		i++;
 	}
-	if (i < 2)
+	if (i != 2)
 		return (1);
 	return (0);
 }
 
-int copy_RGB(char *s, int *RGB)
+int copy_RGB(char *s, int *RGB)		//needs to be readapted for string style!!
 {
 	char **tmp;
 
@@ -69,94 +69,91 @@ int copy_RGB(char *s, int *RGB)
 
 char *copy_path(char *s)
 {
-	char *path;
-	int	len;
+	char	*path;
+	int		len;
+	int		i;
 
+	i = 0;
 	len = 0;
-	len = ft_strlen(s);
+	while (s[i] == ' ')
+		i++;
+	len = ft_strlen_n(&s[i]);
 	path = malloc((len + 1) * sizeof(char));
-	ft_strlcpy(path, s, len);
+	ft_strlcpy(path, &s[i], len);
+	printf("path: %s\n", path);
 	return (path);
 }
 
 int	load_arg(char *line, t_file *file)
 {
-	char *tmp;
-	char **txt;
 
-	tmp = clean_l(line);
-	txt = ft_split(tmp, ' ');
-	if (ft_strcmp(txt[0], "NO") == 0 && txt[1] && !txt[2])
+	char	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = clean_tabs(line);
+	while (tmp[i] == ' ')
+		i++;
+	if (tmp[i] == 'N' && tmp[i + 1] == 'O' && tmp[i + 2] == ' ')
 	{
 		if (file->NO == NULL)
 		{
-			file->NO = copy_path(txt[1]);
-			file->data_ok += 1;
+			file->NO = copy_path(&tmp[i + 2]);
+			file->data_ok +=1;
 		}
 		else
-			return (message("ERROR\n"), 1);
+			return (message("Multiple arguments for NO\n"), 1);
 	}
-	else if (ft_strcmp(txt[0], "SO") == 0 && txt[1] && !txt[2])
+	else if (tmp[i] == 'S' && tmp[i + 1] == 'O' && tmp[i + 2] == ' ')
 	{
 		if (file->SO == NULL)
 		{
-			file->SO = copy_path(txt[1]);
-			file->data_ok += 1;
+			file->SO = copy_path(&tmp[i + 2]);
+			file->data_ok +=1;
 		}
 		else
-			return (message("ERROR\n"), 1);
+			return (message("Multiple arguments for SO\n"), 1);
 	}
-	else if (ft_strcmp(txt[0], "EA") == 0 && txt[1] && !txt[2])
+	else if (tmp[i] == 'E' && tmp[i + 1] == 'A' && tmp[i + 2] == ' ')
 	{
 		if (file->EA == NULL)
 		{
-			file->EA = copy_path(txt[1]);
-			file->data_ok += 1;
+			file->EA = copy_path(&tmp[i + 2]);
+			file->data_ok +=1;
 		}
 		else
-			return (message("ERROR\n"), 1);
+			return (message("Multiple arguments for EA\n"), 1);
 	}
-	else if (ft_strcmp(txt[0], "WE") == 0 && txt[1] && !txt[2])
+	else if (tmp[i] == 'W' && tmp[i + 1] == 'E' && tmp[i + 2] == ' ')
 	{
 		if (file->WE == NULL)
 		{
-			file->WE = copy_path(txt[1]);
-			file->data_ok += 1;
+			file->WE = copy_path(&tmp[i + 2]);
+			file->data_ok +=1;
 		}
 		else
-			return (message("ERROR\n"), 1);
+			return (message("Multiple arguments for WE\n"), 1);
 	}
-	else if (ft_strcmp(txt[0], "F") == 0 && txt[1] && !txt[2])
+	else if (tmp[i] == 'F' && tmp[i + 1] == ' ')
 	{
-		if (file->F_flag == 0 && copy_RGB(txt[1], file->F) == 0)
+		if (file->F_flag = 0)
 		{
-			file->data_ok += 1;
-			file->F_flag = 1;
+			
 		}
 		else
-			return (message("ERROR\n"), 1);
+			return (message("Multiple arguments for F\n"), 1);
 	}
-	else if (ft_strcmp(txt[0], "C") == 0 && txt[1] && !txt[2])
-	{
-		if (file->C_flag == 0 && copy_RGB(txt[1], file->C) == 0)
-		{
-			file->data_ok += 1;
-			file->C_flag = 1;
-		}
-		else
-			return (message("ERROR\n"), 1);
-	}
-	else
-		return (message("ERROR, file not valid\n"), 1);
-	return (0);	
-}
 
-/*
-	else if (valid_map_line(line) == true && file->data_ok == 6)
-		file->tmp = build_map(line, file);
-	else
-		return (message("Error\nCould not load .cub, input not correct\n"), 1);
-*/
+	else if (tmp[i] == 'C' && tmp[i + 1] == ' ')
+	{
+		if (file->C_flag = 0)
+		{
+
+		}
+		return (message("Multiple arguments for C\n"), 1);
+	}
+	return (0);
+}
 
 int	check_map(t_file *file, int fd)
 {
@@ -172,7 +169,7 @@ int	check_map(t_file *file, int fd)
 	if (line == 0)
 		return (message("ERROR. No line found\n"), 1);
 	if (load_arg(line, file) == 1)
-		return (message("\n"), 1);
+		return (message("Error loading args\n"), 1);
 	while (line != NULL)
 	{
 		free(line);
