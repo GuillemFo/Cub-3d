@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/09 17:12:40 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/09 17:58:53 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,35 +35,41 @@ int	max_min_RGB(int *RGB)
 	return (0);
 }
 
-int	check_rgb(char **RGB)	//rethinking how to calculate the rgb values in a better way due removing split
+int	check_rgb(char **RGB)
 {
 	int	i;
 
 	i = 0;
+	if (!RGB[i])
+		return (1);
 	while (RGB[i])
 	{
 		if (check_is_num(RGB[i]) == false)
 			return (1);
 		i++;
 	}
-	if (i != 2)
+	if (i < 2)
 		return (1);
 	return (0);
 }
 
-int copy_RGB(char *s, int *RGB)		//needs to be readapted for string style!!
+int copy_RGB(char *s, int *RGB)
 {
-	char **tmp;
+	char	**tmp1;
+	char 	**tmp;
 
-	tmp = ft_split(s, ',');
+	tmp1 = ft_split(s, ' ');
+	tmp = ft_split(tmp1[1], ',');
+	ft_free_split(tmp1);
 	if (check_rgb(tmp) == 1)
-		return (message("Error, RGB not valid\n"), 1);
+		return (message("Error, RGB not valid\n"), ft_free_split(tmp), 1);
 	RGB = malloc(3 * sizeof(int));
 	RGB[0] = ft_atoi(tmp[0]);
 	RGB[1] = ft_atoi(tmp[1]);
 	RGB[2] = ft_atoi(tmp[2]);
 	if (max_min_RGB(RGB) == 1)
-		return (message("Error, RGB out of range\n"), 1);
+		return (message("Error, RGB out of range\n"),ft_free_split(tmp), 1);
+	ft_free_split(tmp);
 	return (0);
 }
 
@@ -91,9 +97,12 @@ int	load_arg(char *line, t_file *file)
 	int		i;
 
 	i = 0;
-	tmp = clean_tabs(line);
-	while (tmp[i] == ' ')
-		i++;
+	tmp = ft_replace(line, '\t', ' ');
+	if (tmp[i] == ' ')
+	{
+		while (tmp[i] == ' ')
+			i++;
+	}
 	if (tmp[i] == 'N' && tmp[i + 1] == 'O' && tmp[i + 2] == ' ')
 	{
 		if (file->NO == NULL)
@@ -136,19 +145,20 @@ int	load_arg(char *line, t_file *file)
 	}
 	else if (tmp[i] == 'F' && tmp[i + 1] == ' ')
 	{
-		if (file->F_flag = 0)
+		if (file->F_flag == 0)
 		{
-			
+			copy_RGB(&tmp[i + 1], file->F);
+			file->data_ok +=1;
 		}
 		else
 			return (message("Multiple arguments for F\n"), 1);
 	}
-
 	else if (tmp[i] == 'C' && tmp[i + 1] == ' ')
 	{
-		if (file->C_flag = 0)
+		if (file->C_flag == 0)
 		{
-
+			copy_RGB(&tmp[i + 1], file->F);
+			file->data_ok +=1;
 		}
 		return (message("Multiple arguments for C\n"), 1);
 	}

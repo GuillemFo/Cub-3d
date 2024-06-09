@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:11 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/09 16:53:53 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/09 17:52:50 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	main(int ac, char **av)
 {
 	t_data	*data;
 
+	data = malloc(sizeof(t_data));
 	init_data(data);
 	check_args(ac, av, data);
 	build_map(av, data->file);

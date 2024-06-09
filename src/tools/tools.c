@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:09:52 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/09 16:26:45 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/09 18:03:10 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ bool	valid_map_line(char *line)
 	char	*tmp;
 
 	i = 0;
-	tmp = clean_l(line);
+	tmp = ft_replace(line, '\t', ' ');
 	if (tmp[i] == ' ')
 	{
 		while (tmp[i] == ' ')
@@ -63,12 +63,12 @@ bool	valid_map_line(char *line)
 			i++;
 		if (tmp[i] == ' ')
 		{
-			while (tmp[i] == ' ')
+			while (tmp[i] == ' ' || tmp[i] == '\n')
 				i++;
 			if (tmp[i] != '\0')
 				return (message("Error, Space inside the map\n"), false);
 		}
-		else if (tmp[i] != ' ' && tmp[i] != '\0')
+		else if (tmp[i] != ' ' && tmp[i] != '\n' && tmp[i] != '\0')
 			return (message("Error, Space inside the map2\n"), false);
 	}
 	else
@@ -195,4 +195,18 @@ void	print_map_term(char **map)
 		printf("--%s--\n", map[i]);
 		i++;
 	}
+}
+
+void	*ft_free_split(char **s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		free(s[i]);
+		i++;
+	}
+	free(s);
+	return (NULL);
 }

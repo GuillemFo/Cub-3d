@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 16:24:43 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/31 19:24:16 by codespace        ###   ########.fr       */
+/*   Updated: 2024/06/09 17:58:20 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	build_map(char **av, t_file *file)
 	{
 		free(line);
 		line = get_next_line(fd);
-		tmp = clean_l(line);
+		tmp = ft_replace(line, '\t', ' ');
 		if (has_map(tmp) == true)
 		{
 			file->map[i] = construct_map(tmp);
