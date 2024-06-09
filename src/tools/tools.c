@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:09:52 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/07 11:15:05 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/09 23:50:55 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ bool	line_is_space(char *line)
 	i = 0;
 	while (line[i] != '\0')
 	{
-		if (line[i] != ' ' || line[i] != '\t' || line[i] != '\n')
+		if (line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
 			return (false);
 		i++;
 	}

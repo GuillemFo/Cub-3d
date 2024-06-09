@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/07 09:45:59 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/10 00:25:09 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,18 @@ int	check_rgb(char **RGB)
 	return (0);
 }
 
-int copy_RGB(char *s, int *RGB)
+int copy_RGB(char *s, int **RGB)
 {
 	char **tmp;
 
 	tmp = ft_split(s, ',');
 	if (check_rgb(tmp) == 1)
 		return (message("Error, RGB not valid\n"), 1);
-	RGB = malloc(3 * sizeof(int));
-	RGB[0] = ft_atoi(tmp[0]);
-	RGB[1] = ft_atoi(tmp[1]);
-	RGB[2] = ft_atoi(tmp[2]);
-	if (max_min_RGB(RGB) == 1)
+	*RGB = malloc(3 * sizeof(int));
+	(*RGB)[0] = ft_atoi(tmp[0]);
+	(*RGB)[1] = ft_atoi(tmp[1]);
+	(*RGB)[2] = ft_atoi(tmp[2]);
+	if (max_min_RGB(*RGB) == 1)
 		return (message("Error, RGB out of range\n"), 1);
 	return (0);
 }
@@ -128,7 +128,7 @@ int	load_arg(char *line, t_file *file)
 	}
 	else if (ft_strcmp(txt[0], "F") == 0 && txt[1] && !txt[2])
 	{
-		if (file->F_flag == 0 && copy_RGB(txt[1], file->F) == 0)
+		if (file->F_flag == 0 && copy_RGB(txt[1], &(file->F)) == 0)
 		{
 			file->data_ok += 1;
 			file->F_flag = 1;
@@ -138,7 +138,7 @@ int	load_arg(char *line, t_file *file)
 	}
 	else if (ft_strcmp(txt[0], "C") == 0 && txt[1] && !txt[2])
 	{
-		if (file->C_flag == 0 && copy_RGB(txt[1], file->C) == 0)
+		if (file->C_flag == 0 && copy_RGB(txt[1], &(file->C)) == 0)
 		{
 			file->data_ok += 1;
 			file->C_flag = 1;
@@ -162,57 +162,50 @@ int	check_map(t_file *file, char *fn)
 {
 	char	*line;
 	int		len;
-	int		r;
     int     fd;
 
 	fd = open(fn, O_RDONLY);
 	if (fd < 0)
 		return (message("ERROR\nFile does not open\n"), 1);
-    r = 0;
 	len = 0;
 	line = get_next_line(fd);
-	r += 1;
-	if (line == 0)
-    {
-        close(fd);
-		return (message("ERROR. No line found\n"), 1);
-    }
-    if (load_arg(line, file) == 1)
-    {
-        close (fd);
-		return (message("\n"), 1);
-    }
 	while (line != NULL)
 	{
-		free(line);
-		line = get_next_line(fd);
-		r += 1;
-		if (line != NULL && line[0] != '\0' && line[0] != '\n')
+		if (file->data_ok < 6 && line_is_space(line) == false)
+        {
+            if (load_arg(line, file) == 1)
+            {
+                close(fd);
+                free(line);
+		        return (message("Bad config\n"), 1);
+            }
+        }
+        else if (file->data_ok == 6 && line_is_space(line) == false)
+            file->data_ok = 7;
+        if (file->data_ok == 7 && line_is_space(line) == true)
 		{
-			if (file->data_ok == 6 && line_is_space(line) == false)
+            close(fd);
+            free(line);
+		    return (message("Empty line in map\n"), 1);
+        }
+        else if (file->data_ok == 7)
+        {
+			if (valid_map_line(line) == true)
 			{
-				if (valid_map_line(line) == true)
-				{
-					len = ft_strlen_n(line);
-					if (len > file->max_x)
-						file->max_x = len;
-					file->max_y +=1;
-				}
-				else
-                {
-                    close(fd);
-					return (message("Error, map contains wrong data\n"), 1);
-                }
+				len = ft_strlen_n(line);
+				if (len > file->max_x)
+					file->max_x = len;
+				file->max_y +=1;
 			}
-			else if (file->data_ok != 6)
-			{
-				if (load_arg(line, file) == 1)
-                {
-                    close(fd);
-					return (message("\n"), 1);
-                }
-			}
+			else
+            {
+                close(fd);
+				return (message("Error, map contains wrong data\n"), 1);
+            }
 		}
+		else 
+        free(line);
+		line = get_next_line(fd);
 	}
     close(fd);
 	return (0);
