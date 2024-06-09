@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 16:24:43 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/09 19:31:34 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/09 19:41:04 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int	build_map(char **av, t_file *file)
 	if (fd < 0)
 		return (message("ERROR\nFile does not open\n"), 1);
 	printf("%d\n", file->max_y);
-	file->map = malloc((file->max_y + 4) * sizeof(char*));
+	file->map = malloc((file->max_y + 5) * sizeof(char*));
+	file->map[file->max_y + 3] = NULL;
 
 	file->map[0] = malloc((file->max_x + 4) * sizeof(char));	//first line
 	file->map[0][file->max_x + 3] = '\0';
@@ -52,11 +53,10 @@ int	build_map(char **av, t_file *file)
 	file->map[file->max_y + 1][file->max_x + 3] = '\0';
 	fill_with_space(file->map[file->max_y + 1]);
 
-	file->map[file->max_y + 2] = malloc((file->max_x + 4) * sizeof(char));	//line after map 2 (segfault)
+	file->map[file->max_y + 2] = malloc((file->max_x + 4) * sizeof(char));	//line after map 2 (segfault or not printing
 	file->map[file->max_y + 2][file->max_x + 3] = '\0';
 	fill_with_space(file->map[file->max_y + 2]);
 
-	//file->map[file->max_y + 3] = malloc((file->max_x + 4) * sizeof(char));
 	
 	line = get_next_line(fd);
 	while (line != NULL)
