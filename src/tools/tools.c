@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:09:52 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/09 18:03:10 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/09 19:26:28 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_replace(char *s, char og, char re)
 	if (!s)
 		return (NULL);
 	i = 0;
-	result = malloc((ft_strlen_n(s) + 1) * sizeof(char));
+	result = malloc((ft_strlen(s) + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
 	while (s[i])
@@ -107,7 +107,7 @@ bool	check_is_num(char *s)
 	return (true);
 }
 
-int	ft_strlen_n(const char *var)
+int	ft_strlen_n(char *var)
 {
 	int	count;
 
@@ -162,11 +162,14 @@ bool	has_map(char *line)
 	return (false);
 }
 
-char	*clean_tabs(char *line)
+char	*clean_l(char *line)
 {
+	char	*tmp;
 	char	*cl;
 	
-	cl = ft_replace(line, '\t', ' ');
+	tmp = ft_replace(line, '\t', ' ');
+	cl = ft_replace(tmp, '\n', ' ');
+	free(tmp);
 	return (cl);
 }
 
@@ -209,4 +212,16 @@ void	*ft_free_split(char **s)
 	}
 	free(s);
 	return (NULL);
+}
+
+void	fill_with_space(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		str[i] = ' ';
+		i++;
+	}
 }

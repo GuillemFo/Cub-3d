@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/09 17:58:53 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/09 19:04:18 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ int	check_rgb(char **RGB)
 	int	i;
 
 	i = 0;
-	if (!RGB[i])
-		return (1);
 	while (RGB[i])
 	{
 		if (check_is_num(RGB[i]) == false)
@@ -55,14 +53,16 @@ int	check_rgb(char **RGB)
 
 int copy_RGB(char *s, int *RGB)
 {
-	char	**tmp1;
-	char 	**tmp;
+	char *polished;
+	char **tmp;
+	char **tmp1;
 
-	tmp1 = ft_split(s, ' ');
+	polished = ft_replace(s, '\n', ' ');
+	tmp1 = ft_split(polished, ' ');
 	tmp = ft_split(tmp1[1], ',');
 	ft_free_split(tmp1);
 	if (check_rgb(tmp) == 1)
-		return (message("Error, RGB not valid\n"), ft_free_split(tmp), 1);
+		return (message("Error, RGB not valid\n"),ft_free_split(tmp), 1);
 	RGB = malloc(3 * sizeof(int));
 	RGB[0] = ft_atoi(tmp[0]);
 	RGB[1] = ft_atoi(tmp[1]);
@@ -83,10 +83,9 @@ char *copy_path(char *s)
 	len = 0;
 	while (s[i] == ' ')
 		i++;
-	len = ft_strlen_n(&s[i]);
+	len = (ft_strlen_n(&s[i]) + 1);
 	path = malloc((len + 1) * sizeof(char));
 	ft_strlcpy(path, &s[i], len);
-	printf("path: %s\n", path);
 	return (path);
 }
 
@@ -147,8 +146,9 @@ int	load_arg(char *line, t_file *file)
 	{
 		if (file->F_flag == 0)
 		{
-			copy_RGB(&tmp[i + 1], file->F);
+			copy_RGB(&tmp[i], file->F);
 			file->data_ok +=1;
+			file->F_flag = 1;
 		}
 		else
 			return (message("Multiple arguments for F\n"), 1);
@@ -157,10 +157,12 @@ int	load_arg(char *line, t_file *file)
 	{
 		if (file->C_flag == 0)
 		{
-			copy_RGB(&tmp[i + 1], file->F);
+			copy_RGB(&tmp[i], file->F);
 			file->data_ok +=1;
+			file->C_flag = 1;
 		}
-		return (message("Multiple arguments for C\n"), 1);
+		else
+			return (message("Multiple arguments for C\n"), 1);
 	}
 	return (0);
 }

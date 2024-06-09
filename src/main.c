@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:11 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/09 17:52:50 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/09 18:11:39 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,10 @@ int	main(int ac, char **av)
 
 	data = malloc(sizeof(t_data));
 	init_data(data);
-	check_args(ac, av, data);
-	build_map(av, data->file);
+	if (check_args(ac, av, data) == 1)
+		return (1);
+	if (build_map(av, data->file) == 1)
+		return (1);
 	print_map_term(data->file->map);
 	printf("hola\n");
 }
