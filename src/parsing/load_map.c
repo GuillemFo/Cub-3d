@@ -6,19 +6,25 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 16:24:43 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/09 23:58:13 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/10 00:18:11 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-char	*construct_map(char *line)
+char	*construct_map(char *line, int max_x)
 {
 	char	*tmp;
 	char	*ret;
 	char	*clean;
+	int		len;
 
 	clean = clean_l(line);
+	len == ft_strlen(clean);
+	if (len < max_x)
+	{
+
+	}
 	tmp = ft_strjoin("  ", clean);
 	free(clean);
 	ret = ft_strjoinplus(tmp, "  ");
@@ -32,7 +38,7 @@ int	build_map(char **av, t_file *file)
 	char	*tmp;
 	int		fd;
 	int		i;
-
+	
 	i = 2;
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
@@ -66,7 +72,7 @@ int	build_map(char **av, t_file *file)
 		tmp = clean_l(line);
 		if (has_map(tmp) == true)
 		{
-			file->map[i] = construct_map(tmp);
+			file->map[i] = construct_map(tmp, file->max_x);
 			i++;
 		}
 	}
