@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/10 00:25:09 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/10 17:03:49 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ int	load_arg(char *line, t_file *file)
 			file->F_flag = 1;
 		}
 		else
-			return (message("ERROR\n"), 1);
+			return (message("Incorrect floor info\n"), 1);
 	}
 	else if (ft_strcmp(txt[0], "C") == 0 && txt[1] && !txt[2])
 	{
@@ -144,10 +144,10 @@ int	load_arg(char *line, t_file *file)
 			file->C_flag = 1;
 		}
 		else
-			return (message("ERROR\n"), 1);
+			return (message("Incorrect ceiling info\n"), 1);
 	}
 	else
-		return (message("ERROR, file not valid\n"), 1);
+		return (message("Not valid map file\n"), 1);
 	return (0);	
 }
 
@@ -166,7 +166,7 @@ int	check_map(t_file *file, char *fn)
 
 	fd = open(fn, O_RDONLY);
 	if (fd < 0)
-		return (message("ERROR\nFile does not open\n"), 1);
+		return (message("File does not open\n"), 1);
 	len = 0;
 	line = get_next_line(fd);
 	while (line != NULL)
@@ -200,7 +200,7 @@ int	check_map(t_file *file, char *fn)
 			else
             {
                 close(fd);
-				return (message("Error, map contains wrong data\n"), 1);
+				return (message("Map contains wrong data\n"), 1);
             }
 		}
 		else 
@@ -208,7 +208,7 @@ int	check_map(t_file *file, char *fn)
 		line = get_next_line(fd);
 	}
     close(fd);
-	return (0);
+	return (file->data_ok != 7);
 }
 
 int	check_args(int ac, char **av)
@@ -221,7 +221,7 @@ int	check_args(int ac, char **av)
 			return (message("Too many arguments\n"), 1);
 	}
 	if (check_ext(av[1], ".cub") != 0)
-		return (message("ERROR\nFile should be .cub type\n"), 1);
+		return (message("File should be .cub type\n"), 1);
 	return (0);
 }
 
