@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 16:24:43 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/10 00:18:11 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/11 09:00:32 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*construct_map(char *line, int max_x)
 	int		len;
 
 	clean = clean_l(line);
-	len == ft_strlen(clean);
+	len == (int)ft_strlen(clean);
 	if (len < max_x)
 	{
 
