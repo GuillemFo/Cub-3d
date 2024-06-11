@@ -167,21 +167,31 @@ int	load_arg(char *line, t_file *file)
 	return (0);
 }
 
-int	check_map(t_file *file, int fd)
+
+int	check_map(t_file *file, char *fn)
 {
 	char	*line;
 	int		len;
 	int		r;
+    int     fd;
 
-	r = 0;
-
+	fd = open(fn, O_RDONLY);
+	if (fd < 0)
+		return (message("ERROR\nFile does not open\n"), 1);
+    r = 0;
 	len = 0;
 	line = get_next_line(fd);
 	r += 1;
 	if (line == 0)
+    {
+        close(fd);
 		return (message("ERROR. No line found\n"), 1);
-	if (load_arg(line, file) == 1)
-		return (message("Error loading args\n"), 1);
+    }
+    if (load_arg(line, file) == 1)
+    {
+        close (fd);
+		return (message("\n"), 1);
+    }
 	while (line != NULL)
 	{
 		free(line);
@@ -199,32 +209,27 @@ int	check_map(t_file *file, int fd)
 					file->max_y +=1;
 				}
 				else
+                {
+                    close(fd);
 					return (message("Error, map contains wrong data\n"), 1);
+                }
 			}
 			else if (file->data_ok != 6)
 			{
 				if (load_arg(line, file) == 1)
+                {
+                    close(fd);
 					return (message("\n"), 1);
+                }
 			}
 		}
 	}
+    close(fd);
 	return (0);
 }
 
-int	check_name(char *name)
+int	check_args(int ac, char **av)
 {
-	int	tmp;
-
-	tmp = ft_strlen_n(name);
-	if (ft_strncmp(&name[tmp - 4], ".cub", 4) != 0)
-		return (-1);
-	return (0);
-}
-
-int	check_args(int ac, char **av, t_data *data)
-{
-	int	fd;
-
 	if (ac != 2)
 	{
 		if (ac == 1)
@@ -234,15 +239,6 @@ int	check_args(int ac, char **av, t_data *data)
 	}
 	if (check_ext(av[1], ".cub") != 0)
 		return (message("ERROR\nFile should be .cub type\n"), 1);
-	fd = open(av[1], O_RDONLY);
-	if (fd < 0)
-		message("ERROR\nFile does not open\n");
-	if (check_map(data->file, fd) != 0)
-	{
-		close(fd);
-		message("ERROR\nMap not correct\n");
-	}
-	close(fd);
 	return (0);
 }
 

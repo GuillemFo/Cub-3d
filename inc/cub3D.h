@@ -74,8 +74,8 @@ typedef struct s_data
 
 /*-=-=-=-=-=-=-=-=FUNCTIONS=-=-=-=-=-=-=-=-=*/
 
-int		check_args(int ac, char **av, t_data *data);
-int		check_name(char *name);
+int		check_args(int ac, char **av);
+int		check_map(t_file *file, char *fn);
 void	message(char *msg);
 char	*ft_replace(char *s, char og, char re);
 char	*clean_l(char *line);
@@ -86,10 +86,18 @@ int		check_ext(char *argv, char *text);
 bool	line_is_space(char *line);
 int		build_map(char **av, t_file *file);
 bool	has_map(char *line);
+
 char	*clean_tabs(char *line);
 int		check_ext_sp(char *str, char *text);
 void	print_map_term(char **map);
 void	*ft_free_split(char **s);
 void	fill_with_space(char *str);
+char	*clean_l(char *line);
+int	check_ext_sp(char *str, char *text);
+t_data  *c3d_free(t_data *data);
+void	*ft_free(void *p);
+
+
+void	print_map_term(t_file *file);
 
 #endif

@@ -14,7 +14,7 @@
 
 void	message(char *msg)
 {
-	printf("%s", msg);
+	printf("Error\n%s", msg);
 }
 
 char	*ft_replace(char *s, char og, char re)
@@ -188,14 +188,14 @@ int	check_ext_sp(char *str, char *text)
 	return (0);
 }
 
-void	print_map_term(char **map)
+void	print_map_term(t_file *file)
 {
 	int	i;
 
 	i = 0;
-	while (map[i])
+	while (i <= file->max_y + 2)
 	{
-		printf("--%s--\n", map[i]);
+		printf("--%s--\n", file->map[i]);
 		i++;
 	}
 }
