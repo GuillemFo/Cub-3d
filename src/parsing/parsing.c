@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
 /*   Updated: 2024/06/10 17:03:49 by josegar2         ###   ########.fr       */
@@ -53,94 +53,112 @@ int	check_rgb(char **RGB)
 
 int copy_RGB(char *s, int **RGB)
 {
+	char *polished;
 	char **tmp;
+	char **tmp1;
 
-	tmp = ft_split(s, ',');
+	polished = ft_replace(s, '\n', ' ');
+	tmp1 = ft_split(polished, ' ');
+	tmp = ft_split(tmp1[1], ',');
+	ft_free_split(tmp1);
 	if (check_rgb(tmp) == 1)
-		return (message("Error, RGB not valid\n"), 1);
+			return (message("Error, RGB not valid\n"),ft_free_split(tmp), 1);
 	*RGB = malloc(3 * sizeof(int));
 	(*RGB)[0] = ft_atoi(tmp[0]);
 	(*RGB)[1] = ft_atoi(tmp[1]);
 	(*RGB)[2] = ft_atoi(tmp[2]);
-	if (max_min_RGB(*RGB) == 1)
-		return (message("Error, RGB out of range\n"), 1);
+	if (max_min_RGB(RGB) == 1)
+		return (message("Error, RGB out of range\n"),ft_free_split(tmp), 1);
+	ft_free_split(tmp);
 	return (0);
 }
 
 char *copy_path(char *s)
 {
-	char *path;
-	int	len;
+	char	*path;
+	int		len;
+	int		i;
 
+	i = 0;
 	len = 0;
-	len = ft_strlen(s);
+	while (s[i] == ' ')
+		i++;
+	len = (ft_strlen_n(&s[i]) + 1);
 	path = malloc((len + 1) * sizeof(char));
-	ft_strlcpy(path, s, len);
+	ft_strlcpy(path, &s[i], len);
 	return (path);
 }
 
 int	load_arg(char *line, t_file *file)
 {
-	char *tmp;
-	char **txt;
 
-	tmp = clean_l(line);
-	txt = ft_split(tmp, ' ');
-	if (ft_strcmp(txt[0], "NO") == 0 && txt[1] && !txt[2])
+	char	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = ft_replace(line, '\t', ' ');
+	if (tmp[i] == ' ')
+	{
+		while (tmp[i] == ' ')
+			i++;
+	}
+	if (tmp[i] == 'N' && tmp[i + 1] == 'O' && tmp[i + 2] == ' ')
 	{
 		if (file->NO == NULL)
 		{
-			file->NO = copy_path(txt[1]);
-			file->data_ok += 1;
+			file->NO = copy_path(&tmp[i + 2]);
+			file->data_ok +=1;
 		}
 		else
-			return (message("ERROR\n"), 1);
+			return (message("Multiple arguments for NO\n"), 1);
 	}
-	else if (ft_strcmp(txt[0], "SO") == 0 && txt[1] && !txt[2])
+	else if (tmp[i] == 'S' && tmp[i + 1] == 'O' && tmp[i + 2] == ' ')
 	{
 		if (file->SO == NULL)
 		{
-			file->SO = copy_path(txt[1]);
-			file->data_ok += 1;
+			file->SO = copy_path(&tmp[i + 2]);
+			file->data_ok +=1;
 		}
 		else
-			return (message("ERROR\n"), 1);
+			return (message("Multiple arguments for SO\n"), 1);
 	}
-	else if (ft_strcmp(txt[0], "EA") == 0 && txt[1] && !txt[2])
+	else if (tmp[i] == 'E' && tmp[i + 1] == 'A' && tmp[i + 2] == ' ')
 	{
 		if (file->EA == NULL)
 		{
-			file->EA = copy_path(txt[1]);
-			file->data_ok += 1;
+			file->EA = copy_path(&tmp[i + 2]);
+			file->data_ok +=1;
 		}
 		else
-			return (message("ERROR\n"), 1);
+			return (message("Multiple arguments for EA\n"), 1);
 	}
-	else if (ft_strcmp(txt[0], "WE") == 0 && txt[1] && !txt[2])
+	else if (tmp[i] == 'W' && tmp[i + 1] == 'E' && tmp[i + 2] == ' ')
 	{
 		if (file->WE == NULL)
 		{
-			file->WE = copy_path(txt[1]);
-			file->data_ok += 1;
+			file->WE = copy_path(&tmp[i + 2]);
+			file->data_ok +=1;
 		}
 		else
-			return (message("ERROR\n"), 1);
+			return (message("Multiple arguments for WE\n"), 1);
 	}
-	else if (ft_strcmp(txt[0], "F") == 0 && txt[1] && !txt[2])
+	else if (tmp[i] == 'F' && tmp[i + 1] == ' ')
 	{
 		if (file->F_flag == 0 && copy_RGB(txt[1], &(file->F)) == 0)
 		{
-			file->data_ok += 1;
+			copy_RGB(&tmp[i], file->F);
+			file->data_ok +=1;
 			file->F_flag = 1;
 		}
 		else
 			return (message("Incorrect floor info\n"), 1);
 	}
-	else if (ft_strcmp(txt[0], "C") == 0 && txt[1] && !txt[2])
+	else if (tmp[i] == 'C' && tmp[i + 1] == ' ')
 	{
 		if (file->C_flag == 0 && copy_RGB(txt[1], &(file->C)) == 0)
 		{
-			file->data_ok += 1;
+			copy_RGB(&tmp[i], file->F);
+			file->data_ok +=1;
 			file->C_flag = 1;
 		}
 		else
@@ -151,12 +169,6 @@ int	load_arg(char *line, t_file *file)
 	return (0);	
 }
 
-/*
-	else if (valid_map_line(line) == true && file->data_ok == 6)
-		file->tmp = build_map(line, file);
-	else
-		return (message("Error\nCould not load .cub, input not correct\n"), 1);
-*/
 
 int	check_map(t_file *file, char *fn)
 {

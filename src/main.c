@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:11 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/07 11:15:34 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/11 08:58:47 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,15 @@ t_data	*init_data()
 int	main(int ac, char **av)
 {
 	t_data	*data;
-
-	if (check_args(ac, av))
+	if (check_args(ac, av) == 1)
         return (1);
 	data = init_data();
 	if (!data)
 		return (message("Data initialization error\n"), 1);
 	if (check_map(data->file, av[1]))
 		return (c3d_free(data), 1);
-	build_map(av, data->file);
+	if (build_map(av, data->file) == 1)
+		return (1);
 	print_map_term(data->file);
 	printf("hola\n");
 }

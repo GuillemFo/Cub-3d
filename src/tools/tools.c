@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:09:52 by codespace         #+#    #+#             */
 /*   Updated: 2024/06/09 23:50:55 by josegar2         ###   ########.fr       */
@@ -49,7 +49,7 @@ bool	valid_map_line(char *line)
 	char	*tmp;
 
 	i = 0;
-	tmp = clean_l(line);
+	tmp = ft_replace(line, '\t', ' ');
 	if (tmp[i] == ' ')
 	{
 		while (tmp[i] == ' ')
@@ -63,12 +63,12 @@ bool	valid_map_line(char *line)
 			i++;
 		if (tmp[i] == ' ')
 		{
-			while (tmp[i] == ' ')
+			while (tmp[i] == ' ' || tmp[i] == '\n')
 				i++;
 			if (tmp[i] != '\0')
 				return (message("Error, Space inside the map\n"), false);
 		}
-		else if (tmp[i] != ' ' && tmp[i] != '\0')
+		else if (tmp[i] != ' ' && tmp[i] != '\n' && tmp[i] != '\0')
 			return (message("Error, Space inside the map2\n"), false);
 	}
 	else
@@ -107,7 +107,7 @@ bool	check_is_num(char *s)
 	return (true);
 }
 
-int	ft_strlen_n(const char *var)
+int	ft_strlen_n(char *var)
 {
 	int	count;
 
@@ -196,6 +196,32 @@ void	print_map_term(t_file *file)
 	while (i <= file->max_y + 2)
 	{
 		printf("--%s--\n", file->map[i]);
+		i++;
+	}
+}
+
+void	*ft_free_split(char **s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		free(s[i]);
+		i++;
+	}
+	free(s);
+	return (NULL);
+}
+
+void	fill_with_space(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		str[i] = ' ';
 		i++;
 	}
 }
