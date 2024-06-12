@@ -16,6 +16,7 @@
 /*-=-=-=-=-=-=-=-=LIBRARIES=-=-=-=-=-=-=-=-*/
 
 # include "../mlx_linux/mlx.h"
+# include "../mlx_linux/mlx_int.h"
 # include "../src/libft/libft.h"
 # include <stdbool.h>
 # include <math.h>
