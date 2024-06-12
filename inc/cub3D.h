@@ -18,6 +18,7 @@
 # include "../mlx_linux/mlx.h"
 # include "../src/libft/libft.h"
 # include <stdbool.h>
+# include <math.h>
 
 /*-=-=-=-=-=-=-=-=COLOR CODES=-=-=-=-=-=-=-=-*/
 
@@ -28,6 +29,18 @@
 # define C_M "\x1b[35m" // MAGENTA
 # define C_C "\x1b[36m" // CYAN
 # define C_RESET "\x1b[0m"
+
+/*-=-=-=-=-=-=-=-GRAPH SETTINGS=-=-=-=-=-=-=-*/
+
+# define BLOCK_SIZE 128
+# define PLAYER_HEIGHT 64
+# define FIELD_OF_VIEW 60
+# define SIZE_X 800
+# define SIZE_Y 600
+# define ANGULAR_STEP FIELD_OF_VIEW / SIZE_X
+# define POV_DISTANCE (SIZE_X /2) / tan(FIELD_OF_VIEW / 2)
+# define LINEAR_SPEED 16
+# define ROTATION_SPEED 5
 
 /*-=-=-=-=-=-=-=-=-=STRUCTS=-=-=-=-=-=-=-=-=-*/
 
@@ -55,17 +68,32 @@ typedef struct s_file
 	int		nb_player;
 }				t_file;
 
-
 typedef struct s_mlx
 {
 	void	*mlx;
 	void	*mlx_win;
 }				t_mlx;
 
+typedef struct	s_graph
+{
+	int		bs; //block size
+	int		vh; //view height
+	int		xs; //X size
+	int		ys; //Y size
+	double	fov; //Field of view
+	double	angs; //Angular step
+	int		lins; //Linear speed
+	double	rots; //Rotation speed
+	int		povx; //Point of View X
+	int		povy; //Point of View Y
+	double	pova; //Point of View angle
+}			t_graph;
+
 
 typedef struct s_data
 {
 	t_mlx 	*win;
+	t_graph	gr;
 	t_file	*file;
 	
 }				t_data;
@@ -92,8 +120,8 @@ int		check_ext_sp(char *str, char *text);
 void	*ft_free_split(char **s);
 void	fill_with_space(char *str);
 char	*clean_l(char *line);
-int	check_ext_sp(char *str, char *text);
-t_data  *c3d_free(t_data *data);
+int		check_ext_sp(char *str, char *text);
+t_data  *c3d_free(t_data *data);:
 void	*ft_free(void *p);
 
 
