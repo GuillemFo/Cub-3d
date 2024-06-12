@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:09:52 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/12 11:38:53 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/12 12:06:22 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,7 +183,7 @@ void	print_map_term(t_file *file)
 	int	i;
 
 	i = 0;
-	while (i <= file->max_y + 2)
+	while (i <= file->max_y + 3)
 	{
 		printf("--%s--\n", file->map[i]);
 		i++;
