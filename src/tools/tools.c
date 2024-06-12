@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:09:52 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/09 23:50:55 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/12 12:23:12 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ char	*ft_replace(char *s, char og, char re)
 
 
 
-//under dev due issues with spaces. Calculating before map spaces and after map spaces without accepting mid map spaces.
+//ISSUE CHECKING IF MAP HAS SPACES INSIDE BUT SURROUNDED BY 1
+//REDO FUNCTION
 bool	valid_map_line(char *line)
 {
 	int		i;
@@ -107,21 +108,11 @@ bool	check_is_num(char *s)
 	return (true);
 }
 
-int	ft_strlen_n(char *var)
-{
-	int	count;
-
-	count = 0;
-	while (var[count] != '\0' && var[count] != '\n')
-		count++;
-	return (count);
-}
-
 int	check_ext(char *argv, char *text)
 {
 	int	tmp;
 
-	tmp = ft_strlen_n(argv);
+	tmp = ft_strlen(argv);
 	if (ft_strncmp(&argv[tmp - 4], text, 4) != 0)
 		return (-1);
 	return (0);
@@ -193,7 +184,7 @@ void	print_map_term(t_file *file)
 	int	i;
 
 	i = 0;
-	while (i <= file->max_y + 2)
+	while (i <= file->max_y + 3)
 	{
 		printf("--%s--\n", file->map[i]);
 		i++;
