@@ -104,6 +104,7 @@ typedef struct s_data
 
 int		check_args(int ac, char **av);
 int		check_map(t_file *file, char *fn);
+int     load_arg(char *line, t_file *file);
 void	message(char *msg);
 char	*ft_replace(char *s, char og, char re);
 char	*clean_l(char *line);
