@@ -92,7 +92,7 @@ typedef struct	s_graph
 
 typedef struct s_data
 {
-	t_mlx 	*win;
+	t_mlx 	*mlx;
 	t_graph	gr;
 	t_file	*file;
 	
@@ -120,6 +120,7 @@ char	*clean_l(char *line);
 int		check_ext_sp(char *str, char *text);
 t_data  *c3d_free(t_data *data);
 void	*ft_free(void *p);
+void	start_mlx(t_data *data);
 
 
 void	print_map_term(t_file *file);
