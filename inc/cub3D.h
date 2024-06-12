@@ -121,7 +121,7 @@ void	*ft_free_split(char **s);
 void	fill_with_space(char *str);
 char	*clean_l(char *line);
 int		check_ext_sp(char *str, char *text);
-t_data  *c3d_free(t_data *data);:
+t_data  *c3d_free(t_data *data);
 void	*ft_free(void *p);
 
 

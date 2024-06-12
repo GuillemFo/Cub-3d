@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/10 17:03:49 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/12 10:29:02 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,9 +144,8 @@ int	load_arg(char *line, t_file *file)
 	}
 	else if (tmp[i] == 'F' && tmp[i + 1] == ' ')
 	{
-		if (file->F_flag == 0 && copy_RGB(txt[1], &(file->F)) == 0)
+		if (file->F_flag == 0 && copy_RGB(&tmp[i], &(file->F)) == 0)
 		{
-			copy_RGB(&tmp[i], file->F);
 			file->data_ok +=1;
 			file->F_flag = 1;
 		}
@@ -155,9 +154,8 @@ int	load_arg(char *line, t_file *file)
 	}
 	else if (tmp[i] == 'C' && tmp[i + 1] == ' ')
 	{
-		if (file->C_flag == 0 && copy_RGB(txt[1], &(file->C)) == 0)
+		if (file->C_flag == 0 && copy_RGB(&tmp[i], &(file->C)) == 0)
 		{
-			copy_RGB(&tmp[i], file->F);
 			file->data_ok +=1;
 			file->C_flag = 1;
 		}
@@ -189,7 +187,7 @@ int	check_map(t_file *file, char *fn)
             {
                 close(fd);
                 free(line);
-		        return (message("Bad config\n"), 1);
+				return (message("Bad config\n"), 1);
             }
         }
         else if (file->data_ok == 6 && line_is_space(line) == false)
@@ -198,7 +196,7 @@ int	check_map(t_file *file, char *fn)
 		{
             close(fd);
             free(line);
-		    return (message("Empty line in map\n"), 1);
+			return (message("Empty line in map\n"), 1);
         }
         else if (file->data_ok == 7)
         {
