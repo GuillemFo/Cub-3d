@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/12 10:29:02 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/12 11:36:31 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int copy_RGB(char *s, int **RGB)
 	(*RGB)[0] = ft_atoi(tmp[0]);
 	(*RGB)[1] = ft_atoi(tmp[1]);
 	(*RGB)[2] = ft_atoi(tmp[2]);
-	if (max_min_RGB(RGB) == 1)
+	if (max_min_RGB(*RGB) == 1)
 		return (message("Error, RGB out of range\n"),ft_free_split(tmp), 1);
 	ft_free_split(tmp);
 	return (0);
@@ -83,7 +83,7 @@ char *copy_path(char *s)
 	len = 0;
 	while (s[i] == ' ')
 		i++;
-	len = (ft_strlen_n(&s[i]) + 1);
+	len = (ft_strlen(&s[i]) + 1);
 	path = malloc((len + 1) * sizeof(char));
 	ft_strlcpy(path, &s[i], len);
 	return (path);
@@ -202,7 +202,7 @@ int	check_map(t_file *file, char *fn)
         {
 			if (valid_map_line(line) == true)
 			{
-				len = ft_strlen_n(line);
+				len = ft_strlen(line);
 				if (len > file->max_x)
 					file->max_x = len;
 				file->max_y +=1;

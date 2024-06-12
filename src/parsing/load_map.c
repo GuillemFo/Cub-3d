@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 16:24:43 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/11 09:00:32 by codespace        ###   ########.fr       */
+/*   Updated: 2024/06/12 11:48:40 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,18 @@ char	*construct_map(char *line, int max_x)
 	char	*tmp;
 	char	*ret;
 	char	*clean;
-	int		len;
 
 	clean = clean_l(line);
-	len == (int)ft_strlen(clean);
-	if (len < max_x)
-	{
-
-	}
+	printf("%d", max_x);
 	tmp = ft_strjoin("  ", clean);
-	free(clean);
-	ret = ft_strjoinplus(tmp, "  ");
+	ret = ft_strjoin(tmp, "  ");
+	printf("-%s-\n", ret);
 	return (ret);
 }
-
 
 int	build_map(char **av, t_file *file)
 {
 	char	*line;
-	char	*tmp;
 	int		fd;
 	int		i;
 	
@@ -69,10 +62,9 @@ int	build_map(char **av, t_file *file)
 	{
 		free(line);
 		line = get_next_line(fd);
-		tmp = clean_l(line);
-		if (has_map(tmp) == true)
+		if (has_map(line) == true)
 		{
-			file->map[i] = construct_map(tmp, file->max_x);
+			file->map[i] = construct_map(line, file->max_x);
 			i++;
 		}
 	}

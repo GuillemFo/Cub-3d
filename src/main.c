@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:11 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/11 08:58:47 by codespace        ###   ########.fr       */
+/*   Updated: 2024/06/12 11:48:11 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ int	main(int ac, char **av)
 		return (c3d_free(data), 1);
 	if (build_map(av, data->file) == 1)
 		return (1);
-	print_map_term(data->file);
+	// print_map_term(data->file);
 	printf("hola\n");
 }

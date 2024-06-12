@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:09:52 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/09 23:50:55 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/12 11:38:53 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,21 +107,11 @@ bool	check_is_num(char *s)
 	return (true);
 }
 
-int	ft_strlen_n(char *var)
-{
-	int	count;
-
-	count = 0;
-	while (var[count] != '\0' && var[count] != '\n')
-		count++;
-	return (count);
-}
-
 int	check_ext(char *argv, char *text)
 {
 	int	tmp;
 
-	tmp = ft_strlen_n(argv);
+	tmp = ft_strlen(argv);
 	if (ft_strncmp(&argv[tmp - 4], text, 4) != 0)
 		return (-1);
 	return (0);
