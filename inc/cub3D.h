@@ -109,19 +109,16 @@ char	*ft_replace(char *s, char og, char re);
 char	*clean_l(char *line);
 bool	valid_map_line(char *line);
 bool	check_is_num(char *s);
-int		ft_strlen_n(char *var);
 int		check_ext(char *argv, char *text);
 bool	line_is_space(char *line);
 int		build_map(char **av, t_file *file);
 bool	has_map(char *line);
-
-char	*clean_tabs(char *line);
 int		check_ext_sp(char *str, char *text);
 void	*ft_free_split(char **s);
 void	fill_with_space(char *str);
 char	*clean_l(char *line);
 int		check_ext_sp(char *str, char *text);
-t_data  *c3d_free(t_data *data);:
+t_data  *c3d_free(t_data *data);
 void	*ft_free(void *p);
 
 
