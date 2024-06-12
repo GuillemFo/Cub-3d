@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:09:52 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/12 12:06:22 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/12 12:23:12 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ char	*ft_replace(char *s, char og, char re)
 
 
 
-//under dev due issues with spaces. Calculating before map spaces and after map spaces without accepting mid map spaces.
+//ISSUE CHECKING IF MAP HAS SPACES INSIDE BUT SURROUNDED BY 1
+//REDO FUNCTION
 bool	valid_map_line(char *line)
 {
 	int		i;
