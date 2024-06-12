@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 16:24:43 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/12 11:48:40 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/12 12:02:41 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,22 @@ char	*construct_map(char *line, int max_x)
 	char	*tmp;
 	char	*ret;
 	char	*clean;
+	int		len;
 
 	clean = clean_l(line);
-	printf("%d", max_x);
+	len = ft_strlen(line);
 	tmp = ft_strjoin("  ", clean);
-	ret = ft_strjoin(tmp, "  ");
-	printf("-%s-\n", ret);
+	free(clean);
+	if (len <= max_x)
+	{
+		len = (max_x - len) + 1;
+	}
+	else
+		len = 2;
+	clean = malloc (len +1 * sizeof(char));
+	clean[len] = '\0';
+	fill_with_space(clean);
+	ret = ft_strjoin(tmp, clean);
 	return (ret);
 }
 
