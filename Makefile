@@ -12,7 +12,7 @@ LIBFT_PATH = src/libft/
 
 SRC = main.c parsing/parsing.c parsing/load_map.c \
 		tools/tools.c tools/c3d_free.c tools/ft_free.c \
-		graphics/graphics.c
+		graphics/graphics.c graphics/math.c
 
 SRC_PPREFIX = $(addprefix $(SRC_PATH),$(SRC))
 

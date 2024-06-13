@@ -33,11 +33,9 @@
 
 /*-=-=-=-=-=-=-=-GRAPH SETTINGS=-=-=-=-=-=-=-*/
 
-# define BLOCK_SIZE 128
-# define PLAYER_HEIGHT 64
 # define FIELD_OF_VIEW 60
-# define SIZE_X 800
-# define SIZE_Y 600
+# define SIZE_X 1920
+# define SIZE_Y 1080
 # define ANGULAR_STEP FIELD_OF_VIEW / SIZE_X
 # define POV_DISTANCE (SIZE_X /2) / tan(FIELD_OF_VIEW / 2)
 # define LINEAR_SPEED 16
@@ -113,9 +111,11 @@ typedef struct	s_graph
 	double	angs; //Angular step
 	int		lins; //Linear speed
 	double	rots; //Rotation speed
-	int		povx; //Point of View X
-	int		povy; //Point of View Y
-	double	pova; //Point of View angle
+	int		povx; //Point of View X	(player view)
+	int		povy; //Point of View Y	(player view)
+	double	pova; //Point of View angle	(player view)
+	double	ray_x;
+	double	ray_y;
 }			t_graph;
 
 

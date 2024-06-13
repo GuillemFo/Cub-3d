@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:43:09 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/13 15:59:05 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/13 16:39:31 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,14 @@ int	close_window(void *param)
 }
 
 
+void	missing_parser(t_data *data)
+{
+	data->gr.povy = 4;
+	data->gr.povx = 4;
+	data->gr.pova = 270; //south
+	data->gr.bs = 512;
+	data->gr.vh = 256;
+}
 
 
 
@@ -57,8 +65,9 @@ int	close_window(void *param)
 
 void	start_mlx(t_data *data)
 {
+	missing_parser(data);
 	data->mlx->mlx = mlx_init();
-	data->mlx->mlx_win = mlx_new_window(data->mlx->mlx, 1920, 1080,
+	data->mlx->mlx_win = mlx_new_window(data->mlx->mlx, SIZE_X, SIZE_Y,
 			"Cub3D gforns-s & josegar2");
 	mlx_hook(data->mlx->mlx_win, KEYDOWN, 1L << 0, esc_window, data);
 	mlx_hook(data->mlx->mlx_win, DESTROY, 1L << 0, close_window, data);
