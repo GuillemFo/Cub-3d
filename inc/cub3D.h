@@ -43,6 +43,34 @@
 # define LINEAR_SPEED 16
 # define ROTATION_SPEED 5
 
+
+/*###	KEY MAPPING	###*/
+# define ESC_KEY 65307
+# define A_KEY 97
+# define S_KEY 115
+# define D_KEY 100
+# define W_KEY 119
+
+
+/*###	X11 EVENTS SUPPORTED BY MINILIBX	###*/
+# define KEYDOWN 2
+# define KEYUP 3
+# define MOUSEDOWN 4
+# define MOUSEUP 5
+# define MOUSEMOVE 6
+# define EXPOSE 12
+# define DESTROY 17
+
+/*###	MOUSE EVENTS	###*/
+# define LEFT_CLICK 1
+# define RIGHT_CLICK 3
+# define MID_CLICK 2
+# define SCROLL_UP 5
+# define SCROLL_DOWN 4
+
+/*##	DEFINE TO SHORT CODE	##*/
+# define IMG_WIN mlx_put_image_to_window
+
 /*-=-=-=-=-=-=-=-=-=STRUCTS=-=-=-=-=-=-=-=-=-*/
 
 typedef struct s_event

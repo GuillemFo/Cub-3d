@@ -6,15 +6,15 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:11 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/12 15:45:54 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/13 15:47:18 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-t_data	*init_data()
+t_data	*init_data(void)
 {
-    t_data  *ldata;
+	t_data	*ldata;
 
 	ldata = ft_calloc(1, sizeof(t_data));
 	if (!ldata)
@@ -31,8 +31,9 @@ t_data	*init_data()
 int	main(int ac, char **av)
 {
 	t_data	*data;
+
 	if (check_args(ac, av) == 1)
-        return (1);
+		return (1);
 	data = init_data();
 	if (!data)
 		return (message("Data initialization error\n"), 1);
