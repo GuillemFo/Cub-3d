@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:09:52 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/12 19:32:26 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/13 18:00:30 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,12 @@ void	print_map_term(t_file *file)
 	int	i;
 
 	i = 0;
+	printf("NO : %s\n", file->NO);
+	printf("SO : %s\n", file->SO);
+	printf("EA : %s\n", file->EA);
+	printf("WE : %s\n", file->WE);
+	printf("F : %d, %d, %d\n", file->F[0], file->F[1], file->F[2]);
+	printf("C : %d, %d, %d\n", file->C[0], file->C[1], file->C[2]);
 	while (i <= file->max_y + 3)
 	{
 		printf("--%s--\n", file->map[i]);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 16:24:43 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/12 12:02:41 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/13 18:05:56 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	build_map(char **av, t_file *file)
 	char	*line;
 	int		fd;
 	int		i;
-	
+
 	i = 2;
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)

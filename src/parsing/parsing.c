@@ -6,11 +6,24 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/12 20:29:56 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/13 15:50:56 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+int	get_map(t_file *file, char *line)
+{
+	if (line_is_space(line) || valid_map_line(line) == false)
+	{
+		ft_free(line);
+		return (message("Wrong data in map\n"), 1);
+	}
+	file->max_y += 1;
+	if ((int)ft_strlen(line) > file->max_x)
+		file->max_x = ft_strlen(line);
+	return (0);
+}
 
 int	get_args(t_file *file, char *line)
 {
@@ -28,13 +41,11 @@ int	get_args(t_file *file, char *line)
 int	check_map(t_file *file, char *fn)
 {
 	char	*line;
-	int		len;
 	int		fd;
 
 	fd = open(fn, O_RDONLY);
 	if (fd < 0)
 		return (message("File does not open\n"), 1);
-	len = 0;
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
@@ -45,29 +56,10 @@ int	check_map(t_file *file, char *fn)
 		}
 		else if (file->data_ok == 6 && line_is_space(line) == false)
 			file->data_ok = 7;
-		if (file->data_ok == 7 && line_is_space(line) == true)
-		{
-			close(fd);
-			free(line);
-			return (message("Empty line in map\n"), 1);
-		}
-		else if (file->data_ok == 7)
-		{
-			if (valid_map_line(line) == true)
-			{
-				len = ft_strlen(line);
-				if (len > file->max_x)
-					file->max_x = len;
-				file->max_y += 1;
-			}
-			else
-			{
-				close(fd);
-				return (message("Map contains wrong data\n"), 1);
-			}
-		}
-		else
-			free(line);
+		if (file->data_ok == 7)
+			if (get_map(file, line) == 1)
+				return (close(fd), 1);
+		free(line);
 		line = get_next_line(fd);
 	}
 	close(fd);
