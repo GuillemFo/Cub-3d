@@ -58,14 +58,14 @@ typedef struct s_file
 	char	*WE;
 	int		*F;	//Floor color
 	int		*C;	//Ceiling color
-	int		F_flag;
-	int		C_flag;
 	char	**map;
 	char	**tmp;
 	int		max_x;
 	int		max_y;
 	int		data_ok;
-	int		nb_player;
+    int     stx;
+    int     sty;
+    char    sto;
 }				t_file;
 
 typedef struct s_mlx
@@ -108,7 +108,7 @@ int     load_arg(char *line, t_file *file);
 void	message(char *msg);
 char	*ft_replace(char *s, char og, char re);
 char	*clean_l(char *line);
-bool	valid_map_line(char *line);
+bool	valid_map_line(t_file *file, char *line);
 bool	check_is_num(char *s);
 int		check_ext(char *argv, char *text);
 bool	line_is_space(char *line);
@@ -116,7 +116,7 @@ int		build_map(char **av, t_file *file);
 bool	has_map(char *line);
 int		check_ext_sp(char *str, char *text);
 void	*ft_free_split(char **s);
-void	fill_with_space(char *str);
+void	fill_with_space(char *str, int size);
 char	*clean_l(char *line);
 int		check_ext_sp(char *str, char *text);
 t_data  *c3d_free(t_data *data);

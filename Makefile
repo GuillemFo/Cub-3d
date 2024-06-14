@@ -58,7 +58,7 @@ libraries:
 
 $(OBJ_PATH)%.o:%.c Makefile $(LIBFT_PATH)libft.h $(INC)cub3D.h $(LIBFT_PATH)libft.a 
 	@mkdir -p $(dir $@)
-	@gcc $(CFLAGS) -Iminilibx-linux -O3  -c $< -o $@
+	@gcc $(CFLAGS) -Iminilibx-linux -O0  -c $< -o $@
 	@echo "$(CYAN)Compiling cub3D:$(YELLOW) $@$(RESET)"
 
 re: fclean all

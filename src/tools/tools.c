@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:09:52 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/13 18:00:30 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/15 00:17:33 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,37 +44,26 @@ char	*ft_replace(char *s, char og, char re)
 
 //ISSUE CHECKING IF MAP HAS SPACES INSIDE BUT SURROUNDED BY 1
 //REDO FUNCTION
-bool	valid_map_line(char *line)
+bool	valid_map_line(t_file *file, char *line)
 {
-	int		i;
-	char	*tmp;
+	int	i;
 
 	i = 0;
-	tmp = ft_replace(line, '\t', ' ');
-	if (tmp[i] == ' ')
+	while (line[i] == ' ')
+		i++;
+	while (line[i] && line[i] != '\n' && line[i] != ' ')
 	{
-		while (tmp[i] == ' ')
-			i++;
+		if (ft_strchr("NSEW", line[i]) && file->sty)
+			return (message("More than one starting point\n"), false);
+		if (!ft_strchr("10NSEW", line[i]))
+			return (message("Wrong char in map\n"), false);
+		if (ft_strchr("NSEW", line[i]))
+			file->sty++;
+		i++;
 	}
-	if (tmp[i] == '1' || tmp[i] == '0' || tmp[i] == 'N' || tmp[i] == 'S'
-		|| tmp[i] == 'E' || tmp[i] == 'W')
-	{
-		while (tmp[i] == '1' || tmp[i] == '0' || tmp[i] == 'N' || tmp[i] == 'S'
-		|| tmp[i] == 'E' || tmp[i] == 'W')
-			i++;
-		if (tmp[i] == ' ')
-		{
-			while (tmp[i] == ' ' || tmp[i] == '\n')
-				i++;
-			if (tmp[i] != '\0')
-				return (message("Error, Space inside the map\n"), false);
-		}
-		else if (tmp[i] != ' ' && tmp[i] != '\n' && tmp[i] != '\0')
-			return (message("Error, Space inside the map2\n"), false);
-	}
-	else
-		return (message("Error, invalid map\n"), false);
-	free(tmp);
+	while (line[i] && line[i] != '\n')
+		if (line[i++] != ' ')
+			return (message("Space inside the map\n"), false);
 	return (true);
 }
 
@@ -190,6 +179,7 @@ void	print_map_term(t_file *file)
 	printf("WE : %s\n", file->WE);
 	printf("F : %d, %d, %d\n", file->F[0], file->F[1], file->F[2]);
 	printf("C : %d, %d, %d\n", file->C[0], file->C[1], file->C[2]);
+	printf("Start x: %d y: %d orientation: %c\n", file->stx, file->sty, file->sto);
 	while (i <= file->max_y + 3)
 	{
 		printf("--%s--\n", file->map[i]);
@@ -211,14 +201,8 @@ void	*ft_free_split(char **s)
 	return (NULL);
 }
 
-void	fill_with_space(char *str)
+void	fill_with_space(char *str, int size)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		str[i] = ' ';
-		i++;
-	}
+	while (--size >= 0)
+		str[size] = ' ';
 }

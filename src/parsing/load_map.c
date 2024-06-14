@@ -6,34 +6,50 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 16:24:43 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/13 18:05:56 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/15 00:25:28 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-char	*construct_map(char *line, int max_x)
+int construct_map(t_file *file, char *line, int i)
 {
-	char	*tmp;
-	char	*ret;
-	char	*clean;
-	int		len;
+	int		j;
 
-	clean = clean_l(line);
-	len = ft_strlen(line);
-	tmp = ft_strjoin("  ", clean);
-	free(clean);
-	if (len <= max_x)
+	j = 0;
+	while (line[j] && line[j] != '\n')
 	{
-		len = (max_x - len) + 1;
+		if (ft_strchr("NSEW", line[j]))
+		{
+			file->stx = i;
+			file->sty = j;
+			file->sto = line[j];
+			file->map[i][j + 2] = '0';
+		}
+		else
+			file->map[i][j + 2] = line[j];
+		j++;
 	}
-	else
-		len = 2;
-	clean = malloc (len +1 * sizeof(char));
-	clean[len] = '\0';
-	fill_with_space(clean);
-	ret = ft_strjoin(tmp, clean);
-	return (ret);
+	return (0);
+}
+
+int	init_map(t_file *file)
+{
+	int	i;
+
+	file->map = ft_calloc((file->max_y + 5), sizeof(char*));
+    if (!file->map)
+        return (message("Map allocation error\n"), 1);
+	i = 0;
+	while (i < file->max_y + 4)
+	{
+		file->map[i] = ft_calloc((file->max_x + 5), sizeof(char));
+    	if (!file->map[i])
+        	return (message("Map allocation error\n"), 1);
+		fill_with_space(file->map[i], file->max_x + 4);
+		i++;
+	}
+	return (0);
 }
 
 int	build_map(char **av, t_file *file)
@@ -42,45 +58,26 @@ int	build_map(char **av, t_file *file)
 	int		fd;
 	int		i;
 
+	if (init_map(file))
+		return (1);
 	i = 2;
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
-		return (message("ERROR\nFile does not open\n"), 1);
-	printf("%d\n", file->max_y);
-	file->map = malloc((file->max_y + 5) * sizeof(char*));
-	file->map[file->max_y + 4] = NULL;
-
-	file->map[0] = malloc((file->max_x + 4) * sizeof(char));	//first line
-	file->map[0][file->max_x + 3] = '\0';
-	fill_with_space(file->map[0]);
-
-	file->map[1] = malloc((file->max_x + 4) * sizeof(char));	//second line
-	file->map[1][file->max_x + 3] = '\0';
-	fill_with_space(file->map[1]);
-
-	file->map[file->max_y + 2] = malloc((file->max_x + 4) * sizeof(char));	//line after map 1
-	file->map[file->max_y + 2][file->max_x + 3] = '\0';
-	fill_with_space(file->map[file->max_y + 2]);
-
-	file->map[file->max_y + 3] = malloc((file->max_x + 4) * sizeof(char));	//line after map 2 (segfault or not printing
-	file->map[file->max_y + 3][file->max_x + 3] = '\0';
-	fill_with_space(file->map[file->max_y + 3]);
-
-	
+		return (message("File does not open\n"), 1);
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		free(line);
-		line = get_next_line(fd);
 		if (has_map(line) == true)
 		{
-			file->map[i] = construct_map(line, file->max_x);
+			construct_map(file, line, i);
 			i++;
 		}
+		free(line);
+		line = get_next_line(fd);
 	}
+	close(fd);
 	return (0);
 }
-
 
 /*
 

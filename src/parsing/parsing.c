@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/13 15:50:56 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/15 00:13:49 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,16 @@
 
 int	get_map(t_file *file, char *line)
 {
-	if (line_is_space(line) || valid_map_line(line) == false)
+	if (line_is_space(line))
 	{
 		ft_free(line);
-		return (message("Wrong data in map\n"), 1);
+		return (message("Empty line in map\n"), 1);
 	}
+	if (valid_map_line(file, line) == false)
+		return (ft_free(line), 1);
 	file->max_y += 1;
+	if (line[ft_strlen(line) - 1] == '\n')
+		line[ft_strlen(line) - 1] = '\0';
 	if ((int)ft_strlen(line) > file->max_x)
 		file->max_x = ft_strlen(line);
 	return (0);
@@ -49,13 +53,11 @@ int	check_map(t_file *file, char *fn)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
+		if (file->data_ok == 6 && line_is_space(line) == false)
+			file->data_ok = 7;
 		if (file->data_ok < 6)
-		{
 			if (get_args(file, line) == 1)
 				return (close(fd), 1);
-		}
-		else if (file->data_ok == 6 && line_is_space(line) == false)
-			file->data_ok = 7;
 		if (file->data_ok == 7)
 			if (get_map(file, line) == 1)
 				return (close(fd), 1);
@@ -63,6 +65,8 @@ int	check_map(t_file *file, char *fn)
 		line = get_next_line(fd);
 	}
 	close(fd);
+	if (!file->sty)
+		return (message("No starting point\n"), 1);
 	return (file->data_ok != 7);
 }
 
