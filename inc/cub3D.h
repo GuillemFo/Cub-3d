@@ -34,10 +34,10 @@
 /*-=-=-=-=-=-=-=-GRAPH SETTINGS=-=-=-=-=-=-=-*/
 
 # define FIELD_OF_VIEW 60
-# define SIZE_X 1920
-# define SIZE_Y 1080
-# define ANGULAR_STEP FIELD_OF_VIEW / SIZE_X
-# define POV_DISTANCE (SIZE_X /2) / tan(FIELD_OF_VIEW / 2)
+# define WIN_X 1920
+# define WIN_Y 1080
+# define ANGULAR_STEP FIELD_OF_VIEW / WIN_X
+# define POV_DISTANCE (WIN_X /2) / tan(FIELD_OF_VIEW / 2)
 # define LINEAR_SPEED 16
 # define ROTATION_SPEED 5
 
@@ -93,37 +93,57 @@ typedef struct s_file
 	int		max_y;
 	int		data_ok;
 	int		nb_player;
-}				t_file;
+}			t_file;
+
+typedef struct t_ray
+{
+	float	dir_x;
+	float	dir_y;
+	bool	hit;
+
+}			t_ray;
+
+
+typedef	struct s_image
+{
+	//
+	void	*img;		//mlx_new_img
+	char	*addr;		//mlx_get_data_addr
+	int		*bpp;		//mlx_get_data_addr
+	int		*size_line;	//mlx_get_data_addr
+	int		*endian;	//mlx_get_data_addr
+	//width
+	//heitght
+}	t_image;
+
+typedef struct s_player
+{
+	/*
+	pos_x
+	pos_y
+	dir_x
+	dir_y
+	moves front back let right
+	rotation
+	rotation speed
+	*/
+}	t_player;
 
 typedef struct s_mlx
 {
-	void	*mlx;
-	void	*mlx_win;
-}				t_mlx;
+	void		*mlx;
+	void		*win;
+	t_image		*img;
 
-typedef struct	s_graph
-{
-	int		bs; //block size
-	int		vh; //view height
-	int		xs; //X size
-	int		ys; //Y size
-	double	fov; //Field of view
-	double	angs; //Angular step
-	int		lins; //Linear speed
-	double	rots; //Rotation speed
-	int		povx; //Point of View X	(player view)
-	int		povy; //Point of View Y	(player view)
-	double	pova; //Point of View angle	(player view)
-	double	ray_x;
-	double	ray_y;
-}			t_graph;
+}				t_mlx;
 
 
 typedef struct s_data
 {
-	t_mlx 	*mlx;
-	t_graph	gr;
-	t_file	*file;
+	t_mlx 		*mlx;
+	t_player 	player;
+	t_ray		ray;
+	t_file		*file;
 	
 }				t_data;
 

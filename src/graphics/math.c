@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:04:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/13 17:36:29 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/14 15:49:14 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ center of projection plane = 960,540
 distance to the projection plane = 960 / tan(30) = 1662.768775266
 angle of ray * column = 60/1920
 
-void	loop_ray(t_data *data)
+void	loop_ray(t_data *data)	// under dev... rn makes no sense
 {
 	int	x;
 
@@ -32,6 +32,7 @@ void	loop_ray(t_data *data)
 		double ray_dir_y = dir_y + plane_y * camera_x;
 }
 
+float better than double and use vectorial instead of angular calc.
 
 
 
@@ -64,4 +65,4 @@ void	loop_ray(t_data *data)
 
 
 
-*/
+
