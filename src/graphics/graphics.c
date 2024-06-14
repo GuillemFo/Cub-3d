@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:43:09 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/14 15:50:59 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/14 15:52:44 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	start_mlx(t_data *data)
 	data->mlx->win = mlx_new_window(data->mlx->mlx, WIN_X, WIN_Y,
 			"Cub3D gforns-s & josegar2");
 	img_init(data);
+	// Been told to start first with a color innstead of image
 	// maybe better to do a separate functionfor hooks and loop
 	// mlx_hook(data->mlx->win, KEYDOWN, 1L << 0, esc_window, data);
 	// mlx_hook(data->mlx->win, DESTROY, 1L << 0, close_window, data);
