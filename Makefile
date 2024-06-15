@@ -10,9 +10,12 @@ MLX_PATH = mlx_linux/
 
 LIBFT_PATH = src/libft/
 
-SRC = main.c parsing/parsing.c parsing/load_map.c \
+
+SRC = main.c \
+		parsing/parsing.c parsing/load_map.c parsing/load_arg.c \
 		tools/tools.c tools/c3d_free.c tools/ft_free.c \
-		graphics/graphics.c graphics/math.c
+		errors/errors.c tools/c3d_print.c \
+    graphics/graphics.c graphics/math.c
 
 SRC_PPREFIX = $(addprefix $(SRC_PATH),$(SRC))
 
@@ -59,6 +62,8 @@ libraries:
 $(OBJ_PATH)%.o:%.c Makefile $(LIBFT_PATH)libft.h $(INC)cub3D.h $(LIBFT_PATH)libft.a 
 	@mkdir -p $(dir $@)
 	@gcc $(CFLAGS) -I/usr/include -Iminilibx-linux -O3  -c $< -o $@
+
+	#@gcc $(CFLAGS) -Iminilibx-linux -O0  -c $< -o $@ jose line for compiling at home?
 	@echo "$(CYAN)Compiling cub3D:$(YELLOW) $@$(RESET)"
 
 re: fclean all
@@ -77,4 +82,7 @@ fclean: clean
 	@rm -rf $(NAME)
 	@echo "$(CYAN)cub3D $(RED)deleted$(RESET)"
 
-.PHONY: all re clean fclean
+norm:
+	norminette $(SRC_PPREFIX)
+
+.PHONY: all re clean fclean norm
