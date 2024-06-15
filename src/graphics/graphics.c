@@ -65,7 +65,7 @@ void img_init(t_data *data)
 	data->mlx->img = malloc(sizeof(t_image));
 	//malloc protection
 	data->mlx->img = mlx_new_image(data->mlx, WIN_X, WIN_Y);
-	data->mlx->img->addr = mlx_get_data_addr(data->mlx, &data->mlx->img->bpp, &data->mlx->img->size_line, &data->mlx->img->endian);
+	data->mlx->img->addr = mlx_get_data_addr(data->mlx, data->mlx->img->bpp, data->mlx->img->size_line, data->mlx->img->endian);
 	
 }
 
@@ -93,5 +93,15 @@ int	main_game(t_data *data)
 	start_mlx(data);
 	mlx_put_image_to_window(data->mlx, data->mlx->win, data->mlx->img->img, 0, 0);
 
-
+	return (0);
 }
+
+/*
+
+    Obrir finestra --> OK
+    Pintar alguna imatge a una posicio x,y, per exemple les mateixes textures --> imatge si, a posicio en concret no se
+    Aconseguir que amb esc o la creu es tanqui la finestra --> OK
+    Aconseguir que amb les tecles es canviin les coordenades povx, povy i l'angle povo
+    Les funcions per en una columna y pintar el cealing
+    
+*/

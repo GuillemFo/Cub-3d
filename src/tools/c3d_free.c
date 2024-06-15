@@ -40,7 +40,7 @@ t_file  *c3d_free_file(t_file *file)
 
 t_mlx   *c3d_free_win(t_mlx *win)
 {
-    if (win->mlx_win)
+    if (win->win)
     {
         // close window
     }

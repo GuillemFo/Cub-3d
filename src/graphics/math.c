@@ -35,7 +35,7 @@ void	loop_ray(t_data *data)	// under dev... rn makes no sense
 float better than double and use vectorial instead of angular calc.
 
 
-
+*/
 
 
 
