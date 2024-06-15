@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/15 00:13:49 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/15 11:06:34 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	check_args(int ac, char **av)
 		else if (ac > 2)
 			return (message("Too many arguments\n"), 1);
 	}
-	if (check_ext(av[1], ".cub") != 0)
+	if (ft_strncmp(&av[1][ft_strlen(av[1]) - 4], ".cub", 4))
 		return (message("File should be .cub type\n"), 1);
 	return (0);
 }

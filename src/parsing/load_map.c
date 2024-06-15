@@ -6,13 +6,19 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 16:24:43 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/15 00:25:28 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/15 10:59:17 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int construct_map(t_file *file, char *line, int i)
+void	fill_with_space(char *str, int size)
+{
+	while (--size >= 0)
+		str[size] = ' ';
+}
+
+int	construct_map(t_file *file, char *line, int i)
 {
 	int		j;
 
@@ -37,15 +43,15 @@ int	init_map(t_file *file)
 {
 	int	i;
 
-	file->map = ft_calloc((file->max_y + 5), sizeof(char*));
-    if (!file->map)
-        return (message("Map allocation error\n"), 1);
+	file->map = ft_calloc((file->max_y + 5), sizeof(char *));
+	if (!file->map)
+		return (message("Map allocation error\n"), 1);
 	i = 0;
 	while (i < file->max_y + 4)
 	{
 		file->map[i] = ft_calloc((file->max_x + 5), sizeof(char));
-    	if (!file->map[i])
-        	return (message("Map allocation error\n"), 1);
+		if (!file->map[i])
+			return (message("Map allocation error\n"), 1);
 		fill_with_space(file->map[i], file->max_x + 4);
 		i++;
 	}
@@ -81,9 +87,10 @@ int	build_map(char **av, t_file *file)
 
 /*
 
-The build_map function has to add 2 extra lines over an at the bottom so we can check them.
-Has to add 2 spaces before and after each line and extend the lines that need to be completed with spaces before or after
-using the max lenght x and y saved on the structure;
+The build_map function has to add 2 extra lines over an at the bottom
+so we can check them. Has to add 2 spaces before and after each line
+and extend the lines that need to be completed with spaces before or
+after using the max lenght x and y saved on the structure;
 
 Example
 
@@ -106,6 +113,7 @@ Example
 --                                     --
 --                                     --
 
-Need to calculate the lenght between the spacers and the map walls and from the last map wall to the max size found and stored at file->max_x
+Need to calculate the lenght between the spacers and the map walls and
+from the last map wall to the max size found and stored at file->max_x
 
 */
