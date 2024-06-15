@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 16:24:43 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/15 10:59:17 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/15 18:54:11 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,15 +74,12 @@ int	build_map(char **av, t_file *file)
 	while (line != NULL)
 	{
 		if (has_map(line) == true)
-		{
-			construct_map(file, line, i);
-			i++;
-		}
+			construct_map(file, line, i++);
 		free(line);
 		line = get_next_line(fd);
 	}
 	close(fd);
-	return (0);
+	return (check_wall(file));
 }
 
 /*

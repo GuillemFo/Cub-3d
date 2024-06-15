@@ -12,6 +12,7 @@ LIBFT_PATH = src/libft/
 
 SRC = main.c \
 		parsing/parsing.c parsing/load_map.c parsing/load_arg.c \
+		parsing/check_wall.c \
 		tools/tools.c tools/c3d_free.c tools/ft_free.c \
 		errors/errors.c tools/c3d_print.c
 
