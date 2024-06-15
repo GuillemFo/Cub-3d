@@ -10,10 +10,12 @@ MLX_PATH = mlx_linux/
 
 LIBFT_PATH = src/libft/
 
+
 SRC = main.c \
 		parsing/parsing.c parsing/load_map.c parsing/load_arg.c \
 		tools/tools.c tools/c3d_free.c tools/ft_free.c \
-		errors/errors.c tools/c3d_print.c
+		errors/errors.c tools/c3d_print.c \
+    graphics/graphics.c graphics/math.c
 
 SRC_PPREFIX = $(addprefix $(SRC_PATH),$(SRC))
 
@@ -21,7 +23,7 @@ OBJ = $(addprefix $(OBJ_PATH),$(SRC_PPREFIX:.c=.o))
 
 CFLAGS = -I $(INC) -I $(LIBFT_PATH) -Wall -Wextra -Werror -g -fsanitize=address
 
-MLX_FLAGS = -Lmlx_linux  -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+MLX_FLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
 
 #############################################################################
@@ -59,7 +61,9 @@ libraries:
 
 $(OBJ_PATH)%.o:%.c Makefile $(LIBFT_PATH)libft.h $(INC)cub3D.h $(LIBFT_PATH)libft.a 
 	@mkdir -p $(dir $@)
-	@gcc $(CFLAGS) -Iminilibx-linux -O0  -c $< -o $@
+	@gcc $(CFLAGS) -I/usr/include -Iminilibx-linux -O3  -c $< -o $@
+
+	#@gcc $(CFLAGS) -Iminilibx-linux -O0  -c $< -o $@ jose line for compiling at home?
 	@echo "$(CYAN)Compiling cub3D:$(YELLOW) $@$(RESET)"
 
 re: fclean all
