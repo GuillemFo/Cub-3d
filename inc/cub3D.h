@@ -43,7 +43,7 @@
 
 
 /*###	KEY MAPPING	###*/
-# define ESC_KEY 65307
+# define ESC_KEY 53
 # define A_KEY 97
 # define S_KEY 115
 # define D_KEY 100
