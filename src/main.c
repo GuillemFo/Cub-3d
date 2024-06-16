@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:11 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/12 19:35:37 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/13 15:47:18 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ t_data	*init_data(void)
 	ldata->file = ft_calloc(1, sizeof(t_file));
 	if (!ldata->file)
 		return (ft_free(ldata));
-	ldata->win = ft_calloc(1, sizeof(t_mlx));
-	if (!ldata->win)
+	ldata->mlx = ft_calloc(1, sizeof(t_mlx));
+	if (!ldata->mlx)
 		ldata = c3d_free(ldata);
 	return (ldata);
 }
@@ -42,6 +42,7 @@ int	main(int ac, char **av)
 	if (build_map(av, data->file) == 1)
 		return (1);
 	print_map_term(data->file);
+	start_mlx(data);
 	printf("hola\n");
 	c3d_free(data);
 }

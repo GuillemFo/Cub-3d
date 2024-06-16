@@ -16,6 +16,7 @@
 /*-=-=-=-=-=-=-=-=LIBRARIES=-=-=-=-=-=-=-=-*/
 
 # include "../mlx_linux/mlx.h"
+# include "../mlx_linux/mlx_int.h"
 # include "../src/libft/libft.h"
 # include <stdbool.h>
 # include <math.h>
@@ -32,15 +33,41 @@
 
 /*-=-=-=-=-=-=-=-GRAPH SETTINGS=-=-=-=-=-=-=-*/
 
-# define BLOCK_SIZE 128
-# define PLAYER_HEIGHT 64
 # define FIELD_OF_VIEW 60
-# define SIZE_X 800
-# define SIZE_Y 600
-# define ANGULAR_STEP FIELD_OF_VIEW / SIZE_X
-# define POV_DISTANCE (SIZE_X /2) / tan(FIELD_OF_VIEW / 2)
+# define WIN_X 1920
+# define WIN_Y 1080
+# define ANGULAR_STEP FIELD_OF_VIEW / WIN_X
+# define POV_DISTANCE (WIN_X /2) / tan(FIELD_OF_VIEW / 2)
 # define LINEAR_SPEED 16
 # define ROTATION_SPEED 5
+
+
+/*###	KEY MAPPING	###*/
+# define ESC_KEY 65307
+# define A_KEY 97
+# define S_KEY 115
+# define D_KEY 100
+# define W_KEY 119
+
+
+/*###	X11 EVENTS SUPPORTED BY MINILIBX	###*/
+# define KEYDOWN 2
+# define KEYUP 3
+# define MOUSEDOWN 4
+# define MOUSEUP 5
+# define MOUSEMOVE 6
+# define EXPOSE 12
+# define DESTROY 17
+
+/*###	MOUSE EVENTS	###*/
+# define LEFT_CLICK 1
+# define RIGHT_CLICK 3
+# define MID_CLICK 2
+# define SCROLL_UP 5
+# define SCROLL_DOWN 4
+
+/*##	DEFINE TO SHORT CODE	##*/
+# define IMG_WIN mlx_put_image_to_window
 
 /*-=-=-=-=-=-=-=-=-=STRUCTS=-=-=-=-=-=-=-=-=-*/
 
@@ -68,33 +95,55 @@ typedef struct s_file
     char    sto;
 }				t_file;
 
+typedef struct t_ray
+{
+	float	dir_x;
+	float	dir_y;
+	bool	hit;
+
+}			t_ray;
+
+
+typedef	struct s_image
+{
+	//
+	void	*img;		//mlx_new_img
+	char	*addr;		//mlx_get_data_addr
+	int		*bpp;		//mlx_get_data_addr
+	int		*size_line;	//mlx_get_data_addr
+	int		*endian;	//mlx_get_data_addr
+	//width
+	//heitght
+}	t_image;
+
+typedef struct s_player
+{
+	/*
+	pos_x
+	pos_y
+	dir_x
+	dir_y
+	moves front back let right
+	rotation
+	rotation speed
+	*/
+}	t_player;
+
 typedef struct s_mlx
 {
-	void	*mlx;
-	void	*mlx_win;
-}				t_mlx;
+	void		*mlx;
+	void		*win;
+	t_image		*img;
 
-typedef struct	s_graph
-{
-	int		bs; //block size
-	int		vh; //view height
-	int		xs; //X size
-	int		ys; //Y size
-	double	fov; //Field of view
-	double	angs; //Angular step
-	int		lins; //Linear speed
-	double	rots; //Rotation speed
-	int		povx; //Point of View X
-	int		povy; //Point of View Y
-	double	pova; //Point of View angle
-}			t_graph;
+}				t_mlx;
 
 
 typedef struct s_data
 {
-	t_mlx 	*win;
-	t_graph	gr;
-	t_file	*file;
+	t_mlx 		*mlx;
+	t_player 	player;
+	t_ray		ray;
+	t_file		*file;
 	
 }				t_data;
 
@@ -116,6 +165,7 @@ bool	has_map(char *line);
 void	*ft_free_split(char **s);
 t_data  *c3d_free(t_data *data);
 void	*ft_free(void *p);
+void	start_mlx(t_data *data);
 
 
 void	print_map_term(t_file *file);
