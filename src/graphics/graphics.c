@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:43:09 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/14 15:52:44 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/16 17:38:53 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void img_init(t_data *data)
 {
 	data->mlx->img = malloc(sizeof(t_image));
 	//malloc protection
-	data->mlx->img = mlx_new_image(data->mlx, WIN_X, WIN_Y);
+	data->mlx->img->img = mlx_new_image(data->mlx, WIN_X, WIN_Y);
 	data->mlx->img->addr = mlx_get_data_addr(data->mlx, data->mlx->img->bpp, data->mlx->img->size_line, data->mlx->img->endian);
 	
 }
