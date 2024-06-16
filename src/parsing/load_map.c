@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 16:24:43 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/15 18:54:11 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/16 11:52:47 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	construct_map(t_file *file, char *line, int i)
 	{
 		if (ft_strchr("NSEW", line[j]))
 		{
-			file->stx = i;
-			file->sty = j;
+			file->stx = j;
+			file->sty = i - 2;
 			file->sto = line[j];
 			file->map[i][j + 2] = '0';
 		}
