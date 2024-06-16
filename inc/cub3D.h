@@ -109,11 +109,11 @@ typedef	struct s_image
 	//
 	void	*img;		//mlx_new_img
 	char	*addr;		//mlx_get_data_addr
-	int		*bpp;		//mlx_get_data_addr
-	int		*size_line;	//mlx_get_data_addr
-	int		*endian;	//mlx_get_data_addr
-	//width
-	//heitght
+	int		w;
+	int		h;
+	int		bpp; //mlx_get_data_addr
+	int		ll;	//line length
+	int		en;	//endian
 }	t_image;
 
 typedef struct s_player
@@ -165,7 +165,7 @@ bool	has_map(char *line);
 void	*ft_free_split(char **s);
 t_data  *c3d_free(t_data *data);
 void	*ft_free(void *p);
-void	start_mlx(t_data *data);
+int		start_mlx(t_data *data);
 
 
 void	print_map_term(t_file *file);

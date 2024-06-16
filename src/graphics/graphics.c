@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:43:09 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/16 17:38:53 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/16 19:34:18 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,19 @@ int	key_press(int keycode, t_data *data)
 	return (0);
 }
 
-int	esc_window(int keycode, void *param)
+int	esc_window(int keycode, t_data *data)
 {
-	t_mlx	*mlx;
-
-	mlx = (t_mlx *)param;
 	if (keycode == ESC_KEY)
 	{
-		mlx_destroy_window(mlx->mlx, mlx->win);
+	    mlx_destroy_window(data->mlx->mlx, data->mlx->win);
 		exit(0);
 	}
 	return (1);
 }
 
-int	close_window(void *param)
+int	close_window(t_data *data)
 {
-	t_mlx	*mlx;
-
-	mlx = (t_mlx *)param;
-	mlx_destroy_window(mlx->mlx, mlx->win);
+	mlx_destroy_window(data->mlx->mlx, data->mlx->win);
 	exit(0);
 	return (1);
 }
@@ -60,29 +54,34 @@ void	missing_parser(t_data *data)
 */
 
 
-void img_init(t_data *data)
+int img_init(t_data *data)
 {
 	data->mlx->img = malloc(sizeof(t_image));
-	//malloc protection
+    if (!data->mlx->img)
+        return (1);
 	data->mlx->img->img = mlx_new_image(data->mlx, WIN_X, WIN_Y);
-	data->mlx->img->addr = mlx_get_data_addr(data->mlx, data->mlx->img->bpp, data->mlx->img->size_line, data->mlx->img->endian);
-	
+    if (!data->mlx->img->img)
+        return (1);
+	data->mlx->img->addr = mlx_get_data_addr(data->mlx->mlx, &data->mlx->img->bpp, &data->mlx->img->ll, &data->mlx->img->en);
+	return (0);
 }
 
 
-
-
-void	start_mlx(t_data *data)
+int	start_mlx(t_data *data)
 {
 	data->mlx->mlx = mlx_init();
+    if (!data->mlx->mlx)
+        return (message("mlx initialitation error\n"), 1);
 	data->mlx->win = mlx_new_window(data->mlx->mlx, WIN_X, WIN_Y,
 			"Cub3D gforns-s & josegar2");
-	img_init(data);
+	if (img_init(data))
+        return (message("Image creation error\n"), 1);
 	// Been told to start first with a color innstead of image
 	// maybe better to do a separate functionfor hooks and loop
-	// mlx_hook(data->mlx->win, KEYDOWN, 1L << 0, esc_window, data);
-	// mlx_hook(data->mlx->win, DESTROY, 1L << 0, close_window, data);
-	// mlx_loop(data->mlx->mlx);
+	mlx_hook(data->mlx->win, KEYDOWN, 0, esc_window, data);
+	mlx_hook(data->mlx->win, DESTROY, 1L << 0, close_window, data);
+	mlx_loop(data->mlx->mlx);
+    return (0);
 }
 
 //int	game_loop()??

@@ -6,8 +6,6 @@ INC = inc/
 
 SRC_PATH = src/
 
-MLX_PATH = mlx_linux/
-
 LIBFT_PATH = src/libft/
 
 
@@ -24,12 +22,14 @@ OBJ = $(addprefix $(OBJ_PATH),$(SRC_PPREFIX:.c=.o))
 
 CFLAGS = -I $(INC) -I $(LIBFT_PATH) -Wall -Wextra -Werror -g -fsanitize=address
 
-ifeq ($(shell uname), Linux)
+ifeq ($(shell uname), Darwin)
+	MLX_PATH = mlx_mac/
+	INCLUDES = -I/usr/local/include/X11 -Imlx_mac
+	MLX_FLAGS = -Lmlx_mac -lmlx -framework OpenGL -framework AppKit
+else
+	MLX_PATH = mlx_linux/
 	INCLUDES = -I/usr/include -Imlx_linux
 	MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
-else
-	INCLUDES = -I/opt/X11/include -Imlx
-	MLX_FLAGS = -Lmlx_linux -lmlx -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
 endif
 
 #MLX_FLAGS = -Lmlx_linux -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
