@@ -160,6 +160,7 @@ bool	check_is_num(char *s);
 int		check_ext(char *argv, char *text);
 bool	line_is_space(char *line);
 int		build_map(char **av, t_file *file);
+int	   	check_wall(t_file *f);
 bool	has_map(char *line);
 void	*ft_free_split(char **s);
 t_data  *c3d_free(t_data *data);

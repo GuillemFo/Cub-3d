@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:09:52 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/15 11:44:12 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/15 18:00:37 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 //ISSUE CHECKING IF MAP HAS SPACES INSIDE BUT SURROUNDED BY 1
 //REDO FUNCTION
+//there can be spaces insides a line. Will check later if map is closed
 bool	valid_map_line(t_file *file, char *line)
 {
 	int	i;
@@ -21,21 +22,18 @@ bool	valid_map_line(t_file *file, char *line)
 	i = 0;
 	while (line[i] == ' ')
 		i++;
-	if (ft_strchr("NSEW", line[i]))
-		return (message("Starting point out of map\n"), false);
-	while (line[i] && line[i] != '\n' && line[i] != ' ')
+	if (line[i] != '1')
+		return (message("Map not closed\n"), false);
+	while (line[i] && line[i] != '\n')
 	{
 		if (ft_strchr("NSEW", line[i]) && file->sty)
 			return (message("More than one starting point\n"), false);
-		if (!ft_strchr("10NSEW", line[i]))
+		if (!ft_strchr(" 10NSEW", line[i]))
 			return (message("Wrong char in map\n"), false);
 		if (ft_strchr("NSEW", line[i]))
 			file->sty++;
 		i++;
 	}
-	while (line[i] && line[i] != '\n')
-		if (line[i++] != ' ')
-			return (message("Space inside the map\n"), false);
 	return (true);
 }
 
@@ -81,7 +79,7 @@ bool	has_map(char *line)
 	{
 		while (line[i] == ' ')
 			i++;
-		if (ft_strchr("10", line[i]))
+		if (line[i] == '1')
 			return (true);
 	}
 	return (false);
