@@ -12,3 +12,4 @@ Minilibx
 *	https://github.com/terry-yes/mlx_example
 *	https://harm-smits.github.io/42docs/libs/minilibx
 *	https://gontjarow.github.io/MiniLibX/
+*	https://aurelienbrabant.fr/blog/pixel-drawing-with-the-minilibx
