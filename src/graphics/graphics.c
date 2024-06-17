@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:43:09 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/16 19:34:18 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/17 21:41:33 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ void	missing_parser(t_data *data)
 
 int img_init(t_data *data)
 {
-	data->mlx->img = malloc(sizeof(t_image));
+	data->mlx->img = ft_calloc(1, sizeof(t_image));
     if (!data->mlx->img)
         return (1);
-	data->mlx->img->img = mlx_new_image(data->mlx, WIN_X, WIN_Y);
+	data->mlx->img->img = mlx_new_image(data->mlx->mlx, WIN_X, WIN_Y);
     if (!data->mlx->img->img)
         return (1);
 	data->mlx->img->addr = mlx_get_data_addr(data->mlx->mlx, &data->mlx->img->bpp, &data->mlx->img->ll, &data->mlx->img->en);
@@ -74,10 +74,13 @@ int	start_mlx(t_data *data)
         return (message("mlx initialitation error\n"), 1);
 	data->mlx->win = mlx_new_window(data->mlx->mlx, WIN_X, WIN_Y,
 			"Cub3D gforns-s & josegar2");
+    if (load_textures(data->file, data->mlx))
+        return (1);
 	if (img_init(data))
         return (message("Image creation error\n"), 1);
 	// Been told to start first with a color innstead of image
 	// maybe better to do a separate functionfor hooks and loop
+    mlx_put_image_to_window(data->mlx->mlx, data->mlx->win, data->mlx->txt[0].img, 0, 0);
 	mlx_hook(data->mlx->win, KEYDOWN, 0, esc_window, data);
 	mlx_hook(data->mlx->win, DESTROY, 1L << 0, close_window, data);
 	mlx_loop(data->mlx->mlx);

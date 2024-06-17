@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:57:58 by josegar2          #+#    #+#             */
-/*   Updated: 2024/06/16 12:35:48 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/17 21:42:51 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ t_file	*c3d_free_file(t_file *file)
 
 t_mlx	*c3d_free_win(t_mlx *win)
 {
+    x_destroy_img(win);
     if (win->win)
     {
         // close window

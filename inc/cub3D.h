@@ -134,7 +134,7 @@ typedef struct s_mlx
 	void		*mlx;
 	void		*win;
 	t_image		*img;
-
+	t_image		txt[4];
 }				t_mlx;
 
 
@@ -166,6 +166,8 @@ void	*ft_free_split(char **s);
 t_data  *c3d_free(t_data *data);
 void	*ft_free(void *p);
 int		start_mlx(t_data *data);
+int		load_textures(t_file *fl, t_mlx *mx);
+void	x_destroy_img(t_mlx *mx);
 
 
 void	print_map_term(t_file *file);
