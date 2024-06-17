@@ -33,13 +33,15 @@
 
 /*-=-=-=-=-=-=-=-GRAPH SETTINGS=-=-=-=-=-=-=-*/
 
-# define FIELD_OF_VIEW 60
+# define BLOCK_SIZE 128
+# define VIEW_HEIGHT 64
+# define FIELD_OF_VIEW (60 * M_PI) / 180
 # define WIN_X 1920
 # define WIN_Y 1080
 # define ANGULAR_STEP FIELD_OF_VIEW / WIN_X
 # define POV_DISTANCE (WIN_X /2) / tan(FIELD_OF_VIEW / 2)
 # define LINEAR_SPEED 16
-# define ROTATION_SPEED 5
+# define ROTATION_SPEED (5 * M_PI) / 180
 
 
 /*###	KEY MAPPING	###*/
@@ -118,15 +120,15 @@ typedef	struct s_image
 
 typedef struct s_player
 {
-	/*
-	pos_x
-	pos_y
-	dir_x
-	dir_y
-	moves front back let right
-	rotation
-	rotation speed
-	*/
+	int		bs; //block size
+	int		vh; //view height
+	double	fov; //Field of view
+	double 	angs; //Angular step
+	int		lins; //Linear speed
+	double  rots; //Rotation speed
+	int		povx; //Point of View X
+	int		povy; //Point of View Y
+	double  pova; //Point of View angle
 }	t_player;
 
 typedef struct s_mlx
@@ -135,6 +137,8 @@ typedef struct s_mlx
 	void		*win;
 	t_image		*img;
 	t_image		txt[4];
+	int			rgbc;
+	int			rgbf;
 }				t_mlx;
 
 
