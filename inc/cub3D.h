@@ -44,7 +44,7 @@
 # define ROTATION_SPEED (5 * M_PI) / 180
 
 
-/*###	KEY MAPPING	###*/
+/*###	KEY MAPPING	MAC	###*/
 # define ESC_KEY 53
 # define A_KEY 97
 # define S_KEY 115
@@ -113,45 +113,42 @@ typedef	struct s_image
 	char	*addr;		//mlx_get_data_addr
 	int		w;
 	int		h;
-	int		bpp; //mlx_get_data_addr
-	int		ll;	//line length
-	int		en;	//endian
+	int		bpp;		//mlx_get_data_addr
+	int		ll;			//line length
+	int		en;			//endian
 }	t_image;
 
 typedef struct s_player
 {
-	int		bs; //block size
-	int		vh; //view height
-	double	fov; //Field of view
-	double 	angs; //Angular step
-	int		lins; //Linear speed
-	double  rots; //Rotation speed
-	int		povx; //Point of View X
-	int		povy; //Point of View Y
-	double  pova; //Point of View angle
+	int		bs; 	//block size
+	int		vh; 	//view height
+	double	fov; 	//Field of view
+	double 	angs; 	//Angular step
+	int		lins; 	//Linear speed
+	double  rots; 	//Rotation speed
+	int		povx; 	//Point of View X
+	int		povy; 	//Point of View Y
+	double  pova; 	//Point of View angle
 }	t_player;
 
-typedef struct s_mlx
+typedef struct s_graph
 {
-	void		*mlx;
-	void		*win;
-	t_image		*img;
+	void		*mlx;	//mlx
+	void		*win;	//win
+	t_image		*i;		//img
 	t_image		txt[4];
 	int			rgbc;
 	int			rgbf;
-}				t_mlx;
+	t_player 	p;		//player struct
+	t_ray		ray;
+}				t_graph;
 
 
 typedef struct s_data
 {
-	t_mlx 		*mlx;
-	t_player 	player;
-	t_ray		ray;
+	t_graph 	*g;		//t_grapth graphics
 	t_file		*file;
-	
 }				t_data;
-
-
 
 /*-=-=-=-=-=-=-=-=FUNCTIONS=-=-=-=-=-=-=-=-=*/
 
@@ -170,8 +167,8 @@ void	*ft_free_split(char **s);
 t_data  *c3d_free(t_data *data);
 void	*ft_free(void *p);
 int		start_mlx(t_data *data);
-int		load_textures(t_file *fl, t_mlx *mx);
-void	x_destroy_img(t_mlx *mx);
+int		load_textures(t_file *fl, t_graph *mx);
+void	x_destroy_img(t_graph *mx);
 
 
 void	print_map_term(t_file *file);
