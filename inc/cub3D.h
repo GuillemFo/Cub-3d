@@ -43,14 +43,25 @@
 # define LINEAR_SPEED 16
 # define ROTATION_SPEED (5 * M_PI) / 180
 
-
 /*###	KEY MAPPING	MAC	###*/
+/*
 # define ESC_KEY 53
 # define A_KEY 97
 # define S_KEY 115
 # define D_KEY 100
 # define W_KEY 119
+# define RIGHT_KEY 100
+# define LEFT_KEY 119
+*/
 
+/*###	KEY MAPPING	LINUX	###*/
+# define ESC_KEY 65307
+# define A_KEY 97
+# define S_KEY 115
+# define D_KEY 100
+# define W_KEY 119
+# define RIGHT_KEY 65363
+# define LEFT_KEY 65361
 
 /*###	X11 EVENTS SUPPORTED BY MINILIBX	###*/
 # define KEYDOWN 2
@@ -170,7 +181,7 @@ int		start_mlx(t_data *data);
 int		load_textures(t_file *fl, t_graph *mx);
 void	x_destroy_img(t_graph *mx);
 
-
+int	p_moves(int keycode, t_graph *g);
 void	print_map_term(t_file *file);
 
 #endif
