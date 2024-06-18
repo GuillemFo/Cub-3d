@@ -51,21 +51,19 @@ t_file	*c3d_free_file(t_file *file)
 	return (file);
 }
 
-//CHANGED THE NAME OF STRUCT FROM WIN TO mlx
-
-t_mlx	*c3d_free_win(t_mlx *mlx)
+t_mlx	*c3d_free_win(t_mlx *win)
 {
     x_destroy_img(win);
     if (win->win)
     {
         // close window
     }
-    if (mlx->mlx)
+    if (win->mlx)
     {
         // close mlx
     }
-    mlx = ft_free(mlx);
-    return (mlx);
+    win = ft_free(win);
+    return (win);
 }
 
 t_data	*c3d_free(t_data *data)
