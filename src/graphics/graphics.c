@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:43:09 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/18 12:09:03 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/18 12:34:01 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ int	start_mlx(t_data *data)
         return (message("Image creation error\n"), 1);
 	// Been told to start first with a color innstead of image
 	// maybe better to do a separate functionfor hooks and loop
-    mlx_put_image_to_window(data->g->mlx, data->g->win, data->g->txt[0].img, 0, 0);
+    //mlx_put_image_to_window(data->g->mlx, data->g->win, data->g->txt[0].img, 0, 0);
+	check_columns(data->g);
 	mlx_hook(data->g->win, KEYDOWN, 0, esc_window, data->g);
 	//mlx_hook(data->g->win, KEYDOWN, 0, p_moves, data->g);
 	mlx_hook(data->g->win, DESTROY, 1L << 0, close_window, data->g);

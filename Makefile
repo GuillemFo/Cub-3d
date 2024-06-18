@@ -14,7 +14,8 @@ SRC = main.c \
 		parsing/check_wall.c \
 		tools/tools.c tools/c3d_free.c tools/ft_free.c \
 		errors/errors.c tools/c3d_print.c \
-    graphics/graphics.c graphics/math.c graphics/load_textures.c
+    	graphics/graphics.c graphics/math.c graphics/load_textures.c \
+		graphics/draw_column.c
 
 SRC_PPREFIX = $(addprefix $(SRC_PATH),$(SRC))
 
