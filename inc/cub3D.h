@@ -125,9 +125,7 @@ typedef struct s_player
 	double	fov; 	//Field of view
 	double 	angs; 	//Angular step
 	int		lins; 	//Linear speed
-	double  rots; 	//Rotation speed
-	float	ppx;	//Player pos X
-	float	ppy;	//Player pos y
+	double  rots; 	//Rotation speedy
 	int		povx; 	//Point of View X
 	int		povy; 	//Point of View Y
 	double  pova; 	//Point of View angle
@@ -137,7 +135,7 @@ typedef struct s_graph
 {
 	void		*mlx;	//mlx
 	void		*win;	//win
-	t_image		*i;		//img
+	t_image		i;		//img
 	t_image		txt[4];
 	int			rgbc;
 	int			rgbf;

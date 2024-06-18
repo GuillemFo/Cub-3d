@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:43:09 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/18 10:35:58 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/18 12:09:03 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,19 @@ int	key_press(int keycode, t_data *data)
 	return (0);
 }
 
-int	esc_window(int keycode, t_data *data)
+int	esc_window(int keycode, t_graph *g)
 {
 	if (keycode == ESC_KEY)
 	{
-	    mlx_destroy_window(data->g->mlx, data->g->win);
+	    mlx_destroy_window(g->mlx, g->win);
 		exit(0);
 	}
 	return (1);
 }
 
-int	close_window(t_data *data)
+int	close_window(t_graph *g)
 {
-	mlx_destroy_window(data->g->mlx, data->g->win);
+	mlx_destroy_window(g->mlx, g->win);
 	exit(0);
 	return (1);
 }
@@ -54,19 +54,14 @@ void	missing_parser(t_data *data)
 */
 
 
-int img_init(t_data *data)
+int img_init(t_graph *g)
 {
-	data->g->i = ft_calloc(1, sizeof(t_image));
-    if (!data->g->i)
+	g->i.img = mlx_new_image(g->mlx, WIN_X, WIN_Y);
+    if (!g->i.img)
 	{
         return (1);
 	}
-	data->g->i->img = mlx_new_image(data->g->mlx, WIN_X, WIN_Y);
-    if (!data->g->i->img)
-	{
-        return (1);
-	}
-	data->g->i->addr = mlx_get_data_addr(data->g->mlx, &data->g->i->bpp, &data->g->i->ll, &data->g->i->en);
+	g->i.addr = mlx_get_data_addr(g->mlx, &g->i.bpp, &g->i.ll, &g->i.en);
 	return (0);
 }
 
@@ -84,14 +79,14 @@ int	start_mlx(t_data *data)
 	{
 		return (1);
 	}
-	if (img_init(data))
+	if (img_init(data->g))
         return (message("Image creation error\n"), 1);
 	// Been told to start first with a color innstead of image
 	// maybe better to do a separate functionfor hooks and loop
     mlx_put_image_to_window(data->g->mlx, data->g->win, data->g->txt[0].img, 0, 0);
-	mlx_hook(data->g->win, KEYDOWN, 0, esc_window, data);
-	mlx_hook(data->g->win, KEYDOWN, 0, p_moves, data);
-	mlx_hook(data->g->win, DESTROY, 1L << 0, close_window, data);
+	mlx_hook(data->g->win, KEYDOWN, 0, esc_window, data->g);
+	//mlx_hook(data->g->win, KEYDOWN, 0, p_moves, data->g);
+	mlx_hook(data->g->win, DESTROY, 1L << 0, close_window, data->g);
 	mlx_loop(data->g->mlx);
     return (0);
 }
@@ -102,7 +97,7 @@ int	start_mlx(t_data *data)
 int	main_game(t_data *data)
 {
 	start_mlx(data);
-	mlx_put_image_to_window(data->g, data->g->win, data->g->i->img, 0, 0);
+	mlx_put_image_to_window(data->g, data->g->win, data->g->i.img, 0, 0);
 
 	return (0);
 }
