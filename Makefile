@@ -28,8 +28,8 @@ ifeq ($(shell uname), Darwin)
 	MLX_FLAGS = -Lmlx_mac -lmlx -framework OpenGL -framework AppKit
 else
 	MLX_PATH = mlx_linux/
-	INCLUDES = -I/usr/include -Imlx_linux
-	MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
+	INCLUDES = -I/usr/lib -Imlx_linux
+	MLX_FLAGS = -Lmlx_linux -lmlx -L/usr/lib/X11 -lXext -lX11
 endif
 
 #MLX_FLAGS = -Lmlx_linux -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
