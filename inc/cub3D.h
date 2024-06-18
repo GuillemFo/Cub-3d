@@ -33,17 +33,19 @@
 
 /*-=-=-=-=-=-=-=-GRAPH SETTINGS=-=-=-=-=-=-=-*/
 
-# define FIELD_OF_VIEW 60
+# define BLOCK_SIZE 128
+# define VIEW_HEIGHT 64
+# define FIELD_OF_VIEW (60 * M_PI) / 180
 # define WIN_X 1920
 # define WIN_Y 1080
 # define ANGULAR_STEP FIELD_OF_VIEW / WIN_X
 # define POV_DISTANCE (WIN_X /2) / tan(FIELD_OF_VIEW / 2)
 # define LINEAR_SPEED 16
-# define ROTATION_SPEED 5
+# define ROTATION_SPEED (5 * M_PI) / 180
 
 
 /*###	KEY MAPPING	###*/
-# define ESC_KEY 65307
+# define ESC_KEY 53
 # define A_KEY 97
 # define S_KEY 115
 # define D_KEY 100
@@ -109,24 +111,24 @@ typedef	struct s_image
 	//
 	void	*img;		//mlx_new_img
 	char	*addr;		//mlx_get_data_addr
-	int		*bpp;		//mlx_get_data_addr
-	int		*size_line;	//mlx_get_data_addr
-	int		*endian;	//mlx_get_data_addr
-	//width
-	//heitght
+	int		w;
+	int		h;
+	int		bpp; //mlx_get_data_addr
+	int		ll;	//line length
+	int		en;	//endian
 }	t_image;
 
 typedef struct s_player
 {
-	/*
-	pos_x
-	pos_y
-	dir_x
-	dir_y
-	moves front back let right
-	rotation
-	rotation speed
-	*/
+	int		bs; //block size
+	int		vh; //view height
+	double	fov; //Field of view
+	double 	angs; //Angular step
+	int		lins; //Linear speed
+	double  rots; //Rotation speed
+	int		povx; //Point of View X
+	int		povy; //Point of View Y
+	double  pova; //Point of View angle
 }	t_player;
 
 typedef struct s_mlx
@@ -134,7 +136,9 @@ typedef struct s_mlx
 	void		*mlx;
 	void		*win;
 	t_image		*img;
-
+	t_image		txt[4];
+	int			rgbc;
+	int			rgbf;
 }				t_mlx;
 
 
@@ -165,7 +169,9 @@ bool	has_map(char *line);
 void	*ft_free_split(char **s);
 t_data  *c3d_free(t_data *data);
 void	*ft_free(void *p);
-void	start_mlx(t_data *data);
+int		start_mlx(t_data *data);
+int		load_textures(t_file *fl, t_mlx *mx);
+void	x_destroy_img(t_mlx *mx);
 
 
 void	print_map_term(t_file *file);

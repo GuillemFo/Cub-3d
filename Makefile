@@ -6,8 +6,6 @@ INC = inc/
 
 SRC_PATH = src/
 
-MLX_PATH = mlx_linux/
-
 LIBFT_PATH = src/libft/
 
 
@@ -16,7 +14,7 @@ SRC = main.c \
 		parsing/check_wall.c \
 		tools/tools.c tools/c3d_free.c tools/ft_free.c \
 		errors/errors.c tools/c3d_print.c \
-    graphics/graphics.c graphics/math.c
+    graphics/graphics.c graphics/math.c graphics/load_textures.c
 
 SRC_PPREFIX = $(addprefix $(SRC_PATH),$(SRC))
 
@@ -24,7 +22,17 @@ OBJ = $(addprefix $(OBJ_PATH),$(SRC_PPREFIX:.c=.o))
 
 CFLAGS = -I $(INC) -I $(LIBFT_PATH) -Wall -Wextra -Werror -g -fsanitize=address
 
-MLX_FLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+ifeq ($(shell uname), Darwin)
+	MLX_PATH = mlx_mac/
+	INCLUDES = -I/usr/local/include/X11 -Imlx_mac
+	MLX_FLAGS = -Lmlx_mac -lmlx -framework OpenGL -framework AppKit
+else
+	MLX_PATH = mlx_linux/
+	INCLUDES = -I/usr/include -Imlx_linux
+	MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
+endif
+
+#MLX_FLAGS = -Lmlx_linux -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
 
 #############################################################################
@@ -62,9 +70,7 @@ libraries:
 
 $(OBJ_PATH)%.o:%.c Makefile $(LIBFT_PATH)libft.h $(INC)cub3D.h $(LIBFT_PATH)libft.a 
 	@mkdir -p $(dir $@)
-	@gcc $(CFLAGS) -I/usr/include -Iminilibx-linux -O3  -c $< -o $@
-
-	#@gcc $(CFLAGS) -Iminilibx-linux -O0  -c $< -o $@ jose line for compiling at home?
+	@gcc $(CFLAGS) $(INCLUDES) -O0  -c $< -o $@
 	@echo "$(CYAN)Compiling cub3D:$(YELLOW) $@$(RESET)"
 
 re: fclean all

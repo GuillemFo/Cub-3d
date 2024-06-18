@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   c3d_free.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:57:58 by josegar2          #+#    #+#             */
-/*   Updated: 2024/06/12 17:38:57 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/17 21:42:51 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ t_file	*c3d_free_file(t_file *file)
 
 t_mlx	*c3d_free_win(t_mlx *win)
 {
+    x_destroy_img(win);
     if (win->win)
     {
         // close window
@@ -71,8 +72,8 @@ t_data	*c3d_free(t_data *data)
 	{
 		if (data->file)
 			data->file = c3d_free_file(data->file);
-		if (data->win)
-			data->win = c3d_free_win(data->win);
+		if (data->mlx)
+			data->mlx = c3d_free_win(data->mlx);
 		data = ft_free(data);
 	}
 	return (data);
