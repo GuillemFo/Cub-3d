@@ -126,6 +126,8 @@ typedef struct s_player
 	double 	angs; 	//Angular step
 	int		lins; 	//Linear speed
 	double  rots; 	//Rotation speed
+	float	ppx;	//Player pos X
+	float	ppy;	//Player pos y
 	int		povx; 	//Point of View X
 	int		povy; 	//Point of View Y
 	double  pova; 	//Point of View angle
