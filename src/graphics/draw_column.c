@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 12:00:29 by josegar2          #+#    #+#             */
-/*   Updated: 2024/06/18 12:42:30 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/19 22:07:51 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ void	draw_column(t_graph *g, int x, int sow, int off)
 
 	y = 0;
 	(void)off;
-	while (y < (WIN_Y - sow) / 2)
+	while (WIN_Y - sow > 0 && y < (WIN_Y - sow) / 2)
 	{
 		c3d_mlx_pixel_put(g->i, x, y++, g->rgbc);
 	}
-	while (y < sow + (WIN_Y - sow) / 2)
+	while (y < WIN_Y && y < sow + (WIN_Y - sow) / 2)
 	{
-		c3d_mlx_pixel_put(g->i, x, y++, 0x00000000);
+		c3d_mlx_pixel_put(g->i, x, y++, 0x00FFFFFF);
 	}
 	while (y < WIN_Y)
 	{

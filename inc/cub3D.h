@@ -45,12 +45,19 @@
 
 
 /*###	KEY MAPPING	MAC	###*/
-# define ESC_KEY 53
-# define A_KEY 97
-# define S_KEY 115
-# define D_KEY 100
-# define W_KEY 119
-
+# ifdef MAC_OS
+#  define ESC_KEY 53
+#  define A_KEY 97
+#  define S_KEY 115
+#  define D_KEY 100
+#  define W_KEY 119
+# else
+#  define ESC_KEY 65307
+#  define A_KEY 97
+#  define S_KEY 115
+#  define D_KEY 100
+#  define W_KEY 119
+# endif
 
 /*###	X11 EVENTS SUPPORTED BY MINILIBX	###*/
 # define KEYDOWN 2
@@ -125,10 +132,10 @@ typedef struct s_player
 	double	fov; 	//Field of view
 	double 	angs; 	//Angular step
 	int		lins; 	//Linear speed
-	double  rots; 	//Rotation speedy
+	double	rots; 	//Rotation speedy
 	int		povx; 	//Point of View X
 	int		povy; 	//Point of View Y
-	double  pova; 	//Point of View angle
+	double	pova; 	//Point of View angle
 }	t_player;
 
 typedef struct s_graph
@@ -139,16 +146,15 @@ typedef struct s_graph
 	t_image		txt[4];
 	int			rgbc;
 	int			rgbf;
-	t_player 	p;		//player struct
+	t_player	p;		//player struct
 	t_ray		ray;
 }				t_graph;
 
-
 typedef struct s_data
 {
-	t_graph 	*g;		//t_grapth graphics
-	t_file		*file;
-}				t_data;
+	t_graph	*g;		//t_grapth graphics
+	t_file	*file;
+}			t_data;
 
 /*-=-=-=-=-=-=-=-=FUNCTIONS=-=-=-=-=-=-=-=-=*/
 
