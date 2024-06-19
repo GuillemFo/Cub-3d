@@ -110,8 +110,11 @@ typedef struct s_file
 
 typedef struct t_ray
 {
-	float	dir_x;
-	float	dir_y;
+	int		dir_x;
+	int		dir_y;
+	int		pos_x;
+	int		pos_y;
+	
 	bool	hit;
 
 }			t_ray;
