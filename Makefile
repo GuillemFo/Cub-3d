@@ -15,13 +15,17 @@ SRC = main.c \
 		tools/tools.c tools/c3d_free.c tools/ft_free.c \
 		errors/errors.c tools/c3d_print.c \
     	graphics/graphics.c graphics/math.c graphics/load_textures.c \
-		graphics/draw_column.c
+		graphics/draw_column.c graphics/player.c
 
 SRC_PPREFIX = $(addprefix $(SRC_PATH),$(SRC))
 
 OBJ = $(addprefix $(OBJ_PATH),$(SRC_PPREFIX:.c=.o))
 
+<<<<<<< HEAD
 CFLAGS = -I $(INC) -I $(LIBFT_PATH) -Wall -Wextra -Werror -g #-fsanitize=address
+=======
+CFLAGS = -I $(INC) -I $(LIBFT_PATH) -Wall -Wextra -Werror -lm -g -fsanitize=address
+>>>>>>> d822b330e5ed472aa029d8dce6cb911d4868f4c2
 
 ifeq ($(shell uname), Darwin)
 	CFLAGS += -D MAC_OS
