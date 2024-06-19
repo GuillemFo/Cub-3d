@@ -6,33 +6,20 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:43:09 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/18 12:34:01 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/19 14:52:18 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
 // mlx_hook(data->mlx->win, 2, 1L << 0, key_press, &data);
-int	key_press(int keycode, t_data *data)
+int	key_press(int keycode)
 {
 	printf("Key pressed: %d\n", keycode);
-	if (keycode == 65307)
-	{
-		mlx_destroy_window(data->g->mlx, data->g->win);
-		exit(0);
-	}
 	return (0);
 }
 
-int	esc_window(int keycode, t_graph *g)
-{
-	if (keycode == ESC_KEY)
-	{
-	    mlx_destroy_window(g->mlx, g->win);
-		exit(0);
-	}
-	return (1);
-}
+
 
 int	close_window(t_graph *g)
 {
@@ -98,6 +85,8 @@ int	start_mlx(t_data *data)
 int	main_game(t_data *data)
 {
 	start_mlx(data);
+
+	data->g->file = &data->file;
 	mlx_put_image_to_window(data->g, data->g->win, data->g->i.img, 0, 0);
 
 	return (0);
