@@ -18,8 +18,8 @@
 # include "../mlx_linux/mlx.h"
 # include "../mlx_linux/mlx_int.h"
 # include "../src/libft/libft.h"
-# include <stdbool.h>
 # include <math.h>
+# include <stdbool.h>
 
 /*-=-=-=-=-=-=-=-=COLOR CODES=-=-=-=-=-=-=-=-*/
 
@@ -39,7 +39,7 @@
 # define WIN_X 1920
 # define WIN_Y 1080
 # define ANGULAR_STEP FIELD_OF_VIEW / WIN_X
-# define POV_DISTANCE (WIN_X /2) / tan(FIELD_OF_VIEW / 2)
+# define POV_DISTANCE (WIN_X / 2) / tan(FIELD_OF_VIEW / 2)
 # define LINEAR_SPEED 16
 # define ROTATION_SPEED (5 * M_PI) / 180
 
@@ -86,8 +86,8 @@
 
 typedef struct s_event
 {
-	//key hooks??
-	//mouse??
+	// key hooks??
+	// mouse??
 }			t_event;
 
 typedef struct s_file
@@ -96,17 +96,17 @@ typedef struct s_file
 	char	*SO;
 	char	*EA;
 	char	*WE;
-	int		*F;	//Floor color
-	int		*C;	//Ceiling color
+	int *F; // Floor color
+	int *C; // Ceiling color
 	char	**map;
 	char	**tmp;
 	int		max_x;
 	int		max_y;
 	int		data_ok;
-    int     stx;
-    int     sty;
-    char    sto;
-}				t_file;
+	int		stx;
+	int		sty;
+	char	sto;
+}			t_file;
 
 typedef struct t_ray
 {
@@ -114,77 +114,82 @@ typedef struct t_ray
 	int		dir_y;
 	int		pos_x;
 	int		pos_y;
-	
+
 	bool	hit;
 
 }			t_ray;
 
-
-typedef	struct s_image
+typedef struct s_image
 {
 	//
-	void	*img;		//mlx_new_img
-	char	*addr;		//mlx_get_data_addr
+	void *img;  // mlx_new_img
+	char *addr; // mlx_get_data_addr
 	int		w;
 	int		h;
-	int		bpp;		//mlx_get_data_addr
-	int		ll;			//line length
-	int		en;			//endian
-}	t_image;
+	int bpp; // mlx_get_data_addr
+	int ll;  // line length
+	int en;  // endian
+}			t_image;
 
 typedef struct s_player
 {
-	int		bs; 	//block size
-	int		vh; 	//view height
-	double	fov; 	//Field of view
-	double 	angs; 	//Angular step
-	int		lins; 	//Linear speed
-	double  rots; 	//Rotation speedy
-	int		povx; 	//Point of View X
-	int		povy; 	//Point of View Y
-	double  pova; 	//Point of View angle
-}	t_player;
+	double pos_x;   // Player's position in x
+	double pos_y;   // Player's position in y
+	double dir_x;   // Player's direction vector in x
+	double dir_y;   // Player's direction vector in y
+	double plane_x; // Camera plane vector in x
+	double plane_y; // Camera plane vector in y
+	int bs;         // Block size
+	int vh;         // View height
+	double fov;     // Field of view
+	double angs;    // Angular step
+	int lins;       // Linear speed
+	double rots;    // Rotation speed
+	int povx;       // Point of view x
+	int povy;       // Point of view y
+	double pova;    // Point of view angle
+}			t_player;
 
 typedef struct s_graph
 {
-	void		*mlx;	//mlx
-	void		*win;	//win
-	t_image		i;		//img
-	t_image		txt[4];
-	int			rgbc;
-	int			rgbf;
-	t_player 	p;		//player struct
-	t_ray		ray;
-}				t_graph;
-
+	void *mlx; // mlx
+	void *win; // win
+	t_image i; // img
+	t_image	txt[4];
+	int		rgbc;
+	int		rgbf;
+	t_player p; // player struct
+	t_ray	ray;
+	t_file	*file;
+}			t_graph;
 
 typedef struct s_data
 {
-	t_graph 	*g;		//t_grapth graphics
-	t_file		*file;
-}				t_data;
+	t_graph *g; // t_grapth graphics
+	t_file	*file;
+}			t_data;
 
 /*-=-=-=-=-=-=-=-=FUNCTIONS=-=-=-=-=-=-=-=-=*/
 
-int		check_args(int ac, char **av);
-int		check_map(t_file *file, char *fn);
-int     load_arg(char *line, t_file *file);
-void	message(char *msg);
-bool	valid_map_line(t_file *file, char *line);
-bool	check_is_num(char *s);
-int		check_ext(char *argv, char *text);
-bool	line_is_space(char *line);
-int		build_map(char **av, t_file *file);
-int	   	check_wall(t_file *f);
-bool	has_map(char *line);
-void	*ft_free_split(char **s);
-t_data  *c3d_free(t_data *data);
-void	*ft_free(void *p);
-int		start_mlx(t_data *data);
-int		load_textures(t_file *fl, t_graph *mx);
-void	x_destroy_img(t_graph *mx);
+int			check_args(int ac, char **av);
+int			check_map(t_file *file, char *fn);
+int			load_arg(char *line, t_file *file);
+void		message(char *msg);
+bool		valid_map_line(t_file *file, char *line);
+bool		check_is_num(char *s);
+int			check_ext(char *argv, char *text);
+bool		line_is_space(char *line);
+int			build_map(char **av, t_file *file);
+int			check_wall(t_file *f);
+bool		has_map(char *line);
+void		*ft_free_split(char **s);
+t_data		*c3d_free(t_data *data);
+void		*ft_free(void *p);
+int			start_mlx(t_data *data);
+int			load_textures(t_file *fl, t_graph *mx);
+void		x_destroy_img(t_graph *mx);
 
-int	p_moves(int keycode, t_graph *g);
-void	print_map_term(t_file *file);
+int			p_moves(int keycode, t_graph *g);
+void		print_map_term(t_file *file);
 
 #endif
