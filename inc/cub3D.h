@@ -43,14 +43,16 @@
 # define LINEAR_SPEED 16
 # define ROTATION_SPEED (5 * M_PI) / 180
 
-/*###	KEY MAPPING	MAC	###*/
-<<<<<<< HEAD
+/*###	KEY MAPPING	###*/
+
 # ifdef MAC_OS
 #  define ESC_KEY 53
 #  define A_KEY 97
 #  define S_KEY 115
 #  define D_KEY 100
 #  define W_KEY 119
+#  define LEFT_KEY 111 // to check
+#  define RIGHT_KEY 112 //to check
 # else
 #  define ESC_KEY 65307
 #  define A_KEY 97
@@ -58,26 +60,6 @@
 #  define D_KEY 100
 #  define W_KEY 119
 # endif
-=======
-/*
-# define ESC_KEY 53
-# define A_KEY 97
-# define S_KEY 115
-# define D_KEY 100
-# define W_KEY 119
-# define RIGHT_KEY 100
-# define LEFT_KEY 119
-*/
-
-/*###	KEY MAPPING	LINUX	###*/
-# define ESC_KEY 65307
-# define A_KEY 97
-# define S_KEY 115
-# define D_KEY 100
-# define W_KEY 119
-# define RIGHT_KEY 65363
-# define LEFT_KEY 65361
->>>>>>> d822b330e5ed472aa029d8dce6cb911d4868f4c2
 
 /*###	X11 EVENTS SUPPORTED BY MINILIBX	###*/
 # define KEYDOWN 2
@@ -149,34 +131,6 @@ typedef struct s_image
 
 typedef struct s_player
 {
-<<<<<<< HEAD
-	int		bs; 	//block size
-	int		vh; 	//view height
-	double	fov; 	//Field of view
-	double 	angs; 	//Angular step
-	int		lins; 	//Linear speed
-	double	rots; 	//Rotation speedy
-	int		povx; 	//Point of View X
-	int		povy; 	//Point of View Y
-	double	pova; 	//Point of View angle
-}	t_player;
-
-typedef struct s_graph
-{
-	void		*mlx;	//mlx
-	void		*win;	//win
-	t_image		i;		//img
-	t_image		txt[4];
-	int			rgbc;
-	int			rgbf;
-	t_player	p;		//player struct
-	t_ray		ray;
-}				t_graph;
-
-typedef struct s_data
-{
-	t_graph	*g;		//t_grapth graphics
-=======
 	double pos_x;   // Player's position in x
 	double pos_y;   // Player's position in y
 	double dir_x;   // Player's direction vector in x
@@ -210,7 +164,6 @@ typedef struct s_graph
 typedef struct s_data
 {
 	t_graph *g; // t_grapth graphics
->>>>>>> d822b330e5ed472aa029d8dce6cb911d4868f4c2
 	t_file	*file;
 }			t_data;
 
