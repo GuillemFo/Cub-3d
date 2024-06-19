@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_column.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 12:00:29 by josegar2          #+#    #+#             */
-/*   Updated: 2024/06/18 12:42:30 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/19 15:11:07 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	c3d_mlx_pixel_put(t_image im, int x, int y, int color)
 {
-	char *dst;
+	char	*dst;
 
 	dst = im.addr + (y * im.ll + x * (im.bpp / 8));
 	*(unsigned int *)dst = color;
@@ -24,7 +24,7 @@ void	c3d_mlx_pixel_put(t_image im, int x, int y, int color)
 // off == 0 means
 void	draw_column(t_graph *g, int x, int sow, int off)
 {
-	int y;
+	int	y;
 
 	y = 0;
 	(void)off;
@@ -42,15 +42,15 @@ void	draw_column(t_graph *g, int x, int sow, int off)
 	}
 }
 
-void	check_columns(t_graph *g)
+void	check_columns(t_graph *g, t_data *data)
 {
-	int	x;
-	int	sow;
+	int x;
+	int sow;
 
 	x = 0;
 	while (x < WIN_X)
 	{
-		sow = x % WIN_Y;
+		sow = get_wall_size(g, x, data);
 		draw_column(g, x, sow, 0);
 		x++;
 	}

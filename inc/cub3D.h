@@ -171,29 +171,29 @@ typedef struct s_data
 
 /*-=-=-=-=-=-=-=-=FUNCTIONS=-=-=-=-=-=-=-=-=*/
 
-int		check_args(int ac, char **av);
-int		check_map(t_file *file, char *fn);
-int     load_arg(char *line, t_file *file);
-void	message(char *msg);
-bool	valid_map_line(t_file *file, char *line);
-bool	check_is_num(char *s);
-int		check_ext(char *argv, char *text);
-bool	line_is_space(char *line);
-int		build_map(char **av, t_file *file);
-int	   	check_wall(t_file *f);
-bool	has_map(char *line);
-void	*ft_free_split(char **s);
-t_data  *c3d_free(t_data *data);
-void	*ft_free(void *p);
-int		start_mlx(t_data *data);
-int		load_textures(t_file *fl, t_graph *mx);
-void	x_destroy_img(t_graph *mx);
-void	draw_column(t_graph *g, int x, int sow, int off);
+int			check_args(int ac, char **av);
+int			check_map(t_file *file, char *fn);
+int			load_arg(char *line, t_file *file);
+void		message(char *msg);
+bool		valid_map_line(t_file *file, char *line);
+bool		check_is_num(char *s);
+int			check_ext(char *argv, char *text);
+bool		line_is_space(char *line);
+int			build_map(char **av, t_file *file);
+int			check_wall(t_file *f);
+bool		has_map(char *line);
+void		*ft_free_split(char **s);
+t_data		*c3d_free(t_data *data);
+void		*ft_free(void *p);
+int			start_mlx(t_data *data);
+int			load_textures(t_file *fl, t_graph *mx);
+void		x_destroy_img(t_graph *mx);
+void		draw_column(t_graph *g, int x, int sow, int off);
 
 /*-=-=-=-=-=- TEST FUNCTIONS=-=-=-=-=-=-=-=-=*/
 
-void	check_columns(t_graph *g);
-void	print_map_term(t_file *file);
+void		check_columns(t_graph *g, t_data *data);
+void		print_map_term(t_file *file);
 int			check_args(int ac, char **av);
 int			check_map(t_file *file, char *fn);
 int			load_arg(char *line, t_file *file);
@@ -214,5 +214,6 @@ void		x_destroy_img(t_graph *mx);
 
 int			p_moves(int keycode, t_graph *g);
 void		print_map_term(t_file *file);
+int			get_wall_size(t_graph *g, int x, t_data *data);
 
 #endif

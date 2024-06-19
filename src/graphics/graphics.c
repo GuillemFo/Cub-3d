@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:43:09 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/19 14:52:18 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/19 15:07:08 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ int	start_mlx(t_data *data)
 	// Been told to start first with a color innstead of image
 	// maybe better to do a separate functionfor hooks and loop
     //mlx_put_image_to_window(data->g->mlx, data->g->win, data->g->txt[0].img, 0, 0);
-	check_columns(data->g);
-	mlx_hook(data->g->win, KEYDOWN, 0, esc_window, data->g);
+	check_columns(data->g, data);
+	mlx_hook(data->g->win, KEYDOWN, 0, p_moves, data->g);
 	//mlx_hook(data->g->win, KEYDOWN, 0, p_moves, data->g);
 	mlx_hook(data->g->win, DESTROY, 1L << 0, close_window, data->g);
 	mlx_loop(data->g->mlx);
@@ -86,7 +86,6 @@ int	main_game(t_data *data)
 {
 	start_mlx(data);
 
-	data->g->file = &data->file;
 	mlx_put_image_to_window(data->g, data->g->win, data->g->i.img, 0, 0);
 
 	return (0);

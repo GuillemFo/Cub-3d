@@ -6,14 +6,14 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:04:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/19 14:45:57 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/19 15:05:13 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
 // Function to perform raycasting and return the wall size for column x
-int get_wall_size(t_graph *g, int x)
+int get_wall_size(t_graph *g, int x, t_data *data)
 {
     double camera_x = 2 * x / (double)WIN_X - 1;  // Map x coordinate to camera plane
     double ray_dir_x = g->p.dir_x + g->p.plane_x * camera_x;
@@ -77,7 +77,7 @@ int get_wall_size(t_graph *g, int x)
             side = 1;
         }
         // Check if ray has hit a wall
-        if (g->file->map[map_x][map_y] > 0) hit = 1;
+        if (data->file->map[map_x][map_y] > 0) hit = 1;
     }
 
     // Calculate distance to the point of impact
