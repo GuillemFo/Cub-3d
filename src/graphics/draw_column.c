@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 12:00:29 by josegar2          #+#    #+#             */
-/*   Updated: 2024/06/19 15:11:07 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/19 15:39:14 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,19 @@ void	draw_column(t_graph *g, int x, int sow, int off)
 	while (y < (WIN_Y - sow) / 2)
 	{
 		c3d_mlx_pixel_put(g->i, x, y++, g->rgbc);
+		ft_printf("while Y=%d\n", y);
 	}
+		ft_printf("Y=%d after pixl put rgbc\n", y);
 	while (y < sow + (WIN_Y - sow) / 2)
 	{
 		c3d_mlx_pixel_put(g->i, x, y++, 0x00000000);
 	}
+		ft_printf("Y=%d after pixel put black\n", y);
 	while (y < WIN_Y)
 	{
 		c3d_mlx_pixel_put(g->i, x, y++, g->rgbf);
 	}
+			ft_printf("Y=%d after pixl put rgbf\n", y);
 }
 
 void	check_columns(t_graph *g, t_data *data)
@@ -51,6 +55,7 @@ void	check_columns(t_graph *g, t_data *data)
 	while (x < WIN_X)
 	{
 		sow = get_wall_size(g, x, data);
+		ft_printf("sow=%d\n", sow);
 		draw_column(g, x, sow, 0);
 		x++;
 	}
