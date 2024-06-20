@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:11 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/19 15:11:37 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/18 09:02:02 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,28 +28,28 @@ t_data	*init_data(void)
 	return (ldata);
 }
 
-void	set_start(t_data *data)
+void    set_start(t_data *data)
 {
-	data->g->p.bs = BLOCK_SIZE;
-	data->g->p.vh = VIEW_HEIGHT;
-	data->g->p.fov = FIELD_OF_VIEW;
-	data->g->p.angs = ANGULAR_STEP;
-	data->g->p.lins = LINEAR_SPEED;
-	data->g->p.rots = ROTATION_SPEED;
-	data->g->p.povx = data->file->stx * BLOCK_SIZE + BLOCK_SIZE / 2;
-	data->g->p.povy = data->file->sty * BLOCK_SIZE + BLOCK_SIZE / 2;
-	if (data->file->sto == 'N')
-		data->g->p.pova = (90 * M_PI) / 180;
-	else if (data->file->sto == 'S')
-		data->g->p.pova = (270 * M_PI) / 180;
-	else if (data->file->sto == 'W')
-		data->g->p.pova = M_PI;
-	else if (data->file->sto == 'E')
-		data->g->p.pova = 0;
-	data->g->rgbc = (data->file->C[0] << 16) + (data->file->C[1] << 8);
-	data->g->rgbc += data->file->C[2];
-	data->g->rgbf = (data->file->F[0] << 16) + (data->file->F[1] << 8);
-	data->g->rgbf += data->file->F[2];
+    data->g->p.bs = BLOCK_SIZE;
+    data->g->p.vh = VIEW_HEIGHT;
+    data->g->p.fov = FIELD_OF_VIEW;
+    data->g->p.angs = ANGULAR_STEP;
+    data->g->p.lins = LINEAR_SPEED;
+    data->g->p.rots = ROTATION_SPEED;
+    data->g->p.povx = data->file->stx * BLOCK_SIZE + BLOCK_SIZE / 2;
+    data->g->p.povy = data->file->sty * BLOCK_SIZE + BLOCK_SIZE / 2;
+    if (data->file->sto == 'N')
+        data->g->p.pova = (90 * M_PI) / 180;
+    else if (data->file->sto == 'S')
+        data->g->p.pova = (270 * M_PI) / 180;
+    else if (data->file->sto == 'W')
+        data->g->p.pova = M_PI;
+    else if (data->file->sto == 'E')
+        data->g->p.pova = 0;
+    data->g->rgbc = (data->file->C[0] << 16) + (data->file->C[1] << 8);
+    data->g->rgbc += data->file->C[2];
+    data->g->rgbf = (data->file->F[0] << 16) + (data->file->F[1] << 8);
+    data->g->rgbf += data->file->F[2];
 }
 
 int	main(int ac, char **av)
@@ -66,10 +66,10 @@ int	main(int ac, char **av)
 	if (build_map(av, data->file) == 1)
 		return (1);
 	print_map_term(data->file);
-	set_start(data);
+    set_start(data);
 	if (start_mlx(data))
-		return (c3d_free(data), 1);
+        return (c3d_free(data), 1);
 	printf("hola\n");
 	c3d_free(data);
-	return (0);
+    return (0);
 }
