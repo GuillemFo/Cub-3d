@@ -6,16 +6,15 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:10:26 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/18 13:35:53 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/19 15:10:55 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+// Pending to change to ints of block size instead of floatst
 
-//Pending to change to ints of block size instead of floatst
-
-int player_w(t_player *p)
+int	player_w(t_player *p)
 {
 	p->povx += LINEAR_SPEED * cos(p->pova);
 	p->povy -= LINEAR_SPEED * sin(p->pova);
@@ -23,7 +22,7 @@ int player_w(t_player *p)
 	return (0);
 }
 
-int player_s(t_player *p)
+int	player_s(t_player *p)
 {
 	p->povx += LINEAR_SPEED * cos(p->pova);
 	p->povy += LINEAR_SPEED * sin(p->pova);
@@ -31,7 +30,7 @@ int player_s(t_player *p)
 	return (0);
 }
 
-int player_a(t_player *p)
+int	player_a(t_player *p)
 {
 	p->povx -= LINEAR_SPEED * sin(p->pova);
 	p->povy += LINEAR_SPEED * cos(p->pova);
@@ -39,7 +38,7 @@ int player_a(t_player *p)
 	return (0);
 }
 
-int player_d(t_player *p)
+int	player_d(t_player *p)
 {
 	p->povx += LINEAR_SPEED * sin(p->pova);
 	p->povy += LINEAR_SPEED * cos(p->pova);
@@ -47,26 +46,25 @@ int player_d(t_player *p)
 	return (0);
 }
 
-int player_left(t_player *p)
+int	player_left(t_player *p)
 {
 	p->pova += ROTATION_SPEED * p->pova;
 	printf("X:%d Y:%d A:%f\n", p->povx, p->povy, p->pova);
 	return (0);
 }
 
-int player_right(t_player *p)
+int	player_right(t_player *p)
 {
 	p->pova -= ROTATION_SPEED * p->pova;
 	printf("X:%d Y:%d A:%f\n", p->povx, p->povy, p->pova);
 	return (0);
 }
 
-
 int	p_moves(int keycode, t_graph *g)
 {
 	if (keycode == W_KEY)
 	{
-		//check if possible
+		// check if possible
 		player_w(&g->p);
 	}
 	else if (keycode == S_KEY)
