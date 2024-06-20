@@ -21,11 +21,12 @@ SRC_PPREFIX = $(addprefix $(SRC_PATH),$(SRC))
 
 OBJ = $(addprefix $(OBJ_PATH),$(SRC_PPREFIX:.c=.o))
 
-CFLAGS = -I $(INC) -I $(LIBFT_PATH) -Wall -Wextra -Werror -lm -g -fsanitize=address
+CFLAGS = -I $(INC) -I $(LIBFT_PATH) -Wall -Wextra -Werror -g -fsanitize=address
 
 ifeq ($(shell uname), Darwin)
+	CFLAGS += -D MAC_OS
 	MLX_PATH = mlx_mac/
-	INCLUDES = -I/usr/local/include/X11 -Imlx_mac
+	INCLUDES = -Imlx_mac
 	MLX_FLAGS = -Lmlx_mac -lmlx -framework OpenGL -framework AppKit
 else
 	MLX_PATH = mlx_linux/
@@ -71,7 +72,7 @@ libraries:
 
 $(OBJ_PATH)%.o:%.c Makefile $(LIBFT_PATH)libft.h $(INC)cub3D.h $(LIBFT_PATH)libft.a 
 	@mkdir -p $(dir $@)
-	@gcc $(CFLAGS) $(INCLUDES) -O0  -c $< -o $@
+	@gcc $(CFLAGS) $(INCLUDES) -c $< -o $@
 	@echo "$(CYAN)Compiling cub3D:$(YELLOW) $@$(RESET)"
 
 re: fclean all
