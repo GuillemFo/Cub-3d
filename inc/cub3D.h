@@ -43,25 +43,23 @@
 # define LINEAR_SPEED 16
 # define ROTATION_SPEED (5 * M_PI) / 180
 
-/*###	KEY MAPPING	MAC	###*/
-/*
-# define ESC_KEY 53
-# define A_KEY 97
-# define S_KEY 115
-# define D_KEY 100
-# define W_KEY 119
-# define RIGHT_KEY 100
-# define LEFT_KEY 119
-*/
+/*###	KEY MAPPING	###*/
 
-/*###	KEY MAPPING	LINUX	###*/
-# define ESC_KEY 65307
-# define A_KEY 97
-# define S_KEY 115
-# define D_KEY 100
-# define W_KEY 119
-# define RIGHT_KEY 65363
-# define LEFT_KEY 65361
+# ifdef MAC_OS
+#  define ESC_KEY 53
+#  define A_KEY 97
+#  define S_KEY 115
+#  define D_KEY 100
+#  define W_KEY 119
+#  define LEFT_KEY 111 // to check
+#  define RIGHT_KEY 112 //to check
+# else
+#  define ESC_KEY 65307
+#  define A_KEY 97
+#  define S_KEY 115
+#  define D_KEY 100
+#  define W_KEY 119
+# endif
 
 /*###	X11 EVENTS SUPPORTED BY MINILIBX	###*/
 # define KEYDOWN 2
