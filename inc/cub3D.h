@@ -59,6 +59,8 @@
 #  define S_KEY 115
 #  define D_KEY 100
 #  define W_KEY 119
+#  define LEFT_KEY 65361
+#  define RIGHT_KEY 65363
 # endif
 
 /*###	X11 EVENTS SUPPORTED BY MINILIBX	###*/
@@ -209,6 +211,8 @@ void		*ft_free(void *p);
 int			start_mlx(t_data *data);
 int			load_textures(t_file *fl, t_graph *mx);
 void		x_destroy_img(t_graph *mx);
+//int	main_game(t_data *data);
+int get_wall_size(t_graph *g, int x);
 
 int			p_moves(int keycode, t_graph *g);
 void		print_map_term(t_file *file);

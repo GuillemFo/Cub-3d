@@ -31,7 +31,7 @@ ifeq ($(shell uname), Darwin)
 else
 	MLX_PATH = mlx_linux/
 	INCLUDES = -I/usr/lib -Imlx_linux
-	MLX_FLAGS = -Lmlx_linux -lmlx -L/usr/lib/X11 -lXext -lX11
+	MLX_FLAGS = -Lmlx_linux -lmlx -L/usr/lib/X11 -lXext -lX11 -lm
 endif
 
 #MLX_FLAGS = -Lmlx_linux -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
