@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:43:09 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/19 23:17:03 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/20 10:51:14 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ int	start_mlx(t_data *data)
 	// maybe better to do a separate functionfor hooks and loop
     //mlx_put_image_to_window(data->g->mlx, data->g->win, data->g->txt[0].img, 0, 0);
 	check_columns(data->g);
-	mlx_hook(data->g->win, KEYDOWN, 0, key_press, data->g);
-	//mlx_hook(data->g->win, KEYDOWN, 0, p_moves, data->g);
+	//mlx_hook(data->g->win, KEYDOWN, 0, key_press, data->g);
+	mlx_hook(data->g->win, KEYDOWN, 0, p_moves, data->g);
 	mlx_hook(data->g->win, DESTROY, 1L << 0, close_window, data->g);
 	mlx_loop(data->g->mlx);
     return (0);
@@ -91,16 +91,19 @@ int	start_mlx(t_data *data)
 
 //int	game_loop()??
 
-
+/*
 int	main_game(t_data *data)
 {
+	data->g->file = data->file;
+	ft_printf("pova=%d\n", data->g->p.pova);
 	start_mlx(data);
 
-	data->g->file = data->file;
 	mlx_put_image_to_window(data->g, data->g->win, data->g->i.img, 0, 0);
+	ft_printf("pova=%d\n", data->g->p.pova);
 
 	return (0);
 }
+*/
 
 /*
 
