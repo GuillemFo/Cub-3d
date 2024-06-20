@@ -47,12 +47,12 @@
 
 # ifdef MAC_OS
 #  define ESC_KEY 53
-#  define A_KEY 97
-#  define S_KEY 115
-#  define D_KEY 100
-#  define W_KEY 119
-#  define LEFT_KEY 111 // to check
-#  define RIGHT_KEY 112 //to check
+#  define A_KEY 0
+#  define S_KEY 1
+#  define D_KEY 2
+#  define W_KEY 13
+#  define LEFT_KEY 123 // to check
+#  define RIGHT_KEY 124 //to check
 # else
 #  define ESC_KEY 65307
 #  define A_KEY 97
