@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:04:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/20 12:08:29 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/20 13:42:20 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 //     Repeat step 2 and 3 for each subsequent column until all 320 rays are cast.
 // */
 // 	if (g->p.pova )
+
 // 	}
 // }       
     
