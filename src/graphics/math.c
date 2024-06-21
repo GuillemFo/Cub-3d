@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:04:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/21 08:45:51 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/21 10:48:26 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,7 @@
 // 	}
 // }       
     
-int	test(t_graph *g)
-{
-	g->p.pova;
-	g->ray.pos_y
-}
+/*
 
 
 Interpreting formula from https://permadi.com/tutorial/raycast/images/figure15.gif
@@ -126,6 +122,7 @@ Y = 3.5 & X = 1.5 //Remember that img presents x first then y (1.5x,3.5y) and g-
 
 
 
+*/
 
 
 
