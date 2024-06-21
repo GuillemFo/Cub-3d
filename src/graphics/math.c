@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:04:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/21 14:04:19 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/21 14:11:24 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ int	loop_ray_throw()
 	return (lenght of the ray)
 }
 
-int get_first_pos(t_graph *g, int x)	//guess this is the 1 st pos of the ray check? If so, we can call from here a loop that keeps trying C.x=A.x+Xa C.y=A.y+Ya and check if its a hit?
+//guess this is the 1 st pos of the ray check? If so, we can call from here a loop that keeps trying C.x=A.x+Xa C.y=A.y+Ya and check if its a hit? and if no, D.x=C.x+Xa D.y=C.y+Ya and so while no hit.
+int get_first_pos(t_graph *g, int x)	
 {
 	//for angle between 0 and 179;
 	if ((g->p.pova * (180 / M_PI))>= 0 && g->p.pova * (180 / M_PI) < 180)
@@ -128,8 +129,6 @@ Y = 3.5 & X = 1.5 //Remember that img presents x first then y (1.5x,3.5y) and g-
 3. Finding Xa
 	Xa = BLOCK_SIZE/tan(g->p.pova) = 73;
 	Xa = 128/tan(60) = 73;
-
-					-- The formula im dev follows till here --
 
 4. We can get the coordinate of C as follows:
 	C.x=A.x+Xa = 229+73 = 302;	//rounded down
