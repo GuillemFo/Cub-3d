@@ -89,7 +89,3 @@ Y = 3.5 & X = 1.5 //img presents x first then y (1.5x,3.5y) and g->p.pova is in 
 
 6. Grid (2,0) is checked.  
 	There is a wall there, so the process stop.
-
-
-This is nice but we have better strategy like DDA (https://lodev.org/cgtutor/raycasting.html)
-which solves the issue of how many times will be checked if there is a wall or not.

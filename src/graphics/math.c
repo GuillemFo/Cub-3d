@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:04:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/21 08:29:44 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/21 08:42:58 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,9 +122,6 @@ Y = 3.5 & X = 1.5 //Also remember that img presents x first then y (1.5x,3.5y)
 6. Grid (2,0) is checked.  
 	There is a wall there, so the process stop.
 
-
-This is nice but we have better strategy like DDA (https://lodev.org/cgtutor/raycasting.html)
-which solves the issue of how many times will be checked if there is a wall or not.
 
 
 
