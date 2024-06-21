@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:04:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/21 10:48:26 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/21 13:39:12 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,20 @@
 // 	}
 // }       
     
+
+int get_wall_distance(t_graph *g, int x)
+{
+	//for 0 to 180 degree
+	A.y=rounded_down(g->ray.pos_y/BLOCK_SIZE) * (BLOCK_SIZE) - 1;
+	A.x = g->ray.pos_x + (g->ray.pos_y - A.y)/tan(g->p.pova * (180 / M_PI));
+	if (g->file->map[A.y][A.x] == '1')
+		g->ray.hit = true;
+	
+	
+}
+
+
 /*
-
-
 Interpreting formula from https://permadi.com/tutorial/raycast/images/figure15.gif
 Y = 3.5 & X = 1.5 //Remember that img presents x first then y (1.5x,3.5y) and g->p.pova is in degree
 ======Finding horizontal intersection ======
