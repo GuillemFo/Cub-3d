@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:04:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/21 13:39:12 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/21 13:50:27 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,29 @@
 
 int get_wall_distance(t_graph *g, int x)
 {
-	//for 0 to 180 degree
-	A.y=rounded_down(g->ray.pos_y/BLOCK_SIZE) * (BLOCK_SIZE) - 1;
-	A.x = g->ray.pos_x + (g->ray.pos_y - A.y)/tan(g->p.pova * (180 / M_PI));
-	if (g->file->map[A.y][A.x] == '1')
-		g->ray.hit = true;
-	
+	while (g->ray.hit == false)
+	{
+		//for angle between 0 and 179;
+		if ((g->p.pova * (180 / M_PI))>= 0 && g->p.pova * (180 / M_PI) < 180)
+		{
+			A.y = rounded_down(g->ray.pos_y/BLOCK_SIZE) * (BLOCK_SIZE) - 1;
+			A.x = g->ray.pos_x + (g->ray.pos_y - A.y)/tan(g->p.pova * (180 / M_PI));
+			Y.a = -BLOCK_SIZE
+		}
+		//for angle between 180 and 360;
+		else
+		{
+			A.y = rounded_down(g->ray.pos_y/BLOCK_SIZE) * (BLOCK_SIZE) + BLOCK_SIZE;
+			A.x = g->ray.pos_x + (g->ray.pos_y - A.y)/tan(g->p.pova * (180 / M_PI));
+			Y.a = BLOCK_SIZE
+		}
+		Xa = BLOCK_SIZE/tan(g->p.pova * (180 / M_PI));
+		if (g->file->map[A.y][A.x] == '1')
+		{
+			g->ray.hit = true;
+			break ;
+		}
+	}
 	
 }
 
@@ -98,6 +115,8 @@ Y = 3.5 & X = 1.5 //Remember that img presents x first then y (1.5x,3.5y) and g-
 3. Finding Xa
 	Xa = BLOCK_SIZE/tan(g->p.pova) = 73;
 	Xa = 128/tan(60) = 73;
+
+					-- The formula im dev follows till here --
 
 4. We can get the coordinate of C as follows:
 	C.x=A.x+Xa = 229+73 = 302;	//rounded down
