@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:04:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/21 14:11:24 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/21 14:16:24 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@
 // }       
     
 
+//a loop that keeps trying C.x=A.x+Xa C.y=A.y+Ya and check if its a hit? and if no,
+//D.x=C.x+Xa D.y=C.y+Ya and so, while no hit.
 int	loop_ray_throw()
 {
 	while (g->ray.hit == false)
@@ -53,10 +55,12 @@ int	loop_ray_throw()
 			break ;
 		}
 	}
-	return (lenght of the ray)
+	return (lenght of the ray??)
 }
 
-//guess this is the 1 st pos of the ray check? If so, we can call from here a loop that keeps trying C.x=A.x+Xa C.y=A.y+Ya and check if its a hit? and if no, D.x=C.x+Xa D.y=C.y+Ya and so while no hit.
+//guess this is the 1 st pos of the ray check? If so, we can call from here 
+//a loop that keeps trying C.x=A.x+Xa C.y=A.y+Ya and check if its a hit? and if no,
+//D.x=C.x+Xa D.y=C.y+Ya and so, while no hit.
 int get_first_pos(t_graph *g, int x)	
 {
 	//for angle between 0 and 179;
