@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:04:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/21 13:50:27 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/21 14:04:19 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,32 +41,45 @@
 // }       
     
 
-int get_wall_distance(t_graph *g, int x)
+int	loop_ray_throw()
 {
 	while (g->ray.hit == false)
 	{
-		//for angle between 0 and 179;
-		if ((g->p.pova * (180 / M_PI))>= 0 && g->p.pova * (180 / M_PI) < 180)
-		{
-			A.y = rounded_down(g->ray.pos_y/BLOCK_SIZE) * (BLOCK_SIZE) - 1;
-			A.x = g->ray.pos_x + (g->ray.pos_y - A.y)/tan(g->p.pova * (180 / M_PI));
-			Y.a = -BLOCK_SIZE
-		}
-		//for angle between 180 and 360;
-		else
-		{
-			A.y = rounded_down(g->ray.pos_y/BLOCK_SIZE) * (BLOCK_SIZE) + BLOCK_SIZE;
-			A.x = g->ray.pos_x + (g->ray.pos_y - A.y)/tan(g->p.pova * (180 / M_PI));
-			Y.a = BLOCK_SIZE
-		}
-		Xa = BLOCK_SIZE/tan(g->p.pova * (180 / M_PI));
-		if (g->file->map[A.y][A.x] == '1')
+		C.x=A.x+Xa;
+		C.y=A.y+Ya;
+		if (g->file->map[C.y][C.x] == '1')
 		{
 			g->ray.hit = true;
 			break ;
 		}
 	}
-	
+	return (lenght of the ray)
+}
+
+int get_first_pos(t_graph *g, int x)	//guess this is the 1 st pos of the ray check? If so, we can call from here a loop that keeps trying C.x=A.x+Xa C.y=A.y+Ya and check if its a hit?
+{
+	//for angle between 0 and 179;
+	if ((g->p.pova * (180 / M_PI))>= 0 && g->p.pova * (180 / M_PI) < 180)
+	{
+		A.y = rounded_down(g->ray.pos_y/BLOCK_SIZE) * (BLOCK_SIZE) - 1;
+		A.x = g->ray.pos_x + (g->ray.pos_y - A.y)/tan(g->p.pova * (180 / M_PI));
+		Y.a = -BLOCK_SIZE
+	}
+	//for angle between 180 and 360;
+	else
+	{
+		A.y = rounded_down(g->ray.pos_y/BLOCK_SIZE) * (BLOCK_SIZE) + BLOCK_SIZE;
+		A.x = g->ray.pos_x + (g->ray.pos_y - A.y)/tan(g->p.pova * (180 / M_PI));
+		Y.a = BLOCK_SIZE
+	}
+	Xa = BLOCK_SIZE/tan(g->p.pova * (180 / M_PI));
+	if (g->file->map[A.y][A.x] == '1')
+	{
+		g->ray.hit = true;
+		return (1);	
+	}
+	}
+	return (0);
 }
 
 
