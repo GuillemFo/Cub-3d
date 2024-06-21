@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:10:26 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/21 11:31:30 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/21 11:56:44 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ bool	check_pmove(t_graph *g, char c)
 		player_left(&tmp);
 	else if (c == 'r')
 		player_right(&tmp);
-	if (g->file->map[(tmp.povy/BLOCK_SIZE)+ 2][(tmp.povx/BLOCK_SIZE)+2] == '1')
+	if (g->file->map[(tmp.povy/BLOCK_SIZE)+ 2][(tmp.povx/BLOCK_SIZE)+2] == '1')	//missing some gap value so we are not just in front of the wall. <| vs < | maybe 16 block enough? also if we reach a wall, will it broke the pos for the player when recalculating? 
 		return (false);
 	return (true);
 }
