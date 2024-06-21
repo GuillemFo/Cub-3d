@@ -6,20 +6,17 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:10:26 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/20 12:13:38 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/21 13:18:55 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
 
-// need to cap the pova to 2py max so when 2py is reached, next is 0;
-
 int player_w(t_player *p)
 {
 	p->povx += LINEAR_SPEED * cos(p->pova);
 	p->povy -= LINEAR_SPEED * sin(p->pova);
-	printf("X:%d Y:%d A:%f\n", p->povx, p->povy, p->pova);
 	return (0);
 }
 
@@ -27,7 +24,6 @@ int player_s(t_player *p)
 {
 	p->povx += LINEAR_SPEED * cos(p->pova);
 	p->povy += LINEAR_SPEED * sin(p->pova);
-	printf("X:%d Y:%d A:%f\n", p->povx, p->povy, p->pova);
 	return (0);
 }
 
@@ -35,7 +31,6 @@ int player_a(t_player *p)
 {
 	p->povx -= LINEAR_SPEED * sin(p->pova);
 	p->povy += LINEAR_SPEED * cos(p->pova);
-	printf("X:%d Y:%d A:%f\n", p->povx, p->povy, p->pova);
 	return (0);
 }
 
@@ -43,25 +38,12 @@ int player_d(t_player *p)
 {
 	p->povx += LINEAR_SPEED * sin(p->pova);
 	p->povy += LINEAR_SPEED * cos(p->pova);
-	printf("X:%d Y:%d A:%f\n", p->povx, p->povy, p->pova);
 	return (0);
 }
-
-
-/*
-// Normalize angle to be within [-inf, inf)
-angle = fmod(angle, 2 * M_PI);
-if (angle < 0) 
-{
-    angle += 2 * M_PI; // Ensure angle is non-negative
-}
-*/
-
 
 int player_left(t_player *p)
 {
 	p->pova = fmod((p->pova + ROTATION_SPEED), 2 * M_PI);
-	printf("X:%d Y:%d A:%f\n", p->povx, p->povy, p->pova);
 	return (0);
 }
 
@@ -70,37 +52,77 @@ int player_right(t_player *p)
 	p->pova -= ROTATION_SPEED;
 	if (p->pova < 0)
 	p->pova += 2 * M_PI;
-	printf("X:%d Y:%d A:%f\n", p->povx, p->povy, p->pova);
 	return (0);
 }
 
+
+bool	check_pmove(t_graph *g, char c)
+{
+	t_player tmp;
+	tmp.povx = g->p.povx;
+	tmp.povy = g->p.povy;
+	tmp.pova = g->p.pova;
+
+	if (c == 'w')
+		player_w(&tmp);
+	else if (c == 's')
+		player_s(&tmp);
+	else if (c == 'a')
+		player_a(&tmp);
+	else if (c == 'd')
+		player_d(&tmp);
+	else if (c == 'l')
+		player_left(&tmp);
+	else if (c == 'r')
+		player_right(&tmp);
+	if (g->file->map[(tmp.povy/BLOCK_SIZE)+ 2][(tmp.povx/BLOCK_SIZE)+2] == '1')	//missing some gap value so we are not just in front of the wall. <| vs < | maybe 16 block enough? also if we reach a wall, will it broke the pos for the player when recalculating? 
+		return (false);
+	return (true);
+}
 
 int	p_moves(int keycode, t_graph *g)
 {
 	if (keycode == W_KEY)
 	{
-		//check if possible
-		player_w(&g->p);
+		if (check_pmove(g, 'w') == true)
+			player_w(&g->p);
+		printf("X:%d Y:%d A:%f\n", g->p.povx, g->p.povy, g->p.pova);
+		printf("X:%d Y:%d A:%f\n\n", g->p.povx/128, g->p.povy/128, g->p.pova);
 	}
 	else if (keycode == S_KEY)
 	{
-		player_s(&g->p);
+		if (check_pmove(g, 's') == true)
+			player_s(&g->p);
+		printf("X:%d Y:%d A:%f\n", g->p.povx, g->p.povy, g->p.pova);
+		printf("X:%d Y:%d A:%f\n\n", g->p.povx/128, g->p.povy/128, g->p.pova);
 	}
 	else if (keycode == A_KEY)
 	{
-		player_a(&g->p);
+		if (check_pmove(g, 'a') == true)
+			player_a(&g->p);
+		printf("X:%d Y:%d A:%f\n", g->p.povx, g->p.povy, g->p.pova);
+		printf("X:%d Y:%d A:%f\n\n", g->p.povx/128, g->p.povy/128, g->p.pova);
 	}
 	else if (keycode == D_KEY)
 	{
-		player_d(&g->p);
+		if (check_pmove(g, 'd') == true)
+			player_d(&g->p);
+		printf("X:%d Y:%d A:%f\n", g->p.povx, g->p.povy, g->p.pova);
+		printf("X:%d Y:%d A:%f\n\n", g->p.povx/128, g->p.povy/128, g->p.pova);
 	}
 	else if (keycode == LEFT_KEY)
 	{
-		player_left(&g->p);
+		if (check_pmove(g, 'l') == true)
+			player_left(&g->p);
+		printf("X:%d Y:%d A:%f\n", g->p.povx, g->p.povy, g->p.pova);
+		printf("X:%d Y:%d A:%f\n\n", g->p.povx/128, g->p.povy/128, g->p.pova);
 	}
 	else if (keycode == RIGHT_KEY)
 	{
-		player_right(&g->p);
+		if (check_pmove(g, 'r') == true)
+			player_right(&g->p);
+		printf("X:%d Y:%d A:%f\n", g->p.povx, g->p.povy, g->p.pova);
+		printf("X:%d Y:%d A:%f\n\n", g->p.povx/128, g->p.povy/128, g->p.pova);
 	}
 	//pending to move, cant call keydown hooks multiple times.
 	//will only listen to the last one

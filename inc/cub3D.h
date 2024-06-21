@@ -133,6 +133,7 @@ typedef struct s_image
 
 typedef struct s_player
 {
+	
 	double pos_x;   // Player's position in x
 	double pos_y;   // Player's position in y
 	double dir_x;   // Player's direction vector in x
