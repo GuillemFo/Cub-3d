@@ -13,6 +13,9 @@ Minilibx
 *	https://harm-smits.github.io/42docs/libs/minilibx
 *	https://gontjarow.github.io/MiniLibX/
 
+Guille 21.06.24 8.47 am
+->> Need to move the player acordingly to the map, so player cant go through walls or step inside one.
+
 Notes from permadi to calculate distance and so.
 	*Interpreting formula from https://permadi.com/tutorial/raycast/images/figure15.gif
 

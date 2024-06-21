@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:04:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/21 08:42:58 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/21 08:45:51 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	test(t_graph *g)
 
 
 Interpreting formula from https://permadi.com/tutorial/raycast/images/figure15.gif
-Y = 3.5 & X = 1.5 //Also remember that img presents x first then y (1.5x,3.5y)
+Y = 3.5 & X = 1.5 //Remember that img presents x first then y (1.5x,3.5y) and g->p.pova is in degree
 ======Finding horizontal intersection ======
 1. Finding the coordinate of A.  
 	If the ray is facing up	
