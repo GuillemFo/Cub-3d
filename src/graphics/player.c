@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:10:26 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/21 13:18:55 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/25 00:20:47 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,16 @@ int player_right(t_player *p)
 	return (0);
 }
 
+// get integer coordinate given the double value of the position
+int i_coor(double pos)
+{
+    return (trunc(pos / BLOCK_SIZE));
+}
+
+char    get_map_char(t_graph *g, double x, double y)
+{
+    return (g->file->map[i_coor(y) + 2][i_coor(x) + 2]);
+}
 
 bool	check_pmove(t_graph *g, char c)
 {
@@ -75,7 +85,7 @@ bool	check_pmove(t_graph *g, char c)
 		player_left(&tmp);
 	else if (c == 'r')
 		player_right(&tmp);
-	if (g->file->map[(tmp.povy/BLOCK_SIZE)+ 2][(tmp.povx/BLOCK_SIZE)+2] == '1')	//missing some gap value so we are not just in front of the wall. <| vs < | maybe 16 block enough? also if we reach a wall, will it broke the pos for the player when recalculating? 
+	if (get_map_char(g, tmp.povx, tmp.povy) == '1')	//missing some gap value so we are not just in front of the wall. <| vs < | maybe 16 block enough? also if we reach a wall, will it broke the pos for the player when recalculating? 
 		return (false);
 	return (true);
 }
@@ -86,43 +96,43 @@ int	p_moves(int keycode, t_graph *g)
 	{
 		if (check_pmove(g, 'w') == true)
 			player_w(&g->p);
-		printf("X:%d Y:%d A:%f\n", g->p.povx, g->p.povy, g->p.pova);
-		printf("X:%d Y:%d A:%f\n\n", g->p.povx/128, g->p.povy/128, g->p.pova);
+		printf("X:%.2f Y:%.2f A:%f\n", g->p.povx, g->p.povy, g->p.pova);
+		printf("X:%d Y:%d A:%f\n\n", i_coor(g->p.povx), i_coor(g->p.povy), g->p.pova);
 	}
 	else if (keycode == S_KEY)
 	{
 		if (check_pmove(g, 's') == true)
 			player_s(&g->p);
-		printf("X:%d Y:%d A:%f\n", g->p.povx, g->p.povy, g->p.pova);
-		printf("X:%d Y:%d A:%f\n\n", g->p.povx/128, g->p.povy/128, g->p.pova);
+		printf("X:%.2f Y:%.2f A:%f\n", g->p.povx, g->p.povy, g->p.pova);
+		printf("X:%d Y:%d A:%f\n\n", i_coor(g->p.povx), i_coor(g->p.povy), g->p.pova);
 	}
 	else if (keycode == A_KEY)
 	{
 		if (check_pmove(g, 'a') == true)
 			player_a(&g->p);
-		printf("X:%d Y:%d A:%f\n", g->p.povx, g->p.povy, g->p.pova);
-		printf("X:%d Y:%d A:%f\n\n", g->p.povx/128, g->p.povy/128, g->p.pova);
+		printf("X:%.2f Y:%.2f A:%f\n", g->p.povx, g->p.povy, g->p.pova);
+		printf("X:%d Y:%d A:%f\n\n", i_coor(g->p.povx), i_coor(g->p.povy), g->p.pova);
 	}
 	else if (keycode == D_KEY)
 	{
 		if (check_pmove(g, 'd') == true)
 			player_d(&g->p);
-		printf("X:%d Y:%d A:%f\n", g->p.povx, g->p.povy, g->p.pova);
-		printf("X:%d Y:%d A:%f\n\n", g->p.povx/128, g->p.povy/128, g->p.pova);
+		printf("X:%.2f Y:%.2f A:%f\n", g->p.povx, g->p.povy, g->p.pova);
+		printf("X:%d Y:%d A:%f\n\n", i_coor(g->p.povx), i_coor(g->p.povy), g->p.pova);
 	}
 	else if (keycode == LEFT_KEY)
 	{
 		if (check_pmove(g, 'l') == true)
 			player_left(&g->p);
-		printf("X:%d Y:%d A:%f\n", g->p.povx, g->p.povy, g->p.pova);
-		printf("X:%d Y:%d A:%f\n\n", g->p.povx/128, g->p.povy/128, g->p.pova);
+		printf("X:%.2f Y:%.2f A:%f\n", g->p.povx, g->p.povy, g->p.pova);
+		printf("X:%d Y:%d A:%f\n\n", i_coor(g->p.povx), i_coor(g->p.povy), g->p.pova);
 	}
 	else if (keycode == RIGHT_KEY)
 	{
 		if (check_pmove(g, 'r') == true)
 			player_right(&g->p);
-		printf("X:%d Y:%d A:%f\n", g->p.povx, g->p.povy, g->p.pova);
-		printf("X:%d Y:%d A:%f\n\n", g->p.povx/128, g->p.povy/128, g->p.pova);
+		printf("X:%.2f Y:%.2f A:%f\n", g->p.povx, g->p.povy, g->p.pova);
+		printf("X:%d Y:%d A:%f\n\n", i_coor(g->p.povx), i_coor(g->p.povy), g->p.pova);
 	}
 	//pending to move, cant call keydown hooks multiple times.
 	//will only listen to the last one
@@ -133,5 +143,6 @@ int	p_moves(int keycode, t_graph *g)
 	}
 	else
 		return (1);
+    loop_rays(g);
 	return (0);
 }
