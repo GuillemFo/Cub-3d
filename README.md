@@ -1,5 +1,7 @@
 # Cub-3d
 
+BUG!!! If map has multiple new lines without anything, will return error empty line on map!!
+
 Subject
 *	https://cdn.intra.42.fr/pdf/pdf/111520/en.subject.pdf
 Math for raycasting
