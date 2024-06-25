@@ -36,8 +36,8 @@
 # define BLOCK_SIZE 128
 # define VIEW_HEIGHT 64
 # define FIELD_OF_VIEW (60 * M_PI) / 180
-# define WIN_X 1920
-# define WIN_Y 1080
+# define WIN_X 400
+# define WIN_Y 300
 # define ANGULAR_STEP FIELD_OF_VIEW / WIN_X
 # define POV_DISTANCE (WIN_X / 2) / tan(FIELD_OF_VIEW / 2)
 # define LINEAR_SPEED 16
@@ -110,11 +110,21 @@ typedef struct s_file
 
 typedef struct t_ray
 {
-	int		dir_x;
-	int		dir_y;
-	int		pos_x;
-	int		pos_y;
-
+	double	pos_x;
+	double	pos_y;
+	double	raya; //ray angle
+	double	dir_x; // cos(raya)
+	double	dir_y; // -sin(raya)
+	double	fvhx; //FirstVerticalHit X
+	double	fvhy; //FirstVerticalHit Y
+	double	fhhx; //FirstHoritzontalHit X
+	double	fhhy; //FirstHoritzontalHit Y
+	double	wvhx; //WallVerticalHit X
+	double	wvhy; //WallVerticalHit Y
+	double	wvhl; //WallVerticalHit Length
+	double	whhx; //WallHoritzontalHit X
+	double	whhy; //WallHoritzontalHit Y
+	double	whhl; //WallHoritzontalHit Length
 	bool	hit;
 
 }			t_ray;
@@ -146,8 +156,8 @@ typedef struct s_player
 	double angs;    // Angular step
 	int lins;       // Linear speed
 	double rots;    // Rotation speed
-	int povx;       // Point of view x
-	int povy;       // Point of view y
+	double povx;       // Point of view x
+	double povy;       // Point of view y
 	double pova;    // Point of view angle
 }			t_player;
 
@@ -190,32 +200,18 @@ int		start_mlx(t_data *data);
 int		load_textures(t_file *fl, t_graph *mx);
 void	x_destroy_img(t_graph *mx);
 void	draw_column(t_graph *g, int x, int sow, int off);
+int 	i_coor(double pos);
+char    get_map_char(t_graph *g, double x, double y);
+void    loop_rays(t_graph *g);
 
 /*-=-=-=-=-=- TEST FUNCTIONS=-=-=-=-=-=-=-=-=*/
 
 void	check_columns(t_graph *g);
 void	print_map_term(t_file *file);
-int			check_args(int ac, char **av);
-int			check_map(t_file *file, char *fn);
-int			load_arg(char *line, t_file *file);
-void		message(char *msg);
-bool		valid_map_line(t_file *file, char *line);
-bool		check_is_num(char *s);
-int			check_ext(char *argv, char *text);
-bool		line_is_space(char *line);
-int			build_map(char **av, t_file *file);
-int			check_wall(t_file *f);
-bool		has_map(char *line);
-void		*ft_free_split(char **s);
-t_data		*c3d_free(t_data *data);
-void		*ft_free(void *p);
-int			start_mlx(t_data *data);
-int			load_textures(t_file *fl, t_graph *mx);
-void		x_destroy_img(t_graph *mx);
+
 //int	main_game(t_data *data);
 int get_wall_size(t_graph *g, int x);
 
 int			p_moves(int keycode, t_graph *g);
-void		print_map_term(t_file *file);
 
 #endif
