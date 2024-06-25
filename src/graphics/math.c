@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:04:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/21 14:16:24 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/25 08:39:48 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@
 
 //a loop that keeps trying C.x=A.x+Xa C.y=A.y+Ya and check if its a hit? and if no,
 //D.x=C.x+Xa D.y=C.y+Ya and so, while no hit.
+/*
 int	loop_ray_throw()
 {
 	while (g->ray.hit == false)
@@ -57,12 +58,30 @@ int	loop_ray_throw()
 	}
 	return (lenght of the ray??)
 }
+*/
 
 //guess this is the 1 st pos of the ray check? If so, we can call from here 
 //a loop that keeps trying C.x=A.x+Xa C.y=A.y+Ya and check if its a hit? and if no,
 //D.x=C.x+Xa D.y=C.y+Ya and so, while no hit.
-int get_first_pos(t_graph *g, int x)	
+// From x, y and angle get the first Vertical and Horizontal hits
+void    get_first_hit(t_ray *r)	
 {
+    r->dir_x = cos(r->raya);
+    r->dir_y = -sin(r->raya);
+    r->fvhx = (i_coor(r->pos_x) + (r->dir_x > 0)) * BLOCK_SIZE;
+    if (r->dir_x == 0)
+        r->fvhy = -1;
+    else
+        r->fvhy = (r->fvhx - r->pos_x) * r->dir_y / r->dir_x + r->pos_y;
+    r->fhhy = (i_coor(r->pos_y) + (r->dir_y > 0)) * BLOCK_SIZE;
+    if (r->dir_y == 0)
+        r->fhhx = -1;
+    else
+        r->fhhx = (r->fhhy - r->pos_y) * r->dir_x / r->dir_y + r->pos_x;
+    printf("Vertical hit X : %.2f Y : %.2f\n", r->fvhx, r->fvhy);
+    printf("Horizontal hit X : %.2f Y : %.2f\n", r->fhhx, r->fhhy);
+
+/*
 	//for angle between 0 and 179;
 	if ((g->p.pova * (180 / M_PI))>= 0 && g->p.pova * (180 / M_PI) < 180)
 	{
@@ -84,7 +103,26 @@ int get_first_pos(t_graph *g, int x)
 		return (1);	
 	}
 	}
-	return (0);
+*/
+}
+
+void    loop_rays(t_graph *g)
+{
+    int i;
+
+    g->ray.pos_x = g->p.povx;
+    g->ray.pos_y = g->p.povy;
+    g->ray.raya = g->p.pova + FIELD_OF_VIEW / 2;
+    if (g->ray.raya > 2 * M_PI)
+        g->ray.raya -= 2 * M_PI;
+    i = 0;
+    while (i++ < WIN_X)
+    {
+        get_first_hit(&g->ray);
+        g->ray.raya -= FIELD_OF_VIEW / WIN_X;
+        if (g->ray.raya < 0)
+            g->ray.raya += 2 * M_PI;
+    }
 }
 
 
