@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:04:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/25 12:20:32 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/25 12:27:55 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ int	loop_ray_throw()
 // From x, y and angle get the first Vertical and Horizontal hits
 void    get_first_hit(t_ray *r)	
 {
+	//need to know in what direction im looking so i can add the -1 or +BLOCK_SIZE to the positive and negative angle
+	//plus we need protection so the player cant be in the wall. Maybe -16 block to the end of the cell touching a wall?
     r->dir_x = cos(r->raya);
     r->dir_y = -sin(r->raya);
     r->fvhx = (i_coor(r->pos_x) + (r->dir_x > 0)) * BLOCK_SIZE;
