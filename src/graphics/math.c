@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:04:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/25 12:42:05 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/25 13:06:21 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ void    get_first_hit(t_ray *r)
 */
 }
 
+//There are 3 points where the hit does not work, need to debug
 
 void    loop_rays(t_graph *g)
 {
@@ -131,16 +132,33 @@ void    loop_rays(t_graph *g)
 			if (((int)g->ray.fvhy >= 0 && (int)g->ray.fvhx >= 0) && ((int)g->ray.fvhy / BLOCK_SIZE <= g->file->max_y && (int)g->ray.fvhx / BLOCK_SIZE <= g->file->max_y))
 			{
 				if (g->file->map[2 + (int)g->ray.fvhy / BLOCK_SIZE][2 + (int)g->ray.fvhx / BLOCK_SIZE] == '1')
+				{
 					printf("hit 1\n");
+					printf("V%c\n", get_map_char(g,g->ray.fvhx,g->ray.fvhy));
+					printf("H%c\n", get_map_char(g,g->ray.fhhx,g->ray.fhhy));
+				}
 				else
+				{
 					printf("miss 1\n");
+					printf("V%c\n", get_map_char(g,g->ray.fvhx,g->ray.fvhy));
+					printf("H%c\n", get_map_char(g,g->ray.fhhx,g->ray.fhhy));
+				}
 			}
 			else if (((int)g->ray.fhhy >= 0 && (int)g->ray.fhhx >= 0) && ((int)g->ray.fhhy / BLOCK_SIZE <= g->file->max_x && (int)g->ray.fhhx / BLOCK_SIZE <= g->file->max_x))
 			{
 				if (g->file->map[2 + (int)g->ray.fhhy / BLOCK_SIZE][2 + (int)g->ray.fhhx / BLOCK_SIZE] == '1')
+				{
 					printf("hit 2\n");
+					printf("V%c\n", get_map_char(g,g->ray.fvhx,g->ray.fvhy));
+					printf("H%c\n", get_map_char(g,g->ray.fhhx,g->ray.fhhy));
+				}
 				else
+				{
 					printf("miss 2\n");
+					printf("V%c\n", get_map_char(g,g->ray.fvhx,g->ray.fvhy));
+					printf("H%c\n", get_map_char(g,g->ray.fhhx,g->ray.fhhy));
+				}
+
 			}
 		}
 		else
@@ -148,16 +166,32 @@ void    loop_rays(t_graph *g)
 			if (((int)g->ray.fhhy >= 0 && (int)g->ray.fhhx >= 0) && ((int)g->ray.fhhy / BLOCK_SIZE <= g->file->max_x && (int)g->ray.fhhx / BLOCK_SIZE <= g->file->max_x))
 			{
 				if (g->file->map[2 + (int)g->ray.fhhy / BLOCK_SIZE][2 + (int)g->ray.fhhx / BLOCK_SIZE] == '1')
+				{
 					printf("hit 3\n");
+					printf("V%c\n", get_map_char(g,g->ray.fvhx,g->ray.fvhy));
+					printf("H%c\n", get_map_char(g,g->ray.fhhx,g->ray.fhhy));
+				}
 				else
+				{
 					printf("miss 3\n");
+					printf("V%c\n", get_map_char(g,g->ray.fvhx,g->ray.fvhy));
+					printf("H%c\n", get_map_char(g,g->ray.fhhx,g->ray.fhhy));
+				}
 			}
 			else if (((int)g->ray.fvhy >= 0 && (int)g->ray.fvhx >= 0) && ((int)g->ray.fvhy / BLOCK_SIZE <= g->file->max_y && (int)g->ray.fvhx / BLOCK_SIZE <= g->file->max_y))
 			{
 				if (g->file->map[2 + (int)g->ray.fvhy / BLOCK_SIZE][2 + (int)g->ray.fvhx / BLOCK_SIZE] == '1')
+				{
 					printf("hit 4\n");
+					printf("V%c\n", get_map_char(g,g->ray.fvhx,g->ray.fvhy));
+					printf("H%c\n", get_map_char(g,g->ray.fhhx,g->ray.fhhy));
+				}
 				else
+				{
 					printf("miss 4\n");
+					printf("V%c\n", get_map_char(g,g->ray.fvhx,g->ray.fvhy));
+					printf("H%c\n", get_map_char(g,g->ray.fhhx,g->ray.fhhy));
+				}
 			}
 
 		}
