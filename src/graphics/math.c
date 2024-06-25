@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:04:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/25 01:11:01 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/25 13:25:45 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,9 @@ int	loop_ray_throw()
 // From x, y and angle get the first Vertical and Horizontal hits
 void    get_first_hit(t_ray *r)	
 {
+	//need to know in what direction im looking so i can add the -1 or +BLOCK_SIZE to the positive and negative angle
+	//plus we need protection so the player cant be in the wall. Maybe -16 block to the end of the cell touching a wall?
+	//Im adding this protection now;
     r->dir_x = cos(r->raya);
     r->dir_y = -sin(r->raya);
     r->fvhx = (i_coor(r->pos_x) + (r->dir_x > 0)) * BLOCK_SIZE;
@@ -106,6 +109,8 @@ void    get_first_hit(t_ray *r)
 */
 }
 
+//need to fix when only 1 of them hits a wall;
+
 void    loop_rays(t_graph *g)
 {
     int i;
@@ -116,12 +121,80 @@ void    loop_rays(t_graph *g)
     if (g->ray.raya > 2 * M_PI)
         g->ray.raya -= 2 * M_PI;
     i = 0;
-    while (i++ < WIN_X)
+    if (i < WIN_X)	// while (i++ < WIN_X)
     {
         get_first_hit(&g->ray);
         g->ray.raya -= FIELD_OF_VIEW / WIN_X;
         if (g->ray.raya < 0)
             g->ray.raya += 2 * M_PI;
+		if (g->ray.fvhy <= g->ray.fhhy && g->ray.fvhx <= g->ray.fhhx)
+		{
+			if (((int)g->ray.fvhy >= 0 || (int)g->ray.fvhx >= 0) && ((int)g->ray.fvhy / BLOCK_SIZE <= g->file->max_y && (int)g->ray.fvhx / BLOCK_SIZE <= g->file->max_y))
+			{
+				if (g->file->map[2 + (int)g->ray.fvhy / BLOCK_SIZE][2 + (int)g->ray.fvhx / BLOCK_SIZE] == '1')
+				{
+					printf("hit 1\n");
+					printf("V%c X:%f Y:%f\n", get_map_char(g,g->ray.fvhx,g->ray.fvhy), g->ray.fvhx, g->ray.fvhy);
+					printf("H%c X:%f Y:%f\n----\n", get_map_char(g,g->ray.fhhx,g->ray.fhhy), g->ray.fvhx, g->ray.fvhy);;
+				}
+				else
+				{
+					printf("miss 1\n");
+					printf("V%c X:%f Y:%f\n", get_map_char(g,g->ray.fvhx,g->ray.fvhy), g->ray.fvhx, g->ray.fvhy);
+					printf("H%c X:%f Y:%f\n----\n", get_map_char(g,g->ray.fhhx,g->ray.fhhy), g->ray.fvhx, g->ray.fvhy);
+				}
+			}
+			else if (((int)g->ray.fhhy >= 0 || (int)g->ray.fhhx >= 0) && ((int)g->ray.fhhy / BLOCK_SIZE <= g->file->max_x && (int)g->ray.fhhx / BLOCK_SIZE <= g->file->max_x))
+			{
+				if (g->file->map[2 + (int)g->ray.fhhy / BLOCK_SIZE][2 + (int)g->ray.fhhx / BLOCK_SIZE] == '1')
+				{
+					printf("hit 2\n");
+					printf("V%c X:%f Y:%f\n", get_map_char(g,g->ray.fvhx,g->ray.fvhy), g->ray.fvhx, g->ray.fvhy);
+					printf("H%c X:%f Y:%f\n----\n", get_map_char(g,g->ray.fhhx,g->ray.fhhy), g->ray.fvhx, g->ray.fvhy);
+				}
+				else
+				{
+					printf("miss 2\n");
+					printf("V%c X:%f Y:%f\n", get_map_char(g,g->ray.fvhx,g->ray.fvhy), g->ray.fvhx, g->ray.fvhy);
+					printf("H%c X:%f Y:%f\n----\n", get_map_char(g,g->ray.fhhx,g->ray.fhhy), g->ray.fvhx, g->ray.fvhy);
+				}
+
+			}
+		}
+		else
+		{
+			if (((int)g->ray.fhhy >= 0 || (int)g->ray.fhhx >= 0) && ((int)g->ray.fhhy / BLOCK_SIZE <= g->file->max_x && (int)g->ray.fhhx / BLOCK_SIZE <= g->file->max_x))
+			{
+				if (g->file->map[2 + (int)g->ray.fhhy / BLOCK_SIZE][2 + (int)g->ray.fhhx / BLOCK_SIZE] == '1')
+				{
+					printf("hit 3\n");
+					printf("V%c X:%f Y:%f\n", get_map_char(g,g->ray.fvhx,g->ray.fvhy), g->ray.fvhx, g->ray.fvhy);
+					printf("H%c X:%f Y:%f\n----\n", get_map_char(g,g->ray.fhhx,g->ray.fhhy), g->ray.fvhx, g->ray.fvhy);
+				}
+				else
+				{
+					printf("miss 3\n");
+					printf("V%c X:%f Y:%f\n", get_map_char(g,g->ray.fvhx,g->ray.fvhy), g->ray.fvhx, g->ray.fvhy);
+					printf("H%c X:%f Y:%f\n----\n", get_map_char(g,g->ray.fhhx,g->ray.fhhy), g->ray.fvhx, g->ray.fvhy);
+				}
+			}
+			else if (((int)g->ray.fvhy >= 0 || (int)g->ray.fvhx >= 0) && ((int)g->ray.fvhy / BLOCK_SIZE <= g->file->max_y && (int)g->ray.fvhx / BLOCK_SIZE <= g->file->max_y))
+			{
+				if (g->file->map[2 + (int)g->ray.fvhy / BLOCK_SIZE][2 + (int)g->ray.fvhx / BLOCK_SIZE] == '1')
+				{
+					printf("hit 4\n");
+					printf("V%c X:%f Y:%f\n", get_map_char(g,g->ray.fvhx,g->ray.fvhy), g->ray.fvhx, g->ray.fvhy);
+					printf("H%c X:%f Y:%f\n----\n", get_map_char(g,g->ray.fhhx,g->ray.fhhy), g->ray.fvhx, g->ray.fvhy);
+				}
+				else
+				{
+					printf("miss 4\n");
+					printf("V%c X:%f Y:%f\n", get_map_char(g,g->ray.fvhx,g->ray.fvhy), g->ray.fvhx, g->ray.fvhy);
+					printf("H%c X:%f Y:%f\n----\n", get_map_char(g,g->ray.fhhx,g->ray.fhhy), g->ray.fvhx, g->ray.fvhy);
+				}
+			}
+
+		}
     }
 }
 
