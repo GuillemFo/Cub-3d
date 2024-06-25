@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:04:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/25 12:27:55 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/25 12:42:05 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void    get_first_hit(t_ray *r)
 {
 	//need to know in what direction im looking so i can add the -1 or +BLOCK_SIZE to the positive and negative angle
 	//plus we need protection so the player cant be in the wall. Maybe -16 block to the end of the cell touching a wall?
+	//Im adding this protection now;
     r->dir_x = cos(r->raya);
     r->dir_y = -sin(r->raya);
     r->fvhx = (i_coor(r->pos_x) + (r->dir_x > 0)) * BLOCK_SIZE;
@@ -127,14 +128,14 @@ void    loop_rays(t_graph *g)
             g->ray.raya += 2 * M_PI;
 		if (g->ray.fvhy <= g->ray.fhhy && g->ray.fvhx <= g->ray.fhhx)
 		{
-			if (((int)g->ray.fvhy > 0 && (int)g->ray.fvhx > 0) && ((int)g->ray.fvhy / BLOCK_SIZE <= g->file->max_y && (int)g->ray.fvhx / BLOCK_SIZE <= g->file->max_y))
+			if (((int)g->ray.fvhy >= 0 && (int)g->ray.fvhx >= 0) && ((int)g->ray.fvhy / BLOCK_SIZE <= g->file->max_y && (int)g->ray.fvhx / BLOCK_SIZE <= g->file->max_y))
 			{
 				if (g->file->map[2 + (int)g->ray.fvhy / BLOCK_SIZE][2 + (int)g->ray.fvhx / BLOCK_SIZE] == '1')
 					printf("hit 1\n");
 				else
 					printf("miss 1\n");
 			}
-			else if (((int)g->ray.fhhy > 0 && (int)g->ray.fhhx > 0) && ((int)g->ray.fhhy / BLOCK_SIZE <= g->file->max_x && (int)g->ray.fhhx / BLOCK_SIZE <= g->file->max_x))
+			else if (((int)g->ray.fhhy >= 0 && (int)g->ray.fhhx >= 0) && ((int)g->ray.fhhy / BLOCK_SIZE <= g->file->max_x && (int)g->ray.fhhx / BLOCK_SIZE <= g->file->max_x))
 			{
 				if (g->file->map[2 + (int)g->ray.fhhy / BLOCK_SIZE][2 + (int)g->ray.fhhx / BLOCK_SIZE] == '1')
 					printf("hit 2\n");
@@ -144,14 +145,14 @@ void    loop_rays(t_graph *g)
 		}
 		else
 		{
-			if (((int)g->ray.fhhy > 0 && (int)g->ray.fhhx > 0) && ((int)g->ray.fhhy / BLOCK_SIZE <= g->file->max_x && (int)g->ray.fhhx / BLOCK_SIZE <= g->file->max_x))
+			if (((int)g->ray.fhhy >= 0 && (int)g->ray.fhhx >= 0) && ((int)g->ray.fhhy / BLOCK_SIZE <= g->file->max_x && (int)g->ray.fhhx / BLOCK_SIZE <= g->file->max_x))
 			{
 				if (g->file->map[2 + (int)g->ray.fhhy / BLOCK_SIZE][2 + (int)g->ray.fhhx / BLOCK_SIZE] == '1')
 					printf("hit 3\n");
 				else
 					printf("miss 3\n");
 			}
-			else if (((int)g->ray.fvhy > 0 && (int)g->ray.fvhx > 0) && ((int)g->ray.fvhy / BLOCK_SIZE <= g->file->max_y && (int)g->ray.fvhx / BLOCK_SIZE <= g->file->max_y))
+			else if (((int)g->ray.fvhy >= 0 && (int)g->ray.fvhx >= 0) && ((int)g->ray.fvhy / BLOCK_SIZE <= g->file->max_y && (int)g->ray.fvhx / BLOCK_SIZE <= g->file->max_y))
 			{
 				if (g->file->map[2 + (int)g->ray.fvhy / BLOCK_SIZE][2 + (int)g->ray.fvhx / BLOCK_SIZE] == '1')
 					printf("hit 4\n");

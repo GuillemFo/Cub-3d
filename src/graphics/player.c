@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:10:26 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/25 11:52:55 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/25 12:38:30 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ char    get_map_char(t_graph *g, double x, double y)
 bool	check_pmove(t_graph *g, char c)
 {
 	t_player tmp;
-	tmp.povx = g->p.povx;
-	tmp.povy = g->p.povy;
+	tmp.povx = g->p.povx + (BLOCK_SIZE / 8);	// This is suposed to be  the protection when we are close the wall so we dont go inside it. If it does not work, just remove the + (block_size / 8)
+	tmp.povy = g->p.povy + (BLOCK_SIZE / 8);	// This is suposed to be  the protection when we are close the wall so we dont go inside it.
 	tmp.pova = g->p.pova;
 
 	if (c == 'w')
