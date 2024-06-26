@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:01:51 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/26 17:55:02 by codespace        ###   ########.fr       */
+/*   Updated: 2024/06/26 17:57:28 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	loop_ray_throw()
 		A.x = C.x;
 		A.y = C.y;
 	}
-	return (lenght of the ray??)
+	return (From here call draw column);
 }
 
 int get_first_pos(t_graph *g, int x)	
