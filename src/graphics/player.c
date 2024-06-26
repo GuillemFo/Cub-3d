@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:10:26 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/25 12:50:17 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/26 17:45:08 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ char    get_map_char(t_graph *g, double x, double y)
 bool	check_pmove(t_graph *g, char c)
 {
 	t_player tmp;
-	tmp.povx = g->p.povx + (BLOCK_SIZE / 8);	// This is suposed to be  the protection when we are close the wall so we dont go inside it. If it does not work, just remove the + (block_size / 8)
-	tmp.povy = g->p.povy + (BLOCK_SIZE / 8);	// This is suposed to be  the protection when we are close the wall so we dont go inside it.
+	tmp.povx = g->p.povx;
+	tmp.povy = g->p.povy;
 	tmp.pova = g->p.pova;
 
 	if (c == 'w')
