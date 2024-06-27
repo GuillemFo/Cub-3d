@@ -33,8 +33,8 @@
 
 /*-=-=-=-=-=-=-=-GRAPH SETTINGS=-=-=-=-=-=-=-*/
 
-# define BLOCK_SIZE 4
-# define VIEW_HEIGHT 2
+# define BLOCK_SIZE 1
+# define VIEW_HEIGHT 1
 # define FIELD_OF_VIEW (60 * M_PI) / 180
 # define WIN_X 400
 # define WIN_Y 300
