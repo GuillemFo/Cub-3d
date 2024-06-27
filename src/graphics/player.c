@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:10:26 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/26 17:55:24 by codespace        ###   ########.fr       */
+/*   Updated: 2024/06/27 08:20:03 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,8 @@ int	p_moves(int keycode, t_graph *g)
 		printf("X:%.2f Y:%.2f A:%f\n", g->p.povx, g->p.povy, g->p.pova* (180 / M_PI));
 		printf("X:%d Y:%d A:%f\n\n", i_coor(g->p.povx), i_coor(g->p.povy), g->p.pova* (180 / M_PI));
 	}
+
+	/// This key wont work correctly
 	else if (keycode == RIGHT_KEY)
 	{
 		if (check_pmove(g, 'r') == true)
