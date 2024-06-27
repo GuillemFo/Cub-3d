@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:04:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/27 09:21:21 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/27 10:29:40 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,14 @@ int	ray_inside(t_file *f, double x, double y)
 	grid_x = (int)(x / BLOCK_SIZE);
 	grid_y = (int)(y / BLOCK_SIZE);
 
-	if (grid_y >= 0 && grid_y < f->max_y)
+printf("Y=%d-- X=%d--\n", f->max_y, f->max_x -1);
+	if (grid_y >= 0 && grid_y < f->max_y -1)
 	{
 		ft_printf("1\n");
-		if (grid_x >= 0 && grid_x < f->max_x)
+		if (grid_x >= 0 && grid_x < f->max_x - 1) //added -1 to compensate for array starting at 0.
 		{
 			ft_printf("2\n");
-			ft_printf("is %c\n", f->map[2 + grid_y][2 + grid_x]);
+			ft_printf("is %c\n", f->map[ 2 + grid_y][ 2 + grid_x]);
 			if (f->map[2 + grid_y][2 + grid_x] != '1' && f->map[2 + grid_y][2 + grid_x] != ' ') ////the +2 is due extra space around the map to not read out of memory
 				return (1);
 		}
@@ -89,9 +90,6 @@ void    loop_rays(t_graph *g)
 		else
             printf("Ray out of bounds\n");
 	}
-        g->ray.raya -= FIELD_OF_VIEW / WIN_X;
-        if (g->ray.raya < 0)
-            g->ray.raya += 2 * M_PI;
 }
 /*
 int	loop_ray_throw()
