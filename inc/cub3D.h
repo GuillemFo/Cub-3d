@@ -33,14 +33,14 @@
 
 /*-=-=-=-=-=-=-=-GRAPH SETTINGS=-=-=-=-=-=-=-*/
 
-# define BLOCK_SIZE 128
-# define VIEW_HEIGHT 64
+# define BLOCK_SIZE 1
+# define VIEW_HEIGHT 1
 # define FIELD_OF_VIEW (60 * M_PI) / 180
 # define WIN_X 400
 # define WIN_Y 300
 # define ANGULAR_STEP FIELD_OF_VIEW / WIN_X
 # define POV_DISTANCE (WIN_X / 2) / tan(FIELD_OF_VIEW / 2)
-# define LINEAR_SPEED 16
+# define LINEAR_SPEED 1
 # define ROTATION_SPEED (5 * M_PI) / 180
 
 /*###	KEY MAPPING	###*/
