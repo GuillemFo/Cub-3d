@@ -121,9 +121,11 @@ typedef struct t_ray
 	double	fhhy; //FirstHoritzontalHit Y
 	double	wvhx; //WallVerticalHit X
 	double	wvhy; //WallVerticalHit Y
+	double	deltay; // y increment to next V hit;
 	double	wvhl; //WallVerticalHit Length
 	double	whhx; //WallHoritzontalHit X
 	double	whhy; //WallHoritzontalHit Y
+	double	deltax; // x increment to next H hit;
 	double	whhl; //WallHoritzontalHit Length
 	bool	hit;
 

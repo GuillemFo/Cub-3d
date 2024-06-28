@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:04:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/28 19:07:10 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/28 23:40:49 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,54 @@ void    wall_v_hit(t_graph *g, t_ray *r)
 {
 	r->wvhx = r->fvhx;
 	r->wvhy = r->fvhy;
-	if (r->wvhy < 0 || r->wvhy >= g->file->max_y * BLOCK_SIZE)
-		r->wvhl = -1;
-	else
-		r->wvhl = 0;
+	r->deltay = BLOCK_SIZE * r->diry / fabs(r->dirx);
+	r->wvhl = 0;
 	while (!r->wvhl)
 	{
-		if (get_map_char(g, r->wvhx - (r->dirx < 0), r->whhy) == '1')
+		//printf("check Vertical hit X : %.2f Y : %.2f\n", r->wvhx, r->wvhy);
+		if (r->wvhy < 0 || r->wvhy >= g->file->max_y * BLOCK_SIZE)
+			r->wvhl = -1;
+		else if (get_map_char(g, r->wvhx - (r->dirx < 0), r->wvhy) == '1')
 		{
-			r->wvhl = fabs((r->wvhx - g->p.povx) / cos(r->raya - g->p.pova));
+			r->wvhl = fabs((r->wvhx - g->p.povx) / r->dirx);
 			if (!r->wvhl)
 				r->wvhl = 0.0000000000001;
 		}
 		else
 		{
-			r->wvhx = BLOCK_SIZE * (r->dirx > 0) - BLOCK_SIZE * (r->dirx < 0);
-			r->wvhy = BLOCK_SIZE * r->diry / r->dirx;
+			r->wvhx += BLOCK_SIZE * (r->dirx > 0) - BLOCK_SIZE * (r->dirx < 0);
+			r->wvhy += r->deltay;
 		}
-		printf("next Vertical hit X : %.2f Y : %.2f\n", r->wvhx, r->wvhy);
 	}
+	r->wvhl *= fabs(cos(r->raya - g->p.pova));
+	printf("last Vertical hit X : %.2f Y : %.2f L: %.2f\n", r->wvhx, r->wvhy, r->wvhl);
+}
+
+void	wall_h_hit(t_graph *g, t_ray *r)
+{
+	r->whhy = r->fhhy;
+	r->whhx = r->fhhx;
+	r->whhl = 0;
+	r->deltax = BLOCK_SIZE * r->dirx / fabs(r->diry);
+	while (!r->whhl)
+	{
+		// printf("check Horizontal hit X : %.2f Y : %.2f\n", r->whhx, r->whhy);
+		if (r->whhx < 0 || r->whhx >= g->file->max_x * BLOCK_SIZE)
+			r->whhl = -1;
+		else if (get_map_char(g, r->whhx, r->whhy - (r->diry < 0)) == '1')
+		{
+			r->whhl = fabs((r->whhy - g->p.povy) / r->diry);
+			if (!r->whhl)
+				r->whhl = 0.0000000000001;
+		}
+		else
+		{
+			r->whhy += BLOCK_SIZE * (r->diry > 0) - BLOCK_SIZE * (r->diry < 0);
+			r->whhx += r->deltax;
+		}
+	}
+	r->whhl *= fabs(cos(r->raya - g->p.pova));
+	printf("last Horizontal hit X : %.2f Y : %.2f L: %.2f\n", r->whhx, r->whhy, r->whhl);
 }
 void    get_first_hit(t_ray *r)	
 {
@@ -90,10 +119,15 @@ void    loop_rays(t_graph *g)
     if (g->ray.raya > 2 * M_PI)
         g->ray.raya -= 2 * M_PI;
     i = 0;
-    if (i < WIN_X)	// while (i++ < WIN_X)
+    //if (i < WIN_X)	
+	while (i++ < WIN_X)
     {
         get_first_hit(&g->ray);
 		wall_v_hit(g, &g->ray);
+		wall_h_hit(g, &g->ray);
+		g->ray.raya -= FIELD_OF_VIEW / WIN_X;
+    	if (g->ray.raya < 0)
+        	g->ray.raya += 2 * M_PI;
 /*		if (ray_inside(g->file, g->ray.fvhx, g->ray.fvhy) 
             && ray_inside(g->file, g->ray.fhhx, g->ray.fhhy))
 		{
