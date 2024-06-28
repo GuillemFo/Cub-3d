@@ -3,31 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:04:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/27 10:29:40 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/28 19:07:10 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+void    wall_v_hit(t_graph *g, t_ray *r)
+{
+	r->wvhx = r->fvhx;
+	r->wvhy = r->fvhy;
+	if (r->wvhy < 0 || r->wvhy >= g->file->max_y * BLOCK_SIZE)
+		r->wvhl = -1;
+	else
+		r->wvhl = 0;
+	while (!r->wvhl)
+	{
+		if (get_map_char(g, r->wvhx - (r->dirx < 0), r->whhy) == '1')
+		{
+			r->wvhl = fabs((r->wvhx - g->p.povx) / cos(r->raya - g->p.pova));
+			if (!r->wvhl)
+				r->wvhl = 0.0000000000001;
+		}
+		else
+		{
+			r->wvhx = BLOCK_SIZE * (r->dirx > 0) - BLOCK_SIZE * (r->dirx < 0);
+			r->wvhy = BLOCK_SIZE * r->diry / r->dirx;
+		}
+		printf("next Vertical hit X : %.2f Y : %.2f\n", r->wvhx, r->wvhy);
+	}
+}
 void    get_first_hit(t_ray *r)	
 {
-    r->dir_x = cos(r->raya);
-    r->dir_y = -sin(r->raya);
-    r->fvhx = (i_coor(r->pos_x) + (r->dir_x > 0)) * BLOCK_SIZE;
-    if (r->dir_x == 0)
-        r->fvhy = -1;
-    else
-        r->fvhy = (r->fvhx - r->pos_x) * r->dir_y / r->dir_x + r->pos_y;
-    r->fhhy = (i_coor(r->pos_y) + (r->dir_y > 0)) * BLOCK_SIZE;
-    if (r->dir_y == 0)
-        r->fhhx = -1;
-    else
-        r->fhhx = (r->fhhy - r->pos_y) * r->dir_x / r->dir_y + r->pos_x;
-    printf("Vertical hit X : %.2f Y : %.2f\n", r->fvhx, r->fvhy);
-    printf("Horizontal hit X : %.2f Y : %.2f\n", r->fhhx, r->fhhy);
+	r->dirx = cos(r->raya);
+	r->diry = -sin(r->raya);
+	r->fvhx = (i_coor(r->pos_x) + (r->dirx > 0)) * BLOCK_SIZE;
+	if (r->dirx == 0)
+		r->fvhy = -1;
+	else
+		r->fvhy = (r->fvhx - r->pos_x) * r->diry / r->dirx + r->pos_y;
+	r->fhhy = (i_coor(r->pos_y) + (r->diry > 0)) * BLOCK_SIZE;
+	if (r->diry == 0)
+		r->fhhx = -1;
+	else
+		r->fhhx = (r->fhhy - r->pos_y) * r->dirx / r->diry + r->pos_x;
+	printf("Pos X : %.2f Y : %.2f\n", r->pos_x, r->pos_y);
+	printf("Vertical hit X : %.2f Y : %.2f\n", r->fvhx, r->fvhy);
+	printf("Horizontal hit X : %.2f Y : %.2f\n", r->fhhx, r->fhhy);
 }
 
 int	ray_inside(t_file *f, double x, double y)
@@ -35,11 +60,11 @@ int	ray_inside(t_file *f, double x, double y)
 	int grid_x;
 	int grid_y;
 
-	grid_x = (int)(x / BLOCK_SIZE);
+	grid_x = (int)(x / BLOCK_SIZE); //i_coor
 	grid_y = (int)(y / BLOCK_SIZE);
 
-printf("Y=%d-- X=%d--\n", f->max_y, f->max_x -1);
-	if (grid_y >= 0 && grid_y < f->max_y -1)
+printf("Y=%d-- X=%d--\n", f->max_y, f->max_x);
+	if (grid_y >= 0 && grid_y < f->max_y - 1)
 	{
 		ft_printf("1\n");
 		if (grid_x >= 0 && grid_x < f->max_x - 1) //added -1 to compensate for array starting at 0.
@@ -52,7 +77,6 @@ printf("Y=%d-- X=%d--\n", f->max_y, f->max_x -1);
 		ft_printf("3\n");
 	}
 	return (0);
-
 }
 
 
@@ -69,7 +93,9 @@ void    loop_rays(t_graph *g)
     if (i < WIN_X)	// while (i++ < WIN_X)
     {
         get_first_hit(&g->ray);
-		if (ray_inside(g->file, g->ray.fvhx, g->ray.fvhy) && ray_inside(g->file, g->ray.fhhx, g->ray.fhhy))
+		wall_v_hit(g, &g->ray);
+/*		if (ray_inside(g->file, g->ray.fvhx, g->ray.fvhy) 
+            && ray_inside(g->file, g->ray.fhhx, g->ray.fhhy))
 		{
 			if (g->ray.fvhy <= g->ray.fhhy && g->ray.fvhx <= g->ray.fhhx)
 			{
@@ -89,6 +115,7 @@ void    loop_rays(t_graph *g)
 		}
 		else
             printf("Ray out of bounds\n");
+*/
 	}
 }
 /*

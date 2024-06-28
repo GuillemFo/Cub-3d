@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 20:46:15 by josegar2          #+#    #+#             */
-/*   Updated: 2024/06/18 12:04:50 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/28 19:15:55 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	x_destroy_img(t_graph *mx)
 			mlx_destroy_image(mx->mlx, mx->txt[i].img);
 			mx->txt[i].addr = NULL;
 		}
+        i++;
 	}
 	if (!mx->i.addr)
 	{

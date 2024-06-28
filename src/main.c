@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:11 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/20 10:49:05 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/28 00:52:50 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@ void    set_start(t_data *data)
     data->g->p.angs = ANGULAR_STEP;
     data->g->p.lins = LINEAR_SPEED;
     data->g->p.rots = ROTATION_SPEED;
-    data->g->p.povx = data->file->stx * BLOCK_SIZE + BLOCK_SIZE / 2;
-    data->g->p.povy = data->file->sty * BLOCK_SIZE + BLOCK_SIZE / 2;
+    data->g->p.povx = data->file->stx * BLOCK_SIZE;
+    data->g->p.povx += (BLOCK_SIZE > 1) * BLOCK_SIZE / 2;
+    data->g->p.povy = data->file->sty * BLOCK_SIZE; 
+    data->g->p.povy += (BLOCK_SIZE > 1) * BLOCK_SIZE / 2;
     if (data->file->sto == 'N')
         data->g->p.pova = (90 * M_PI) / 180;
     else if (data->file->sto == 'S')

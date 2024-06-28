@@ -33,8 +33,8 @@
 
 /*-=-=-=-=-=-=-=-GRAPH SETTINGS=-=-=-=-=-=-=-*/
 
-# define BLOCK_SIZE 1
-# define VIEW_HEIGHT 1
+# define BLOCK_SIZE 128
+# define VIEW_HEIGHT 64
 # define FIELD_OF_VIEW (60 * M_PI) / 180
 # define WIN_X 400
 # define WIN_Y 300
@@ -113,8 +113,8 @@ typedef struct t_ray
 	double	pos_x;
 	double	pos_y;
 	double	raya; //ray angle
-	double	dir_x; // cos(raya)
-	double	dir_y; // -sin(raya)
+	double	dirx; // cos(raya)
+	double	diry; // -sin(raya)
 	double	fvhx; //FirstVerticalHit X
 	double	fvhy; //FirstVerticalHit Y
 	double	fhhx; //FirstHoritzontalHit X
