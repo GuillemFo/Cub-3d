@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:04:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/29 12:04:47 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/29 13:00:31 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,8 @@ void    loop_rays(t_graph *g)
 				g->ray.ooi = BLOCK_SIZE - g->ray.ooi;
 			g->ray.sow = g->p.bs * g->p.ppd / g->ray.wvhl;
 		}
+		if (g->ray.sow > WIN_Y)
+			g->ray.sow = WIN_Y;
 		printf("Side %d, Offset: %.2f, SOW: %.2f\n", g->ray.soi, g->ray.ooi, g->ray.sow);
 		draw_column(g, i, (int)g->ray.sow, 0);
 		draw_texture(g, i++, (int)g->ray.sow, g->ray.soi, g->ray.ooi, 0);

@@ -40,7 +40,7 @@
 # define WIN_Y 300
 # define ANGULAR_STEP FIELD_OF_VIEW / WIN_X
 # define POV_DISTANCE (WIN_X / 2) / tan(FIELD_OF_VIEW / 2)
-# define LINEAR_SPEED 1
+# define LINEAR_SPEED 16
 # define ROTATION_SPEED (5 * M_PI) / 180
 
 /*###	KEY MAPPING	###*/
