@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:10:26 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/27 11:25:26 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/29 13:52:36 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int player_w(t_player *p)
 
 int player_s(t_player *p)
 {
-	p->povx += LINEAR_SPEED * cos(p->pova);
+	p->povx -= LINEAR_SPEED * cos(p->pova);
 	p->povy += LINEAR_SPEED * sin(p->pova);
 	return (0);
 }
@@ -30,7 +30,7 @@ int player_s(t_player *p)
 int player_a(t_player *p)
 {
 	p->povx -= LINEAR_SPEED * sin(p->pova);
-	p->povy += LINEAR_SPEED * cos(p->pova);
+	p->povy -= LINEAR_SPEED * cos(p->pova);
 	return (0);
 }
 
