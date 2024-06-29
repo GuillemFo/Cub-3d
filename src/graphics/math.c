@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:04:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/28 23:40:49 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/29 12:04:47 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,11 +120,34 @@ void    loop_rays(t_graph *g)
         g->ray.raya -= 2 * M_PI;
     i = 0;
     //if (i < WIN_X)	
-	while (i++ < WIN_X)
+	while (i < WIN_X)
     {
         get_first_hit(&g->ray);
 		wall_v_hit(g, &g->ray);
 		wall_h_hit(g, &g->ray);
+		if (g->ray.wvhl < 0 
+			|| (g->ray.whhl >=0 && g->ray.whhl <= g->ray.wvhl))
+		{
+			// take whhl to calculate sow, sidex, side, ...
+			g->ray.soi = (g->ray.diry <= 0);
+			g->ray.ooi = fmod(g->ray.whhx, BLOCK_SIZE);
+			if (g->ray.soi == 0)
+				g->ray.ooi = BLOCK_SIZE - g->ray.ooi;
+			g->ray.sow = g->p.bs * g->p.ppd / g->ray.whhl;
+		}
+		else // there is hit for sure
+		{
+			// take wvhl to calculate sow, sidex, side, ...
+			g->ray.soi = 2 + (g->ray.dirx > 0);
+			g->ray.ooi = fmod(g->ray.wvhy, BLOCK_SIZE);
+			if (g->ray.soi == 2)
+				g->ray.ooi = BLOCK_SIZE - g->ray.ooi;
+			g->ray.sow = g->p.bs * g->p.ppd / g->ray.wvhl;
+		}
+		printf("Side %d, Offset: %.2f, SOW: %.2f\n", g->ray.soi, g->ray.ooi, g->ray.sow);
+		draw_column(g, i, (int)g->ray.sow, 0);
+		draw_texture(g, i++, (int)g->ray.sow, g->ray.soi, g->ray.ooi, 0);
+		mlx_put_image_to_window(g->mlx, g->win, g->i.img, 0, 0);
 		g->ray.raya -= FIELD_OF_VIEW / WIN_X;
     	if (g->ray.raya < 0)
         	g->ray.raya += 2 * M_PI;

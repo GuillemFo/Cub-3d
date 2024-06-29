@@ -127,6 +127,9 @@ typedef struct t_ray
 	double	whhy; //WallHoritzontalHit Y
 	double	deltax; // x increment to next H hit;
 	double	whhl; //WallHoritzontalHit Length
+	double	sow; //size of wall
+	int		soi; //Side Of Impact: 0-NO, 1-SO, 2-EA, 3-WE
+	double	ooi; // Offset Of Impact. Distance from left side of wall
 	bool	hit;
 
 }			t_ray;
@@ -154,7 +157,8 @@ typedef struct s_player
 	double plane_y; // Camera plane vector in y
 	int bs;         // Block size
 	int vh;         // View height
-	double fov;     // Field of view
+	double	fov;     // Field of view
+	double	ppd;	// Projection Plane Distance
 	double angs;    // Angular step
 	int lins;       // Linear speed
 	double rots;    // Rotation speed
@@ -202,6 +206,7 @@ int		start_mlx(t_data *data);
 int		load_textures(t_file *fl, t_graph *mx);
 void	x_destroy_img(t_graph *mx);
 void	draw_column(t_graph *g, int x, int sow, int off);
+void	draw_texture(t_graph *g, int x, int sow, int side, int sidex, int off);
 int 	i_coor(double pos);
 char    get_map_char(t_graph *g, double x, double y);
 void    loop_rays(t_graph *g);
