@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 12:00:29 by josegar2          #+#    #+#             */
-/*   Updated: 2024/06/30 18:54:52 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/30 20:12:20 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,17 @@ void	draw_texture(t_graph *g, int x, int sow, int side, int sidex, int off)
 {
 	int 	y;
 	float	yratio;
-	float	xratio;
 	int		txty;
 	int		color;
 
 	(void)off;
 	y = (WIN_Y - sow) / 2;
-	yratio = g->txt[side].h / sow;
-	xratio = g->txt[side].w / BLOCK_SIZE;
+	yratio = (float)g->txt[side].h / sow;
+	sidex *= g->txt[side].w / BLOCK_SIZE;
 	txty = 0;
 	while (y >= 0 && y < WIN_Y && y < sow + (WIN_Y - sow) / 2)
 	{
-		color = get_texture_color(g->txt[side], sidex * xratio, txty++ * yratio);
+		color = get_texture_color(g->txt[side], sidex, (int) txty++ * yratio);
 		c3d_mlx_pixel_put(g->i, x, y++, color);
 	}
 }
