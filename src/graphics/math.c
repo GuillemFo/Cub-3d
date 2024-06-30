@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:04:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/30 19:05:33 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/30 19:27:18 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void    wall_v_hit(t_graph *g, t_ray *r)
 			r->wvhy += r->deltay;
 		}
 	}
-	r->wvhl *= fabs(cos(r->raya - g->p.pova));
+	//r->wvhl *= fabs(cos(r->raya - g->p.pova));
 	// printf("last Vertical hit X : %.2f Y : %.2f L: %.2f\n", r->wvhx, r->wvhy, r->wvhl);
 }
 
@@ -60,7 +60,7 @@ void	wall_h_hit(t_graph *g, t_ray *r)
 			r->whhx += r->deltax;
 		}
 	}
-	r->whhl *= fabs(cos(r->raya - g->p.pova));
+	//r->whhl *= fabs(cos(r->raya - g->p.pova));
 	// printf("last Horizontal hit X : %.2f Y : %.2f L: %.2f\n", r->whhx, r->whhy, r->whhl);
 }
 void    get_first_hit(t_ray *r)	
@@ -129,7 +129,7 @@ void    loop_rays(t_graph *g)
 		{
 			// take whhl to calculate sow, sidex, side, ...
 			g->ray.soi = (g->ray.diry <= 0);
-			g->ray.ooi = fmod(g->ray.whhx, BLOCK_SIZE);
+			g->ray.ooi = (int) g->ray.whhx % BLOCK_SIZE;
 			if (g->ray.soi == 0)
 				g->ray.ooi = BLOCK_SIZE - g->ray.ooi;
 			g->ray.sow = g->p.bs * g->p.ppd / g->ray.whhl;
@@ -138,11 +138,12 @@ void    loop_rays(t_graph *g)
 		{
 			// take wvhl to calculate sow, sidex, side, ...
 			g->ray.soi = 2 + (g->ray.dirx > 0);
-			g->ray.ooi = fmod(g->ray.wvhy, BLOCK_SIZE);
+			g->ray.ooi = (int) g->ray.wvhy % BLOCK_SIZE;
 			if (g->ray.soi == 2)
 				g->ray.ooi = BLOCK_SIZE - g->ray.ooi;
 			g->ray.sow = g->p.bs * g->p.ppd / g->ray.wvhl;
 		}
+		g->ray.sow /= fabs(cos(g->ray.raya - g->p.pova));
 		if (g->ray.sow > WIN_Y)
 			g->ray.sow = WIN_Y;
 		//printf("Side %d, Offset: %.2f, SOW: %.2f\n", g->ray.soi, g->ray.ooi, g->ray.sow);

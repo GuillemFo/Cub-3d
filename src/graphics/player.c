@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:10:26 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/29 13:52:36 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/30 19:20:59 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int player_right(t_player *p)
 // get integer coordinate given the double value of the position
 int i_coor(double pos)
 {
-    return (trunc(pos / BLOCK_SIZE));
+    return ((int) pos / BLOCK_SIZE);
 }
 
 char    get_map_char(t_graph *g, double x, double y)
