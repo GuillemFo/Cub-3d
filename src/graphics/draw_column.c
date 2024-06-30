@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 12:00:29 by josegar2          #+#    #+#             */
-/*   Updated: 2024/06/30 22:20:28 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/30 22:59:42 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	draw_texture(t_graph *g, int x, t_ray r)
 	z = (y + r.sow) * (WIN_Y > r.sow) + WIN_Y * (WIN_Y <= r.sow); 
 	yratio = (float)g->txt[r.soi].h / r.sow;
 	r.ooi *= g->txt[r.soi].w / BLOCK_SIZE;
-	txty = 0;
+	txty = (r.sow - WIN_Y) / 2 * (r.sow > WIN_Y);
 	while (y < z)
 	{
 		color = get_texture_color(g->txt[r.soi], r.ooi, (int) txty++ * yratio);

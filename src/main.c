@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:11 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/29 11:54:07 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/30 23:17:31 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void    set_start(t_graph *g, t_file *f)
         g->p.pova = M_PI;
     else if (f->sto == 'E')
         g->p.pova = 0;
+    g->p.dirx = cos(g->p.pova);
+    g->p.diry = -sin(g->p.pova);
     g->rgbc = (f->C[0] << 16) + (f->C[1] << 8);
     g->rgbc += f->C[2];
     g->rgbf = (f->F[0] << 16) + (f->F[1] << 8);

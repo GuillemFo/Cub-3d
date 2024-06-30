@@ -148,13 +148,6 @@ typedef struct s_image
 
 typedef struct s_player
 {
-	
-	double pos_x;   // Player's position in x
-	double pos_y;   // Player's position in y
-	double dir_x;   // Player's direction vector in x
-	double dir_y;   // Player's direction vector in y
-	double plane_x; // Camera plane vector in x
-	double plane_y; // Camera plane vector in y
 	int bs;         // Block size
 	int vh;         // View height
 	double	fov;     // Field of view
@@ -162,9 +155,11 @@ typedef struct s_player
 	double angs;    // Angular step
 	int lins;       // Linear speed
 	double rots;    // Rotation speed
-	double povx;       // Point of view x
-	double povy;       // Point of view y
-	double pova;    // Point of view angle
+	double	povx;       // Point of view x
+	double	povy;       // Point of view y
+	double	pova;    // Point of view angle
+	double	dirx;	// cos(pova)
+	double	diry;	// -sin(pova)
 }			t_player;
 
 typedef struct s_graph

@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:10:26 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/30 19:20:59 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/07/01 00:08:31 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,35 +15,37 @@
 
 int player_w(t_player *p)
 {
-	p->povx += LINEAR_SPEED * cos(p->pova);
-	p->povy -= LINEAR_SPEED * sin(p->pova);
+	p->povx += LINEAR_SPEED * p->dirx;
+	p->povy += LINEAR_SPEED * p->diry;
 	return (0);
 }
 
 int player_s(t_player *p)
 {
-	p->povx -= LINEAR_SPEED * cos(p->pova);
-	p->povy += LINEAR_SPEED * sin(p->pova);
+	p->povx -= LINEAR_SPEED * p->dirx;
+	p->povy -= LINEAR_SPEED * p->diry;
 	return (0);
 }
 
 int player_a(t_player *p)
 {
-	p->povx -= LINEAR_SPEED * sin(p->pova);
-	p->povy -= LINEAR_SPEED * cos(p->pova);
+	p->povx += LINEAR_SPEED * p->diry;
+	p->povy -= LINEAR_SPEED * p->dirx;
 	return (0);
 }
 
 int player_d(t_player *p)
 {
-	p->povx += LINEAR_SPEED * sin(p->pova);
-	p->povy += LINEAR_SPEED * cos(p->pova);
+	p->povx -= LINEAR_SPEED * p->diry;
+	p->povy += LINEAR_SPEED * p->dirx;
 	return (0);
 }
 
 int player_left(t_player *p)
 {
 	p->pova = fmod((p->pova + ROTATION_SPEED), 2 * M_PI);
+    p->dirx = cos(p->pova);
+    p->diry = -sin(p->pova);
 	return (0);
 }
 
@@ -51,7 +53,9 @@ int player_right(t_player *p)
 {
 	p->pova -= ROTATION_SPEED;
 	if (p->pova < 0)
-	p->pova += 2 * M_PI;
+	    p->pova += 2 * M_PI;
+    p->dirx = cos(p->pova);
+    p->diry = -sin(p->pova);
 	return (0);
 }
 
@@ -69,9 +73,7 @@ char    get_map_char(t_graph *g, double x, double y)
 bool	check_pmove(t_graph *g, char c)
 {
 	t_player tmp;
-	tmp.povx = g->p.povx;
-	tmp.povy = g->p.povy;
-	tmp.pova = g->p.pova;
+    tmp = g->p;
 
 	if (c == 'w')
 		player_w(&tmp);
