@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:43:09 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/27 12:47:33 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/06/30 18:49:02 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	start_mlx(t_data *data)
 	// maybe better to do a separate functionfor hooks and loop
     //mlx_put_image_to_window(data->g->mlx, data->g->win, data->g->txt[0].img, 0, 0);
 	data->g->file = data->file;
-	check_columns(data->g);
+	loop_rays(data->g);
 	//mlx_hook(data->g->win, KEYDOWN, 0, key_press, data->g);
 	mlx_hook(data->g->win, KEYDOWN, 0, p_moves, data->g);
 	mlx_hook(data->g->win, DESTROY, 1L << 0, close_window, data->g);

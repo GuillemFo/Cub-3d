@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:04:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/29 13:00:31 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/06/30 19:05:33 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void    wall_v_hit(t_graph *g, t_ray *r)
 	r->wvhl = 0;
 	while (!r->wvhl)
 	{
-		//printf("check Vertical hit X : %.2f Y : %.2f\n", r->wvhx, r->wvhy);
 		if (r->wvhy < 0 || r->wvhy >= g->file->max_y * BLOCK_SIZE)
 			r->wvhl = -1;
 		else if (get_map_char(g, r->wvhx - (r->dirx < 0), r->wvhy) == '1')
@@ -36,7 +35,7 @@ void    wall_v_hit(t_graph *g, t_ray *r)
 		}
 	}
 	r->wvhl *= fabs(cos(r->raya - g->p.pova));
-	printf("last Vertical hit X : %.2f Y : %.2f L: %.2f\n", r->wvhx, r->wvhy, r->wvhl);
+	// printf("last Vertical hit X : %.2f Y : %.2f L: %.2f\n", r->wvhx, r->wvhy, r->wvhl);
 }
 
 void	wall_h_hit(t_graph *g, t_ray *r)
@@ -47,7 +46,6 @@ void	wall_h_hit(t_graph *g, t_ray *r)
 	r->deltax = BLOCK_SIZE * r->dirx / fabs(r->diry);
 	while (!r->whhl)
 	{
-		// printf("check Horizontal hit X : %.2f Y : %.2f\n", r->whhx, r->whhy);
 		if (r->whhx < 0 || r->whhx >= g->file->max_x * BLOCK_SIZE)
 			r->whhl = -1;
 		else if (get_map_char(g, r->whhx, r->whhy - (r->diry < 0)) == '1')
@@ -63,7 +61,7 @@ void	wall_h_hit(t_graph *g, t_ray *r)
 		}
 	}
 	r->whhl *= fabs(cos(r->raya - g->p.pova));
-	printf("last Horizontal hit X : %.2f Y : %.2f L: %.2f\n", r->whhx, r->whhy, r->whhl);
+	// printf("last Horizontal hit X : %.2f Y : %.2f L: %.2f\n", r->whhx, r->whhy, r->whhl);
 }
 void    get_first_hit(t_ray *r)	
 {
@@ -79,9 +77,10 @@ void    get_first_hit(t_ray *r)
 		r->fhhx = -1;
 	else
 		r->fhhx = (r->fhhy - r->pos_y) * r->dirx / r->diry + r->pos_x;
-	printf("Pos X : %.2f Y : %.2f\n", r->pos_x, r->pos_y);
+/*	printf("Pos X : %.2f Y : %.2f\n", r->pos_x, r->pos_y);
 	printf("Vertical hit X : %.2f Y : %.2f\n", r->fvhx, r->fvhy);
 	printf("Horizontal hit X : %.2f Y : %.2f\n", r->fhhx, r->fhhy);
+*/
 }
 
 int	ray_inside(t_file *f, double x, double y)
@@ -146,7 +145,7 @@ void    loop_rays(t_graph *g)
 		}
 		if (g->ray.sow > WIN_Y)
 			g->ray.sow = WIN_Y;
-		printf("Side %d, Offset: %.2f, SOW: %.2f\n", g->ray.soi, g->ray.ooi, g->ray.sow);
+		//printf("Side %d, Offset: %.2f, SOW: %.2f\n", g->ray.soi, g->ray.ooi, g->ray.sow);
 		draw_column(g, i, (int)g->ray.sow, 0);
 		draw_texture(g, i++, (int)g->ray.sow, g->ray.soi, g->ray.ooi, 0);
 		mlx_put_image_to_window(g->mlx, g->win, g->i.img, 0, 0);
