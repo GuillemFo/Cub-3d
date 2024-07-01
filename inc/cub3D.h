@@ -211,7 +211,6 @@ void    loop_rays(t_graph *g);
 void	check_columns(t_graph *g);
 void	print_map_term(t_file *file);
 
-//int	main_game(t_data *data);
 int get_wall_size(t_graph *g, int x);
 
 int			p_moves(int keycode, t_graph *g);

@@ -6,7 +6,7 @@
 /*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:04:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/07/01 16:57:56 by wil              ###   ########.fr       */
+/*   Updated: 2024/07/01 18:04:44 by wil              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ void    loop_rays(t_graph *g)
 		g->ray.sow /= fabs(cos(g->ray.raya - g->p.pova));
 		//ft_printf("Side %d, Offset: %.2f, SOW: %.2f\n", g->ray.soi, g->ray.ooi, g->ray.sow);
 		draw_texture(g, i++, g->ray);
-		mlx_put_image_to_window(g->mlx, g->win, g->i.img, 0, 0);
+		mlx_put_image_to_window(g->mlx, g->win, g->i.img, 1, 1);
 		g->ray.raya -= FIELD_OF_VIEW / WIN_X;
     	if (g->ray.raya < 0)
         	g->ray.raya += 2 * M_PI;
