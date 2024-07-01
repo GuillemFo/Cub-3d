@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_column.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 12:00:29 by josegar2          #+#    #+#             */
-/*   Updated: 2024/07/01 12:36:35 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/07/01 16:54:48 by wil              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	draw_texture(t_graph *g, int x, t_ray r)
 	yratio = (float)g->txt[r.soi].h / r.sow;
 	r.ooi *= g->txt[r.soi].w / BLOCK_SIZE;
 	txty = (r.sow - WIN_Y) / 2 * (r.sow > WIN_Y);
-	//	printf("x: %d, ooi: %.3f yratio: %.3f\n", x, r.ooi, yratio);
-	//	printf("y: %d z: %d\n", y, z);
+	//	ft_printf("x: %d, ooi: %.3f yratio: %.3f\n", x, r.ooi, yratio);
+	//	ft_printf("y: %d z: %d\n", y, z);
 	while (y < z)
 	{
 		color = get_texture_color(g->txt[r.soi], r.ooi, (int) txty++ * yratio);

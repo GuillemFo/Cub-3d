@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:11 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/30 23:17:31 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/07/01 17:02:52 by wil              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,10 @@ int	main(int ac, char **av)
 		return (c3d_free(data), 1);
 	if (build_map(av, data->file) == 1)
 		return (1);
-	print_map_term(data->file);
+	//print_map_term(data->file);
     set_start(data->g, data->file);
 	if (start_mlx(data))
         return (c3d_free(data), 1);
-	printf("hola\n");
 	c3d_free(data);
     return (0);
 }
