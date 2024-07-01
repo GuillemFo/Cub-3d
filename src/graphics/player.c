@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:10:26 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/07/01 13:57:13 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/07/01 20:57:05 by wil              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,10 @@ bool	check_pmove(t_graph *g, char c)
 		return (false);
     if (!((int)tp.povx % BLOCK_SIZE))
 		if (get_map_char(g, tp.povx - 1, tp.povy) != '0')
-        	return (false);
+			return (false);
     if (!((int)tp.povy % BLOCK_SIZE))
 		if (get_map_char(g, tp.povx, tp.povy - 1) != '0')
-        	return (false);
+			return (false);
 	return (true);
 }
 

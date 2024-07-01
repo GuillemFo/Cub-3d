@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:04:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/07/01 19:36:16 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/07/01 20:56:45 by wil              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,49 +146,10 @@ void    loop_rays(t_graph *g)
 		//printf("Side %d, Offset: %.2f, SOW: %.2f\n", g->ray.soi, g->ray.ooi, g->ray.sow);
 		draw_texture(g, i++, g->ray);
 		g->ray.raya -= FIELD_OF_VIEW / WIN_X;
-    	if (g->ray.raya < 0)
+		if (g->ray.raya < 0)
         	g->ray.raya += 2 * M_PI;
-/*		if (ray_inside(g->file, g->ray.fvhx, g->ray.fvhy) 
-            && ray_inside(g->file, g->ray.fhhx, g->ray.fhhy))
-		{
-			if (g->ray.fvhy <= g->ray.fhhy && g->ray.fvhx <= g->ray.fhhx)
-			{
-				if (g->file->map[2 + (int)g->ray.fvhy / BLOCK_SIZE][2 + (int)g->ray.fvhx / BLOCK_SIZE] == '1')
-					printf("Ver hit\n");
-				else
-					printf("Ver miss\n");
-			}
-			else
-			{
-				if (g->file->map[2 + (int)g->ray.fhhy / BLOCK_SIZE][2 + (int)g->ray.fhhx / BLOCK_SIZE] == '1')
-					printf("Hor hit\n");
-				else
-					printf("Hor miss\n");
-			}
-			// if we miss in both directions, then we loop again. *Apply bottom formula
-		}
-		else
-            printf("Ray out of bounds\n");
-*/
 	}
 	mlx_put_image_to_window(g->mlx, g->win, g->i.img, 0, 0);
 }
-/*
-int	loop_ray_throw()
-{
-	while (g->ray.hit == false)
-	{
-		C.x=A.x+Xa;
-		C.y=A.y+Ya;
-		if (g->file->map[C.y][C.x] == '1')
-		{
-			g->ray.hit = true;
-			break ;
-		}
-		A.x = C.x;
-		A.y = C.y;
-	}
-	return (From here call draw column);
-}
-*/
+
 
