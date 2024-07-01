@@ -33,14 +33,14 @@
 
 /*-=-=-=-=-=-=-=-GRAPH SETTINGS=-=-=-=-=-=-=-*/
 
-# define BLOCK_SIZE 1
-# define VIEW_HEIGHT 1
+# define BLOCK_SIZE 256
+# define VIEW_HEIGHT 128
 # define FIELD_OF_VIEW (60 * M_PI) / 180
-# define WIN_X 400
-# define WIN_Y 300
+# define WIN_X 800
+# define WIN_Y 600
 # define ANGULAR_STEP FIELD_OF_VIEW / WIN_X
 # define POV_DISTANCE (WIN_X / 2) / tan(FIELD_OF_VIEW / 2)
-# define LINEAR_SPEED 1
+# define LINEAR_SPEED 32
 # define ROTATION_SPEED (5 * M_PI) / 180
 
 /*###	KEY MAPPING	###*/
@@ -113,18 +113,23 @@ typedef struct t_ray
 	double	pos_x;
 	double	pos_y;
 	double	raya; //ray angle
-	double	dir_x; // cos(raya)
-	double	dir_y; // -sin(raya)
+	double	dirx; // cos(raya)
+	double	diry; // -sin(raya)
 	double	fvhx; //FirstVerticalHit X
 	double	fvhy; //FirstVerticalHit Y
 	double	fhhx; //FirstHoritzontalHit X
 	double	fhhy; //FirstHoritzontalHit Y
 	double	wvhx; //WallVerticalHit X
 	double	wvhy; //WallVerticalHit Y
+	double	deltay; // y increment to next V hit;
 	double	wvhl; //WallVerticalHit Length
 	double	whhx; //WallHoritzontalHit X
 	double	whhy; //WallHoritzontalHit Y
+	double	deltax; // x increment to next H hit;
 	double	whhl; //WallHoritzontalHit Length
+	double	sow; //size of wall
+	int		soi; //Side Of Impact: 0-NO, 1-SO, 2-EA, 3-WE
+	double	ooi; // Offset Of Impact. Distance from left side of wall
 	bool	hit;
 
 }			t_ray;
@@ -143,22 +148,18 @@ typedef struct s_image
 
 typedef struct s_player
 {
-	
-	double pos_x;   // Player's position in x
-	double pos_y;   // Player's position in y
-	double dir_x;   // Player's direction vector in x
-	double dir_y;   // Player's direction vector in y
-	double plane_x; // Camera plane vector in x
-	double plane_y; // Camera plane vector in y
 	int bs;         // Block size
 	int vh;         // View height
-	double fov;     // Field of view
+	double	fov;     // Field of view
+	double	ppd;	// Projection Plane Distance
 	double angs;    // Angular step
 	int lins;       // Linear speed
 	double rots;    // Rotation speed
-	double povx;       // Point of view x
-	double povy;       // Point of view y
-	double pova;    // Point of view angle
+	double	povx;       // Point of view x
+	double	povy;       // Point of view y
+	double	pova;    // Point of view angle
+	double	dirx;	// cos(pova)
+	double	diry;	// -sin(pova)
 }			t_player;
 
 typedef struct s_graph
@@ -199,7 +200,8 @@ void	*ft_free(void *p);
 int		start_mlx(t_data *data);
 int		load_textures(t_file *fl, t_graph *mx);
 void	x_destroy_img(t_graph *mx);
-void	draw_column(t_graph *g, int x, int sow, int off);
+void	draw_column(t_graph *g, int x, t_ray r);
+void	draw_texture(t_graph *g, int x, t_ray r);
 int 	i_coor(double pos);
 char    get_map_char(t_graph *g, double x, double y);
 void    loop_rays(t_graph *g);
