@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:04:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/06/30 22:14:12 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/07/01 19:36:16 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,10 +107,9 @@ printf("Y=%d-- X=%d--\n", f->max_y, f->max_x);
 	return (0);
 }
 
-
 void    loop_rays(t_graph *g)
 {
-    int i;
+	int i;
 
     g->ray.pos_x = g->p.povx;
     g->ray.pos_y = g->p.povy;
@@ -146,7 +145,6 @@ void    loop_rays(t_graph *g)
 		g->ray.sow /= fabs(cos(g->ray.raya - g->p.pova));
 		//printf("Side %d, Offset: %.2f, SOW: %.2f\n", g->ray.soi, g->ray.ooi, g->ray.sow);
 		draw_texture(g, i++, g->ray);
-		mlx_put_image_to_window(g->mlx, g->win, g->i.img, 0, 0);
 		g->ray.raya -= FIELD_OF_VIEW / WIN_X;
     	if (g->ray.raya < 0)
         	g->ray.raya += 2 * M_PI;
@@ -173,6 +171,7 @@ void    loop_rays(t_graph *g)
             printf("Ray out of bounds\n");
 */
 	}
+	mlx_put_image_to_window(g->mlx, g->win, g->i.img, 0, 0);
 }
 /*
 int	loop_ray_throw()
