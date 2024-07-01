@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 16:24:43 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/16 11:52:47 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/07/01 18:57:21 by wil              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,36 +81,3 @@ int	build_map(char **av, t_file *file)
 	close(fd);
 	return (check_wall(file));
 }
-
-/*
-
-The build_map function has to add 2 extra lines over an at the bottom
-so we can check them. Has to add 2 spaces before and after each line
-and extend the lines that need to be completed with spaces before or
-after using the max lenght x and y saved on the structure;
-
-Example
-
---                                     --
---                                     --
---          1111111111111111111111111  --
---          1000000000110000000000001  --
---          1011000001110000000000001  --
---          1001000000000000000000001  --
---  111111111011000001110000000000001  --
---  100000000011000001110111110111111  --
---  11110111111111011100000010001      --
---  11110111111111011101010010001      --
---  11000000110101011100000010001      --
---  10000000000000001100000010001      --
---  10000000000000001101010010001      --
---  11000001110101011111011110N0111    --
---  11110011111010111101111010001      --
---  11111111111111111111111111111      --
---                                     --
---                                     --
-
-Need to calculate the lenght between the spacers and the map walls and
-from the last map wall to the max size found and stored at file->max_x
-
-*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:11 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/29 11:54:07 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/07/01 18:57:54 by wil              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ int	main(int ac, char **av)
     set_start(data->g, data->file);
 	if (start_mlx(data))
         return (c3d_free(data), 1);
-	printf("hola\n");
 	c3d_free(data);
     return (0);
 }
