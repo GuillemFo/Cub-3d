@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:10:26 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/07/01 00:08:31 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/07/01 13:07:03 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ bool	check_pmove(t_graph *g, char c)
 		player_left(&tmp);
 	else if (c == 'r')
 		player_right(&tmp);
-	if (get_map_char(g, tmp.povx, tmp.povy) == '1') 
+	if (get_map_char(g, tmp.povx, tmp.povy) != '0') 
 		return (false);
 	return (true);
 }
