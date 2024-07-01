@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 12:00:29 by josegar2          #+#    #+#             */
-/*   Updated: 2024/07/01 12:36:35 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/07/01 22:53:53 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,21 @@ void	draw_texture(t_graph *g, int x, t_ray r)
 	int 	y;
 	int		z;
 	float	yratio;
-	int		txty;
+	double	txty;
 	int		color;
 
 	y = (WIN_Y > r.sow) * (WIN_Y - r.sow) / 2;
 	z = (y + r.sow) * (WIN_Y > r.sow) + WIN_Y * (WIN_Y <= r.sow); 
 	yratio = (float)g->txt[r.soi].h / r.sow;
+	//	printf("ooi: %.3f sow: %.3f\n",r.ooi, r.sow);
 	r.ooi *= g->txt[r.soi].w / BLOCK_SIZE;
-	txty = (r.sow - WIN_Y) / 2 * (r.sow > WIN_Y);
-	//	printf("x: %d, ooi: %.3f yratio: %.3f\n", x, r.ooi, yratio);
-	//	printf("y: %d z: %d\n", y, z);
+	txty = (r.sow > WIN_Y) * yratio * (r.sow - WIN_Y) / 2;
+	//	printf("x: %d, ooi: %.3f yratio: %.3f", x, r.ooi, yratio);
+	//	printf("y: %d z: %d txty: %.3f\n", y, z, txty);
 	while (y < z)
 	{
-		color = get_texture_color(g->txt[r.soi], r.ooi, (int) txty++ * yratio);
+		color = get_texture_color(g->txt[r.soi], r.ooi, trunc(txty));
+		txty += yratio;
 		c3d_mlx_pixel_put(g->i, x, y++, color);
 	}
 	draw_column(g, x, r);

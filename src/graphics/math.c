@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:04:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/07/01 19:36:16 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/07/01 22:47:49 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,18 +128,18 @@ void    loop_rays(t_graph *g)
 		{
 			// take whhl to calculate sow, sidex, side, ...
 			g->ray.soi = (g->ray.diry <= 0);
-			g->ray.ooi = (int) g->ray.whhx % BLOCK_SIZE;
+			g->ray.ooi = trunc(fmod(g->ray.whhx, BLOCK_SIZE));
 			if (g->ray.soi == 0)
-				g->ray.ooi = BLOCK_SIZE - g->ray.ooi;
+				g->ray.ooi = BLOCK_SIZE - 1 - g->ray.ooi;
 			g->ray.sow = g->p.bs * g->p.ppd / g->ray.whhl;
 		}
 		else // there is hit for sure
 		{
 			// take wvhl to calculate sow, sidex, side, ...
 			g->ray.soi = 2 + (g->ray.dirx > 0);
-			g->ray.ooi = (int) g->ray.wvhy % BLOCK_SIZE;
+			g->ray.ooi = trunc(fmod(g->ray.wvhy, BLOCK_SIZE));
 			if (g->ray.soi == 2)
-				g->ray.ooi = BLOCK_SIZE - g->ray.ooi;
+				g->ray.ooi = BLOCK_SIZE - 1 - g->ray.ooi;
 			g->ray.sow = g->p.bs * g->p.ppd / g->ray.wvhl;
 		}
 		g->ray.sow /= fabs(cos(g->ray.raya - g->p.pova));
