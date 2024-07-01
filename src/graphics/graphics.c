@@ -3,14 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:43:09 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/07/01 18:56:01 by wil              ###   ########.fr       */
+/*   Updated: 2024/06/30 18:49:02 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+// mlx_hook(data->mlx->win, 2, 1L << 0, key_press, &data);
+int	key_press(int keycode, t_graph *g)
+{
+	printf("Key pressed: %d\n", keycode);
+	if (keycode == ESC_KEY)
+	{
+		mlx_destroy_window(g->mlx, g->win);
+		exit(0);
+	}
+    else
+    {
+        mlx_put_image_to_window(g->mlx, g->win, g->i.img, 0, 0);
+        mlx_do_sync(g->mlx);
+    }
+	return (0);
+}
+
+
 
 int	close_window(t_graph *g)
 {
@@ -18,6 +37,19 @@ int	close_window(t_graph *g)
 	exit(0);
 	return (1);
 }
+
+/*
+old struct style.
+void	missing_parser(t_data *data)
+{
+	data->gr.povy = 4;	player pos y
+	data->gr.povx = 4;	player pos x
+	data->gr.pova = 270; //south. player pos angle
+	data->gr.bs = 512;	texture size
+	data->gr.vh = 256;	player pov height
+}
+*/
+
 
 int img_init(t_graph *g)
 {
@@ -46,10 +78,39 @@ int	start_mlx(t_data *data)
 	}
 	if (img_init(data->g))
         return (message("Image creation error\n"), 1);
+	// Been told to start first with a color innstead of image
+	// maybe better to do a separate functionfor hooks and loop
+    //mlx_put_image_to_window(data->g->mlx, data->g->win, data->g->txt[0].img, 0, 0);
 	data->g->file = data->file;
 	loop_rays(data->g);
+	//mlx_hook(data->g->win, KEYDOWN, 0, key_press, data->g);
 	mlx_hook(data->g->win, KEYDOWN, 0, p_moves, data->g);
 	mlx_hook(data->g->win, DESTROY, 1L << 0, close_window, data->g);
 	mlx_loop(data->g->mlx);
     return (0);
 }
+
+//int	game_loop()??
+
+/*
+int	main_game(t_data *data)
+{
+	ft_printf("pova=%d\n", data->g->p.pova);
+	start_mlx(data);
+
+	mlx_put_image_to_window(data->g, data->g->win, data->g->i.img, 0, 0);
+	ft_printf("pova=%d\n", data->g->p.pova);
+
+	return (0);
+}
+*/
+
+/*
+
+    Obrir finestra --> OK
+    Pintar alguna imatge a una posicio x,y, per exemple les mateixes textures --> imatge si, a posicio en concret no se
+    Aconseguir que amb esc o la creu es tanqui la finestra --> OK
+    Aconseguir que amb les tecles es canviin les coordenades povx, povy i l'angle povo
+    Les funcions per en una columna y pintar el cealing
+    
+*/

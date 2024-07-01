@@ -33,14 +33,14 @@
 
 /*-=-=-=-=-=-=-=-GRAPH SETTINGS=-=-=-=-=-=-=-*/
 
-# define BLOCK_SIZE 128
-# define VIEW_HEIGHT 64
+# define BLOCK_SIZE 512
+# define VIEW_HEIGHT 256
 # define FIELD_OF_VIEW (60 * M_PI) / 180
-# define WIN_X 600
-# define WIN_Y 400
+# define WIN_X 1920
+# define WIN_Y 1080
 # define ANGULAR_STEP FIELD_OF_VIEW / WIN_X
 # define POV_DISTANCE (WIN_X / 2) / tan(FIELD_OF_VIEW / 2)
-# define LINEAR_SPEED 16
+# define LINEAR_SPEED 64
 # define ROTATION_SPEED (5 * M_PI) / 180
 
 /*###	KEY MAPPING	###*/
@@ -148,13 +148,6 @@ typedef struct s_image
 
 typedef struct s_player
 {
-	
-	double pos_x;   // Player's position in x
-	double pos_y;   // Player's position in y
-	double dir_x;   // Player's direction vector in x
-	double dir_y;   // Player's direction vector in y
-	double plane_x; // Camera plane vector in x
-	double plane_y; // Camera plane vector in y
 	int bs;         // Block size
 	int vh;         // View height
 	double	fov;     // Field of view
@@ -162,9 +155,11 @@ typedef struct s_player
 	double angs;    // Angular step
 	int lins;       // Linear speed
 	double rots;    // Rotation speed
-	double povx;       // Point of view x
-	double povy;       // Point of view y
-	double pova;    // Point of view angle
+	double	povx;       // Point of view x
+	double	povy;       // Point of view y
+	double	pova;    // Point of view angle
+	double	dirx;	// cos(pova)
+	double	diry;	// -sin(pova)
 }			t_player;
 
 typedef struct s_graph
@@ -205,8 +200,8 @@ void	*ft_free(void *p);
 int		start_mlx(t_data *data);
 int		load_textures(t_file *fl, t_graph *mx);
 void	x_destroy_img(t_graph *mx);
-void	draw_column(t_graph *g, int x, int sow, int off);
-void	draw_texture(t_graph *g, int x, int sow, int side, int sidex, int off);
+void	draw_column(t_graph *g, int x, t_ray r);
+void	draw_texture(t_graph *g, int x, t_ray r);
 int 	i_coor(double pos);
 char    get_map_char(t_graph *g, double x, double y);
 void    loop_rays(t_graph *g);
