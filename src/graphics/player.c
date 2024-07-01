@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:10:26 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/07/01 13:07:03 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/07/01 13:57:13 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,23 +72,29 @@ char    get_map_char(t_graph *g, double x, double y)
 
 bool	check_pmove(t_graph *g, char c)
 {
-	t_player tmp;
-    tmp = g->p;
+	t_player tp;
+    tp = g->p;
 
 	if (c == 'w')
-		player_w(&tmp);
+		player_w(&tp);
 	else if (c == 's')
-		player_s(&tmp);
+		player_s(&tp);
 	else if (c == 'a')
-		player_a(&tmp);
+		player_a(&tp);
 	else if (c == 'd')
-		player_d(&tmp);
+		player_d(&tp);
 	else if (c == 'l')
-		player_left(&tmp);
+		player_left(&tp);
 	else if (c == 'r')
-		player_right(&tmp);
-	if (get_map_char(g, tmp.povx, tmp.povy) != '0') 
+		player_right(&tp);
+	if (get_map_char(g, tp.povx, tp.povy) != '0') 
 		return (false);
+    if (!((int)tp.povx % BLOCK_SIZE))
+		if (get_map_char(g, tp.povx - 1, tp.povy) != '0')
+        	return (false);
+    if (!((int)tp.povy % BLOCK_SIZE))
+		if (get_map_char(g, tp.povx, tp.povy - 1) != '0')
+        	return (false);
 	return (true);
 }
 
