@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 20:46:15 by josegar2          #+#    #+#             */
-/*   Updated: 2024/06/28 19:15:55 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/07/01 23:12:57 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	x_destroy_img(t_graph *mx)
 		}
         i++;
 	}
-	if (!mx->i.addr)
+	if (mx->i.addr)
 	{
 		mlx_destroy_image(mx->mlx, mx->i.img);
 		mx->i.addr = NULL;
