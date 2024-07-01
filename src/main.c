@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:11 by codespace         #+#    #+#             */
-/*   Updated: 2024/07/01 17:02:52 by wil              ###   ########.fr       */
+/*   Updated: 2024/06/29 11:54:07 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ void    set_start(t_graph *g, t_file *f)
         g->p.pova = M_PI;
     else if (f->sto == 'E')
         g->p.pova = 0;
-    g->p.dirx = cos(g->p.pova);
-    g->p.diry = -sin(g->p.pova);
     g->rgbc = (f->C[0] << 16) + (f->C[1] << 8);
     g->rgbc += f->C[2];
     g->rgbf = (f->F[0] << 16) + (f->F[1] << 8);
@@ -70,10 +68,11 @@ int	main(int ac, char **av)
 		return (c3d_free(data), 1);
 	if (build_map(av, data->file) == 1)
 		return (1);
-	//print_map_term(data->file);
+	print_map_term(data->file);
     set_start(data->g, data->file);
 	if (start_mlx(data))
         return (c3d_free(data), 1);
+	printf("hola\n");
 	c3d_free(data);
     return (0);
 }

@@ -21,7 +21,7 @@ SRC_PPREFIX = $(addprefix $(SRC_PATH),$(SRC))
 
 OBJ = $(addprefix $(OBJ_PATH),$(SRC_PPREFIX:.c=.o))
 
-CFLAGS = -I $(INC) -I $(LIBFT_PATH) -Wall -Wextra -Werror -o3 #-g -fsanitize=address
+CFLAGS = -I $(INC) -I $(LIBFT_PATH) -Wall -Wextra -Werror #-g -fsanitize=address
 
 ifeq ($(shell uname), Darwin)
 	CFLAGS += -D MAC_OS
@@ -31,7 +31,7 @@ ifeq ($(shell uname), Darwin)
 else
 	MLX_PATH = mlx_linux/
 	INCLUDES = -I/usr/lib -Imlx_linux
-	MLX_FLAGS = -Lmlx_linux -lmlx -L/usr/lib/X11 -lX11 -lm -lXext 
+	MLX_FLAGS = -Lmlx_linux -lmlx -L/usr/lib/X11 -lXext -lX11 -lm -o3
 endif
 
 #MLX_FLAGS = -Lmlx_linux -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:10:26 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/07/01 18:09:18 by wil              ###   ########.fr       */
+/*   Updated: 2024/06/29 13:52:36 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,37 +15,35 @@
 
 int player_w(t_player *p)
 {
-	p->povx += LINEAR_SPEED * p->dirx;
-	p->povy += LINEAR_SPEED * p->diry;
+	p->povx += LINEAR_SPEED * cos(p->pova);
+	p->povy -= LINEAR_SPEED * sin(p->pova);
 	return (0);
 }
 
 int player_s(t_player *p)
 {
-	p->povx -= LINEAR_SPEED * p->dirx;
-	p->povy -= LINEAR_SPEED * p->diry;
+	p->povx -= LINEAR_SPEED * cos(p->pova);
+	p->povy += LINEAR_SPEED * sin(p->pova);
 	return (0);
 }
 
 int player_a(t_player *p)
 {
-	p->povx += LINEAR_SPEED * p->diry;
-	p->povy -= LINEAR_SPEED * p->dirx;
+	p->povx -= LINEAR_SPEED * sin(p->pova);
+	p->povy -= LINEAR_SPEED * cos(p->pova);
 	return (0);
 }
 
 int player_d(t_player *p)
 {
-	p->povx -= LINEAR_SPEED * p->diry;
-	p->povy += LINEAR_SPEED * p->dirx;
+	p->povx += LINEAR_SPEED * sin(p->pova);
+	p->povy += LINEAR_SPEED * cos(p->pova);
 	return (0);
 }
 
 int player_left(t_player *p)
 {
 	p->pova = fmod((p->pova + ROTATION_SPEED), 2 * M_PI);
-    p->dirx = cos(p->pova);
-    p->diry = -sin(p->pova);
 	return (0);
 }
 
@@ -53,16 +51,14 @@ int player_right(t_player *p)
 {
 	p->pova -= ROTATION_SPEED;
 	if (p->pova < 0)
-	    p->pova += 2 * M_PI;
-    p->dirx = cos(p->pova);
-    p->diry = -sin(p->pova);
+	p->pova += 2 * M_PI;
 	return (0);
 }
 
 // get integer coordinate given the double value of the position
 int i_coor(double pos)
 {
-    return ((int) pos / BLOCK_SIZE);
+    return (trunc(pos / BLOCK_SIZE));
 }
 
 char    get_map_char(t_graph *g, double x, double y)
@@ -72,29 +68,25 @@ char    get_map_char(t_graph *g, double x, double y)
 
 bool	check_pmove(t_graph *g, char c)
 {
-	t_player tp;
-    tp = g->p;
+	t_player tmp;
+	tmp.povx = g->p.povx;
+	tmp.povy = g->p.povy;
+	tmp.pova = g->p.pova;
 
 	if (c == 'w')
-		player_w(&tp);
+		player_w(&tmp);
 	else if (c == 's')
-		player_s(&tp);
+		player_s(&tmp);
 	else if (c == 'a')
-		player_a(&tp);
+		player_a(&tmp);
 	else if (c == 'd')
-		player_d(&tp);
+		player_d(&tmp);
 	else if (c == 'l')
-		player_left(&tp);
+		player_left(&tmp);
 	else if (c == 'r')
-		player_right(&tp);
-	if (get_map_char(g, tp.povx, tp.povy) != '0') 
+		player_right(&tmp);
+	if (get_map_char(g, tmp.povx, tmp.povy) == '1') 
 		return (false);
-    if (!((int)tp.povx % BLOCK_SIZE))
-		if (get_map_char(g, tp.povx - 1, tp.povy) != '0')
-        	return (false);
-    if (!((int)tp.povy % BLOCK_SIZE))
-		if (get_map_char(g, tp.povx, tp.povy - 1) != '0')
-        	return (false);
 	return (true);
 }
 
