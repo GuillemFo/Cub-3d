@@ -205,15 +205,14 @@ void	draw_texture(t_graph *g, int x, t_ray r);
 int 	i_coor(double pos);
 char    get_map_char(t_graph *g, double x, double y);
 void    loop_rays(t_graph *g);
+int			p_moves(int keycode, t_graph *g);
 
 /*-=-=-=-=-=- TEST FUNCTIONS=-=-=-=-=-=-=-=-=*/
 
 void	check_columns(t_graph *g);
 void	print_map_term(t_file *file);
 
-//int	main_game(t_data *data);
 int get_wall_size(t_graph *g, int x);
 
-int			p_moves(int keycode, t_graph *g);
 
 #endif
