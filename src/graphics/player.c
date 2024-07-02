@@ -3,78 +3,77 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:10:26 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/07/01 13:57:13 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/07/02 16:32:27 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-
-int player_w(t_player *p)
+int	player_w(t_player *p)
 {
 	p->povx += LINEAR_SPEED * p->dirx;
 	p->povy += LINEAR_SPEED * p->diry;
 	return (0);
 }
 
-int player_s(t_player *p)
+int	player_s(t_player *p)
 {
 	p->povx -= LINEAR_SPEED * p->dirx;
 	p->povy -= LINEAR_SPEED * p->diry;
 	return (0);
 }
 
-int player_a(t_player *p)
+int	player_a(t_player *p)
 {
 	p->povx += LINEAR_SPEED * p->diry;
 	p->povy -= LINEAR_SPEED * p->dirx;
 	return (0);
 }
 
-int player_d(t_player *p)
+int	player_d(t_player *p)
 {
 	p->povx -= LINEAR_SPEED * p->diry;
 	p->povy += LINEAR_SPEED * p->dirx;
 	return (0);
 }
 
-int player_left(t_player *p)
+int	player_left(t_player *p)
 {
 	p->pova = fmod((p->pova + ROTATION_SPEED), 2 * M_PI);
-    p->dirx = cos(p->pova);
-    p->diry = -sin(p->pova);
+	p->dirx = cos(p->pova);
+	p->diry = -sin(p->pova);
 	return (0);
 }
 
-int player_right(t_player *p)
+int	player_right(t_player *p)
 {
 	p->pova -= ROTATION_SPEED;
 	if (p->pova < 0)
-	    p->pova += 2 * M_PI;
-    p->dirx = cos(p->pova);
-    p->diry = -sin(p->pova);
+		p->pova += 2 * M_PI;
+	p->dirx = cos(p->pova);
+	p->diry = -sin(p->pova);
 	return (0);
 }
 
 // get integer coordinate given the double value of the position
-int i_coor(double pos)
+int	i_coor(double pos)
 {
-    return ((int) pos / BLOCK_SIZE);
+	return ((int)pos / BLOCK_SIZE);
 }
 
-char    get_map_char(t_graph *g, double x, double y)
+char	get_map_char(t_graph *g, double x, double y)
 {
-    return (g->file->map[i_coor(y) + 2][i_coor(x) + 2]);
+	return (g->file->map[i_coor(y) + 2][i_coor(x) + 2]);
 }
 
 bool	check_pmove(t_graph *g, char c)
 {
-	t_player tp;
-    tp = g->p;
+	t_player	tp;
 
+	tp = g->p;
 	if (c == 'w')
 		player_w(&tp);
 	else if (c == 's')
@@ -87,14 +86,14 @@ bool	check_pmove(t_graph *g, char c)
 		player_left(&tp);
 	else if (c == 'r')
 		player_right(&tp);
-	if (get_map_char(g, tp.povx, tp.povy) != '0') 
+	if (get_map_char(g, tp.povx, tp.povy) != '0')
 		return (false);
-    if (!((int)tp.povx % BLOCK_SIZE))
+	if (!((int)tp.povx % BLOCK_SIZE))
 		if (get_map_char(g, tp.povx - 1, tp.povy) != '0')
-        	return (false);
-    if (!((int)tp.povy % BLOCK_SIZE))
+			return (false);
+	if (!((int)tp.povy % BLOCK_SIZE))
 		if (get_map_char(g, tp.povx, tp.povy - 1) != '0')
-        	return (false);
+			return (false);
 	return (true);
 }
 
@@ -130,7 +129,7 @@ int	p_moves(int keycode, t_graph *g)
 		if (check_pmove(g, 'r') == true)
 			player_right(&g->p);
 	}
-	//pending to move, cant call keydown hooks multiple times.
+	// pending to move, cant call keydown hooks multiple times.
 	else if (keycode == ESC_KEY)
 	{
 		mlx_destroy_window(g->mlx, g->win);
@@ -138,6 +137,6 @@ int	p_moves(int keycode, t_graph *g)
 	}
 	else
 		return (1);
-    loop_rays(g);
+	loop_rays(g);
 	return (0);
 }

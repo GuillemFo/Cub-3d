@@ -6,13 +6,13 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:04:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/07/02 16:19:37 by codespace        ###   ########.fr       */
+/*   Updated: 2024/07/02 16:36:08 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void    wall_v_hit(t_graph *g, t_ray *r)
+void	wall_v_hit(t_graph *g, t_ray *r)
 {
 	r->wvhx = r->fvhx;
 	r->wvhy = r->fvhy;
@@ -34,8 +34,9 @@ void    wall_v_hit(t_graph *g, t_ray *r)
 			r->wvhy += r->deltay;
 		}
 	}
-	//r->wvhl *= fabs(cos(r->raya - g->p.pova));
-	// printf("last Vertical hit X : %.2f Y : %.2f L: %.2f\n", r->wvhx, r->wvhy, r->wvhl);
+	// r->wvhl *= fabs(cos(r->raya - g->p.pova));
+	// printf("last Vertical hit X : %.2f Y : %.2f L: %.2f\n", r->wvhx, r->wvhy,
+	//	r->wvhl);
 }
 
 void	wall_h_hit(t_graph *g, t_ray *r)
@@ -60,10 +61,11 @@ void	wall_h_hit(t_graph *g, t_ray *r)
 			r->whhx += r->deltax;
 		}
 	}
-	//r->whhl *= fabs(cos(r->raya - g->p.pova));
-	// printf("last Horizontal hit X : %.2f Y : %.2f L: %.2f\n", r->whhx, r->whhy, r->whhl);
+	// r->whhl *= fabs(cos(r->raya - g->p.pova));
+	// printf("last Horizontal hit X : %.2f Y : %.2f L: %.2f\n", r->whhx,
+	//	r->whhy, r->whhl);
 }
-void    get_first_hit(t_ray *r)	
+void	get_first_hit(t_ray *r)
 {
 	r->dirx = cos(r->raya);
 	r->diry = -sin(r->raya);
@@ -77,29 +79,28 @@ void    get_first_hit(t_ray *r)
 		r->fhhx = -1;
 	else
 		r->fhhx = (r->fhhy - r->pos_y) * r->dirx / r->diry + r->pos_x;
-/*	printf("Pos X : %.2f Y : %.2f\n", r->pos_x, r->pos_y);
-	printf("Vertical hit X : %.2f Y : %.2f\n", r->fvhx, r->fvhy);
-	printf("Horizontal hit X : %.2f Y : %.2f\n", r->fhhx, r->fhhy);
-*/
+	/*	printf("Pos X : %.2f Y : %.2f\n", r->pos_x, r->pos_y);
+		printf("Vertical hit X : %.2f Y : %.2f\n", r->fvhx, r->fvhy);
+		printf("Horizontal hit X : %.2f Y : %.2f\n", r->fhhx, r->fhhy);
+	*/
 }
 
-void    loop_rays(t_graph *g)
+void	loop_rays(t_graph *g)
 {
-	int i;
+	int	i;
 
-    g->ray.pos_x = g->p.povx;
-    g->ray.pos_y = g->p.povy;
-    g->ray.raya = g->p.pova + FIELD_OF_VIEW / 2;
-    if (g->ray.raya > 2 * M_PI)
-        g->ray.raya -= 2 * M_PI;
-    i = 0;
+	g->ray.pos_x = g->p.povx;
+	g->ray.pos_y = g->p.povy;
+	g->ray.raya = g->p.pova + FIELD_OF_VIEW / 2;
+	if (g->ray.raya > 2 * M_PI)
+		g->ray.raya -= 2 * M_PI;
+	i = 0;
 	while (i < WIN_X)
-    {
-        get_first_hit(&g->ray);
+	{
+		get_first_hit(&g->ray);
 		wall_v_hit(g, &g->ray);
 		wall_h_hit(g, &g->ray);
-		if (g->ray.wvhl < 0 
-			|| (g->ray.whhl >=0 && g->ray.whhl <= g->ray.wvhl))
+		if (g->ray.wvhl < 0 || (g->ray.whhl >= 0 && g->ray.whhl <= g->ray.wvhl))
 		{
 			// take whhl to calculate sow, sidex, side, ...
 			g->ray.soi = (g->ray.diry <= 0);
@@ -118,11 +119,12 @@ void    loop_rays(t_graph *g)
 			g->ray.sow = g->p.bs * g->p.ppd / g->ray.wvhl;
 		}
 		g->ray.sow /= fabs(cos(g->ray.raya - g->p.pova));
-		//printf("Side %d, Offset: %.2f, SOW: %.2f\n", g->ray.soi, g->ray.ooi, g->ray.sow);
+		// printf("Side %d, Offset: %.2f, SOW: %.2f\n", g->ray.soi, g->ray.ooi,
+		//	g->ray.sow);
 		draw_texture(g, i++, g->ray);
 		g->ray.raya -= FIELD_OF_VIEW / WIN_X;
-    	if (g->ray.raya < 0)
-        	g->ray.raya += 2 * M_PI;
+		if (g->ray.raya < 0)
+			g->ray.raya += 2 * M_PI;
 	}
 	mlx_put_image_to_window(g->mlx, g->win, g->i.img, 0, 0);
 }
