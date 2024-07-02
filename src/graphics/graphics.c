@@ -12,23 +12,6 @@
 
 #include "cub3D.h"
 
-// mlx_hook(data->mlx->win, 2, 1L << 0, key_press, &data);
-int	key_press(int keycode, t_graph *g)
-{
-	printf("Key pressed: %d\n", keycode);
-	if (keycode == ESC_KEY)
-	{
-		mlx_destroy_window(g->mlx, g->win);
-		exit(0);
-	}
-    else
-    {
-        mlx_put_image_to_window(g->mlx, g->win, g->i.img, 0, 0);
-        mlx_do_sync(g->mlx);
-    }
-	return (0);
-}
-
 int	close_window(t_graph *g)
 {
 	mlx_destroy_window(g->mlx, g->win);
