@@ -72,26 +72,3 @@ void	draw_column(t_graph *g, int x, t_ray r)
 		c3d_mlx_pixel_put(g->i, x, y++, g->rgbf);
 	}
 }
-
-/*
-void	check_columns(t_graph *g)
-{
-	int	x;
-	int	sow;
-    int sidex;
-
-	x = 0;
-    sidex = 0;
-	while (x < WIN_X)
-	{
-		sow = x % WIN_Y;
-		if (!sow)
-			sow++;
-		draw_column(g, x, sow, 0);
-        draw_texture(g, x, sow, 0, sidex, 0);
-        sidex = (sidex + 1) % BLOCK_SIZE;
-		x++;
-	}
-	mlx_put_image_to_window(g->mlx, g->win, g->i.img, 0, 0);
-}
-*/

@@ -104,48 +104,33 @@ int	p_moves(int keycode, t_graph *g)
 	{
 		if (check_pmove(g, 'w') == true)
 			player_w(&g->p);
-	//	printf("X:%.2f Y:%.2f A:%f\n", g->p.povx, g->p.povy, g->p.pova* (180 / M_PI));
-	//	printf("X:%d Y:%d A:%f\n\n", i_coor(g->p.povx), i_coor(g->p.povy), g->p.pova* (180 / M_PI));
 	}
 	else if (keycode == S_KEY)
 	{
 		if (check_pmove(g, 's') == true)
 			player_s(&g->p);
-	//	printf("X:%.2f Y:%.2f A:%f\n", g->p.povx, g->p.povy, g->p.pova* (180 / M_PI));
-	//	printf("X:%d Y:%d A:%f\n\n", i_coor(g->p.povx), i_coor(g->p.povy), g->p.pova* (180 / M_PI));
 	}
 	else if (keycode == A_KEY)
 	{
 		if (check_pmove(g, 'a') == true)
 			player_a(&g->p);
-	//	printf("X:%.2f Y:%.2f A:%f\n", g->p.povx, g->p.povy, g->p.pova* (180 / M_PI));
-	//	printf("X:%d Y:%d A:%f\n\n", i_coor(g->p.povx), i_coor(g->p.povy), g->p.pova* (180 / M_PI));
 	}
 	else if (keycode == D_KEY)
 	{
 		if (check_pmove(g, 'd') == true)
 			player_d(&g->p);
-	//	printf("X:%.2f Y:%.2f A:%f\n", g->p.povx, g->p.povy, g->p.pova* (180 / M_PI));
-	//	printf("X:%d Y:%d A:%f\n\n", i_coor(g->p.povx), i_coor(g->p.povy), g->p.pova* (180 / M_PI));
 	}
 	else if (keycode == LEFT_KEY)
 	{
 		if (check_pmove(g, 'l') == true)
 			player_left(&g->p);
-	//	printf("X:%.2f Y:%.2f A:%f\n", g->p.povx, g->p.povy, g->p.pova* (180 / M_PI));
-	//	printf("X:%d Y:%d A:%f\n\n", i_coor(g->p.povx), i_coor(g->p.povy), g->p.pova* (180 / M_PI));
 	}
-
-	/// This key wont work correctly
 	else if (keycode == RIGHT_KEY)
 	{
 		if (check_pmove(g, 'r') == true)
 			player_right(&g->p);
-	//	printf("X:%.2f Y:%.2f A:%f\n", g->p.povx, g->p.povy, g->p.pova* (180 / M_PI));
-	//	printf("X:%d Y:%d A:%f\n\n", i_coor(g->p.povx), i_coor(g->p.povy), g->p.pova* (180 / M_PI));
 	}
 	//pending to move, cant call keydown hooks multiple times.
-	//will only listen to the last one
 	else if (keycode == ESC_KEY)
 	{
 		mlx_destroy_window(g->mlx, g->win);

@@ -29,27 +29,12 @@ int	key_press(int keycode, t_graph *g)
 	return (0);
 }
 
-
-
 int	close_window(t_graph *g)
 {
 	mlx_destroy_window(g->mlx, g->win);
 	exit(0);
 	return (1);
 }
-
-/*
-old struct style.
-void	missing_parser(t_data *data)
-{
-	data->gr.povy = 4;	player pos y
-	data->gr.povx = 4;	player pos x
-	data->gr.pova = 270; //south. player pos angle
-	data->gr.bs = 512;	texture size
-	data->gr.vh = 256;	player pov height
-}
-*/
-
 
 int img_init(t_graph *g)
 {
@@ -61,7 +46,6 @@ int img_init(t_graph *g)
 	g->i.addr = mlx_get_data_addr(g->i.img, &(g->i.bpp), &(g->i.ll), &(g->i.en));
     return (0);
 }
-
 
 int	start_mlx(t_data *data)
 {
@@ -78,39 +62,10 @@ int	start_mlx(t_data *data)
 	}
 	if (img_init(data->g))
         return (message("Image creation error\n"), 1);
-	// Been told to start first with a color innstead of image
-	// maybe better to do a separate functionfor hooks and loop
-    //mlx_put_image_to_window(data->g->mlx, data->g->win, data->g->txt[0].img, 0, 0);
 	data->g->file = data->file;
 	loop_rays(data->g);
-	//mlx_hook(data->g->win, KEYDOWN, 0, key_press, data->g);
 	mlx_hook(data->g->win, KEYDOWN, 0, p_moves, data->g);
 	mlx_hook(data->g->win, DESTROY, 1L << 0, close_window, data->g);
 	mlx_loop(data->g->mlx);
     return (0);
 }
-
-//int	game_loop()??
-
-/*
-int	main_game(t_data *data)
-{
-	ft_printf("pova=%d\n", data->g->p.pova);
-	start_mlx(data);
-
-	mlx_put_image_to_window(data->g, data->g->win, data->g->i.img, 0, 0);
-	ft_printf("pova=%d\n", data->g->p.pova);
-
-	return (0);
-}
-*/
-
-/*
-
-    Obrir finestra --> OK
-    Pintar alguna imatge a una posicio x,y, per exemple les mateixes textures --> imatge si, a posicio en concret no se
-    Aconseguir que amb esc o la creu es tanqui la finestra --> OK
-    Aconseguir que amb les tecles es canviin les coordenades povx, povy i l'angle povo
-    Les funcions per en una columna y pintar el cealing
-    
-*/
