@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   c3d_free.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:57:58 by josegar2          #+#    #+#             */
-/*   Updated: 2024/06/28 19:26:09 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/07/02 15:52:58 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,16 @@ t_file	*c3d_free_file(t_file *file)
 
 t_graph	*c3d_free_win(t_graph *win)
 {
-    if (win->win)
-    {
-        // close window
-    }
-    if (win->mlx)
-    {
-        x_destroy_img(win);
-    }
-    win = ft_free(win);
-    return (win);
+	if (win->win)
+	{
+		// close window
+	}
+	if (win->mlx)
+	{
+		x_destroy_img(win);
+	}
+	win = ft_free(win);
+	return (win);
 }
 
 t_data	*c3d_free(t_data *data)

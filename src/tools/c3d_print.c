@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   c3d_print.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 11:18:04 by josegar2          #+#    #+#             */
-/*   Updated: 2024/06/28 00:45:43 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/07/02 15:54:01 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	print_map_term(t_file *file)
 	printf("C : %d, %d, %d\n", file->C[0], file->C[1], file->C[2]);
 	printf("Start x: %d y: %d\n", file->stx, file->sty);
 	printf("Start orientation: %c\n", file->sto);
-    printf("Max X: %d Y: %d\n", file->max_x, file->max_y);
+	printf("Max X: %d Y: %d\n", file->max_x, file->max_y);
 	while (i <= file->max_y + 3)
 	{
 		printf("--%s--\n", file->map[i]);

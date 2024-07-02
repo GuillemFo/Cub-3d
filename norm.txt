@@ -58,11 +58,9 @@ Error: TOO_FEW_TAB          (line:  76, col:   1):	Missing tabs for indent level
 Error: SPACE_REPLACE_TAB    (line:  76, col:   9):	Found space when expecting tab
 Error: TOO_FEW_TAB          (line:  79, col:   1):	Missing tabs for indent level
 Error: SPACE_REPLACE_TAB    (line:  79, col:   5):	Found space when expecting tab
-src/tools/ft_free.c: OK!
 src/tools/c3d_print.c: Error!
 Error: TOO_FEW_TAB          (line:  28, col:   1):	Missing tabs for indent level
 Error: SPACE_REPLACE_TAB    (line:  28, col:   5):	Found space when expecting tab
-src/tools/tools.c: OK!
 src/tools/c3d_free.c: Error!
 Error: TOO_FEW_TAB          (line:  56, col:   1):	Missing tabs for indent level
 Error: SPACE_REPLACE_TAB    (line:  56, col:   5):	Found space when expecting tab
@@ -237,63 +235,3 @@ Error: TOO_FEW_TAB          (line:  47, col:   1):	Missing tabs for indent level
 Error: SPACE_REPLACE_TAB    (line:  47, col:   9):	Found space when expecting tab
 Error: TOO_FEW_TAB          (line:  53, col:   1):	Missing tabs for indent level
 Error: SPACE_REPLACE_TAB    (line:  53, col:   5):	Found space when expecting tab
-src/parsing/load_map.c: OK!
-src/parsing/load_arg.c: OK!
-src/parsing/check_wall.c: OK!
-src/parsing/parsing.c: OK!
-src/errors/errors.c: OK!
-src/libft/ft_strlcat.c: OK!
-src/libft/get_next_line_utils.c: OK!
-src/libft/ft_lstmap_bonus.c: OK!
-src/libft/ft_strlcpy.c: OK!
-src/libft/ft_split.c: OK!
-src/libft/ft_memcpy.c: OK!
-src/libft/ft_strcmp.c: OK!
-src/libft/ft_memcmp.c: OK!
-src/libft/ft_lstsize_bonus.c: OK!
-src/libft/ft_printf.c: OK!
-src/libft/ft_putstr_fd.c: OK!
-src/libft/ft_strlen.c: OK!
-src/libft/ft_strchr.c: OK!
-src/libft/ft_itoaprint.c: OK!
-src/libft/ft_itoa.c: OK!
-src/libft/ft_printhex.c: OK!
-src/libft/ft_tolower.c: OK!
-src/libft/ft_isalpha.c: OK!
-src/libft/ft_strdup.c: OK!
-src/libft/ft_u.c: OK!
-src/libft/ft_striteri.c: OK!
-src/libft/ft_atoi.c: OK!
-src/libft/ft_lstclear_bonus.c: OK!
-src/libft/ft_strrchr.c: OK!
-src/libft/ft_strncmp.c: OK!
-src/libft/ft_calloc.c: OK!
-src/libft/get_next_line.c: OK!
-src/libft/ft_putendl_fd.c: OK!
-src/libft/ft_strnstr.c: OK!
-src/libft/libft.h: OK!
-src/libft/ft_bzero.c: OK!
-src/libft/get_next_line.h: OK!
-src/libft/ft_lstiter_bonus.c: OK!
-src/libft/ft_lstlast_bonus.c: OK!
-src/libft/ft_substr.c: OK!
-src/libft/ft_isascii.c: OK!
-src/libft/ft_strjoin.c: OK!
-src/libft/ft_putnbr_fd.c: OK!
-src/libft/ft_bonus2.c: OK!
-src/libft/ft_memset.c: OK!
-src/libft/ft_lstnew_bonus.c: OK!
-src/libft/ft_putchar_fd.c: OK!
-src/libft/ft_isprint.c: OK!
-src/libft/ft_isdigit.c: OK!
-src/libft/ft_strmapi.c: OK!
-src/libft/ft_isalnum.c: OK!
-src/libft/ft_strtrim.c: OK!
-src/libft/ft_lstadd_back_bonus.c: OK!
-src/libft/ft_memchr.c: OK!
-src/libft/ft_toupper.c: OK!
-src/libft/ft_memmove.c: OK!
-src/libft/ft_printstring.c: OK!
-src/libft/ft_printf.h: OK!
-src/libft/ft_lstadd_front_bonus.c: OK!
-src/libft/ft_lstdelone_bonus.c: OK!
