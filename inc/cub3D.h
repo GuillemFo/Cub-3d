@@ -206,6 +206,13 @@ int 	i_coor(double pos);
 char    get_map_char(t_graph *g, double x, double y);
 void    loop_rays(t_graph *g);
 int			p_moves(int keycode, t_graph *g);
+int	player_right(t_player *p);
+bool	check_pmove(t_graph *g, char c);
+int	player_w(t_player *p);
+int	player_s(t_player *p);
+int	player_a(t_player *p);
+int	player_d(t_player *p);
+int	player_left(t_player *p);
 
 /*-=-=-=-=-=- TEST FUNCTIONS=-=-=-=-=-=-=-=-=*/
 

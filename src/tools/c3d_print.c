@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 11:18:04 by josegar2          #+#    #+#             */
-/*   Updated: 2024/07/02 15:54:01 by codespace        ###   ########.fr       */
+/*   Updated: 2024/07/03 13:09:23 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,9 @@ void	print_map_term(t_file *file)
 		printf("--%s--\n", file->map[i]);
 		i++;
 	}
+}
+
+void	message(char *msg)
+{
+	printf("Error\n%s", msg);
 }

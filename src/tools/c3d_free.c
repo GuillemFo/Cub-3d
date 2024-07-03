@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:57:58 by josegar2          #+#    #+#             */
-/*   Updated: 2024/07/02 15:52:58 by codespace        ###   ########.fr       */
+/*   Updated: 2024/07/03 13:08:16 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,11 @@ t_data	*c3d_free(t_data *data)
 		data = ft_free(data);
 	}
 	return (data);
+}
+
+void	*ft_free(void *p)
+{
+	if (p)
+		free(p);
+	return (NULL);
 }
