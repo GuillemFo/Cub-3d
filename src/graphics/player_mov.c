@@ -6,13 +6,13 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 13:01:40 by codespace         #+#    #+#             */
-/*   Updated: 2024/07/03 13:06:14 by codespace        ###   ########.fr       */
+/*   Updated: 2024/07/03 16:23:07 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	other_moves(int keycode, t_graph *g)
+int	other_moves(int keycode, t_graph *g)
 {
 	if (keycode == LEFT_KEY)
 	{
@@ -29,6 +29,7 @@ void	other_moves(int keycode, t_graph *g)
 		mlx_destroy_window(g->mlx, g->win);
 		exit(0);
 	}
+	return (0);
 }
 
 int	p_moves(int keycode, t_graph *g)
@@ -57,4 +58,11 @@ int	p_moves(int keycode, t_graph *g)
 		other_moves(keycode, g);
 	loop_rays(g);
 	return (0);
+}
+
+int	m_moves(int keycode, t_graph *g)
+{
+	(void)g;
+	ft_printf("%d\n", keycode);
+return (0);
 }

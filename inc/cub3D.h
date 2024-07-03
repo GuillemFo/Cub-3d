@@ -213,6 +213,7 @@ int	player_s(t_player *p);
 int	player_a(t_player *p);
 int	player_d(t_player *p);
 int	player_left(t_player *p);
+int	m_moves(int keycode, t_graph *g);
 
 /*-=-=-=-=-=- TEST FUNCTIONS=-=-=-=-=-=-=-=-=*/
 
