@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 12:59:40 by codespace         #+#    #+#             */
-/*   Updated: 2024/07/03 13:01:05 by codespace        ###   ########.fr       */
+/*   Updated: 2024/07/03 19:40:15 by wil              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	player_right(t_player *p)
 {
-	p->pova -= ROTATION_SPEED;
+	p->pova -= p->rots;
 	if (p->pova < 0)
 		p->pova += 2 * M_PI;
 	p->dirx = cos(p->pova);

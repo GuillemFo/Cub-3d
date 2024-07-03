@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:04:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/07/03 13:16:22 by codespace        ###   ########.fr       */
+/*   Updated: 2024/07/03 19:47:04 by wil              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	loop_rays(t_graph *g)
 
 	g->ray.pos_x = g->p.povx;
 	g->ray.pos_y = g->p.povy;
-	g->ray.raya = g->p.pova + FIELD_OF_VIEW / 2;
+	g->ray.raya = g->p.pova + g->p.fov / 2;
 	if (g->ray.raya > 2 * M_PI)
 		g->ray.raya -= 2 * M_PI;
 	i = 0;
@@ -123,7 +123,7 @@ void	loop_rays(t_graph *g)
 		// printf("Side %d, Offset: %.2f, SOW: %.2f\n", g->ray.soi, g->ray.ooi,
 		//	g->ray.sow);
 		draw_texture(g, i++, g->ray);
-		g->ray.raya -= FIELD_OF_VIEW / WIN_X;
+		g->ray.raya -= g->p.angs;
 		if (g->ray.raya < 0)
 			g->ray.raya += 2 * M_PI;
 	}

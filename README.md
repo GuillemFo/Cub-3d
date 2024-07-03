@@ -81,7 +81,91 @@ Indirect leak of 160 byte(s) in 1 object(s) allocated from:
     #1 0x7e4a7d0de9ef in XCreateGC (/lib/x86_64-linux-gnu/libX11.so.6+0x1e9ef)
 ------------------------------------------------------------------------------
 
+╰─ ./cub3D maps/map3.cub
+NO : textures/Wall_NO1.xpm
+SO : textures/Wall_SO1.xpm
+EA : textures/Wall_EA1.xpm
+WE : textures/Wall_WE1.xpm
+F : 184, 113, 39
+C : 51, 198, 227
+Start x: 26 y: 11
+Start orientation: N
+Max X: 38 Y: 14
+--                                          --
+--                                          --
+--          1111111111111111111111111       --
+--          1000000000110000000000001       --
+--          1011000001110000000000001       --
+--          100101111111111100000000111111  --
+--  11111111101101101110001111111111        --
+--  1000000000110111111011111111111         --
+--  1111011111111111111111111111111         --
+--  111101111111111111111111010001          --
+--  11000000110101011100000010001           --
+--  10000000000000001100000010001           --
+--  10000000000000001101010010001           --
+--  1100000111010101111101111000111         --
+--  11110011111010111101111010001           --
+--  11111111111111111111111111111           --
+--                                          --
+--                                          --
+=================================================================
+==14346==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x6040000007fb at pc 0x56f2d46767b7 bp 0x7ffe38d3b810 sp 0x7ffe38d3b800
+READ of size 1 at 0x6040000007fb thread T0
+    #0 0x56f2d46767b6 in get_map_char src/graphics/player_2.c:33
+    #1 0x56f2d46729f3 in wall_v_hit src/graphics/math.c:25
+    #2 0x56f2d46739f8 in loop_rays src/graphics/math.c:102
+    #3 0x56f2d4676ed8 in p_moves src/graphics/player_mov.c:59
+    #4 0x56f2d4678405 in mlx_loop (/home/wil/Desktop/Cub-3d/cub3D+0x13405)
+    #5 0x56f2d467263b in start_mlx src/graphics/graphics.c:54
+    #6 0x56f2d466e71a in main src/main.c:75
+    #7 0x729895829d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #8 0x729895829e3f in __libc_start_main_impl ../csu/libc-start.c:392
+    #9 0x56f2d466dae4 in _start (/home/wil/Desktop/Cub-3d/cub3D+0x8ae4)
 
+0x6040000007fb is located 0 bytes to the right of 43-byte region [0x6040000007d0,0x6040000007fb)
+allocated by thread T0 here:
+    #0 0x729895eb4887 in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:145
+    #1 0x56f2d46771c8 in ft_calloc (/home/wil/Desktop/Cub-3d/cub3D+0x121c8)
+    #2 0x56f2d466f341 in init_map src/parsing/load_map.c:52
+    #3 0x56f2d466f4ff in build_map src/parsing/load_map.c:67
+    #4 0x56f2d466e66a in main src/main.c:71
+    #5 0x729895829d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow src/graphics/player_2.c:33 in get_map_char
+Shadow bytes around the buggy address:
+  0x0c087fff80a0: fa fa fd fd fd fd fd fa fa fa 00 00 00 00 00 03
+  0x0c087fff80b0: fa fa 00 00 00 00 00 03 fa fa 00 00 00 00 00 03
+  0x0c087fff80c0: fa fa 00 00 00 00 00 03 fa fa 00 00 00 00 00 03
+  0x0c087fff80d0: fa fa 00 00 00 00 00 03 fa fa 00 00 00 00 00 03
+  0x0c087fff80e0: fa fa 00 00 00 00 00 03 fa fa 00 00 00 00 00 03
+=>0x0c087fff80f0: fa fa 00 00 00 00 00 03 fa fa 00 00 00 00 00[03]
+  0x0c087fff8100: fa fa 00 00 00 00 00 03 fa fa 00 00 00 00 00 03
+  0x0c087fff8110: fa fa 00 00 00 00 00 03 fa fa 00 00 00 00 00 03
+  0x0c087fff8120: fa fa 00 00 00 00 00 03 fa fa 00 00 00 00 00 03
+  0x0c087fff8130: fa fa 00 00 00 00 00 03 fa fa fd fd fd fd fd fa
+  0x0c087fff8140: fa fa fd fd fd fd fd fd fa fa fd fd fd fd fd fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+  Shadow gap:              cc
+==14346==ABORTING
 
 
 

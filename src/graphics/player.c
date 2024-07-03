@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:10:26 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/07/03 13:05:34 by codespace        ###   ########.fr       */
+/*   Updated: 2024/07/03 19:39:57 by wil              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	player_d(t_player *p)
 
 int	player_left(t_player *p)
 {
-	p->pova = fmod((p->pova + ROTATION_SPEED), 2 * M_PI);
+	p->pova = fmod((p->pova + p->rots), 2 * M_PI);
 	p->dirx = cos(p->pova);
 	p->diry = -sin(p->pova);
 	return (0);

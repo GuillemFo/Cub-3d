@@ -35,13 +35,10 @@
 
 # define BLOCK_SIZE 512
 # define VIEW_HEIGHT 256
-# define FIELD_OF_VIEW (60 * M_PI) / 180
+# define FOV 60
 # define WIN_X 1920
 # define WIN_Y 1080
-# define ANGULAR_STEP FIELD_OF_VIEW / WIN_X
-# define POV_DISTANCE (WIN_X / 2) / tan(FIELD_OF_VIEW / 2)
 # define LINEAR_SPEED 64
-# define ROTATION_SPEED (5 * M_PI) / 180
 
 /*###	KEY MAPPING	###*/
 
