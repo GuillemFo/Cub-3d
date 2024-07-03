@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:43:09 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/07/03 16:21:09 by codespace        ###   ########.fr       */
+/*   Updated: 2024/07/03 18:35:23 by wil              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	start_mlx(t_data *data)
 	data->g->file = data->file;
 	loop_rays(data->g);
 	mlx_hook(data->g->win, KEYDOWN, 0, p_moves, data->g);
-	mlx_hook(data->g->win, 06, (1L<<6), m_moves, data->g);// pending mouse moves
+	//mlx_hook(data->g->win, 06, (1L<<6), m_moves, data->g);// pending mouse moves
 	mlx_hook(data->g->win, DESTROY, 1L << 0, close_window, data->g);
 	mlx_loop(data->g->mlx);
 	return (0);

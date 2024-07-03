@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_mov.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 13:01:40 by codespace         #+#    #+#             */
-/*   Updated: 2024/07/03 16:23:07 by codespace        ###   ########.fr       */
+/*   Updated: 2024/07/03 18:35:16 by wil              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,20 @@ int	p_moves(int keycode, t_graph *g)
 	return (0);
 }
 
+/*
 int	m_moves(int keycode, t_graph *g)
 {
-	(void)g;
 	ft_printf("%d\n", keycode);
+	if (keycode < (WIN_X/2))
+	{
+		if (check_pmove(g, 'l') == true)
+			player_left(&g->p);
+	}
+	else if (keycode > (WIN_X/2))
+	{
+		if (check_pmove(g, 'r') == true)
+			player_right(&g->p);
+	}
 return (0);
 }
+*/
