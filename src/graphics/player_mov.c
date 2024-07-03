@@ -6,7 +6,7 @@
 /*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 13:01:40 by codespace         #+#    #+#             */
-/*   Updated: 2024/07/03 21:56:06 by wil              ###   ########.fr       */
+/*   Updated: 2024/07/03 21:58:01 by wil              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int	p_moves(int keycode, t_graph *g)
 	else if (keycode == LEFT_KEY || keycode == RIGHT_KEY || keycode == ESC_KEY)
 		other_moves(keycode, g);
 	loop_rays(g);
-		minimap(g);
 	return (0);
 }
 
