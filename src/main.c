@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:11 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/30 23:17:31 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/07/03 21:27:06 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void    set_start(t_graph *g, t_file *f)
     g->p.bs = BLOCK_SIZE;
     g->p.vh = VIEW_HEIGHT;
     g->p.fov = FIELD_OF_VIEW;
-    g->p.ppd = (BLOCK_SIZE / 2) / tan(g->p.fov / 2);
+    g->p.ppd = (WIN_X / 2) / tan(g->p.fov / 2);
     g->p.angs = ANGULAR_STEP;
     g->p.lins = LINEAR_SPEED;
     g->p.rots = ROTATION_SPEED;
