@@ -1,5 +1,101 @@
 # Cub-3d
 
+Map issues:
+-------------------------------------
+Map just under some parameters
+
+C 51,198,227
+1111
+-------------------------------------
+Map with multiple new lines at the end
+-------------------------------------
+Crash sometimes when corner not fully closed
+-------------------------------------
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==14118==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000024 (pc 0x5f0a6d27f709 bp 0x7ffe49e813b0 sp 0x7ffe49e81380 T0)
+==14118==The signal is caused by a READ memory access.
+==14118==Hint: address points to the zero page.
+    #0 0x5f0a6d27f709 in get_map_char src/graphics/player_2.c:33
+    #1 0x5f0a6d27c00b in wall_h_hit src/graphics/math.c:52
+    #2 0x5f0a6d27c9db in loop_rays src/graphics/math.c:103
+    #3 0x5f0a6d27fe26 in p_moves src/graphics/player_mov.c:58
+    #4 0x5f0a6d281355 in mlx_loop (/home/wil/Desktop/Cub-3d/cub3D+0x13355)
+    #5 0x5f0a6d27b63b in start_mlx src/graphics/graphics.c:53
+    #6 0x5f0a6d27771a in main src/main.c:75
+    #7 0x7f909d029d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #8 0x7f909d029e3f in __libc_start_main_impl ../csu/libc-start.c:392
+    #9 0x5f0a6d276ae4 in _start (/home/wil/Desktop/Cub-3d/cub3D+0x8ae4)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV src/graphics/player_2.c:33 in get_map_char
+==14118==ABORTING
+--------------------------------------------------------
+When tab in map, says map not closed.
+--------------------------------------------------------
+Some times if space replaced by tab, map crashes or says not closed
+--------------------------------------------------------
+Error
+Map not closed
+
+=================================================================
+==15438==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 16 byte(s) in 1 object(s) allocated from:
+    #0 0x70ded80b4887 in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:145
+    #1 0x5c801cc1e116 in ft_calloc (/home/wil/Desktop/Cub-3d/cub3D+0x12116)
+    #2 0x5c801cc14bc3 in init_data src/main.c:19
+    #3 0x5c801cc1558d in main src/main.c:66
+    #4 0x70ded7a29d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+
+Indirect leak of 488 byte(s) in 1 object(s) allocated from:
+    #0 0x70ded80b4887 in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:145
+    #1 0x5c801cc1e116 in ft_calloc (/home/wil/Desktop/Cub-3d/cub3D+0x12116)
+    #2 0x5c801cc14c3e in init_data src/main.c:25
+    #3 0x5c801cc1558d in main src/main.c:66
+    #4 0x70ded7a29d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+
+SUMMARY: AddressSanitizer: 504 byte(s) leaked in 2 allocation(s).
+-----------------------------------------------------------------
+If map has spaces before the map, it calls as a not closed one
+-----------------------------------------------------------------
+
+Error
+Can't load texture files
+
+=================================================================
+==17993==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 136 byte(s) in 1 object(s) allocated from:
+    #0 0x7e4a7d2b4887 in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:145
+    #1 0x5ead8d952f3f in mlx_init (/home/wil/Desktop/Cub-3d/cub3D+0x12f3f)
+    #2 0x5ead8d94971a in main src/main.c:75
+    #3 0x7e4a7cc29d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+
+Indirect leak of 936 byte(s) in 1 object(s) allocated from:
+    #0 0x7e4a7d2b4887 in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:145
+    #1 0x5ead8d9530f0 in mlx_new_window (/home/wil/Desktop/Cub-3d/cub3D+0x130f0)
+
+Indirect leak of 160 byte(s) in 1 object(s) allocated from:
+    #0 0x7e4a7d2b4887 in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:145
+    #1 0x7e4a7d0de9ef in XCreateGC (/lib/x86_64-linux-gnu/libX11.so.6+0x1e9ef)
+------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 BUG!!! If map has multiple new lines without anything, will return error empty line on map!!
 
 Subject

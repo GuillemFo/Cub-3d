@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 12:00:29 by josegar2          #+#    #+#             */
-/*   Updated: 2024/06/26 17:55:20 by codespace        ###   ########.fr       */
+/*   Updated: 2024/07/03 13:15:07 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,76 +14,61 @@
 
 void	c3d_mlx_pixel_put(t_image im, int x, int y, int color)
 {
-	char *dst;
+	char	*dst;
 
 	dst = im.addr + (y * im.ll + x * (im.bpp / 8));
 	*(unsigned int *)dst = color;
 }
 
-int get_texture_color(t_image im, int x, int y)
+int	get_texture_color(t_image im, int x, int y)
 {
-	char *dst;
+	char	*dst;
 
 	dst = im.addr + (y * im.ll + x * (im.bpp / 8));
 	return (*(unsigned int *)dst);
 }
 
-void	draw_texture(t_graph *g, int x, int sow, int side, int sidex, int off)
+void	draw_texture(t_graph *g, int x, t_ray r)
 {
-	int 	y;
+	int		y;
+	int		z;
 	float	yratio;
-	float	xratio;
-	int		txty;
+	double	txty;
 	int		color;
 
-	(void)off;
-	y = (WIN_Y - sow) / 2;
-	yratio = g->txt[side].h / sow;
-	xratio = g->txt[side].w / BLOCK_SIZE;
-	txty = 0;
-	while (y > 0 && y < WIN_Y && y < sow + (WIN_Y - sow) / 2)
+	y = (WIN_Y > r.sow) * (WIN_Y - r.sow) / 2;
+	z = (y + r.sow) * (WIN_Y > r.sow) + WIN_Y * (WIN_Y <= r.sow);
+	yratio = (float)g->txt[r.soi].h / r.sow;
+	r.ooi *= g->txt[r.soi].w / BLOCK_SIZE;
+	txty = (r.sow > WIN_Y) * yratio * (r.sow - WIN_Y) / 2;
+	while (y < z)
 	{
-		color = get_texture_color(g->txt[side], sidex * xratio, txty++ * yratio);
+		color = get_texture_color(g->txt[r.soi], r.ooi, trunc(txty));
+		txty += yratio;
 		c3d_mlx_pixel_put(g->i, x, y++, color);
 	}
+	draw_column(g, x, r);
 }
+//	printf("ooi: %.3f sow: %.3f\n",r.ooi, r.sow);
+//	printf("x: %d, ooi: %.3f yratio: %.3f", x, r.ooi, yratio);
+//	printf("y: %d z: %d txty: %.3f\n", y, z, txty);
 
 // draw the column x of the scene, with a SizeOfWall sow and an offset off
 // off == 0 means in the center
-void	draw_column(t_graph *g, int x, int sow, int off)
+void	draw_column(t_graph *g, int x, t_ray r)
 {
-	int y;
+	int	y;
 
+	if (r.sow >= WIN_Y)
+		return ;
 	y = 0;
-	(void)off;
-	while (WIN_Y - sow > 0 && y < (WIN_Y - sow) / 2)
+	while (WIN_Y - r.sow > 0 && y < (int)(WIN_Y - r.sow) / 2)
 	{
 		c3d_mlx_pixel_put(g->i, x, y++, g->rgbc);
 	}
-    y += sow;
+	y += (int)r.sow;
 	while (y < WIN_Y)
 	{
 		c3d_mlx_pixel_put(g->i, x, y++, g->rgbf);
 	}
-}
-
-void	check_columns(t_graph *g)
-{
-	int	x;
-	int	sow;
-    int sidex;
-
-	x = 0;
-    sidex = 0;
-	while (x < WIN_X)
-	{
-		sow = x % WIN_Y;
-		if (!sow)
-			sow++;
-		draw_column(g, x, sow, 0);
-        draw_texture(g, x, sow, 0, sidex, 0);
-        sidex = (sidex + 1) % BLOCK_SIZE;
-		x++;
-	}
-	mlx_put_image_to_window(g->mlx, g->win, g->i.img, 0, 0);
 }

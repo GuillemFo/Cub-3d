@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:11 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/20 10:49:05 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/07/03 21:40:32 by wil              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,28 +28,33 @@ t_data	*init_data(void)
 	return (ldata);
 }
 
-void    set_start(t_data *data)
+void	set_start(t_graph *g, t_file *f)
 {
-    data->g->p.bs = BLOCK_SIZE;
-    data->g->p.vh = VIEW_HEIGHT;
-    data->g->p.fov = FIELD_OF_VIEW;
-    data->g->p.angs = ANGULAR_STEP;
-    data->g->p.lins = LINEAR_SPEED;
-    data->g->p.rots = ROTATION_SPEED;
-    data->g->p.povx = data->file->stx * BLOCK_SIZE + BLOCK_SIZE / 2;
-    data->g->p.povy = data->file->sty * BLOCK_SIZE + BLOCK_SIZE / 2;
-    if (data->file->sto == 'N')
-        data->g->p.pova = (90 * M_PI) / 180;
-    else if (data->file->sto == 'S')
-        data->g->p.pova = (270 * M_PI) / 180;
-    else if (data->file->sto == 'W')
-        data->g->p.pova = M_PI;
-    else if (data->file->sto == 'E')
-        data->g->p.pova = 0;
-    data->g->rgbc = (data->file->C[0] << 16) + (data->file->C[1] << 8);
-    data->g->rgbc += data->file->C[2];
-    data->g->rgbf = (data->file->F[0] << 16) + (data->file->F[1] << 8);
-    data->g->rgbf += data->file->F[2];
+	g->p.bs = BLOCK_SIZE;
+	g->p.vh = VIEW_HEIGHT;
+	g->p.fov = (FOV * M_PI) / 180; //FIELD_OF_VIEW;
+	g->p.ppd = (WIN_X / 2) / tan(g->p.fov / 2);
+	g->p.angs = ((FOV * M_PI) / 180) / WIN_X;//ANGULAR_STEP;
+	g->p.lins = LINEAR_SPEED;
+	g->p.rots = (5 * M_PI) / 180;//ROTATION_SPEED;
+	g->p.povx = f->stx * BLOCK_SIZE;
+	g->p.povx += (BLOCK_SIZE > 1) * BLOCK_SIZE / 2;
+	g->p.povy = f->sty * BLOCK_SIZE;
+	g->p.povy += (BLOCK_SIZE > 1) * BLOCK_SIZE / 2;
+	if (f->sto == 'N')
+		g->p.pova = (90 * M_PI) / 180;
+	else if (f->sto == 'S')
+		g->p.pova = (270 * M_PI) / 180;
+	else if (f->sto == 'W')
+		g->p.pova = M_PI;
+	else if (f->sto == 'E')
+		g->p.pova = 0;
+	g->p.dirx = cos(g->p.pova);
+	g->p.diry = -sin(g->p.pova);
+	g->rgbc = (f->c[0] << 16) + (f->c[1] << 8);
+	g->rgbc += f->c[2];
+	g->rgbf = (f->f[0] << 16) + (f->f[1] << 8);
+	g->rgbf += f->f[2];
 }
 
 int	main(int ac, char **av)
@@ -66,10 +71,10 @@ int	main(int ac, char **av)
 	if (build_map(av, data->file) == 1)
 		return (1);
 	print_map_term(data->file);
-    set_start(data);
+	set_start(data->g, data->file);
 	if (start_mlx(data))
-        return (c3d_free(data), 1);
+		return (c3d_free(data), 1);
 	printf("hola\n");
 	c3d_free(data);
-    return (0);
+	return (0);
 }

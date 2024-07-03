@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 20:46:15 by josegar2          #+#    #+#             */
-/*   Updated: 2024/06/18 12:04:50 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/07/03 20:20:52 by wil              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ void	x_destroy_img(t_graph *mx)
 			mlx_destroy_image(mx->mlx, mx->txt[i].img);
 			mx->txt[i].addr = NULL;
 		}
+		i++;
 	}
-	if (!mx->i.addr)
+	if (mx->i.addr)
 	{
 		mlx_destroy_image(mx->mlx, mx->i.img);
 		mx->i.addr = NULL;
@@ -46,10 +47,10 @@ t_image	get_xpm_img(t_graph *mx, char *fn)
 
 int	load_textures(t_file *fl, t_graph *mx)
 {
-	mx->txt[0] = get_xpm_img(mx, fl->NO);
-	mx->txt[1] = get_xpm_img(mx, fl->SO);
-	mx->txt[2] = get_xpm_img(mx, fl->EA);
-	mx->txt[3] = get_xpm_img(mx, fl->WE);
+	mx->txt[0] = get_xpm_img(mx, fl->no);
+	mx->txt[1] = get_xpm_img(mx, fl->so);
+	mx->txt[2] = get_xpm_img(mx, fl->ea);
+	mx->txt[3] = get_xpm_img(mx, fl->we);
 	if (!mx->txt[0].addr || !mx->txt[1].addr || !mx->txt[2].addr
 		|| !mx->txt[3].addr)
 	{
