@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:10:26 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/07/01 13:57:13 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/07/03 20:38:11 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,20 @@ char    get_map_char(t_graph *g, double x, double y)
     return (g->file->map[i_coor(y) + 2][i_coor(x) + 2]);
 }
 
+bool	check_around(t_graph *g, t_player tp)
+{
+	if (!((int)tp.povx % BLOCK_SIZE))
+		if (get_map_char(g, tp.povx - 1, tp.povy) != '0')
+        	return (false);
+    if (!((int)tp.povy % BLOCK_SIZE))
+		if (get_map_char(g, tp.povx, tp.povy - 1) != '0')
+        	return (false);
+	if (!((int)tp.povx % BLOCK_SIZE) && !((int)tp.povy % BLOCK_SIZE))
+		if (get_map_char(g, tp.povx - 1, tp.povy - 1) != '0')
+        	return (false);
+	return (true);
+}	
+
 bool	check_pmove(t_graph *g, char c)
 {
 	t_player tp;
@@ -89,12 +103,8 @@ bool	check_pmove(t_graph *g, char c)
 		player_right(&tp);
 	if (get_map_char(g, tp.povx, tp.povy) != '0') 
 		return (false);
-    if (!((int)tp.povx % BLOCK_SIZE))
-		if (get_map_char(g, tp.povx - 1, tp.povy) != '0')
-        	return (false);
-    if (!((int)tp.povy % BLOCK_SIZE))
-		if (get_map_char(g, tp.povx, tp.povy - 1) != '0')
-        	return (false);
+    if (check_around(g, tp) == false)
+		return (false);
 	return (true);
 }
 
