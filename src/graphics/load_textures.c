@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 20:46:15 by josegar2          #+#    #+#             */
-/*   Updated: 2024/07/03 20:20:52 by wil              ###   ########.fr       */
+/*   Updated: 2024/07/03 23:09:34 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ void	x_destroy_img(t_graph *mx)
 	{
 		mlx_destroy_image(mx->mlx, mx->i.img);
 		mx->i.addr = NULL;
+	}
+	if (mx->mm.addr)
+	{
+		mlx_destroy_image(mx->mlx, mx->mm.img);
+		mx->mm.addr = NULL;
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:11 by codespace         #+#    #+#             */
-/*   Updated: 2024/07/03 21:40:32 by wil              ###   ########.fr       */
+/*   Updated: 2024/07/03 23:39:06 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ void	set_start(t_graph *g, t_file *f)
 {
 	g->p.bs = BLOCK_SIZE;
 	g->p.vh = VIEW_HEIGHT;
-	g->p.fov = (FOV * M_PI) / 180; //FIELD_OF_VIEW;
+	g->p.fov = (FOV * M_PI) / 180;
 	g->p.ppd = (WIN_X / 2) / tan(g->p.fov / 2);
-	g->p.angs = ((FOV * M_PI) / 180) / WIN_X;//ANGULAR_STEP;
+	g->p.angs = ((FOV * M_PI) / 180) / WIN_X;
 	g->p.lins = LINEAR_SPEED;
-	g->p.rots = (5 * M_PI) / 180;//ROTATION_SPEED;
+	g->p.rots = (ROT_SPEED * M_PI) / 180;
 	g->p.povx = f->stx * BLOCK_SIZE;
 	g->p.povx += (BLOCK_SIZE > 1) * BLOCK_SIZE / 2;
 	g->p.povy = f->sty * BLOCK_SIZE;
