@@ -60,8 +60,26 @@ SUMMARY: AddressSanitizer: 504 byte(s) leaked in 2 allocation(s).
 If map has spaces before the map, it calls as a not closed one
 -----------------------------------------------------------------
 
+Error
+Can't load texture files
 
+=================================================================
+==17993==ERROR: LeakSanitizer: detected memory leaks
 
+Direct leak of 136 byte(s) in 1 object(s) allocated from:
+    #0 0x7e4a7d2b4887 in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:145
+    #1 0x5ead8d952f3f in mlx_init (/home/wil/Desktop/Cub-3d/cub3D+0x12f3f)
+    #2 0x5ead8d94971a in main src/main.c:75
+    #3 0x7e4a7cc29d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+
+Indirect leak of 936 byte(s) in 1 object(s) allocated from:
+    #0 0x7e4a7d2b4887 in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:145
+    #1 0x5ead8d9530f0 in mlx_new_window (/home/wil/Desktop/Cub-3d/cub3D+0x130f0)
+
+Indirect leak of 160 byte(s) in 1 object(s) allocated from:
+    #0 0x7e4a7d2b4887 in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:145
+    #1 0x7e4a7d0de9ef in XCreateGC (/lib/x86_64-linux-gnu/libX11.so.6+0x1e9ef)
+------------------------------------------------------------------------------
 
 
 
