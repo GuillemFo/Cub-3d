@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_arg.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 20:05:50 by josegar2          #+#    #+#             */
-/*   Updated: 2024/06/26 17:43:18 by codespace        ###   ########.fr       */
+/*   Updated: 2024/07/03 20:19:25 by wil              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,18 +105,18 @@ int	load_arg(char *line, t_file *file)
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;
 	if (!ft_strncmp("NO", &line[i], 2))
-		tpath = &(file->NO);
+		tpath = &(file->no);
 	else if (!ft_strncmp("SO", &line[i], 2))
-		tpath = &(file->SO);
+		tpath = &(file->so);
 	else if (!ft_strncmp("EA", &line[i], 2))
-		tpath = &(file->EA);
+		tpath = &(file->ea);
 	else if (!ft_strncmp("WE", &line[i], 2))
-		tpath = &(file->WE);
+		tpath = &(file->we);
 	if (tpath)
 		return (copy_path(file, &line[i], tpath));
 	if (line[i] == 'F')
-		return (copy_rgb(file, &line[i], &(file->F)));
+		return (copy_rgb(file, &line[i], &(file->f)));
 	if (line[i] == 'C')
-		return (copy_rgb(file, &line[i], &(file->C)));
+		return (copy_rgb(file, &line[i], &(file->c)));
 	return (message("Not valid entry in map file\n"), 1);
 }

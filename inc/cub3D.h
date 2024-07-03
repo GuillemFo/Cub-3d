@@ -35,13 +35,10 @@
 
 # define BLOCK_SIZE 512
 # define VIEW_HEIGHT 256
-# define FIELD_OF_VIEW (60 * M_PI) / 180
+# define FOV 60
 # define WIN_X 1920
 # define WIN_Y 1080
-# define ANGULAR_STEP FIELD_OF_VIEW / WIN_X
-# define POV_DISTANCE (WIN_X / 2) / tan(FIELD_OF_VIEW / 2)
 # define LINEAR_SPEED 64
-# define ROTATION_SPEED (5 * M_PI) / 180
 
 /*###	KEY MAPPING	###*/
 
@@ -92,12 +89,12 @@ typedef struct s_event
 
 typedef struct s_file
 {
-	char	*NO;
-	char	*SO;
-	char	*EA;
-	char	*WE;
-	int *F; // Floor color
-	int *C; // Ceiling color
+	char	*no;
+	char	*so;
+	char	*ea;
+	char	*we;
+	int *f; // Floor color
+	int *c; // Ceiling color
 	char	**map;
 	char	**tmp;
 	int		max_x;
@@ -200,22 +197,30 @@ void	*ft_free(void *p);
 int		start_mlx(t_data *data);
 int		load_textures(t_file *fl, t_graph *mx);
 void	x_destroy_img(t_graph *mx);
-void	c3d_mlx_pixel_put(t_image im, int x, int y, int color);
 void	draw_column(t_graph *g, int x, t_ray r);
 void	draw_texture(t_graph *g, int x, t_ray r);
-void	minimap(t_graph *g);
 int 	i_coor(double pos);
 char    get_map_char(t_graph *g, double x, double y);
 void    loop_rays(t_graph *g);
+int			p_moves(int keycode, t_graph *g);
+int	player_right(t_player *p);
+bool	check_pmove(t_graph *g, char c);
+int	player_w(t_player *p);
+int	player_s(t_player *p);
+int	player_a(t_player *p);
+int	player_d(t_player *p);
+int	player_left(t_player *p);
+int	m_moves(int keycode, t_graph *g);
+void	minimap(t_graph *g);
+void	c3d_mlx_pixel_put(t_image im, int x, int y, int color);
+bool	check_around(t_graph *g, t_player tp);
 
 /*-=-=-=-=-=- TEST FUNCTIONS=-=-=-=-=-=-=-=-=*/
 
 void	check_columns(t_graph *g);
 void	print_map_term(t_file *file);
 
-//int	main_game(t_data *data);
 int get_wall_size(t_graph *g, int x);
 
-int			p_moves(int keycode, t_graph *g);
 
 #endif

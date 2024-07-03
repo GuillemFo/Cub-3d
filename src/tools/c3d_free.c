@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   c3d_free.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:57:58 by josegar2          #+#    #+#             */
-/*   Updated: 2024/06/28 19:26:09 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/07/03 20:20:06 by wil              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ t_file	*c3d_free_file(t_file *file)
 {
 	int	i;
 
-	file->NO = ft_free(file->NO);
-	file->SO = ft_free(file->SO);
-	file->EA = ft_free(file->EA);
-	file->WE = ft_free(file->WE);
-	file->F = ft_free(file->F);
-	file->C = ft_free(file->C);
+	file->no = ft_free(file->no);
+	file->so = ft_free(file->so);
+	file->ea = ft_free(file->ea);
+	file->we = ft_free(file->we);
+	file->f = ft_free(file->f);
+	file->c = ft_free(file->c);
 	if (file->map)
 	{
 		i = 0;
@@ -53,16 +53,12 @@ t_file	*c3d_free_file(t_file *file)
 
 t_graph	*c3d_free_win(t_graph *win)
 {
-    if (win->win)
-    {
-        // close window
-    }
-    if (win->mlx)
-    {
-        x_destroy_img(win);
-    }
-    win = ft_free(win);
-    return (win);
+	if (win->mlx)
+	{
+		x_destroy_img(win);
+	}
+	win = ft_free(win);
+	return (win);
 }
 
 t_data	*c3d_free(t_data *data)
@@ -76,4 +72,11 @@ t_data	*c3d_free(t_data *data)
 		data = ft_free(data);
 	}
 	return (data);
+}
+
+void	*ft_free(void *p)
+{
+	if (p)
+		free(p);
+	return (NULL);
 }
