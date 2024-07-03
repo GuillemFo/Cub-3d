@@ -6,7 +6,7 @@
 /*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 12:59:40 by codespace         #+#    #+#             */
-/*   Updated: 2024/07/03 19:40:15 by wil              ###   ########.fr       */
+/*   Updated: 2024/07/03 21:44:32 by wil              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,7 @@ bool	check_pmove(t_graph *g, char c)
 		player_right(&tp);
 	if (get_map_char(g, tp.povx, tp.povy) != '0')
 		return (false);
-	if (!((int)tp.povx % BLOCK_SIZE))
-		if (get_map_char(g, tp.povx - 1, tp.povy) != '0')
-			return (false);
-	if (!((int)tp.povy % BLOCK_SIZE))
-		if (get_map_char(g, tp.povx, tp.povy - 1) != '0')
-			return (false);
+	if (check_around(g, tp) == false)
+		return (false);
 	return (true);
 }

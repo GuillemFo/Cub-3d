@@ -6,7 +6,7 @@
 /*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:43:09 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/07/03 18:35:23 by wil              ###   ########.fr       */
+/*   Updated: 2024/07/03 21:55:08 by wil              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ int	start_mlx(t_data *data)
 	//mlx_hook(data->g->win, 06, (1L<<6), m_moves, data->g);// pending mouse moves
 	mlx_hook(data->g->win, DESTROY, 1L << 0, close_window, data->g);
 	mlx_loop(data->g->mlx);
+
 	return (0);
 }

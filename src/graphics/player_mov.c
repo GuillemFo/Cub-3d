@@ -6,7 +6,7 @@
 /*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 13:01:40 by codespace         #+#    #+#             */
-/*   Updated: 2024/07/03 18:35:16 by wil              ###   ########.fr       */
+/*   Updated: 2024/07/03 21:56:06 by wil              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,23 @@ int	p_moves(int keycode, t_graph *g)
 	else if (keycode == LEFT_KEY || keycode == RIGHT_KEY || keycode == ESC_KEY)
 		other_moves(keycode, g);
 	loop_rays(g);
+		minimap(g);
 	return (0);
 }
+
+bool	check_around(t_graph *g, t_player tp)
+{
+	if (!((int)tp.povx % BLOCK_SIZE))
+		if (get_map_char(g, tp.povx - 1, tp.povy) != '0')
+			return (false);
+    if (!((int)tp.povy % BLOCK_SIZE))
+		if (get_map_char(g, tp.povx, tp.povy - 1) != '0')
+			return (false);
+	if (!((int)tp.povx % BLOCK_SIZE) && !((int)tp.povy % BLOCK_SIZE))
+		if (get_map_char(g, tp.povx - 1, tp.povy - 1) != '0')
+			return (false);
+	return (true);
+}	
 
 /*
 int	m_moves(int keycode, t_graph *g)
