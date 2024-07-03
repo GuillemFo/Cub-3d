@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:57:58 by josegar2          #+#    #+#             */
-/*   Updated: 2024/07/03 13:08:16 by codespace        ###   ########.fr       */
+/*   Updated: 2024/07/03 13:14:13 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,6 @@ t_file	*c3d_free_file(t_file *file)
 
 t_graph	*c3d_free_win(t_graph *win)
 {
-	if (win->win)
-	{
-		// close window
-	}
 	if (win->mlx)
 	{
 		x_destroy_img(win);

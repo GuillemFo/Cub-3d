@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:04:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/07/02 16:36:08 by codespace        ###   ########.fr       */
+/*   Updated: 2024/07/03 13:16:22 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ void	wall_v_hit(t_graph *g, t_ray *r)
 			r->wvhy += r->deltay;
 		}
 	}
-	// r->wvhl *= fabs(cos(r->raya - g->p.pova));
-	// printf("last Vertical hit X : %.2f Y : %.2f L: %.2f\n", r->wvhx, r->wvhy,
-	//	r->wvhl);
 }
+// r->wvhl *= fabs(cos(r->raya - g->p.pova));
+// printf("last Vertical hit X : %.2f Y : %.2f L: %.2f\n", r->wvhx, r->wvhy,
+//	r->wvhl);
 
 void	wall_h_hit(t_graph *g, t_ray *r)
 {
@@ -61,10 +61,11 @@ void	wall_h_hit(t_graph *g, t_ray *r)
 			r->whhx += r->deltax;
 		}
 	}
-	// r->whhl *= fabs(cos(r->raya - g->p.pova));
-	// printf("last Horizontal hit X : %.2f Y : %.2f L: %.2f\n", r->whhx,
-	//	r->whhy, r->whhl);
 }
+// r->whhl *= fabs(cos(r->raya - g->p.pova));
+// printf("last Horizontal hit X : %.2f Y : %.2f L: %.2f\n", r->whhx,
+//	r->whhy, r->whhl);
+
 void	get_first_hit(t_ray *r)
 {
 	r->dirx = cos(r->raya);
@@ -79,11 +80,11 @@ void	get_first_hit(t_ray *r)
 		r->fhhx = -1;
 	else
 		r->fhhx = (r->fhhy - r->pos_y) * r->dirx / r->diry + r->pos_x;
-	/*	printf("Pos X : %.2f Y : %.2f\n", r->pos_x, r->pos_y);
-		printf("Vertical hit X : %.2f Y : %.2f\n", r->fvhx, r->fvhy);
-		printf("Horizontal hit X : %.2f Y : %.2f\n", r->fhhx, r->fhhy);
-	*/
 }
+/*	printf("Pos X : %.2f Y : %.2f\n", r->pos_x, r->pos_y);
+	printf("Vertical hit X : %.2f Y : %.2f\n", r->fvhx, r->fvhy);
+	printf("Horizontal hit X : %.2f Y : %.2f\n", r->fhhx, r->fhhy);
+*/
 
 void	loop_rays(t_graph *g)
 {
