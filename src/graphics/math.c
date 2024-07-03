@@ -6,7 +6,7 @@
 /*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:04:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/07/03 19:47:04 by wil              ###   ########.fr       */
+/*   Updated: 2024/07/03 20:01:31 by wil              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	wall_v_hit(t_graph *g, t_ray *r)
 	r->wvhl = 0;
 	while (!r->wvhl)
 	{
-		if (r->wvhy < 0 || r->wvhy >= g->file->max_y * BLOCK_SIZE)
+		if (r->wvhy < 0 || r->wvhy >= g->file->max_y * BLOCK_SIZE
+		|| get_map_char(g, r->wvhx - (r->dirx < 0), r->wvhy) == ' ')
 			r->wvhl = -1;
 		else if (get_map_char(g, r->wvhx - (r->dirx < 0), r->wvhy) == '1')
 		{
@@ -47,7 +48,8 @@ void	wall_h_hit(t_graph *g, t_ray *r)
 	r->deltax = BLOCK_SIZE * r->dirx / fabs(r->diry);
 	while (!r->whhl)
 	{
-		if (r->whhx < 0 || r->whhx >= g->file->max_x * BLOCK_SIZE)
+		if (r->whhx < 0 || r->whhx >= g->file->max_x * BLOCK_SIZE
+		|| get_map_char(g, r->whhx, r->whhy - (r->diry < 0)) == ' ')
 			r->whhl = -1;
 		else if (get_map_char(g, r->whhx, r->whhy - (r->diry < 0)) == '1')
 		{
