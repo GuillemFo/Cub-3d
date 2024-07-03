@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   c3d_free.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:57:58 by josegar2          #+#    #+#             */
-/*   Updated: 2024/07/03 13:14:13 by codespace        ###   ########.fr       */
+/*   Updated: 2024/07/03 20:20:06 by wil              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ t_file	*c3d_free_file(t_file *file)
 {
 	int	i;
 
-	file->NO = ft_free(file->NO);
-	file->SO = ft_free(file->SO);
-	file->EA = ft_free(file->EA);
-	file->WE = ft_free(file->WE);
-	file->F = ft_free(file->F);
-	file->C = ft_free(file->C);
+	file->no = ft_free(file->no);
+	file->so = ft_free(file->so);
+	file->ea = ft_free(file->ea);
+	file->we = ft_free(file->we);
+	file->f = ft_free(file->f);
+	file->c = ft_free(file->c);
 	if (file->map)
 	{
 		i = 0;

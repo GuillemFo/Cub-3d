@@ -6,7 +6,7 @@
 /*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:11 by codespace         #+#    #+#             */
-/*   Updated: 2024/07/03 19:42:49 by wil              ###   ########.fr       */
+/*   Updated: 2024/07/03 20:18:57 by wil              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ void	set_start(t_graph *g, t_file *f)
 		g->p.pova = 0;
 	g->p.dirx = cos(g->p.pova);
 	g->p.diry = -sin(g->p.pova);
-	g->rgbc = (f->C[0] << 16) + (f->C[1] << 8);
-	g->rgbc += f->C[2];
-	g->rgbf = (f->F[0] << 16) + (f->F[1] << 8);
-	g->rgbf += f->F[2];
+	g->rgbc = (f->c[0] << 16) + (f->c[1] << 8);
+	g->rgbc += f->c[2];
+	g->rgbf = (f->f[0] << 16) + (f->f[1] << 8);
+	g->rgbf += f->f[2];
 }
 
 int	main(int ac, char **av)

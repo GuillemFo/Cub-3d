@@ -89,12 +89,12 @@ typedef struct s_event
 
 typedef struct s_file
 {
-	char	*NO;
-	char	*SO;
-	char	*EA;
-	char	*WE;
-	int *F; // Floor color
-	int *C; // Ceiling color
+	char	*no;
+	char	*so;
+	char	*ea;
+	char	*we;
+	int *f; // Floor color
+	int *c; // Ceiling color
 	char	**map;
 	char	**tmp;
 	int		max_x;
