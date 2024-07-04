@@ -22,7 +22,7 @@ SRC_PPREFIX = $(addprefix $(SRC_PATH),$(SRC))
 
 OBJ = $(addprefix $(OBJ_PATH),$(SRC_PPREFIX:.c=.o))
 
-CFLAGS = -I $(INC) -I $(LIBFT_PATH) -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -I $(INC) -I $(LIBFT_PATH) -Wall -Wextra -Werror -o3 #-g -fsanitize=address
 
 ifeq ($(shell uname), Darwin)
 	CFLAGS += -D MAC_OS

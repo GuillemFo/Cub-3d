@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 20:46:15 by josegar2          #+#    #+#             */
-/*   Updated: 2024/07/03 23:09:34 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/07/04 19:04:36 by wil              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ void	x_destroy_img(t_graph *mx)
 		mlx_destroy_image(mx->mlx, mx->mm.img);
 		mx->mm.addr = NULL;
 	}
+	if (mx->ex.addr)
+	{
+		mlx_destroy_image(mx->mlx, mx->ex.img);
+		mx->ex.addr = NULL;
+	}
+	
 }
 
 t_image	get_xpm_img(t_graph *mx, char *fn)
@@ -56,8 +62,9 @@ int	load_textures(t_file *fl, t_graph *mx)
 	mx->txt[1] = get_xpm_img(mx, fl->so);
 	mx->txt[2] = get_xpm_img(mx, fl->ea);
 	mx->txt[3] = get_xpm_img(mx, fl->we);
+	mx->ex = get_xpm_img(mx, "./textures/celing.xpm");
 	if (!mx->txt[0].addr || !mx->txt[1].addr || !mx->txt[2].addr
-		|| !mx->txt[3].addr)
+		|| !mx->txt[3].addr ||!mx->ex.addr)
 	{
 		message("Can't load texture files\n");
 		return (1);
