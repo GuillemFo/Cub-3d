@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 22:34:02 by josegar2          #+#    #+#             */
-/*   Updated: 2024/07/04 17:36:05 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/07/04 17:51:23 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ void	draw_mm_player(t_graph *g, int x, int y)
 	i = 0;
 	while (i < 16)
 	{
-		c3d_mlx_pixel_put(g->mm, xp + i * g->p.dirx, yp + i * g->p.diry, MMPLAYER);
+		c3d_mlx_pixel_put(g->mm, xp + i * g->p.dirx,
+			yp + i * g->p.diry, MMPLAYER);
 		i++;
 	}
 }
