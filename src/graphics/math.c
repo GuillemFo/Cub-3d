@@ -105,16 +105,14 @@ void	loop_rays(t_graph *g)
 		wall_h_hit(g, &g->ray);
 		if (g->ray.wvhl < 0 || (g->ray.whhl >= 0 && g->ray.whhl <= g->ray.wvhl))
 		{
-			// take whhl to calculate sow, sidex, side, ...
 			g->ray.soi = (g->ray.diry <= 0);
 			g->ray.ooi = trunc(fmod(g->ray.whhx, BLOCK_SIZE));
 			if (g->ray.soi == 0)
 				g->ray.ooi = BLOCK_SIZE - 1 - g->ray.ooi;
 			g->ray.sow = g->p.bs * g->p.ppd / g->ray.whhl;
 		}
-		else // there is hit for sure
+		else
 		{
-			// take wvhl to calculate sow, sidex, side, ...
 			g->ray.soi = 2 + (g->ray.dirx > 0);
 			g->ray.ooi = trunc(fmod(g->ray.wvhy, BLOCK_SIZE));
 			if (g->ray.soi == 2)
@@ -122,8 +120,6 @@ void	loop_rays(t_graph *g)
 			g->ray.sow = g->p.bs * g->p.ppd / g->ray.wvhl;
 		}
 		g->ray.sow /= fabs(cos(g->ray.raya - g->p.pova));
-		// printf("Side %d, Offset: %.2f, SOW: %.2f\n", g->ray.soi, g->ray.ooi,
-		//	g->ray.sow);
 		draw_texture(g, i++, g->ray);
 		g->ray.raya -= g->p.angs;
 		if (g->ray.raya < 0)
@@ -131,3 +127,8 @@ void	loop_rays(t_graph *g)
 	}
 	mlx_put_image_to_window(g->mlx, g->win, g->i.img, 0, 0);
 }
+// take whhl to calculate sow, sidex, side, ...
+// there is hit for sure
+// take wvhl to calculate sow, sidex, side, ...
+// printf("Side %d, Offset: %.2f, SOW: %.2f\n", g->ray.soi, g->ray.ooi,
+//	g->ray.sow);

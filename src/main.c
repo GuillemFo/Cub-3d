@@ -32,11 +32,11 @@ void	set_start(t_graph *g, t_file *f)
 {
 	g->p.bs = BLOCK_SIZE;
 	g->p.vh = VIEW_HEIGHT;
-	g->p.fov = (FOV * M_PI) / 180; //FIELD_OF_VIEW;
+	g->p.fov = (FOV * M_PI) / 180;
 	g->p.ppd = (WIN_X / 2) / tan(g->p.fov / 2);
-	g->p.angs = ((FOV * M_PI) / 180) / WIN_X;//ANGULAR_STEP;
+	g->p.angs = ((FOV * M_PI) / 180) / WIN_X;
 	g->p.lins = LINEAR_SPEED;
-	g->p.rots = (5 * M_PI) / 180;//ROTATION_SPEED;
+	g->p.rots = (5 * M_PI) / 180;
 	g->p.povx = f->stx * BLOCK_SIZE;
 	g->p.povx += (BLOCK_SIZE > 1) * BLOCK_SIZE / 2;
 	g->p.povy = f->sty * BLOCK_SIZE;
@@ -74,7 +74,6 @@ int	main(int ac, char **av)
 	set_start(data->g, data->file);
 	if (start_mlx(data))
 		return (c3d_free(data), 1);
-	printf("hola\n");
 	c3d_free(data);
 	return (0);
 }

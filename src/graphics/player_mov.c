@@ -65,14 +65,14 @@ bool	check_around(t_graph *g, t_player tp)
 	if (!((int)tp.povx % BLOCK_SIZE))
 		if (get_map_char(g, tp.povx - 1, tp.povy) != '0')
 			return (false);
-    if (!((int)tp.povy % BLOCK_SIZE))
+	if (!((int)tp.povy % BLOCK_SIZE))
 		if (get_map_char(g, tp.povx, tp.povy - 1) != '0')
 			return (false);
 	if (!((int)tp.povx % BLOCK_SIZE) && !((int)tp.povy % BLOCK_SIZE))
 		if (get_map_char(g, tp.povx - 1, tp.povy - 1) != '0')
 			return (false);
 	return (true);
-}	
+}
 
 /*
 int	m_moves(int keycode, t_graph *g)

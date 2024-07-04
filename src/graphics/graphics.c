@@ -49,9 +49,9 @@ int	start_mlx(t_data *data)
 	data->g->file = data->file;
 	loop_rays(data->g);
 	mlx_hook(data->g->win, KEYDOWN, 0, p_moves, data->g);
-	//mlx_hook(data->g->win, 06, (1L<<6), m_moves, data->g);// pending mouse moves
 	mlx_hook(data->g->win, DESTROY, 1L << 0, close_window, data->g);
 	mlx_loop(data->g->mlx);
-
 	return (0);
 }
+	//mlx_hook(data->g->win, 06, (1L<<6), m_moves, data->g);
+	// pending mouse moves
