@@ -74,7 +74,6 @@ int	main(int ac, char **av)
 	set_start(data->g, data->file);
 	if (start_mlx(data))
 		return (c3d_free(data), 1);
-	printf("hola\n");
 	c3d_free(data);
 	return (0);
 }

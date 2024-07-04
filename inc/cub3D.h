@@ -68,7 +68,7 @@
 #  define S_KEY 115
 #  define D_KEY 100
 #  define W_KEY 119
-#  define M_KEY 46
+#  define M_KEY 109
 #  define LEFT_KEY 65361
 #  define RIGHT_KEY 65363
 # endif
@@ -94,148 +94,141 @@
 
 /*-=-=-=-=-=-=-=-=-=STRUCTS=-=-=-=-=-=-=-=-=-*/
 
-typedef struct s_event
-{
-	// key hooks??
-	// mouse??
-}			t_event;
-
 typedef struct s_file
 {
-	char	*no;
-	char	*so;
-	char	*ea;
-	char	*we;
-	int *f; // Floor color
-	int *c; // Ceiling color
-	char	**map;
-	char	**tmp;
-	int		max_x;
-	int		max_y;
-	int		data_ok;
-	int		stx;
-	int		sty;
-	char	sto;
-}			t_file;
+	char		*no;
+	char		*so;
+	char		*ea;
+	char		*we;
+	int			*f;
+	int			*c;
+	char		**map;
+	char		**tmp;
+	int			max_x;
+	int			max_y;
+	int			data_ok;
+	int			stx;
+	int			sty;
+	char		sto;
+}				t_file;
 
 typedef struct t_ray
 {
-	double	pos_x;
-	double	pos_y;
-	double	raya; //ray angle
-	double	dirx; // cos(raya)
-	double	diry; // -sin(raya)
-	double	fvhx; //FirstVerticalHit X
-	double	fvhy; //FirstVerticalHit Y
-	double	fhhx; //FirstHoritzontalHit X
-	double	fhhy; //FirstHoritzontalHit Y
-	double	wvhx; //WallVerticalHit X
-	double	wvhy; //WallVerticalHit Y
-	double	deltay; // y increment to next V hit;
-	double	wvhl; //WallVerticalHit Length
-	double	whhx; //WallHoritzontalHit X
-	double	whhy; //WallHoritzontalHit Y
-	double	deltax; // x increment to next H hit;
-	double	whhl; //WallHoritzontalHit Length
-	double	sow; //size of wall
-	int		soi; //Side Of Impact: 0-NO, 1-SO, 2-EA, 3-WE
-	double	ooi; // Offset Of Impact. Distance from left side of wall
-	bool	hit;
+	double		pos_x;
+	double		pos_y;
+	double		raya;
+	double		dirx;
+	double		diry;
+	double		fvhx;
+	double		fvhy;
+	double		fhhx;
+	double		fhhy;
+	double		wvhx;
+	double		wvhy;
+	double		deltay;
+	double		wvhl;
+	double		whhx;
+	double		whhy;
+	double		deltax;
+	double		whhl;
+	double		sow;
+	int			soi;
+	double		ooi;
+	bool		hit;
 
-}			t_ray;
+}				t_ray;
 
 typedef struct s_image
 {
 	//
-	void *img;  // mlx_new_img
-	char *addr; // mlx_get_data_addr
-	int		w;
-	int		h;
-	int bpp; // mlx_get_data_addr
-	int ll;  // line length
-	int en;  // endian
-}			t_image;
+	void		*img;
+	char		*addr;
+	int			w;
+	int			h;
+	int			bpp;
+	int			ll;
+	int			en;
+}				t_image;
 
 typedef struct s_player
 {
-	int bs;         // Block size
-	int vh;         // View height
-	double	fov;     // Field of view
-	double	ppd;	// Projection Plane Distance
-	double angs;    // Angular step
-	int lins;       // Linear speed
-	double rots;    // Rotation speed
-	double	povx;       // Point of view x
-	double	povy;       // Point of view y
-	double	pova;    // Point of view angle
-	double	dirx;	// cos(pova)
-	double	diry;	// -sin(pova)
-}			t_player;
+	int			bs;
+	int			vh;
+	double		fov;
+	double		ppd;
+	double		angs;
+	int			lins;
+	double		rots;
+	double		povx;
+	double		povy;
+	double		pova;
+	double		dirx;
+	double		diry;
+}				t_player;
 
 typedef struct s_graph
 {
-	void *mlx; // mlx
-	void *win; // win
-	t_image i; // img
-	t_image	txt[4];
-	t_image	mm;
-	int		mm_on;
-	int		rgbc;
-	int		rgbf;
-	t_player p; // player struct
-	t_ray	ray;
-	t_file	*file;
-}			t_graph;
+	void		*mlx;
+	void		*win;
+	t_image		i;
+	t_image		txt[4];
+	t_image		mm;
+	int			mm_on;
+	int			rgbc;
+	int			rgbf;
+	t_player	p;
+	t_ray		ray;
+	t_file		*file;
+}				t_graph;
 
 typedef struct s_data
 {
-	t_graph *g; // t_grapth graphics
-	t_file	*file;
-}			t_data;
+	t_graph		*g;
+	t_file		*file;
+}				t_data;
 
 /*-=-=-=-=-=-=-=-=FUNCTIONS=-=-=-=-=-=-=-=-=*/
 
-int		check_args(int ac, char **av);
-int		check_map(t_file *file, char *fn);
-int     load_arg(char *line, t_file *file);
-void	message(char *msg);
-bool	valid_map_line(t_file *file, char *line);
-bool	check_is_num(char *s);
-int		check_ext(char *argv, char *text);
-bool	line_is_space(char *line);
-int		build_map(char **av, t_file *file);
-int	   	check_wall(t_file *f);
-bool	has_map(char *line);
-void	*ft_free_split(char **s);
-t_data  *c3d_free(t_data *data);
-void	*ft_free(void *p);
-int		start_mlx(t_data *data);
-int		load_textures(t_file *fl, t_graph *mx);
-void	x_destroy_img(t_graph *mx);
-void	draw_column(t_graph *g, int x, t_ray r);
-void	draw_texture(t_graph *g, int x, t_ray r);
-int 	i_coor(double pos);
-char    get_map_char(t_graph *g, double x, double y);
-void    loop_rays(t_graph *g);
-int			p_moves(int keycode, t_graph *g);
-int	player_right(t_player *p);
-bool	check_pmove(t_graph *g, char c);
-int	player_w(t_player *p);
-int	player_s(t_player *p);
-int	player_a(t_player *p);
-int	player_d(t_player *p);
-int	player_left(t_player *p);
-int	m_moves(int keycode, t_graph *g);
-void	minimap(t_graph *g);
-void	c3d_mlx_pixel_put(t_image im, int x, int y, int color);
-bool	check_around(t_graph *g, t_player tp);
+int				check_args(int ac, char **av);
+int				check_map(t_file *file, char *fn);
+int				load_arg(char *line, t_file *file);
+void			message(char *msg);
+bool			valid_map_line(t_file *file, char *line);
+bool			check_is_num(char *s);
+int				check_ext(char *argv, char *text);
+bool			line_is_space(char *line);
+int				build_map(char **av, t_file *file);
+int				check_wall(t_file *f);
+bool			has_map(char *line);
+void			*ft_free_split(char **s);
+t_data			*c3d_free(t_data *data);
+void			*ft_free(void *p);
+int				start_mlx(t_data *data);
+int				load_textures(t_file *fl, t_graph *mx);
+void			x_destroy_img(t_graph *mx);
+void			draw_column(t_graph *g, int x, t_ray r);
+void			draw_texture(t_graph *g, int x, t_ray r);
+int				i_coor(double pos);
+char			get_map_char(t_graph *g, double x, double y);
+void			loop_rays(t_graph *g);
+int				p_moves(int keycode, t_graph *g);
+int				player_right(t_player *p);
+bool			check_pmove(t_graph *g, char c);
+int				player_w(t_player *p);
+int				player_s(t_player *p);
+int				player_a(t_player *p);
+int				player_d(t_player *p);
+int				player_left(t_player *p);
+int				m_moves(int keycode, t_graph *g);
+void			minimap(t_graph *g);
+void			c3d_mlx_pixel_put(t_image im, int x, int y, int color);
+bool			check_around(t_graph *g, t_player tp);
 
 /*-=-=-=-=-=- TEST FUNCTIONS=-=-=-=-=-=-=-=-=*/
 
-void	check_columns(t_graph *g);
-void	print_map_term(t_file *file);
+void			check_columns(t_graph *g);
+void			print_map_term(t_file *file);
 
-int get_wall_size(t_graph *g, int x);
-
+int				get_wall_size(t_graph *g, int x);
 
 #endif

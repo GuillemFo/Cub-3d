@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 22:34:02 by josegar2          #+#    #+#             */
-/*   Updated: 2024/07/04 00:12:35 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/07/04 16:09:30 by wil              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	draw_brick(t_image im, int x, int y, int color)
 
 void	draw_minimap(t_graph *g, int x, int y)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < 11)
@@ -72,10 +72,11 @@ void	draw_mm_player(t_graph *g, int x, int y)
 	c3d_mlx_pixel_put(g->mm, xp, yp + 1, MMPLAYER);
 }
 // minimap 13 x 11. Each coor = 16 pixels
+
 void	minimap(t_graph *g)
 {
-	int		x;
-	int		y;
+	int	x;
+	int	y;
 
 	if ((i_coor(g->p.povx) + 6) >= g->file->max_x)
 		x = g->file->max_x - 13;
