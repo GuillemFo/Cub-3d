@@ -228,6 +228,8 @@ bool			check_around(t_graph *g, t_player tp);
 
 void			check_columns(t_graph *g);
 void			print_map_term(t_file *file);
+unsigned int	apply_rgb_filter(unsigned int color, int r, int g, int b);
+int	get_texture_color2(t_image im, int x, int y, int r, int g, int b);
 
 int				get_wall_size(t_graph *g, int x);
 
