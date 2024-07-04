@@ -59,3 +59,5 @@ int	start_mlx(t_data *data)
 	mlx_loop(data->g->mlx);
 	return (0);
 }
+	//mlx_hook(data->g->win, 06, (1L<<6), m_moves, data->g);
+	// pending mouse moves

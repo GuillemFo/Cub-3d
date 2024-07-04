@@ -93,3 +93,4 @@ void	minimap(t_graph *g)
 	draw_mm_player(g, x, y);
 	mlx_put_image_to_window(g->mlx, g->win, g->mm.img, 0, 0);
 }
+
