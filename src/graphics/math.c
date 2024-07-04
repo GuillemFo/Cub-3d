@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:04:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/07/03 20:54:26 by wil              ###   ########.fr       */
+/*   Updated: 2024/07/03 23:48:01 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,27 @@ void	get_first_hit(t_ray *r)
 	printf("Horizontal hit X : %.2f Y : %.2f\n", r->fhhx, r->fhhy);
 */
 
+void	wall_hit(t_graph *g)
+{
+	if (g->ray.wvhl < 0 || (g->ray.whhl >= 0 && g->ray.whhl <= g->ray.wvhl))
+	{
+		g->ray.soi = (g->ray.diry <= 0);
+		g->ray.ooi = trunc(fmod(g->ray.whhx, BLOCK_SIZE));
+		if (g->ray.soi == 0)
+			g->ray.ooi = BLOCK_SIZE - 1 - g->ray.ooi;
+		g->ray.sow = g->p.bs * g->p.ppd / g->ray.whhl;
+	}
+	else
+	{
+		g->ray.soi = 2 + (g->ray.dirx > 0);
+		g->ray.ooi = trunc(fmod(g->ray.wvhy, BLOCK_SIZE));
+		if (g->ray.soi == 2)
+			g->ray.ooi = BLOCK_SIZE - 1 - g->ray.ooi;
+		g->ray.sow = g->p.bs * g->p.ppd / g->ray.wvhl;
+	}
+	g->ray.sow /= fabs(cos(g->ray.raya - g->p.pova));
+}
+
 void	loop_rays(t_graph *g)
 {
 	int	i;
@@ -103,32 +124,13 @@ void	loop_rays(t_graph *g)
 		get_first_hit(&g->ray);
 		wall_v_hit(g, &g->ray);
 		wall_h_hit(g, &g->ray);
-		if (g->ray.wvhl < 0 || (g->ray.whhl >= 0 && g->ray.whhl <= g->ray.wvhl))
-		{
-			g->ray.soi = (g->ray.diry <= 0);
-			g->ray.ooi = trunc(fmod(g->ray.whhx, BLOCK_SIZE));
-			if (g->ray.soi == 0)
-				g->ray.ooi = BLOCK_SIZE - 1 - g->ray.ooi;
-			g->ray.sow = g->p.bs * g->p.ppd / g->ray.whhl;
-		}
-		else
-		{
-			g->ray.soi = 2 + (g->ray.dirx > 0);
-			g->ray.ooi = trunc(fmod(g->ray.wvhy, BLOCK_SIZE));
-			if (g->ray.soi == 2)
-				g->ray.ooi = BLOCK_SIZE - 1 - g->ray.ooi;
-			g->ray.sow = g->p.bs * g->p.ppd / g->ray.wvhl;
-		}
-		g->ray.sow /= fabs(cos(g->ray.raya - g->p.pova));
+		wall_hit(g);
 		draw_texture(g, i++, g->ray);
 		g->ray.raya -= g->p.angs;
 		if (g->ray.raya < 0)
 			g->ray.raya += 2 * M_PI;
 	}
 	mlx_put_image_to_window(g->mlx, g->win, g->i.img, 0, 0);
+	if (g->mm_on)
+		minimap(g);
 }
-// take whhl to calculate sow, sidex, side, ...
-// there is hit for sure
-// take wvhl to calculate sow, sidex, side, ...
-// printf("Side %d, Offset: %.2f, SOW: %.2f\n", g->ray.soi, g->ray.ooi,
-//	g->ray.sow);
