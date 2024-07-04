@@ -68,7 +68,7 @@
 #  define S_KEY 115
 #  define D_KEY 100
 #  define W_KEY 119
-#  define M_KEY 46
+#  define M_KEY 109
 #  define LEFT_KEY 65361
 #  define RIGHT_KEY 65363
 # endif
@@ -172,12 +172,15 @@ typedef struct s_graph
 	void		*win;
 	t_image		i;
 	t_image		txt[4];
+	t_image		mm;
+	int			mm_on;
 	int			rgbc;
 	int			rgbf;
 	t_player	p;
 	t_ray		ray;
 	t_file		*file;
 }				t_graph;
+
 
 typedef struct s_data
 {

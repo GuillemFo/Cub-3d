@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_mov.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 13:01:40 by codespace         #+#    #+#             */
-/*   Updated: 2024/07/03 23:50:15 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/07/04 16:15:33 by wil              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ int	other_moves(int keycode, t_graph *g)
 int	p_moves(int keycode, t_graph *g)
 {
 	if (keycode == W_KEY && check_pmove(g, 'w') == true)
-			player_w(&g->p);
+		player_w(&g->p);
 	else if (keycode == S_KEY && check_pmove(g, 's') == true)
-			player_s(&g->p);
+		player_s(&g->p);
 	else if (keycode == A_KEY && check_pmove(g, 'a') == true)
-			player_a(&g->p);
+		player_a(&g->p);
 	else if (keycode == D_KEY && check_pmove(g, 'd') == true)
-			player_d(&g->p);
+		player_d(&g->p);
 	else if (keycode == LEFT_KEY || keycode == RIGHT_KEY || keycode == ESC_KEY)
 		other_moves(keycode, g);
 	else if (keycode == M_KEY)
