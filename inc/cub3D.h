@@ -181,7 +181,6 @@ typedef struct s_graph
 	t_file		*file;
 }				t_graph;
 
-
 typedef struct s_data
 {
 	t_graph		*g;
