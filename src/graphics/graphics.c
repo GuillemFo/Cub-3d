@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:43:09 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/07/03 21:55:08 by wil              ###   ########.fr       */
+/*   Updated: 2024/07/03 23:35:50 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,16 @@ int	img_init(t_graph *g)
 {
 	g->i.img = mlx_new_image(g->mlx, WIN_X, WIN_Y);
 	if (!g->i.img)
-	{
 		return (1);
-	}
 	g->i.addr = mlx_get_data_addr(g->i.img, &(g->i.bpp), &(g->i.ll),
 			&(g->i.en));
+	g->mm.img = mlx_new_image(g->mlx, MM_X * MM_BSIZE, MM_Y * MM_BSIZE);
+	if (!g->mm.img)
+		return (1);
+	g->mm.w = MM_X * MM_BSIZE;
+	g->mm.h = MM_Y * MM_BSIZE;
+	g->mm.addr = mlx_get_data_addr(g->mm.img, &(g->mm.bpp), &(g->mm.ll),
+			&(g->mm.en));
 	return (0);
 }
 
@@ -52,6 +57,5 @@ int	start_mlx(t_data *data)
 	//mlx_hook(data->g->win, 06, (1L<<6), m_moves, data->g);// pending mouse moves
 	mlx_hook(data->g->win, DESTROY, 1L << 0, close_window, data->g);
 	mlx_loop(data->g->mlx);
-
 	return (0);
 }

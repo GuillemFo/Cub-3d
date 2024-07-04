@@ -39,6 +39,17 @@
 # define WIN_X 1920
 # define WIN_Y 1080
 # define LINEAR_SPEED 64
+# define ROT_SPEED 5
+
+/*-=-=-=-=-=-=-MINI MAP SETTINGS=-=-=-=-=-=-*/
+
+# define MM_X 13
+# define MM_Y 11
+# define MM_BSIZE 16
+# define MMWALL 0x000000FF
+# define MMFLOOR 0x00000000
+# define MMEMPTY 0x00FFFFFF
+# define MMPLAYER 0x00FFFF00
 
 /*###	KEY MAPPING	###*/
 
@@ -48,6 +59,7 @@
 #  define S_KEY 1
 #  define D_KEY 2
 #  define W_KEY 13
+#  define M_KEY 46
 #  define LEFT_KEY 123 // to check
 #  define RIGHT_KEY 124 //to check
 # else
@@ -56,6 +68,7 @@
 #  define S_KEY 115
 #  define D_KEY 100
 #  define W_KEY 119
+#  define M_KEY 46
 #  define LEFT_KEY 65361
 #  define RIGHT_KEY 65363
 # endif
@@ -165,6 +178,8 @@ typedef struct s_graph
 	void *win; // win
 	t_image i; // img
 	t_image	txt[4];
+	t_image	mm;
+	int		mm_on;
 	int		rgbc;
 	int		rgbf;
 	t_player p; // player struct
