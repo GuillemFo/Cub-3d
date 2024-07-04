@@ -172,12 +172,15 @@ typedef struct s_graph
 	void		*win;
 	t_image		i;
 	t_image		txt[4];
+	t_image		mm;
+	int			mm_on;
 	int			rgbc;
 	int			rgbf;
 	t_player	p;
 	t_ray		ray;
 	t_file		*file;
 }				t_graph;
+
 
 typedef struct s_data
 {
