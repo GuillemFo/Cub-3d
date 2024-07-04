@@ -6,11 +6,20 @@
 /*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 20:46:15 by josegar2          #+#    #+#             */
-/*   Updated: 2024/07/04 19:04:36 by wil              ###   ########.fr       */
+/*   Updated: 2024/07/04 19:36:54 by wil              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+void	x_destroy_img2(t_graph *mx)
+{
+	if (mx->ex.addr)
+	{
+		mlx_destroy_image(mx->mlx, mx->ex.img);
+		mx->ex.addr = NULL;
+	}
+}
 
 void	x_destroy_img(t_graph *mx)
 {
@@ -36,12 +45,7 @@ void	x_destroy_img(t_graph *mx)
 		mlx_destroy_image(mx->mlx, mx->mm.img);
 		mx->mm.addr = NULL;
 	}
-	if (mx->ex.addr)
-	{
-		mlx_destroy_image(mx->mlx, mx->ex.img);
-		mx->ex.addr = NULL;
-	}
-	
+	x_destroy_img2(mx);
 }
 
 t_image	get_xpm_img(t_graph *mx, char *fn)

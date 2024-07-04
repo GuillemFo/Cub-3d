@@ -6,7 +6,7 @@
 /*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 12:00:29 by josegar2          #+#    #+#             */
-/*   Updated: 2024/07/04 19:26:34 by wil              ###   ########.fr       */
+/*   Updated: 2024/07/04 19:35:34 by wil              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	draw_texture2(t_graph *g, int x, t_ray r)
 		return ;
 	while (WIN_Y - r.sow > 0 && y < (int)(WIN_Y - r.sow) / 2)
 	{
-		
 		color = get_texture_color2(g->ex, x, y, g->file->c);
 		c3d_mlx_pixel_put(g->i, x, y++, color);
 	}
