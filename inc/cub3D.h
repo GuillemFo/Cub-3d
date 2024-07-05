@@ -172,6 +172,7 @@ typedef struct s_graph
 	void		*win;
 	t_image		i;
 	t_image		txt[4];
+	t_image		ex;
 	t_image		mm;
 	int			mm_on;
 	int			rgbc;
@@ -228,6 +229,9 @@ bool			check_around(t_graph *g, t_player tp);
 
 void			check_columns(t_graph *g);
 void			print_map_term(t_file *file);
+unsigned int	apply_rgb_filter(unsigned int color, int *c);
+int	get_texture_color2(t_image im, int x, int y, int *c);
+void	draw_texture2(t_graph *g, int x, t_ray r);
 
 int				get_wall_size(t_graph *g, int x);
 
