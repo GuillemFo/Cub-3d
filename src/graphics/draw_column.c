@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 12:00:29 by josegar2          #+#    #+#             */
-/*   Updated: 2024/07/06 00:30:05 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/07/06 00:52:58 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ void	draw_texture(t_graph *g, int x, t_ray r)
 		txty += yratio;
 		c3d_mlx_pixel_put(g->i, x, y++, color);
 	}
-	draw_texture2(g, x, r);
+	// draw_texture2(g, x, r);
+	draw_column(g, x, r);
 }
 //	printf("ooi: %.3f sow: %.3f\n",r.ooi, r.sow);
 //	printf("x: %d, ooi: %.3f yratio: %.3f", x, r.ooi, yratio);
@@ -73,7 +74,7 @@ void	draw_texture(t_graph *g, int x, t_ray r)
 
 // draw the column x of the scene, with a SizeOfWall sow and an offset off
 // off == 0 means in the center
-/*
+
 void	draw_column(t_graph *g, int x, t_ray r)
 {
 	int	    y;
@@ -100,4 +101,4 @@ void	draw_column(t_graph *g, int x, t_ray r)
 		c3d_mlx_pixel_put(g->i, x, y++, color);
 	}
 }
-*/
+
