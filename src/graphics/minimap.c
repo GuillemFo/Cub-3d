@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 22:34:02 by josegar2          #+#    #+#             */
-/*   Updated: 2024/07/04 16:09:30 by wil              ###   ########.fr       */
+/*   Updated: 2024/07/04 17:51:23 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,28 @@ void	draw_mm_player(t_graph *g, int x, int y)
 {
 	int	xp;
 	int	yp;
+	int	i;
+	int	j;
 
 	xp = (i_coor(g->p.povx) - x) * MM_BSIZE;
 	xp += trunc(fmod(g->p.povx, BLOCK_SIZE) * MM_BSIZE / BLOCK_SIZE);
 	yp = (i_coor(g->p.povy) - y) * MM_BSIZE;
 	yp += trunc(fmod(g->p.povy, BLOCK_SIZE) * MM_BSIZE / BLOCK_SIZE);
-	c3d_mlx_pixel_put(g->mm, xp, yp, MMPLAYER);
-	c3d_mlx_pixel_put(g->mm, xp - 1, yp, MMPLAYER);
-	c3d_mlx_pixel_put(g->mm, xp + 1, yp, MMPLAYER);
-	c3d_mlx_pixel_put(g->mm, xp, yp - 1, MMPLAYER);
-	c3d_mlx_pixel_put(g->mm, xp, yp + 1, MMPLAYER);
+	i = -2;
+	while (i < 4)
+	{
+		j = -2;
+		while (j < 4)
+			c3d_mlx_pixel_put(g->mm, xp + j++, yp + i, MMPLAYER);
+		i++;
+	}
+	i = 0;
+	while (i < 16)
+	{
+		c3d_mlx_pixel_put(g->mm, xp + i * g->p.dirx,
+			yp + i * g->p.diry, MMPLAYER);
+		i++;
+	}
 }
 // minimap 13 x 11. Each coor = 16 pixels
 

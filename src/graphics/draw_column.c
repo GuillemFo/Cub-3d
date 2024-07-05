@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_column.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 12:00:29 by josegar2          #+#    #+#             */
-/*   Updated: 2024/07/04 19:35:34 by wil              ###   ########.fr       */
+/*   Updated: 2024/07/05 00:07:45 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	draw_texture(t_graph *g, int x, t_ray r)
 void	draw_column(t_graph *g, int x, t_ray r)
 {
 	int	y;
+    double  p;
 
 	if (r.sow >= WIN_Y)
 		return ;
@@ -88,7 +89,9 @@ void	draw_column(t_graph *g, int x, t_ray r)
 	y += (int)r.sow;
 	while (y < WIN_Y)
 	{
-		
+        p = g->p.ppd * VIEW_HEIGHT / (y - BLOCK_SIZE / 2);
+        p = p / cos(g->p.pova - g->ray.raya);
+		c3d_mlx_pixel_put(g->i, x, y++, g->rgbf >> (int)p % 3);
 	}
 }
 */
