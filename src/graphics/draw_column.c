@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 12:00:29 by josegar2          #+#    #+#             */
-/*   Updated: 2024/07/05 00:07:45 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/07/06 00:30:05 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,11 @@ void	draw_texture(t_graph *g, int x, t_ray r)
 // off == 0 means in the center
 void	draw_column(t_graph *g, int x, t_ray r)
 {
-	int	y;
+	int	    y;
     double  p;
+    int     tx;
+    int     ty;
+    int     color;
 
 	if (r.sow >= WIN_Y)
 		return ;
@@ -70,8 +73,11 @@ void	draw_column(t_graph *g, int x, t_ray r)
 	y += (int)r.sow;
 	while (y < WIN_Y)
 	{
-        p = g->p.ppd * VIEW_HEIGHT / (y - BLOCK_SIZE / 2);
+        p = g->p.ppd * VIEW_HEIGHT / (y - WIN_Y / 2);
         p = p / cos(g->p.pova - g->ray.raya);
-		c3d_mlx_pixel_put(g->i, x, y++, g->rgbf >> (int)p % 3);
+        tx = (int)(r.pos_x + p * r.dirx) % g->txt[0].w;
+        ty = (int)(r.pos_y + p * r.diry) % g->txt[0].h;
+        color = get_texture_color(g->txt[0], tx, ty);
+		c3d_mlx_pixel_put(g->i, x, y++, color);
 	}
 }
