@@ -28,6 +28,24 @@ int	get_texture_color(t_image im, int x, int y)
 	return (*(unsigned int *)dst);
 }
 
+void	draw_texture2(t_graph *g, int x, t_ray r)
+{
+	int	y;
+	int	color;
+
+	y = 0;
+	if (r.sow >= WIN_Y)
+		return ;
+	while (WIN_Y - r.sow > 0 && y < (int)(WIN_Y - r.sow) / 2)
+	{
+		color = get_texture_color2(g->ex, x, y, g->file->c);
+		c3d_mlx_pixel_put(g->i, x, y++, color);
+	}
+	y += (int)r.sow;
+	while (y < WIN_Y)
+		c3d_mlx_pixel_put(g->i, x, y++, g->rgbf);
+}
+
 void	draw_texture(t_graph *g, int x, t_ray r)
 {
 	int		y;
@@ -47,7 +65,7 @@ void	draw_texture(t_graph *g, int x, t_ray r)
 		txty += yratio;
 		c3d_mlx_pixel_put(g->i, x, y++, color);
 	}
-	draw_column(g, x, r);
+	draw_texture2(g, x, r);
 }
 //	printf("ooi: %.3f sow: %.3f\n",r.ooi, r.sow);
 //	printf("x: %d, ooi: %.3f yratio: %.3f", x, r.ooi, yratio);
@@ -55,6 +73,7 @@ void	draw_texture(t_graph *g, int x, t_ray r)
 
 // draw the column x of the scene, with a SizeOfWall sow and an offset off
 // off == 0 means in the center
+/*
 void	draw_column(t_graph *g, int x, t_ray r)
 {
 	int	    y;
@@ -81,3 +100,4 @@ void	draw_column(t_graph *g, int x, t_ray r)
 		c3d_mlx_pixel_put(g->i, x, y++, color);
 	}
 }
+*/
