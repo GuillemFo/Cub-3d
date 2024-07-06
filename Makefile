@@ -16,7 +16,7 @@ SRC = main.c \
 		tools/c3d_print.c \
 		graphics/graphics.c graphics/math.c graphics/load_textures.c \
 		graphics/draw_column.c graphics/player.c graphics/player_2.c \
-		graphics/player_mov.c graphics/minimap.c graphics/extra.c
+		graphics/player_mov.c graphics/minimap.c
 
 SRC_PPREFIX = $(addprefix $(SRC_PATH),$(SRC))
 
