@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 22:34:02 by josegar2          #+#    #+#             */
-/*   Updated: 2024/07/04 17:51:23 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/07/07 16:20:03 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,18 +68,18 @@ void	draw_mm_player(t_graph *g, int x, int y)
 	yp = (i_coor(g->p.povy) - y) * MM_BSIZE;
 	yp += trunc(fmod(g->p.povy, BLOCK_SIZE) * MM_BSIZE / BLOCK_SIZE);
 	i = -2;
-	while (i < 4)
+	while (i < 3)
 	{
 		j = -2;
-		while (j < 4)
+		while (j < 3)
 			c3d_mlx_pixel_put(g->mm, xp + j++, yp + i, MMPLAYER);
 		i++;
 	}
 	i = 0;
 	while (i < 16)
 	{
-		c3d_mlx_pixel_put(g->mm, xp + i * g->p.dirx,
-			yp + i * g->p.diry, MMPLAYER);
+		c3d_mlx_pixel_put(g->mm, xp + (int)(i * g->p.dirx),
+			yp + (int)(i * g->p.diry), MMPLAYER);
 		i++;
 	}
 }
