@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_column.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 12:00:29 by josegar2          #+#    #+#             */
-/*   Updated: 2024/07/07 00:03:10 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/07/07 16:42:31 by wil              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	draw_column(t_graph *g, int x, t_ray r)
 		p = p / cos(g->p.pova - g->ray.raya);
 		tx = (int)(r.pos_x + p * r.dirx) % g->cei.w;
 		ty = (int)(r.pos_y + p * r.diry) % g->cei.h;
-		c3d_mlx_pixel_put(g->i, x, y++, get_texture_color(g->cei, tx, ty));
+		c3d_mlx_pixel_put(g->i, x, y++, tex_color(g->cei, tx, ty, g->file->c));
 	}
 	y += (int)r.sow;
 	while (y < WIN_Y)
@@ -80,6 +80,6 @@ void	draw_column(t_graph *g, int x, t_ray r)
 		p = p / cos(g->p.pova - g->ray.raya);
 		tx = (int)(r.pos_x + p * r.dirx) % g->flo.w;
 		ty = (int)(r.pos_y + p * r.diry) % g->flo.h;
-		c3d_mlx_pixel_put(g->i, x, y++, get_texture_color(g->flo, tx, ty));
+		c3d_mlx_pixel_put(g->i, x, y++, tex_color(g->flo, tx, ty, g->file->f));
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 16:46:16 by wil               #+#    #+#             */
-/*   Updated: 2024/07/04 19:30:24 by wil              ###   ########.fr       */
+/*   Updated: 2024/07/07 16:42:37 by wil              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ unsigned int	apply_rgb_filter(unsigned int color, int *c)
 	return (new_color);
 }
 
-int	get_texture_color2(t_image im, int x, int y, int *c)
+int	tex_color(t_image im, int x, int y, int *c)
 {
 	char			*dst;
 	unsigned int	color;
