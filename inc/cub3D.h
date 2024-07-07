@@ -46,10 +46,15 @@
 # define MM_X 13
 # define MM_Y 11
 # define MM_BSIZE 16
-# define MMWALL 0x000000FF
-# define MMFLOOR 0x00000000
-# define MMEMPTY 0x00FFFFFF
-# define MMPLAYER 0x00FFFF00
+# define MMWALL 0x550000FF
+# define MMFLOOR 0x55000000
+# define MMEMPTY 0x55555555
+# define MMPLAYER 0x55FFFF00
+
+/*-=-=-=-=-=-=-TEXTURE SETTINGS=-=-=-=-=-=-*/
+
+# define CEILING "./textures/Sky-1.xpm"
+# define FLOOR "./textures/Floor-1.xpm"
 
 /*###	KEY MAPPING	###*/
 
@@ -103,7 +108,6 @@ typedef struct s_file
 	int			*f;
 	int			*c;
 	char		**map;
-	char		**tmp;
 	int			max_x;
 	int			max_y;
 	int			data_ok;
@@ -172,6 +176,8 @@ typedef struct s_graph
 	void		*win;
 	t_image		i;
 	t_image		txt[4];
+	t_image		cei;
+	t_image		flo;
 	t_image		mm;
 	int			mm_on;
 	int			rgbc;
@@ -223,12 +229,5 @@ int				m_moves(int keycode, t_graph *g);
 void			minimap(t_graph *g);
 void			c3d_mlx_pixel_put(t_image im, int x, int y, int color);
 bool			check_around(t_graph *g, t_player tp);
-
-/*-=-=-=-=-=- TEST FUNCTIONS=-=-=-=-=-=-=-=-=*/
-
-void			check_columns(t_graph *g);
-void			print_map_term(t_file *file);
-
-int				get_wall_size(t_graph *g, int x);
 
 #endif
