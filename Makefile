@@ -67,6 +67,7 @@ $(NAME): $(OBJ)	libraries
 libraries:
 	@echo "$(CYAN)Compiling libraries$(RESET)"
 	@$(MAKE) -C $(LIBFT_PATH) bonus --no-print-directory
+#ifeq ()
 	@$(MAKE) -C $(MLX_PATH) --no-print-directory
 	@echo "$(GREEN)Libraries compiled$(RESET)"
 #MLX MAKE IS TMP SOLUION, WE DONT WANT TO COMPILE IT ALWAYS IF NO NEED.
