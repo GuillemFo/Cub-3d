@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 12:00:29 by josegar2          #+#    #+#             */
-/*   Updated: 2024/07/05 00:07:45 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/07/07 00:03:10 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,24 +28,6 @@ int	get_texture_color(t_image im, int x, int y)
 	return (*(unsigned int *)dst);
 }
 
-void	draw_texture2(t_graph *g, int x, t_ray r)
-{
-	int	y;
-	int	color;
-
-	y = 0;
-	if (r.sow >= WIN_Y)
-		return ;
-	while (WIN_Y - r.sow > 0 && y < (int)(WIN_Y - r.sow) / 2)
-	{
-		color = get_texture_color2(g->ex, x, y, g->file->c);
-		c3d_mlx_pixel_put(g->i, x, y++, color);
-	}
-	y += (int)r.sow;
-	while (y < WIN_Y)
-		c3d_mlx_pixel_put(g->i, x, y++, g->rgbf);
-}
-
 void	draw_texture(t_graph *g, int x, t_ray r)
 {
 	int		y;
@@ -65,33 +47,39 @@ void	draw_texture(t_graph *g, int x, t_ray r)
 		txty += yratio;
 		c3d_mlx_pixel_put(g->i, x, y++, color);
 	}
-	draw_texture2(g, x, r);
+	draw_column(g, x, r);
 }
 //	printf("ooi: %.3f sow: %.3f\n",r.ooi, r.sow);
 //	printf("x: %d, ooi: %.3f yratio: %.3f", x, r.ooi, yratio);
 //	printf("y: %d z: %d txty: %.3f\n", y, z, txty);
 
-// draw the column x of the scene, with a SizeOfWall sow and an offset off
-// off == 0 means in the center
-/*
+// draw the column x of the scene, with a SizeOfWall sow
+
 void	draw_column(t_graph *g, int x, t_ray r)
 {
-	int	y;
-    double  p;
+	int		y;
+	double	p;
+	int		tx;
+	int		ty;
 
 	if (r.sow >= WIN_Y)
 		return ;
 	y = 0;
 	while (WIN_Y - r.sow > 0 && y < (int)(WIN_Y - r.sow) / 2)
 	{
-		c3d_mlx_pixel_put(g->i, x, y++, g->rgbc);
+		p = g->p.ppd * VIEW_HEIGHT / (WIN_Y / 2 - y);
+		p = p / cos(g->p.pova - g->ray.raya);
+		tx = (int)(r.pos_x + p * r.dirx) % g->cei.w;
+		ty = (int)(r.pos_y + p * r.diry) % g->cei.h;
+		c3d_mlx_pixel_put(g->i, x, y++, get_texture_color(g->cei, tx, ty));
 	}
 	y += (int)r.sow;
 	while (y < WIN_Y)
 	{
-        p = g->p.ppd * VIEW_HEIGHT / (y - BLOCK_SIZE / 2);
-        p = p / cos(g->p.pova - g->ray.raya);
-		c3d_mlx_pixel_put(g->i, x, y++, g->rgbf >> (int)p % 3);
+		p = g->p.ppd * VIEW_HEIGHT / (y - WIN_Y / 2);
+		p = p / cos(g->p.pova - g->ray.raya);
+		tx = (int)(r.pos_x + p * r.dirx) % g->flo.w;
+		ty = (int)(r.pos_y + p * r.diry) % g->flo.h;
+		c3d_mlx_pixel_put(g->i, x, y++, get_texture_color(g->flo, tx, ty));
 	}
 }
-*/
