@@ -6,7 +6,7 @@
 /*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:57:58 by josegar2          #+#    #+#             */
-/*   Updated: 2024/07/03 20:20:06 by wil              ###   ########.fr       */
+/*   Updated: 2024/07/08 13:30:47 by wil              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,14 @@ t_file	*c3d_free_file(t_file *file)
 
 t_graph	*c3d_free_win(t_graph *win)
 {
+	if (!win)
+		return (NULL);
 	if (win->mlx)
 	{
 		x_destroy_img(win);
+		mlx_destroy_window(win->mlx, win->win);
+		mlx_destroy_display(win->mlx);
+		win->mlx = ft_free(win->mlx);
 	}
 	win = ft_free(win);
 	return (win);

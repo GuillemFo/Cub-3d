@@ -6,7 +6,7 @@
 /*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 20:05:50 by josegar2          #+#    #+#             */
-/*   Updated: 2024/07/03 20:19:25 by wil              ###   ########.fr       */
+/*   Updated: 2024/07/08 12:36:40 by wil              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	check_rgb(char **rgb)
 {
 	int	i;
 
-	if (rgb == NULL)
+	if (rgb[0] == NULL || rgb[1] == NULL || rgb[2] == NULL)
 		return (1);
 	i = 0;
 	while (rgb[i])
