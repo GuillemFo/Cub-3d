@@ -6,7 +6,7 @@
 /*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:11 by codespace         #+#    #+#             */
-/*   Updated: 2024/07/03 23:39:06 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/07/06 23:44:28 by josegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int	main(int ac, char **av)
 		return (c3d_free(data), 1);
 	if (build_map(av, data->file) == 1)
 		return (1);
-	print_map_term(data->file);
 	set_start(data->g, data->file);
 	if (start_mlx(data))
 		return (c3d_free(data), 1);
