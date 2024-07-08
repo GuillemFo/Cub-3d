@@ -16,7 +16,7 @@ SRC = main.c \
 		tools/c3d_print.c \
 		graphics/graphics.c graphics/math.c graphics/load_textures.c \
 		graphics/draw_column.c graphics/player.c graphics/player_2.c \
-		graphics/player_mov.c graphics/minimap.c graphics/extra.c
+		graphics/player_mov.c graphics/minimap.c
 
 SRC_PPREFIX = $(addprefix $(SRC_PATH),$(SRC))
 
@@ -67,7 +67,6 @@ $(NAME): $(OBJ)	libraries
 libraries:
 	@echo "$(CYAN)Compiling libraries$(RESET)"
 	@$(MAKE) -C $(LIBFT_PATH) bonus --no-print-directory
-#ifeq ()
 	@$(MAKE) -C $(MLX_PATH) --no-print-directory
 	@echo "$(GREEN)Libraries compiled$(RESET)"
 #MLX MAKE IS TMP SOLUION, WE DONT WANT TO COMPILE IT ALWAYS IF NO NEED.

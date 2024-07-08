@@ -229,6 +229,5 @@ int				m_moves(int keycode, t_graph *g);
 void			minimap(t_graph *g);
 void			c3d_mlx_pixel_put(t_image im, int x, int y, int color);
 bool			check_around(t_graph *g, t_player tp);
-int				tex_color(t_image im, int x, int y, int *c);
 
 #endif
