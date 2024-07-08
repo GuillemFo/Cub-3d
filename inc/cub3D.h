@@ -94,9 +94,6 @@
 # define SCROLL_UP 5
 # define SCROLL_DOWN 4
 
-/*##	DEFINE TO SHORT CODE	##*/
-# define IMG_WIN mlx_put_image_to_window
-
 /*-=-=-=-=-=-=-=-=-=STRUCTS=-=-=-=-=-=-=-=-=-*/
 
 typedef struct s_file
