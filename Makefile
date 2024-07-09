@@ -29,7 +29,7 @@ ifeq ($(shell uname), Darwin)
 	MLX_PATH = mlx_mac/
 	INCLUDES = -Imlx_mac
 	MLX_FLAGS = -Lmlx_mac -lmlx -framework OpenGL -framework AppKit
-	MLX_A = mlx_mac/libmlx_Linux.a mlx_mac/libmlx.a 
+	MLX_A = mlx_mac/libmlx.a 
 #Pending to test on mac
 
 else
