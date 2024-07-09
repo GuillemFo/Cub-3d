@@ -30,7 +30,7 @@ ifeq ($(shell uname), Darwin)
 	INCLUDES = -Imlx_mac
 	MLX_FLAGS = -Lmlx_mac -lmlx -framework OpenGL -framework AppKit
 	MLX_A = mlx_mac/libmlx_Linux.a mlx_mac/libmlx.a 
-#Pending to test on pac
+#Pending to test on mac
 
 else
 	MLX_PATH = mlx_linux/
@@ -39,7 +39,6 @@ else
 	MLX_A = mlx_linux/libmlx_Linux.a mlx_linux/libmlx.a 
 endif
 
-#MLX_FLAGS = -Lmlx_linux -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
 
 #############################################################################
@@ -75,7 +74,6 @@ libraries:
 	@echo "$(YELLOW)MLX $(RED)- $(GREEN)Compiling MLX$(RESET)"
 	@$(MAKE) -C $(MLX_PATH) --no-print-directory
 	@echo "$(GREEN)Libraries compiled$(RESET)"
-#MLX MAKE IS TMP SOLUION, WE DONT WANT TO COMPILE IT ALWAYS IF NO NEED.
 
 $(OBJ_PATH)%.o:%.c Makefile $(LIBFT_PATH)libft.h $(INC)cub3D.h $(LIBFT_PATH)libft.a $(MLX_A)
 	@mkdir -p $(dir $@)
