@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:43:09 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/07/09 17:16:10 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/07/09 17:25:51 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,3 @@ int	start_mlx(t_data *data)
 	mlx_loop(data->g->mlx);
 	return (0);
 }
-// pending mouse moves
