@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:09:52 by codespace         #+#    #+#             */
-/*   Updated: 2024/07/09 13:46:06 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/07/09 18:23:08 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ bool	check_is_num(char *s)
 {
 	int	i;
 
+	if (!s)
+		return (false);
 	i = 1;
 	if (s[0] == '+' || ft_isdigit(s[0]))
 	{
