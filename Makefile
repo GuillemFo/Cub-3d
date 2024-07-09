@@ -16,13 +16,13 @@ SRC = main.c \
 		tools/c3d_print.c \
 		graphics/graphics.c graphics/math.c graphics/load_textures.c \
 		graphics/draw_column.c graphics/player.c graphics/player_2.c \
-		graphics/player_mov.c graphics/minimap.c
+		graphics/player_mov.c graphics/minimap.c graphics/mouse_moves.c
 
 SRC_PPREFIX = $(addprefix $(SRC_PATH),$(SRC))
 
 OBJ = $(addprefix $(OBJ_PATH),$(SRC_PPREFIX:.c=.o))
 
-CFLAGS = -I $(INC) -I $(LIBFT_PATH) -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -I $(INC) -I $(LIBFT_PATH) -Wall -Wextra -Werror -o3 -g -fsanitize=address
 
 ifeq ($(shell uname), Darwin)
 	CFLAGS += -D MAC_OS

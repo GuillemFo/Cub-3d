@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 13:01:40 by codespace         #+#    #+#             */
-/*   Updated: 2024/07/09 15:12:50 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/07/09 17:12:27 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	p_moves(int keycode, t_graph *g)
 		other_moves(keycode, g);
 	else if (keycode == M_KEY)
 		g->mm_on = (g->mm_on != 1);
-	loop_rays(g);
 	return (0);
 }
 
@@ -63,21 +62,3 @@ bool	check_around(t_graph *g, t_player tp)
 			return (false);
 	return (true);
 }
-
-/*
-int	m_moves(int keycode, t_graph *g)
-{
-	ft_printf("%d\n", keycode);
-	if (keycode < (WIN_X/2))
-	{
-		if (check_pmove(g, 'l') == true)
-			player_left(&g->p);
-	}
-	else if (keycode > (WIN_X/2))
-	{
-		if (check_pmove(g, 'r') == true)
-			player_right(&g->p);
-	}
-return (0);
-}
-*/

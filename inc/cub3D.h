@@ -40,6 +40,7 @@
 # define WIN_Y 1080
 # define LINEAR_SPEED 64
 # define ROT_SPEED 5
+# define ROT_SPEED_M 5
 
 /*-=-=-=-=-=-=-MINI MAP SETTINGS=-=-=-=-=-=-*/
 
@@ -65,8 +66,8 @@
 #  define D_KEY 2
 #  define W_KEY 13
 #  define M_KEY 46
-#  define LEFT_KEY 123 // to check
-#  define RIGHT_KEY 124 //to check
+#  define LEFT_KEY 123  // to check
+#  define RIGHT_KEY 124 // to check
 # else
 #  define ESC_KEY 65307
 #  define A_KEY 97
@@ -78,7 +79,6 @@
 #  define RIGHT_KEY 65363
 # endif
 
-/*###	X11 EVENTS SUPPORTED BY MINILIBX	###*/
 # define KEYDOWN 2
 # define KEYUP 3
 # define MOUSEDOWN 4
@@ -182,6 +182,13 @@ typedef struct s_graph
 	int			mm_on;
 	int			rgbc;
 	int			rgbf;
+	int			m_flag;
+	int			m_count;
+	double		povx;
+	double		povy;
+	double		pova;
+	double		dirx;
+	double		diry;
 	t_player	p;
 	t_ray		ray;
 	t_file		*file;
@@ -225,9 +232,10 @@ int				player_a(t_player *p, int speed);
 int				player_d(t_player *p, int speed);
 int				player_right(t_player *p);
 int				player_left(t_player *p);
-int				m_moves(int keycode, t_graph *g);
+int				m_moves(int x, int y, t_graph *g);
 void			minimap(t_graph *g);
 void			c3d_mlx_pixel_put(t_image im, int x, int y, int color);
 bool			check_around(t_graph *g, t_player tp);
-
+int				m_press(int keycode, int x, int y, t_graph *g);
+int				m_release(int keycode, int x, int y, t_graph *g);
 #endif
