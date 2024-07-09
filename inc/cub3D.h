@@ -184,11 +184,6 @@ typedef struct s_graph
 	int			rgbf;
 	int			m_flag;
 	int			m_count;
-	double		povx;
-	double		povy;
-	double		pova;
-	double		dirx;
-	double		diry;
 	t_player	p;
 	t_ray		ray;
 	t_file		*file;
