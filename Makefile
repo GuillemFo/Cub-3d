@@ -29,10 +29,14 @@ ifeq ($(shell uname), Darwin)
 	MLX_PATH = mlx_mac/
 	INCLUDES = -Imlx_mac
 	MLX_FLAGS = -Lmlx_mac -lmlx -framework OpenGL -framework AppKit
+	MLX_A = mlx_mac/libmlx_Linux.a mlx_mac/libmlx.a 
+#Pending to test on pac
+
 else
 	MLX_PATH = mlx_linux/
 	INCLUDES = -I/usr/lib -Imlx_linux
 	MLX_FLAGS = -Lmlx_linux -lmlx -L/usr/lib/X11 -lXext -lX11 -lm
+	MLX_A = mlx_linux/libmlx_Linux.a mlx_linux/libmlx.a 
 endif
 
 #MLX_FLAGS = -Lmlx_linux -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
@@ -60,18 +64,20 @@ all: tmp libraries $(NAME)
 tmp:
 	@mkdir -p $(OBJ_PATH)
 
-$(NAME): $(OBJ)	libraries
+$(NAME): $(OBJ)	libraries $(MLX_A)
 	@gcc $(CFLAGS) $(OBJ) $(LIBFT_PATH)libft.a $(MLX_FLAGS) -o $(NAME)
 	@echo "$(GREEN)cub3D compiled$(RESET)"
 
 libraries:
 	@echo "$(CYAN)Compiling libraries$(RESET)"
+	@echo "$(YELLOW)Libft $(RED)- $(GREEN)Compiling Libft$(RESET)"
 	@$(MAKE) -C $(LIBFT_PATH) bonus --no-print-directory
+	@echo "$(YELLOW)MLX $(RED)- $(GREEN)Compiling MLX$(RESET)"
 	@$(MAKE) -C $(MLX_PATH) --no-print-directory
 	@echo "$(GREEN)Libraries compiled$(RESET)"
 #MLX MAKE IS TMP SOLUION, WE DONT WANT TO COMPILE IT ALWAYS IF NO NEED.
 
-$(OBJ_PATH)%.o:%.c Makefile $(LIBFT_PATH)libft.h $(INC)cub3D.h $(LIBFT_PATH)libft.a 
+$(OBJ_PATH)%.o:%.c Makefile $(LIBFT_PATH)libft.h $(INC)cub3D.h $(LIBFT_PATH)libft.a $(MLX_A)
 	@mkdir -p $(dir $@)
 	@gcc $(CFLAGS) $(INCLUDES) -c $< -o $@
 	@echo "$(CYAN)Compiling cub3D:$(YELLOW) $@$(RESET)"

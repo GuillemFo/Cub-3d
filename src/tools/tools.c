@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:09:52 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/15 18:00:37 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/07/09 13:46:06 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,12 @@ bool	valid_map_line(t_file *file, char *line)
 	i = 0;
 	while (line[i] == ' ')
 		i++;
+	if (!ft_strchr("01NSEW", line[i]))
+		return (message("Invalid line before map\n"), false);
 	if (line[i] != '1')
+	{
 		return (message("Map not closed\n"), false);
+	}
 	while (line[i] && line[i] != '\n')
 	{
 		if (ft_strchr("NSEW", line[i]) && file->sty)
