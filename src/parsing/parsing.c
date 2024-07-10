@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/27 10:28:09 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/07/09 14:40:55 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	get_args(t_file *file, char *line)
 		if (load_arg(line, file) == 1)
 		{
 			free(line);
-			return (message("Bad config\n"), 1);
+			return (1);
 		}
 	}
 	return (0);
@@ -55,16 +55,16 @@ int	check_map(t_file *file, char *fn)
 	{
 		if (file->data_ok == 6 && line_is_space(line) == false)
 			file->data_ok = 7;
-		if (file->data_ok < 6)
-			if (get_args(file, line) == 1)
-				return (close(fd), 1);
-		if (file->data_ok == 7)
-			if (get_map(file, line) == 1)
-				return (close(fd), 1);
+		if (file->data_ok < 6 && get_args(file, line) == 1)
+			return (close(fd), 1);
+		if (file->data_ok == 7 && get_map(file, line) == 1)
+			return (close(fd), 1);
 		free(line);
 		line = get_next_line(fd);
 	}
 	close(fd);
+	if (!file->max_y)
+		return (message("No map found\n"), 1);
 	if (!file->sty)
 		return (message("No starting point\n"), 1);
 	return (file->data_ok != 7);
@@ -75,7 +75,7 @@ int	check_args(int ac, char **av)
 	if (ac != 2)
 	{
 		if (ac == 1)
-			return (message("Missing map\n"), 1);
+			return (message("Missing map argument\n"), 1);
 		else if (ac > 2)
 			return (message("Too many arguments\n"), 1);
 	}

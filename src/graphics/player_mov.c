@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_mov.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 13:01:40 by codespace         #+#    #+#             */
-/*   Updated: 2024/07/04 16:15:33 by wil              ###   ########.fr       */
+/*   Updated: 2024/07/09 17:12:27 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,17 @@ int	other_moves(int keycode, t_graph *g)
 int	p_moves(int keycode, t_graph *g)
 {
 	if (keycode == W_KEY && check_pmove(g, 'w') == true)
-		player_w(&g->p);
+		player_w(&g->p, LINEAR_SPEED);
 	else if (keycode == S_KEY && check_pmove(g, 's') == true)
-		player_s(&g->p);
+		player_s(&g->p, LINEAR_SPEED);
 	else if (keycode == A_KEY && check_pmove(g, 'a') == true)
-		player_a(&g->p);
+		player_a(&g->p, LINEAR_SPEED);
 	else if (keycode == D_KEY && check_pmove(g, 'd') == true)
-		player_d(&g->p);
+		player_d(&g->p, LINEAR_SPEED);
 	else if (keycode == LEFT_KEY || keycode == RIGHT_KEY || keycode == ESC_KEY)
 		other_moves(keycode, g);
 	else if (keycode == M_KEY)
 		g->mm_on = (g->mm_on != 1);
-	loop_rays(g);
 	return (0);
 }
 
@@ -63,21 +62,3 @@ bool	check_around(t_graph *g, t_player tp)
 			return (false);
 	return (true);
 }
-
-/*
-int	m_moves(int keycode, t_graph *g)
-{
-	ft_printf("%d\n", keycode);
-	if (keycode < (WIN_X/2))
-	{
-		if (check_pmove(g, 'l') == true)
-			player_left(&g->p);
-	}
-	else if (keycode > (WIN_X/2))
-	{
-		if (check_pmove(g, 'r') == true)
-			player_right(&g->p);
-	}
-return (0);
-}
-*/

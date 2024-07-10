@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:43:09 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/07/04 16:08:21 by wil              ###   ########.fr       */
+/*   Updated: 2024/07/09 17:25:51 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ int	img_init(t_graph *g)
 	return (0);
 }
 
+int	render_frame(t_graph *g)
+{
+	loop_rays(g);
+	return (0);
+}
+
 int	start_mlx(t_data *data)
 {
 	data->g->mlx = mlx_init();
@@ -53,10 +59,12 @@ int	start_mlx(t_data *data)
 		return (message("Image creation error\n"), 1);
 	data->g->file = data->file;
 	loop_rays(data->g);
+	mlx_hook(data->g->win, MOUSEDOWN, 1L << 2, m_press, data->g);
+	mlx_hook(data->g->win, MOUSEUP, 1L << 3, m_release, data->g);
+	mlx_hook(data->g->win, MOUSEMOVE, 1L << 6, m_moves, data->g);
 	mlx_hook(data->g->win, KEYDOWN, 0, p_moves, data->g);
 	mlx_hook(data->g->win, DESTROY, 1L << 0, close_window, data->g);
+	mlx_loop_hook(data->g->mlx, render_frame, data->g);
 	mlx_loop(data->g->mlx);
 	return (0);
 }
-	//mlx_hook(data->g->win, 06, (1L<<6), m_moves, data->g);
-	// pending mouse moves

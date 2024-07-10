@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wil <wil@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 12:59:40 by codespace         #+#    #+#             */
-/*   Updated: 2024/07/03 21:44:32 by wil              ###   ########.fr       */
+/*   Updated: 2024/07/09 15:16:30 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,28 @@ char	get_map_char(t_graph *g, double x, double y)
 bool	check_pmove(t_graph *g, char c)
 {
 	t_player	tp;
+	int			i;
 
 	tp = g->p;
-	if (c == 'w')
-		player_w(&tp);
-	else if (c == 's')
-		player_s(&tp);
-	else if (c == 'a')
-		player_a(&tp);
-	else if (c == 'd')
-		player_d(&tp);
-	else if (c == 'l')
-		player_left(&tp);
-	else if (c == 'r')
-		player_right(&tp);
-	if (get_map_char(g, tp.povx, tp.povy) != '0')
-		return (false);
-	if (check_around(g, tp) == false)
-		return (false);
+	i = 0;
+	while (i++ < LINEAR_SPEED)
+	{
+		if (c == 'w')
+			player_w(&tp, 1);
+		else if (c == 's')
+			player_s(&tp, 1);
+		else if (c == 'a')
+			player_a(&tp, 1);
+		else if (c == 'd')
+			player_d(&tp, 1);
+		else if (c == 'l')
+			player_left(&tp);
+		else if (c == 'r')
+			player_right(&tp);
+		if (get_map_char(g, tp.povx, tp.povy) != '0')
+			return (false);
+		if (check_around(g, tp) == false)
+			return (false);
+	}
 	return (true);
 }
