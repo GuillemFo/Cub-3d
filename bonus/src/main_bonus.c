@@ -6,11 +6,11 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:31:11 by codespace         #+#    #+#             */
-/*   Updated: 2024/07/15 12:05:32 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/07/15 12:34:25 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D_bonus.h"
+#include "../inc/cub3D_bonus.h"
 
 t_data	*init_data(void)
 {

@@ -6,11 +6,11 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 13:01:40 by codespace         #+#    #+#             */
-/*   Updated: 2024/07/15 12:02:09 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/07/15 12:36:25 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D_bonus.h"
+#include "../../inc/cub3D_bonus.h"
 
 int	other_moves(int keycode, t_graph *g)
 {

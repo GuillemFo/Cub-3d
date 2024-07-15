@@ -6,11 +6,11 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 12:59:40 by codespace         #+#    #+#             */
-/*   Updated: 2024/07/15 12:02:09 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/07/15 12:36:30 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D_bonus.h"
+#include "../../inc/cub3D_bonus.h"
 
 int	player_right(t_player *p)
 {

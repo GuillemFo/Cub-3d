@@ -6,11 +6,11 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 11:55:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/07/15 12:02:09 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/07/15 12:36:39 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D_bonus.h"
+#include "../../inc/cub3D_bonus.h"
 
 void	wall_v_hit(t_graph *g, t_ray *r)
 {

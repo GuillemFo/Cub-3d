@@ -6,11 +6,11 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:12:38 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/07/15 12:02:09 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/07/15 12:36:33 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D_bonus.h"
+#include "../../inc/cub3D_bonus.h"
 
 int	m_press(int keycode, int x, int y, t_graph *g)
 {

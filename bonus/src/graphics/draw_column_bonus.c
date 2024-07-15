@@ -6,11 +6,11 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 11:54:13 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/07/15 12:02:09 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/07/15 12:35:46 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D_bonus.h"
+#include "../../inc/cub3D_bonus.h"
 
 void	c3d_mlx_pixel_put(t_image im, int x, int y, int color)
 {
