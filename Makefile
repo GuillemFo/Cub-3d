@@ -42,9 +42,9 @@ OBJ = $(addprefix $(OBJ_PATH),$(SRC_PPREFIX:.c=.o))
 
 OBJ_B = $(addprefix $(OBJ_PATH_B),$(SRC_PPREFIX_B:.c=.o))
 
-CFLAGS = -I $(INC) -I $(LIBFT_PATH) -Wall -Wextra -Werror #-o3 -g -fsanitize=address
+CFLAGS = -I $(INC) -I $(LIBFT_PATH) -Wall -Wextra -Werror -o3 #-g -fsanitize=address
 
-CFLAGS_B = -I $(INC_B) -I $(LIBFT_PATH) -Wall -Wextra -Werror #-o3 -g -fsanitize=address
+CFLAGS_B = -I $(INC_B) -I $(LIBFT_PATH) -Wall -Wextra -Werror -o3 #-g -fsanitize=address
 
 ifeq ($(shell uname), Darwin)
 	CFLAGS += -D MAC_OS
