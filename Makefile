@@ -23,7 +23,7 @@ SRC = main.c \
 		tools/c3d_print.c \
 		graphics/graphics.c graphics/math.c graphics/load_textures.c \
 		graphics/draw_column.c graphics/player.c graphics/player_2.c \
-		graphics/player_mov.c graphics/minimap.c graphics/mouse_moves.c
+		graphics/player_mov.c
 
 SRC_B = main_bonus.c \
 		parsing/parsing_bonus.c parsing/load_map_bonus.c parsing/load_arg_bonus.c \

@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 13:01:40 by codespace         #+#    #+#             */
-/*   Updated: 2024/07/09 17:12:27 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/07/15 12:57:51 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ int	p_moves(int keycode, t_graph *g)
 		player_d(&g->p, LINEAR_SPEED);
 	else if (keycode == LEFT_KEY || keycode == RIGHT_KEY || keycode == ESC_KEY)
 		other_moves(keycode, g);
-	else if (keycode == M_KEY)
-		g->mm_on = (g->mm_on != 1);
 	return (0);
 }
 

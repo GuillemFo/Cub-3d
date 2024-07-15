@@ -65,7 +65,6 @@
 #  define S_KEY 1
 #  define D_KEY 2
 #  define W_KEY 13
-#  define M_KEY 46
 #  define LEFT_KEY 123  // to check
 #  define RIGHT_KEY 124 // to check
 # else
@@ -74,28 +73,13 @@
 #  define S_KEY 115
 #  define D_KEY 100
 #  define W_KEY 119
-#  define M_KEY 109
 #  define LEFT_KEY 65361
 #  define RIGHT_KEY 65363
 # endif
 
 # define KEYDOWN 2
 # define KEYUP 3
-# define MOUSEDOWN 4
-# define MOUSEUP 5
-# define MOUSEMOVE 6
-# define EXPOSE 12
 # define DESTROY 17
-
-/*###	MOUSE EVENTS	###*/
-# define LEFT_CLICK 1
-# define RIGHT_CLICK 3
-# define MID_CLICK 2
-# define SCROLL_UP 5
-# define SCROLL_DOWN 4
-
-/*##	DEFINE TO SHORT CODE	##*/
-# define IMG_WIN mlx_put_image_to_window
 
 /*-=-=-=-=-=-=-=-=-=STRUCTS=-=-=-=-=-=-=-=-=-*/
 
@@ -176,14 +160,8 @@ typedef struct s_graph
 	void		*win;
 	t_image		i;
 	t_image		txt[4];
-	t_image		cei;
-	t_image		flo;
-	t_image		mm;
-	int			mm_on;
 	int			rgbc;
 	int			rgbf;
-	int			m_flag;
-	int			m_count;
 	t_player	p;
 	t_ray		ray;
 	t_file		*file;
@@ -227,10 +205,6 @@ int				player_a(t_player *p, int speed);
 int				player_d(t_player *p, int speed);
 int				player_right(t_player *p);
 int				player_left(t_player *p);
-int				m_moves(int x, int y, t_graph *g);
-void			minimap(t_graph *g);
 void			c3d_mlx_pixel_put(t_image im, int x, int y, int color);
 bool			check_around(t_graph *g, t_player tp);
-int				m_press(int keycode, int x, int y, t_graph *g);
-int				m_release(int keycode, int x, int y, t_graph *g);
 #endif

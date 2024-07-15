@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josegar2 <josegar2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:04:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/07/03 23:48:01 by josegar2         ###   ########.fr       */
+/*   Updated: 2024/07/15 13:01:07 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,4 @@ void	loop_rays(t_graph *g)
 			g->ray.raya += 2 * M_PI;
 	}
 	mlx_put_image_to_window(g->mlx, g->win, g->i.img, 0, 0);
-	if (g->mm_on)
-		minimap(g);
 }
