@@ -136,9 +136,15 @@ fclean: clean
 	@echo "$(CYAN)cub3D $(RED)deleted$(RESET)"
 
 norm:
+	@echo "$(CYAN)Norminette $(GREEN)$(INC)$(RESET)"
+	norminette $(INC)
+	@echo "$(CYAN)Norminette $(GREEN)$(SRC_PPREFIX)$(RESET)"
 	norminette $(SRC_PPREFIX)
 
 norm_bonus:
+	@echo "$(CYAN)Norminette $(GREEN)$(INC_B)$(RESET)"
+	norminette $(INC_B)
+	@echo "$(CYAN)Norminette $(GREEN)$(SRC_PPREFIX_B)$(RESET)"
 	norminette $(SRC_PPREFIX_B)
 
 .PHONY: all bonus re clean fclean norm norm_bonus
