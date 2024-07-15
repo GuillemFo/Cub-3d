@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 12:34:46 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/07/15 12:34:48 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/07/15 13:19:58 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@
 
 /*-=-=-=-=-=-=-TEXTURE SETTINGS=-=-=-=-=-=-*/
 
-# define CEILING "./textures/Sky-1.xpm"
-# define FLOOR "./textures/Floor-1.xpm"
+# define CEILING "./bonus/textures_bonus/Sky-1.xpm"
+# define FLOOR "./bonus/textures_bonus/Floor-1.xpm"
 
 /*###	KEY MAPPING	###*/
 

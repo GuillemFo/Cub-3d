@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 11:54:28 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/07/15 12:36:42 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/07/15 13:23:35 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,14 @@ int	load_textures(t_file *fl, t_graph *mx)
 	mx->cei = get_xpm_img(mx, CEILING);
 	mx->flo = get_xpm_img(mx, FLOOR);
 	if (!mx->txt[0].addr || !mx->txt[1].addr || !mx->txt[2].addr
-		|| !mx->txt[3].addr || !mx->cei.addr || !mx->flo.addr)
+		|| !mx->txt[3].addr)
 	{
 		message("Can't load texture files\n");
+		return (1);
+	}
+	if (!mx->cei.addr || !mx->flo.addr)
+	{
+		message("Can't load floor or ceiling textures\n");
 		return (1);
 	}
 	return (0);

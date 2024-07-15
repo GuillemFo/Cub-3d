@@ -6,7 +6,7 @@
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 11:54:13 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/07/15 13:10:10 by gforns-s         ###   ########.fr       */
+/*   Updated: 2024/07/15 13:21:43 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	draw_texture(t_graph *g, int x, t_ray r)
 		txty += yratio;
 		c3d_mlx_pixel_put(g->i, x, y++, color);
 	}
-	if (g->mm_on && g->cei.addr && g->flo.addr)
+	if (g->mm_on)
 		draw_column(g, x, r);
 	else
 		draw_rgb(g, x, r);
