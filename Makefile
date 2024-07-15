@@ -119,21 +119,12 @@ $(OBJ_PATH_B)%.o:%.c Makefile $(LIBFT_PATH)libft.h $(INC_B)cub3D_bonus.h $(LIBFT
 
 re: fclean all
 
-re_bonus: fclean_bonus bonus
-
 clean:
 	@$(MAKE) -C $(LIBFT_PATH) clean --no-print-directory
 	@echo "$(CYAN)Libft $(YELLOW)- $(RED)Obj deleted$(RESET)"
 	@rm -rf $(OBJ_PATH)
-	@echo "$(CYAN)cub3D $(YELLOW)- $(RED)Obj deleted$(RESET)"
-	@$(MAKE) -C $(MLX_PATH) clean --no-print-directory
-	@echo "$(CYAN)Minilibx $(RED)deleted$(RESET)"
-
-clean_bonus:
-	@$(MAKE) -C $(LIBFT_PATH) clean --no-print-directory
-	@echo "$(CYAN)Libft $(YELLOW)- $(RED)Obj deleted$(RESET)"
 	@rm -rf $(OBJ_PATH_B)
-	@echo "$(CYAN)cub3D_bonus $(YELLOW)- $(RED)Obj deleted$(RESET)"
+	@echo "$(CYAN)cub3D $(YELLOW)- $(RED)Obj deleted$(RESET)"
 	@$(MAKE) -C $(MLX_PATH) clean --no-print-directory
 	@echo "$(CYAN)Minilibx $(RED)deleted$(RESET)"
 
@@ -144,16 +135,10 @@ fclean: clean
 	@rm -rf $(NAME_B)
 	@echo "$(CYAN)cub3D $(RED)deleted$(RESET)"
 
-fclean_bonus: clean_bonus
-	@$(MAKE) -C $(LIBFT_PATH) fclean --no-print-directory
-	@echo "$(CYAN)Libft $(RED)deleted$(RESET)"
-	@rm -rf $(NAME_B)
-	@echo "$(CYAN)cub3D_bonus $(RED)deleted$(RESET)"
-
 norm:
 	norminette $(SRC_PPREFIX)
 
 norm_bonus:
 	norminette $(SRC_PPREFIX_B)
 
-.PHONY: all bonus re re_bonus clean clean_bonus fclean fclean_bonus norm
+.PHONY: all bonus re clean fclean norm norm_bonus
