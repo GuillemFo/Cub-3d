@@ -8,7 +8,7 @@ OBJ_PATH_B = tmp_b/
 
 INC = inc/
 
-INC_B = bonus/inc
+INC_B = bonus/inc/
 
 SRC_PATH = src/
 
