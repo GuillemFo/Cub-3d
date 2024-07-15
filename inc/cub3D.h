@@ -42,21 +42,6 @@
 # define ROT_SPEED 5
 # define ROT_SPEED_M 5
 
-/*-=-=-=-=-=-=-MINI MAP SETTINGS=-=-=-=-=-=-*/
-
-# define MM_X 13
-# define MM_Y 11
-# define MM_BSIZE 16
-# define MMWALL 0x550000FF
-# define MMFLOOR 0x55000000
-# define MMEMPTY 0x55555555
-# define MMPLAYER 0x55FFFF00
-
-/*-=-=-=-=-=-=-TEXTURE SETTINGS=-=-=-=-=-=-*/
-
-# define CEILING "./textures/Sky-1.xpm"
-# define FLOOR "./textures/Floor-1.xpm"
-
 /*###	KEY MAPPING	###*/
 
 # ifdef MAC_OS
