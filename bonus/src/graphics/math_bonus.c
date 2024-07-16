@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math.c                                             :+:      :+:    :+:   */
+/*   math_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gforns-s <gforns-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/13 16:04:16 by gforns-s          #+#    #+#             */
-/*   Updated: 2024/07/15 13:01:07 by gforns-s         ###   ########.fr       */
+/*   Created: 2024/07/15 11:55:16 by gforns-s          #+#    #+#             */
+/*   Updated: 2024/07/15 12:36:39 by gforns-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../../inc/cub3D_bonus.h"
 
 void	wall_v_hit(t_graph *g, t_ray *r)
 {
@@ -131,4 +131,6 @@ void	loop_rays(t_graph *g)
 			g->ray.raya += 2 * M_PI;
 	}
 	mlx_put_image_to_window(g->mlx, g->win, g->i.img, 0, 0);
+	if (g->mm_on)
+		minimap(g);
 }
