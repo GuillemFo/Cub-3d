@@ -6,8 +6,6 @@ cub3D is a 3D graphical project inspired by the legendary **Wolfenstein 3D** - t
 
 > **Summary:** This project is inspired by the world-famous Wolfenstein 3D game, which is considered the first FPS ever created. It will enable you to explore ray-casting. Your goal will be to make a dynamic view inside a maze, where you will have to find your way.
 
-**Version:** 11.0
-
 ## 🎮 What is cub3D?
 
 cub3D is a **ray-casting engine** that creates a realistic 3D representation of a maze from a first-person perspective. Using mathematical principles and the miniLibX graphics library, you'll build a navigable 3D environment where you can explore corridors, view textured walls, and experience the fundamentals of 3D game rendering.
@@ -60,6 +58,10 @@ cub3D is a **ray-casting engine** that creates a realistic 3D representation of 
 - **Minimap system** for navigation
 - **Interactive doors** that open and close
 - **Mouse look** for intuitive camera control
+
+# Direct link
+[Watch on YouTube](https://www.youtube.com/watch?v=eyOCpuCgj4g)
+
 
 ## ⚒️ Tools we used:
 
