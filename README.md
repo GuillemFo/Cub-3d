@@ -59,7 +59,7 @@ cub3D is a **ray-casting engine** that creates a realistic 3D representation of 
 - **Interactive doors** that open and close
 - **Mouse look** for intuitive camera control
 
-# Direct link
+# Watch on YouTube a demo
 [Watch on YouTube](https://www.youtube.com/watch?v=eyOCpuCgj4g)
 
 
