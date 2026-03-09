@@ -1,79 +1,160 @@
-# cub3D - My First RayCaster with miniLibX
+# cub3D - Raycasting Engine with miniLibX
 
 ## 🎯 Project Overview
 
-cub3D is a 3D graphical project inspired by the legendary **Wolfenstein 3D** - the first-ever First Person Shooter game. This project takes you back to 1992, recreating the revolutionary ray-casting technology that changed gaming forever.
+**cub3D** is a graphical programming project inspired by the classic game **Wolfenstein 3D**, widely considered the first **First-Person Shooter (FPS)**.
 
-> **Summary:** This project is inspired by the world-famous Wolfenstein 3D game, which is considered the first FPS ever created. It will enable you to explore ray-casting. Your goal will be to make a dynamic view inside a maze, where you will have to find your way.
+The goal of the project is to implement a **ray-casting engine** capable of rendering a 3D-like environment from a 2D map. Using mathematical principles and the **miniLibX** graphics library, the program generates a dynamic first-person view of a maze where the player can move and explore.
+
+This project introduces fundamental concepts in:
+
+* computer graphics
+* real-time rendering
+* ray-casting algorithms
+* event-driven programming
+
+---
 
 ## 🎮 What is cub3D?
 
-cub3D is a **ray-casting engine** that creates a realistic 3D representation of a maze from a first-person perspective. Using mathematical principles and the miniLibX graphics library, you'll build a navigable 3D environment where you can explore corridors, view textured walls, and experience the fundamentals of 3D game rendering.
+**cub3D** is a simple 3D engine based on the **ray-casting technique**, which simulates a three-dimensional environment using a two-dimensional map.
+
+The program renders a maze from a **first-person perspective**, where walls are projected vertically depending on their distance from the player. This technique was famously used in early 3D games such as **Wolfenstein 3D**.
+
+Players can navigate the environment, rotate their view, and interact with the map while the engine dynamically renders the scene in real time.
+
+---
 
 ## ✨ Key Features
 
 ### Mandatory Requirements
 
-- **3D Ray-casting Engine**: Implement the core ray-casting algorithm to render 3D perspective
-- **Dynamic Window Management**: Smooth window handling (minimize, switch, close)
-- **Textured Walls**: Different textures for each cardinal direction (North, South, East, West)
-- **Customizable Environment**: Set floor and ceiling colors
-- **Intuitive Controls**:
-  - **WASD keys** for movement through the maze
-  - **Arrow keys** for looking left/right
-  - **ESC** or **window close** to exit cleanly
-- **Map Parsing**: Read scene files (`.cub` extension) with custom format
-- **Error Handling**: Comprehensive validation of map files and configurations
+* **Ray-casting engine** that renders a 3D perspective from a 2D map
+* **Window management** using miniLibX (open, minimize, close)
+* **Textured walls** for each cardinal direction:
 
-### Map Format
+  * North
+  * South
+  * East
+  * West
+* **Configurable floor and ceiling colors**
+* **Player controls**
 
-- **Characters**: `0` (empty space), `1` (wall), `N/S/E/W` (player start position & orientation)
-- **Requirements**: Map must be surrounded by walls, handle spaces intelligently
-- **Configuration File** includes:
-  - Texture paths for each direction (NO, SO, WE, EA)
-  - Floor and ceiling colors (F, C) in RGB format
+  * **W / A / S / D** — move through the maze
+  * **Arrow keys** — rotate the camera
+  * **ESC** or window close — exit the program
+* **Map parsing** from `.cub` configuration files
+* **Robust error handling** for invalid maps or configurations
+
+---
+
+## 🗺️ Map Format
+
+The map is defined inside a **`.cub` configuration file**.
+
+### Map Characters
+
+| Character       | Meaning                               |
+| --------------- | ------------------------------------- |
+| `0`             | Empty space                           |
+| `1`             | Wall                                  |
+| `N` `S` `E` `W` | Player start position and orientation |
+
+### Map Rules
+
+* The map must be **completely surrounded by walls**
+* Only one **player starting position** is allowed
+* Spaces must be handled correctly during parsing
+
+### Configuration Parameters
+
+The `.cub` file also defines environment settings:
+
+| Identifier | Description         |
+| ---------- | ------------------- |
+| `NO`       | North wall texture  |
+| `SO`       | South wall texture  |
+| `WE`       | West wall texture   |
+| `EA`       | East wall texture   |
+| `F`        | Floor color (RGB)   |
+| `C`        | Ceiling color (RGB) |
+
+---
 
 ## 🛠️ Technical Stack
 
-| Component | Technology |
-|-----------|------------|
-| **Language** | C |
-| **Graphics** | miniLibX |
-| **Libraries** | math library (-lm) |
-| **Memory** | Manual management (no leaks) |
-| **Build System** | Makefile with standard rules |
+| Component             | Technology                         |
+| --------------------- | ---------------------------------- |
+| **Language**          | C                                  |
+| **Graphics Library**  | miniLibX                           |
+| **Math Library**      | `-lm`                              |
+| **Memory Management** | Manual allocation and deallocation |
+| **Build System**      | Makefile                           |
+
+---
 
 ## 🎯 Learning Objectives
 
-- **Mathematics in Practice**: Apply trigonometric and geometric principles
-- **Graphics Programming**: Window management, colors, textures, events
-- **Algorithm Design**: Efficient ray-casting implementation
-- **File Parsing**: Complex configuration file handling
-- **Memory Management**: Proper allocation and freeing
-- **Error Handling**: Robust program with clean exits
+This project focuses on developing fundamental skills in:
+
+* **Mathematics for graphics**
+
+  * trigonometry
+  * vector calculations
+  * ray-casting geometry
+* **Graphics programming**
+
+  * window management
+  * event handling
+  * pixel rendering
+* **Algorithm design**
+
+  * efficient ray-casting implementation
+* **File parsing**
+
+  * handling complex configuration files
+* **Memory management**
+
+  * avoiding leaks and segmentation faults
+* **Robust error handling**
+
+---
 
 ## 🏆 Bonus Features
 
-- **Wall collisions** for realistic movement
-- **Minimap system** for navigation
-- **Interactive doors** that open and close
-- **Mouse look** for intuitive camera control
+The bonus part of the project includes additional gameplay features such as:
 
-# Demo
-[Watch on YouTube](https://www.youtube.com/watch?v=eyOCpuCgj4g)  
-The recording pc was under lots of load, cannot appreciate actual performance
+* **Wall collision detection**
+* **Minimap for navigation**  Activate with *M* key
+* **Mouse-based camera control**
 
-## ⚒️ Tools we used:
+---
 
-Subject
-*	https://cdn.intra.42.fr/pdf/pdf/111520/en.subject.pdf
-*	https://harm-smits.github.io/42docs/  
-       Math for raycasting
-*	https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/
-*	http://gamecodeschool.com/essentials/calculating-heading-in-2d-games-using-trigonometric-functions-part-1/
-*	https://reactive.so/post/42-a-comprehensive-guide-to-cub3d
+## 🎥 Demo
 
-Minilibx
-*	https://github.com/terry-yes/mlx_example
-*	https://harm-smits.github.io/42docs/libs/minilibx
-*	https://gontjarow.github.io/MiniLibX/
+Watch a demonstration of the project:
+
+https://www.youtube.com/watch?v=eyOCpuCgj4g
+
+*Note: The recording was done while the computer was under heavy load, so the actual performance is smoother.*
+
+---
+
+## 📚 Resources & References
+
+### Project Documentation
+
+* https://cdn.intra.42.fr/pdf/pdf/111520/en.subject.pdf
+* https://harm-smits.github.io/42docs/
+
+### Ray-casting Mathematics
+
+* https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/
+* http://gamecodeschool.com/essentials/calculating-heading-in-2d-games-using-trigonometric-functions-part-1/
+* https://reactive.so/post/42-a-comprehensive-guide-to-cub3d
+
+### miniLibX
+
+* https://github.com/terry-yes/mlx_example
+* https://harm-smits.github.io/42docs/libs/minilibx
+* https://gontjarow.github.io/MiniLibX/
