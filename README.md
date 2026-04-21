@@ -1,3 +1,4 @@
+*****AI used to explain this project*****
 # cub3D - Raycasting Engine with miniLibX
 
 ## 🎯 Project Overview
